@@ -27,6 +27,17 @@ module.exports = {
           900: "var(--color-primary-900)",
           950: "var(--color-primary-950)",
         },
+        "light-bg": "#F9FAFB",
+        "light-text": "#1F2937",
+        "light-accent": "#3B82F6",
+
+        "dark-bg": "#111827",
+        "dark-text": "#E5E7EB",
+        "dark-accent": "#60A5FA",
+
+        "fantasy-bg": "#1E293B",
+        "fantasy-text": "#9CA3AF",
+        "fantasy-accent": "#8B5CF6",
       },
     },
   },

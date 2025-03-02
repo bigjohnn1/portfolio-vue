@@ -20,7 +20,13 @@ export default defineNuxtConfig({
       ],
     },
   },
-
+  runtimeConfig: {
+    public: {
+      youtubeApiKey: process.env.NUXT_PUBLIC_YOUTUBE_API || "",
+      supaServiceKey: process.env.NUXT_PUBLIC_SUPABASE_SERVICE_KEY || "",
+      supaUrl: process.env.NUXT_PUBLIC_SUPABASE_URL || "",
+    },
+  },
   pinia: { storesDirs: ["./stores/**"] },
   imports: { dirs: ["./stores"] },
   pages: true,
@@ -52,6 +58,6 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   vite: {
-    plugins: [tailwind()],
+    plugins: [tailwind() as any],
   },
 });
