@@ -2,11 +2,11 @@
   <div class="flex flex-col min-h-screen">
     <header class="relative p-6 overflow-hidden sticky top-0 z-50">
       <div ref="parallaxBg" class="absolute inset-0 pointer-events-none">
-        <div class="stars-bg"></div>
+        <div class="bg-gradient"></div>
         <div class="gradient-overlay"></div>
       </div>
       <div class="relative z-10 flex justify-around items-center gap-8">
-        <nav class="flex space-x-16">
+        <nav class="flex space-x-24">
           <NuxtLink
             v-for="link in leftLinks"
             :key="link.to"
@@ -56,8 +56,8 @@ const leftLinks = links.slice(0, midIndex);
 const rightLinks = links.slice(midIndex);
 
 onMounted(() => {
-  gsap.to(".stars-bg", {
-    y: "30%",
+  gsap.to(parallaxBg.value, {
+    y: "20%",
     ease: "none",
     scrollTrigger: {
       trigger: parallaxBg.value,
@@ -77,15 +77,23 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.stars-bg {
+header {
+  background-color: #f9fafb;
+  height: 100px;
+}
+
+.bg-gradient {
   position: absolute;
-  top: 0;
+  top: -40%;
   left: 0;
   width: 100%;
-  height: 130%;
-  background-image: url("https://via.placeholder.com/1920x1080?text=Stars");
-  background-size: cover;
-  z-index: 1;
+  height: 180%;
+  background: radial-gradient(
+    circle at center,
+    #e5e7eb 0%,
+    #d1d5db 50%,
+    #f9fafb 100%
+  );
 }
 
 .gradient-overlay {
@@ -93,14 +101,13 @@ onMounted(() => {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(30, 58, 138, 0.7),
-    rgba(17, 24, 39, 0.7)
+    rgba(249, 250, 251, 0.5),
+    rgba(249, 250, 251, 0.5)
   );
-  z-index: 2;
 }
 
 .nav-link {
-  color: white;
+  color: #1f2937;
   font-size: 18px;
   text-decoration: none;
   position: relative;
@@ -108,7 +115,7 @@ onMounted(() => {
 }
 
 .nav-link:hover {
-  color: #60a5fa;
+  color: #3b82f6;
 }
 
 .nav-link::after {
@@ -118,7 +125,7 @@ onMounted(() => {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: #60a5fa;
+  background-color: #3b82f6;
   transition: width 0.3s ease;
 }
 
