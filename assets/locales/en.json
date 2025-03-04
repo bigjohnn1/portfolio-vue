@@ -4,5 +4,8 @@
     "about": "About",
     "contact": "Contact",
     "progress": "Progress"
+  },
+  "home": {
+    "title": "Homepage"
   }
 }

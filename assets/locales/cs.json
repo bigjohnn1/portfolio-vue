@@ -4,5 +4,8 @@
     "about": "Kdo jsem",
     "contact": "Kontakty",
     "progress": "Můj postup"
+  },
+  "home": {
+    "title": "Homepage"
   }
 }

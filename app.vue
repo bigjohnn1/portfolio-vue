@@ -1,10 +1,16 @@
 <template>
   <div>
+    <NuxtLoadingIndicator />
     <NuxtLayout>
-      <!-- <AppFlash /> -->
       <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
 
-<script setup></script>
+<script lang="ts" setup>
+useSeoMeta({
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `${titleChunk} - Big John` : "Big John";
+  },
+});
+</script>
