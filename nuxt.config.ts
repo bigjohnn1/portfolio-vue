@@ -29,7 +29,7 @@ export default defineNuxtConfig({
   pinia: { storesDirs: ["./stores/**"] },
   imports: { dirs: ["./stores"] },
   pages: true,
-  css: ["~/assets/css/tailwind.css"],
+  css: ["~/assets/scss/base.scss"],
   i18n: {
     lazy: true,
     langDir: "assets/locales/",

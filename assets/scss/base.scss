@@ -1,0 +1,75 @@
+@use "@/assets/scss/_variables.scss" as *;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+
+html {
+  background: $base-background;
+  color: $light-text;
+}
+
+html.dark {
+  color: $dark-text;
+}
+
+#__nuxt,
+#app {
+  @apply flex flex-col min-h-screen;
+}
+
+main {
+  @apply flex-grow;
+}
+
+label,
+a,
+p,
+b,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+p {
+  font-size: 1rem;
+}
+a {
+  font-size: 1rem;
+}
+b {
+  font-size: 1.1rem;
+}
+
+button {
+  background-color: $button-background;
+}

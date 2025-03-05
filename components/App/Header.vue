@@ -1,6 +1,6 @@
 <template>
   <header
-    class="relative p-6 overflow-hidden sticky top-0 z-50 bg-light-bg dark:bg-dark-bg transition-colors duration-300"
+    class="relative mx-auto p-6 sticky top-0 z-50 w-3/4 transition-colors duration-300"
   >
     <div class="relative z-10 flex items-center justify-center">
       <nav class="flex space-x-24">
@@ -29,7 +29,6 @@
         </NuxtLink>
       </nav>
       <button
-        ref="themeButton"
         @click="toggleTheme"
         class="theme-switcher absolute right-6 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
       >
@@ -52,10 +51,10 @@
 <script lang="ts" setup>
 import { useThemeStore } from "~/stores/theme";
 import { gsap } from "gsap";
+import { templateRef } from "@vueuse/core";
 
 const themeStore = useThemeStore();
-const themeButton = ref(null);
-const iconWrapper = ref(null);
+const iconWrapper = templateRef("iconWrapper");
 
 const toggleTheme = () => {
   gsap.to(iconWrapper.value, {
@@ -90,6 +89,31 @@ const rightLinks = links.slice(midIndex);
 </script>
 
 <style lang="scss" scoped>
+header {
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(0, 0, 0, 1),
+      // Černá v light mode
+      transparent
+    );
+  }
+
+  &.dark::after {
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 1));
+  }
+}
+
 .nav-link {
   font-size: 18px;
   text-decoration: none;
