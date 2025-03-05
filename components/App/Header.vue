@@ -8,7 +8,7 @@
           v-for="link in leftLinks"
           :key="link.to"
           :to="link.to"
-          class="nav-link text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
+          class="nav-link hover:text-light-accent dark:hover:text-dark-accent"
         >
           {{ $t(link.label) }}
         </NuxtLink>
@@ -23,7 +23,7 @@
           v-for="link in rightLinks"
           :key="link.to"
           :to="link.to"
-          class="nav-link text-light-text dark:text-dark-text hover:text-light-accent dark:hover:text-dark-accent"
+          class="nav-link hover:text-light-accent dark:hover:text-dark-accent"
         >
           {{ $t(link.label) }}
         </NuxtLink>
@@ -100,17 +100,17 @@ header {
     left: 0;
     width: 100%;
     height: 1px;
-    background: linear-gradient(
-      to right,
-      transparent,
-      rgba(0, 0, 0, 1),
-      // Černá v light mode
-      transparent
-    );
+    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 1));
   }
 
-  &.dark::after {
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 1));
+  html[class="dark"] & {
+    &::after {
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 1)
+      );
+    }
   }
 }
 

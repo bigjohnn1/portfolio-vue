@@ -14,14 +14,9 @@
 }
 
 html {
-  background: $base-background;
-  color: $light-text;
+  color: $text-color;
+  background-color: $base-background;
 }
-
-html.dark {
-  color: $dark-text;
-}
-
 #__nuxt,
 #app {
   @apply flex flex-col min-h-screen;
@@ -45,31 +40,35 @@ h5 {
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: $fontSize-h1;
   font-weight: 800;
 }
 h2 {
-  font-size: 2rem;
+  font-size: $fontSize-h2;
   font-weight: 700;
 }
 h3 {
-  font-size: 1.75rem;
+  font-size: $fontSize-h3;
   font-weight: 700;
 }
 h4 {
-  font-size: 1.5rem;
+  font-size: $fontSize-h4;
   font-weight: 600;
 }
 p {
-  font-size: 1rem;
+  font-size: $fontSize-p;
 }
 a {
-  font-size: 1rem;
+  font-size: $fontSize-a;
 }
 b {
-  font-size: 1.1rem;
+  font-size: $fontSize-b;
 }
 
 button {
   background-color: $button-background;
+}
+
+border {
+  border-color: $border-color;
 }
