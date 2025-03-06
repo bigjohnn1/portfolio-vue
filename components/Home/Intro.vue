@@ -67,14 +67,14 @@ onMounted(() => {
 
   if (canvas.value) {
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, 1, 1, 2000);
     const renderer = new THREE.WebGLRenderer({
       canvas: canvas.value,
       alpha: true,
     });
     renderer.setSize(700, 700);
 
-    const sphereGeometry = new THREE.SphereGeometry(2, 64, 64);
+    const sphereGeometry = new THREE.SphereGeometry(2, 58, 58);
     const sphereMaterial = new THREE.ShaderMaterial({
       uniforms: {
         color: { value: new THREE.Color(0x000000) },
