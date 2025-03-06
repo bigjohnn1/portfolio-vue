@@ -1,5 +1,6 @@
 <template>
   <VueFrag>
+    <HomeIntro />
     <AppHeader />
     <slot />
     <AppFooter />
