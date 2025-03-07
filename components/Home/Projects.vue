@@ -49,6 +49,8 @@
 
 <script setup lang="ts">
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
@@ -62,8 +64,7 @@ const projects = [
   {
     id: "2",
     title: "Milk World",
-    description:
-      "Funkční e-shop s PHP backendem, Nette explorer, první větší projekt.",
+    description: "Funkční e-shop v PHP, Nette explorer.",
     image: "https://via.placeholder.com/400x300?text=MilkWorld",
     timeline: "Červen 2024",
   },
@@ -76,18 +77,17 @@ const projects = [
   },
   {
     id: "4",
+    title: "HexCodium",
+    description: "Kurzová platforma, posun do full Nette, custom měna, RBAC...",
+    image: "https://via.placeholder.com/400x300?text=Portfolio",
+    timeline: "Září 2024",
+  },
+  {
+    id: "5",
     title: "Matchmaker (unfinished)",
     description: "Liveservice app, full Nette + pgSQL.",
     image: "https://via.placeholder.com/400x300?text=Matchmaker",
     timeline: "Prosinec 2024",
-  },
-  {
-    id: "5",
-    title: "Big John Portfolio",
-    description:
-      "Osobní web s 3D globem a moderním designem. (Zde se nacházíte)",
-    image: "https://via.placeholder.com/400x300?text=Portfolio",
-    timeline: "Březen 2025",
   },
 ];
 
