@@ -1,5 +1,10 @@
 <template>
-  <VueFrag> </VueFrag>
+  <VueFrag>
+    <HomeIntro />
+    <AppHeader />
+    <HomeProjects />
+    <AppFooter />
+  </VueFrag>
 </template>
 <script setup lang="ts">
 const { t } = useI18n();

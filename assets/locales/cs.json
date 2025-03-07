@@ -7,5 +7,9 @@
   },
   "home": {
     "title": "Homepage"
+  },
+  "intro": {
+    "subtitle": "tvořím weby, které mají výsledky",
+    "cta": "Začněte svou cestu"
   }
 }

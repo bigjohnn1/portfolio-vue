@@ -7,5 +7,9 @@
   },
   "home": {
     "title": "Homepage"
+  },
+  "intro": {
+    "subtitle": "creating succesful webs",
+    "cta": "Get started"
   }
 }

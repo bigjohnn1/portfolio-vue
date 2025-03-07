@@ -10,13 +10,13 @@
         Big John
       </h1>
       <p ref="subtitle" class="text-p mt-10 text-[clamp(20px,3vw,26px)]">
-        - tvořím weby, které přinášejí výsledky
+        - {{ t("intro.subtitle") }}
       </p>
       <button
         ref="cta"
         class="mt-14 px-10 py-5 bg-gradient-to-r from-gray-600 to-gray-900 text-white rounded-xl shadow-lg hover:shadow-2xl hover:from-gray-700 hover:to-gray-950 text-xl font-semibold"
       >
-        Začněte svou cestu
+        {{ t("intro.cta") }}
       </button>
     </div>
     <canvas
@@ -30,6 +30,7 @@
 import { gsap } from "gsap";
 import { templateRef } from "@vueuse/core";
 import * as THREE from "three";
+const { t } = useI18n();
 
 const title = templateRef("title");
 const subtitle = templateRef("subtitle");
