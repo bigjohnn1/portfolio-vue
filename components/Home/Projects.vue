@@ -28,9 +28,13 @@
               {{ project.description }}
             </p>
             <span
-              class="inline-block mt-3 px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-full"
+              class="inline-flex items-center mt-3 px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-full"
             >
               {{ project.timeline }}
+              <Icon
+                name="carbon:calendar"
+                class="ml-2 h-6 w-6 text-gray-700 dark:text-gray-200"
+              />
             </span>
           </div>
           <div class="w-1/2 flex justify-center relative">
@@ -50,6 +54,8 @@
 <script setup lang="ts">
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { onMounted } from "vue";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
