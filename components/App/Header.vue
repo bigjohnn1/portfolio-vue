@@ -1,18 +1,20 @@
 <template>
   <header
-    class="relative mx-auto p-6 sticky top-0 z-50 w-3/4 transition-colors duration-300"
+    class="relative mx-auto p-6 sticky top-0 z-50 w-full md:w-3/4 transition-colors duration-300"
   >
     <div class="relative z-10 flex items-center justify-center">
-      <nav class="flex space-x-32">
+      <!-- Hlavní navigace (viditelná nad 1168px) -->
+      <nav class="hidden xl:flex space-x-32">
         <NuxtLink
           v-for="link in leftLinks"
           :key="link.to"
           :to="link.to"
           class="nav-link hover:text-light-accent dark:hover:text-dark-accent"
+          @click="closeMenu"
         >
           {{ $t(link.label) }}
         </NuxtLink>
-        <NuxtLink to="/" class="logo-link">
+        <NuxtLink to="/" class="logo-link" @click="closeMenu">
           <NuxtImg
             src="/logo_bj.webp"
             alt="Site Logo"
@@ -24,27 +26,68 @@
           :key="link.to"
           :to="link.to"
           class="nav-link hover:text-light-accent dark:hover:text-dark-accent"
+          @click="closeMenu"
         >
           {{ $t(link.label) }}
         </NuxtLink>
       </nav>
-      <AppLocaleSwitcher class="ml-4" />
-      <button
-        @click="toggleTheme"
-        class="theme-switcher absolute right-6 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
+
+      <!-- Switchery -->
+      <div
+        class="absolute right-6 top-1/2 transform -translate-y-1/2 flex items-center space-x-2"
       >
-        <span ref="iconWrapper" class="inline-block">
+        <AppLocaleSwitcher class="locale-switcher" />
+        <button
+          @click="toggleTheme"
+          class="theme-switcher p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
+        >
+          <span ref="iconWrapper" class="inline-block">
+            <Icon
+              :name="
+                themeStore.currentTheme === 'light'
+                  ? 'mingcute:sun-fill'
+                  : 'mingcute:moon-fill'
+              "
+              size="24"
+              class="text-current"
+            />
+          </span>
+        </button>
+      </div>
+
+      <!-- Hamburger tlačítko (viditelné pod 1168px) -->
+      <button
+        @click="toggleMenu"
+        class="xl:hidden absolute left-6 top-1/2 transform -translate-y-1/2 p-2 text-gray-800 dark:text-gray-200 focus:outline-none"
+      >
+        <span ref="hamburgerIcon" class="inline-block">
           <Icon
-            :name="
-              themeStore.currentTheme === 'light'
-                ? 'mingcute:sun-fill'
-                : 'mingcute:moon-fill'
-            "
+            :name="isMenuOpen ? 'mingcute:close-fill' : 'mingcute:menu-fill'"
             size="24"
-            class="text-current"
+            class="text-current transition-transform duration-300"
           />
         </span>
       </button>
+
+      <!-- Mobilní menu (dropdown) -->
+      <div v-if="isMenuOpen" ref="mobileMenu" class="mobile-menu">
+        <NuxtLink
+          v-for="link in links"
+          :key="link.to"
+          :to="link.to"
+          class="nav-link hover:text-light-accent dark:hover:text-dark-accent"
+          @click="closeMenu"
+        >
+          {{ $t(link.label) }}
+        </NuxtLink>
+        <NuxtLink to="/" class="logo-link" @click="closeMenu">
+          <NuxtImg
+            src="/logo_bj.webp"
+            alt="Site Logo"
+            class="h-12 w-auto transform hover:scale-110 transition-transform duration-300"
+          />
+        </NuxtLink>
+      </div>
     </div>
   </header>
 </template>
@@ -56,6 +99,9 @@ import { templateRef } from "@vueuse/core";
 
 const themeStore = useThemeStore();
 const iconWrapper = templateRef("iconWrapper");
+const hamburgerIcon = templateRef("hamburgerIcon");
+const mobileMenu = templateRef("mobileMenu");
+const isMenuOpen = ref(false);
 
 const toggleTheme = () => {
   gsap.to(iconWrapper.value, {
@@ -75,6 +121,43 @@ const toggleTheme = () => {
       );
     },
   });
+};
+
+const toggleMenu = () => {
+  if (!isMenuOpen.value) {
+    isMenuOpen.value = true;
+    gsap.to(hamburgerIcon.value, {
+      rotation: 90,
+      duration: 0.3,
+      ease: "power2.inOut",
+    });
+    gsap.fromTo(
+      mobileMenu.value,
+      { x: "100%", opacity: 0 },
+      { x: "0%", opacity: 1, duration: 0.4, ease: "power2.out" }
+    );
+  } else {
+    gsap.to(mobileMenu.value, {
+      x: "100%",
+      opacity: 0,
+      duration: 0.4,
+      ease: "power2.in",
+      onComplete: () => {
+        isMenuOpen.value = false;
+      },
+    });
+    gsap.to(hamburgerIcon.value, {
+      rotation: 0,
+      duration: 0.3,
+      ease: "power2.inOut",
+    });
+  }
+};
+
+const closeMenu = () => {
+  if (isMenuOpen.value) {
+    toggleMenu();
+  }
 };
 
 const links = [
@@ -124,6 +207,7 @@ header {
   text-decoration: none;
   position: relative;
   transition: color 0.3s ease;
+  padding: 0.5rem 0;
 }
 
 .nav-link::after {
@@ -145,9 +229,110 @@ header {
   text-decoration: none;
 }
 
-.theme-switcher {
+.theme-switcher,
+.locale-switcher {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 300px;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 40;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+  html[class="dark"] & {
+    background-color: rgba(17, 24, 39, 0.95);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .nav-link {
+    font-size: 20px;
+    padding: 0.75rem 1.5rem;
+    width: 100%;
+    text-align: center;
+    border-radius: 0.5rem;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+      html[class="dark"] & {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
+  .logo-link {
+    margin: 1rem 0;
+  }
+}
+
+@media (min-width: 1168px) {
+  .mobile-menu {
+    display: none;
+  }
+}
+
+.locale-switcher {
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  color: #374151;
+  transition: all 0.3s ease;
+
+  html[class="dark"] & {
+    background-color: rgba(17, 24, 39, 0.5);
+    color: #e5e7eb;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    html[class="dark"] & {
+      background-color: rgba(17, 24, 39, 0.7);
+    }
+  }
+
+  .relative {
+    position: relative;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .absolute {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(4px);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    html[class="dark"] & {
+      background-color: rgba(17, 24, 39, 0.95);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    button {
+      transition: background-color 0.2s ease;
+    }
+  }
 }
 </style>

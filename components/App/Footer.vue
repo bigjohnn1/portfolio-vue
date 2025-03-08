@@ -22,7 +22,7 @@
       </svg>
     </div>
     <div class="relative z-10">
-      <p>© {{ year }} Big John</p>
+      <p class="text-white">© {{ year }} Big John</p>
     </div>
   </footer>
 </template>

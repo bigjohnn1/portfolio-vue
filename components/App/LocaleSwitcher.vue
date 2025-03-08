@@ -17,7 +17,7 @@
       <ul
         v-if="isOpen"
         ref="dropdown"
-        class="absolute w-32 mt-1 rounded-lg bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 shadow-lg z-10"
+        class="absolute w-32 mt-1 rounded-lg bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 shadow-lg z-[9999]"
       >
         <li
           v-for="locale in availableLocales"

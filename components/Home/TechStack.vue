@@ -14,7 +14,7 @@
             v-for="(tech, index) in techStack"
             :key="tech.key"
             class="tech-item flex flex-col items-center p-4 bg-gray-200 dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-            :ref="(el) => (techItems[index] = el)"
+            :ref="(el) => (techItems[index] = el as Element)"
           >
             <Icon
               :name="tech.icon"
@@ -51,7 +51,7 @@ const techStack = [
   { key: "windows", icon: "logos:microsoft-windows" },
 ];
 
-const techItems = ref<Element[]>([]);
+const techItems = ref<(Element | null)[]>([]);
 const tippyInstances = ref<Instance[]>([]);
 
 onMounted(() => {
