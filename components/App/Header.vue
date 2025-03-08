@@ -28,6 +28,7 @@
           {{ $t(link.label) }}
         </NuxtLink>
       </nav>
+      <AppLocaleSwitcher class="ml-4" />
       <button
         @click="toggleTheme"
         class="theme-switcher absolute right-6 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"

@@ -13,9 +13,48 @@
     "cta": "Začněte svou cestu"
   },
   "techStack": {
-    "title": "Technologie",
-    "subtitle": "Technologie, které používám",
-    "description": "Věřím, že technologie by měly být jednoduché a efektivní. Proto používám ty nejlepší technologie, které mi umožňují vytvářet weby, které mají výsledky.",
-    "cta": "Zjistěte více"
+    "title": "Můj technologický stack",
+    "items": {
+      "vue": {
+        "name": "Vue.js",
+        "description": "Reaktivní framework pro tvorbu uživatelských rozhraní"
+      },
+      "nuxt": {
+        "name": "Nuxt.js",
+        "description": "Framework pro Vue aplikace s SSR"
+      },
+      "tailwind": {
+        "name": "Tailwind CSS",
+        "description": "Utility-first CSS framework"
+      },
+      "gsap": {
+        "name": "GSAP",
+        "description": "Knihovna pro plynulé animace"
+      },
+      "typescript": {
+        "name": "TypeScript",
+        "description": "Typovaný JavaScript pro škálovatelný kód"
+      },
+      "php": {
+        "name": "PHP",
+        "description": "Skriptovací jazyk pro serverovou stranu"
+      },
+      "nette": {
+        "name": "Nette",
+        "description": "PHP framework pro webové aplikace"
+      },
+      "postgresql": {
+        "name": "PostgreSQL",
+        "description": "Výkonná relační databáze s otevřeným kódem"
+      },
+      "linux": {
+        "name": "Linux",
+        "description": "Zvládnutí open-source operačního systému"
+      },
+      "windows": {
+        "name": "Windows",
+        "description": "Zvládnutí operačního systému od Microsoftu"
+      }
+    }
   }
 }

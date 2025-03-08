@@ -1,4 +1,3 @@
-<!-- components/LangSwitcher.vue -->
 <template>
   <ClientOnly>
     <div class="lang-switcher relative">

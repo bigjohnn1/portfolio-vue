@@ -13,9 +13,48 @@
     "cta": "Get started"
   },
   "techStack": {
-    "title": "Technologies",
-    "subtitle": "Technologies I use",
-    "description": "I believe that technologies should be simple and effective. That's why I use the best technologies that allow me to create websites that are successful.",
-    "cta": "Learn more"
+    "title": "My Tech Stack",
+    "items": {
+      "vue": {
+        "name": "Vue.js",
+        "description": "Reactive framework for building user interfaces"
+      },
+      "nuxt": {
+        "name": "Nuxt.js",
+        "description": "Framework for Vue applications with SSR"
+      },
+      "tailwind": {
+        "name": "Tailwind CSS",
+        "description": "Utility-first CSS framework"
+      },
+      "gsap": {
+        "name": "GSAP",
+        "description": "Animation library for smooth effects"
+      },
+      "typescript": {
+        "name": "TypeScript",
+        "description": "Typed JavaScript for scalable code"
+      },
+      "php": {
+        "name": "PHP",
+        "description": "Server-side scripting language"
+      },
+      "nette": {
+        "name": "Nette",
+        "description": "PHP framework for web applications"
+      },
+      "postgresql": {
+        "name": "PostgreSQL",
+        "description": "Powerful open-source relational database"
+      },
+      "linux": {
+        "name": "Linux",
+        "description": "Open-source operating system mastery"
+      },
+      "windows": {
+        "name": "Windows",
+        "description": "Microsoft operating system mastery"
+      }
+    }
   }
 }
