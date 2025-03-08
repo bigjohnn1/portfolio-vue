@@ -3,6 +3,7 @@
     <HomeIntro />
     <AppHeader />
     <HomeProjects />
+    <HomeTechStack />
     <AppFooter />
   </VueFrag>
 </template>

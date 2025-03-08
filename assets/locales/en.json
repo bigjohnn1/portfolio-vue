@@ -11,5 +11,11 @@
   "intro": {
     "subtitle": "creating succesful webs",
     "cta": "Get started"
+  },
+  "techStack": {
+    "title": "Technologies",
+    "subtitle": "Technologies I use",
+    "description": "I believe that technologies should be simple and effective. That's why I use the best technologies that allow me to create websites that are successful.",
+    "cta": "Learn more"
   }
 }
