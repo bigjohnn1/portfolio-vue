@@ -64,7 +64,7 @@ const projects = [
     title: "Škola života - web revamp",
     description:
       "První web s PHP backendem pro neziskovou, charitativní organizaci",
-    image: "https://via.placeholder.com/400x300?text=SkolaZivota",
+    image: "skolazivota.png",
     timeline: "Květen 2024",
   },
   {
@@ -78,21 +78,21 @@ const projects = [
     id: "3",
     title: "TINT s.r.o shadow project",
     description: "Stínový návrh pro IT společnost, postaveno na míru.",
-    image: "https://via.placeholder.com/400x300?text=TINT",
+    image: "tint.png",
     timeline: "Září 2024",
   },
   {
     id: "4",
     title: "HexCodium",
     description: "Kurzová platforma, posun do full Nette, custom měna, RBAC...",
-    image: "https://via.placeholder.com/400x300?text=Portfolio",
+    image: "hexcodium.png",
     timeline: "Září 2024",
   },
   {
     id: "5",
     title: "Matchmaker (unfinished)",
     description: "Liveservice app, full Nette + pgSQL.",
-    image: "https://via.placeholder.com/400x300?text=Matchmaker",
+    image: "Matchmaker.png",
     timeline: "Prosinec 2024",
   },
 ];

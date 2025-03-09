@@ -13,7 +13,7 @@
     "cta": "Začněte svou cestu"
   },
   "techStack": {
-    "title": "Můj technologický stack",
+    "title": "Můj stack",
     "items": {
       "vue": {
         "name": "Vue.js",

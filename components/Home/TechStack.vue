@@ -31,7 +31,6 @@
 </template>
 
 <script setup lang="ts">
-import { gsap } from "gsap";
 import tippy from "tippy.js";
 import type { Instance } from "tippy.js";
 import "tippy.js/dist/tippy.css";
@@ -57,13 +56,6 @@ const tippyInstances = ref<Instance[]>([]);
 onMounted(() => {
   techItems.value.forEach((item, index) => {
     if (!item) return;
-    gsap.from(item, {
-      opacity: 0,
-      y: 50,
-      duration: 0.8,
-      ease: "power2.out",
-      delay: index * 0.1,
-    });
 
     const instance = tippy(item, {
       content: $i18n.t(`techStack.items.${techStack[index].key}.description`),
