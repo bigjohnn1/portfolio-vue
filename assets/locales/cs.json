@@ -56,5 +56,35 @@
         "description": "Zvládnutí operačního systému od Microsoftu"
       }
     }
+  },
+  "projects": {
+    "title": "Moje projekty",
+    "items": {
+      "skola-zivota": {
+        "title": "Škola života - web revamp",
+        "description": "První web s PHP backendem pro neziskovou, charitativní organizaci",
+        "timeline": "Květen 2024 (2 týdny)"
+      },
+      "milk-world": {
+        "title": "Milk World",
+        "description": "Funkční e-shop v PHP, Nette explorer",
+        "timeline": "Červen 2024 (1 měsíc)"
+      },
+      "tint-shadow": {
+        "title": "TINT s.r.o shadow project",
+        "description": "Stínový návrh pro IT společnost, postaveno na míru",
+        "timeline": "Září 2024 (2 týdny)"
+      },
+      "hexcodium": {
+        "title": "HexCodium",
+        "description": "Kurzová platforma, posun do full Nette, custom měna, RBAC...",
+        "timeline": "Září 2024 (3 měsíce)"
+      },
+      "matchmaker": {
+        "title": "Matchmaker (unfinished)",
+        "description": "Liveservice app, full Nette + pgSQL, Redis caching a další funkce",
+        "timeline": "Prosinec 2024 (1 měsíc)"
+      }
+    }
   }
 }

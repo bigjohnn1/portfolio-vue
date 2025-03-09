@@ -9,28 +9,30 @@
         ></div>
         <div
           v-for="(project, index) in projects"
-          :key="project.id"
+          :key="project.key"
           class="flex items-center mb-20 relative"
           :class="{ 'flex-row-reverse': index % 2 === 0 }"
         >
           <div class="project-item w-1/2 px-8">
             <NuxtImg
               :src="project.image"
-              :alt="project.title"
+              :alt="$t(`projects.items.${project.key}.title`)"
               class="w-full h-48 object-cover rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
             />
             <h3
               class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 mt-6"
             >
-              {{ project.title }}
+              {{ $t(`projects.items.${project.key}.title`) }}
             </h3>
             <p class="text-base text-gray-600 dark:text-gray-300 mt-2">
-              {{ project.description }}
+              {{
+                truncate($t(`projects.items.${project.key}.description`), 90)
+              }}
             </p>
             <span
               class="inline-flex items-center mt-3 px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-full"
             >
-              {{ project.timeline }}
+              {{ $t(`projects.items.${project.key}.timeline`) }}
               <Icon
                 name="carbon:calendar"
                 class="ml-2 h-6 w-6 text-gray-700 dark:text-gray-200"
@@ -54,47 +56,22 @@
 <script setup lang="ts">
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { onMounted } from "vue";
 
 gsap.registerPlugin(ScrollTrigger);
 
+function truncate(str: string, n: number): string {
+  return str.length > n ? str.substr(0, n) + "..." : str;
+}
+
 const projects = [
+  { key: "skola-zivota", image: "skolazivota.png" },
   {
-    id: "1",
-    title: "Škola života - web revamp",
-    description:
-      "První web s PHP backendem pro neziskovou, charitativní organizaci",
-    image: "skolazivota.png",
-    timeline: "Květen 2024",
-  },
-  {
-    id: "2",
-    title: "Milk World",
-    description: "Funkční e-shop v PHP, Nette explorer.",
+    key: "milk-world",
     image: "https://via.placeholder.com/400x300?text=MilkWorld",
-    timeline: "Červen 2024",
   },
-  {
-    id: "3",
-    title: "TINT s.r.o shadow project",
-    description: "Stínový návrh pro IT společnost, postaveno na míru.",
-    image: "tint.png",
-    timeline: "Září 2024",
-  },
-  {
-    id: "4",
-    title: "HexCodium",
-    description: "Kurzová platforma, posun do full Nette, custom měna, RBAC...",
-    image: "hexcodium.png",
-    timeline: "Září 2024",
-  },
-  {
-    id: "5",
-    title: "Matchmaker (unfinished)",
-    description: "Liveservice app, full Nette + pgSQL.",
-    image: "Matchmaker.png",
-    timeline: "Prosinec 2024",
-  },
+  { key: "tint-shadow", image: "tint.png" },
+  { key: "hexcodium", image: "hexcodium.png" },
+  { key: "matchmaker", image: "Matchmaker.png" },
 ];
 
 onMounted(() => {
