@@ -3,7 +3,6 @@
     class="relative mx-auto p-6 sticky top-0 z-50 w-full md:w-3/4 transition-colors duration-300"
   >
     <div class="relative z-10 flex items-center justify-center">
-      <!-- Hlavní navigace (viditelná nad 1168px) -->
       <nav class="hidden xl:flex space-x-32">
         <NuxtLink
           v-for="link in leftLinks"
@@ -32,7 +31,6 @@
         </NuxtLink>
       </nav>
 
-      <!-- Switchery -->
       <div
         class="absolute right-6 top-1/2 transform -translate-y-1/2 flex items-center space-x-2"
       >
@@ -55,11 +53,7 @@
         </button>
       </div>
 
-      <!-- Hamburger tlačítko (viditelné pod 1168px) -->
-      <button
-        @click="toggleMenu"
-        class="xl:hidden absolute left-6 top-1/2 transform -translate-y-1/2 p-2 text-gray-800 dark:text-gray-200 focus:outline-none"
-      >
+      <button class="hamburger-btn" @click="toggleMenu">
         <span ref="hamburgerIcon" class="inline-block">
           <Icon
             :name="isMenuOpen ? 'mingcute:close-fill' : 'mingcute:menu-fill'"
@@ -69,8 +63,12 @@
         </span>
       </button>
 
-      <!-- Mobilní menu (dropdown) -->
-      <div v-if="isMenuOpen" ref="mobileMenu" class="mobile-menu">
+      <div
+        v-if="isMenuOpen"
+        v-click-outside="closeMenu"
+        ref="mobileMenu"
+        class="mobile-menu"
+      >
         <NuxtLink
           v-for="link in links"
           :key="link.to"
@@ -96,12 +94,27 @@
 import { useThemeStore } from "~/stores/theme";
 import { gsap } from "gsap";
 import { templateRef } from "@vueuse/core";
+import { onClickOutside, useElementBounding } from "@vueuse/core";
 
 const themeStore = useThemeStore();
 const iconWrapper = templateRef("iconWrapper");
 const hamburgerIcon = templateRef("hamburgerIcon");
 const mobileMenu = templateRef("mobileMenu");
 const isMenuOpen = ref(false);
+
+const { height: menuHeight, width: menuWidth } = useElementBounding(mobileMenu);
+
+const centerMenu = () => {
+  if (mobileMenu.value) {
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+    const topPosition = (viewportHeight - menuHeight.value) / 2;
+    const leftPosition = (viewportWidth - menuWidth.value) / 2;
+
+    mobileMenu.value.style.top = `${topPosition}px`;
+    mobileMenu.value.style.left = `${leftPosition}px`;
+  }
+};
 
 const toggleTheme = () => {
   gsap.to(iconWrapper.value, {
@@ -134,7 +147,13 @@ const toggleMenu = () => {
     gsap.fromTo(
       mobileMenu.value,
       { x: "100%", opacity: 0 },
-      { x: "0%", opacity: 1, duration: 0.4, ease: "power2.out" }
+      {
+        x: "0%",
+        opacity: 1,
+        duration: 0.4,
+        ease: "power2.out",
+        onStart: centerMenu,
+      }
     );
   } else {
     gsap.to(mobileMenu.value, {
@@ -160,6 +179,14 @@ const closeMenu = () => {
   }
 };
 
+onClickOutside(mobileMenu, () => {
+  closeMenu();
+});
+
+watch([menuHeight, menuWidth], () => {
+  if (isMenuOpen.value) centerMenu();
+});
+
 const links = [
   { to: "/contact", label: "nav.contact" },
   { to: "/references", label: "nav.references" },
@@ -177,6 +204,9 @@ header {
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 
   &::after {
     content: "";
@@ -208,21 +238,21 @@ header {
   position: relative;
   transition: color 0.3s ease;
   padding: 0.5rem 0;
-}
 
-.nav-link::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: currentColor;
-  transition: width 0.3s ease;
-}
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
 
-.nav-link:hover::after {
-  width: 100%;
+  &:hover::after {
+    width: 100%;
+  }
 }
 
 .logo-link {
@@ -236,23 +266,36 @@ header {
   justify-content: center;
 }
 
+.hamburger-btn {
+  display: none;
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 60;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 .mobile-menu {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 80%;
-  max-width: 300px;
-  padding: 2rem;
+  max-width: 320px;
+  height: auto;
+  min-height: 50vh;
+  padding: 3rem 2rem;
   background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
-  border-radius: 1rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 1.5rem;
-  z-index: 40;
+  gap: 2rem;
+  z-index: 50;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  border-radius: 1rem;
 
   html[class="dark"] & {
     background-color: rgba(17, 24, 39, 0.95);
@@ -261,7 +304,7 @@ header {
 
   .nav-link {
     font-size: 20px;
-    padding: 0.75rem 1.5rem;
+    padding: 1rem 1.5rem;
     width: 100%;
     text-align: center;
     border-radius: 0.5rem;
@@ -282,9 +325,55 @@ header {
   }
 }
 
-@media (min-width: 1168px) {
-  .mobile-menu {
+@media (max-width: 1279px) {
+  .hamburger-btn {
+    display: block;
+  }
+
+  nav {
     display: none;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
+}
+
+@media (min-width: 1280px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hamburger-btn {
+    left: 0.5rem;
+    top: 0.5rem;
+    padding: 0.4rem;
+  }
+
+  .mobile-menu {
+    width: 90%;
+    padding: 3rem 1.5rem;
+    min-height: 60vh;
+  }
+}
+
+.theme-switcher {
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+
+  html[class="dark"] & {
+    background-color: rgba(17, 24, 39, 0.5);
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    html[class="dark"] & {
+      background-color: rgba(17, 24, 39, 0.7);
+    }
   }
 }
 
@@ -304,34 +393,6 @@ header {
     background-color: rgba(255, 255, 255, 0.3);
     html[class="dark"] & {
       background-color: rgba(17, 24, 39, 0.7);
-    }
-  }
-
-  .relative {
-    position: relative;
-  }
-
-  button {
-    display: flex;
-    align-items: center;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-
-  .absolute {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(4px);
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-    html[class="dark"] & {
-      background-color: rgba(17, 24, 39, 0.95);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    }
-
-    button {
-      transition: background-color 0.2s ease;
     }
   }
 }

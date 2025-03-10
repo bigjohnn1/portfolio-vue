@@ -47,10 +47,6 @@
         "name": "PostgreSQL",
         "description": "Powerful open-source relational database"
       },
-      "linux": {
-        "name": "Linux",
-        "description": "Open-source operating system mastery"
-      },
       "windows": {
         "name": "Windows",
         "description": "Microsoft operating system mastery"
