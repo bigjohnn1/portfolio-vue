@@ -9,7 +9,7 @@
     "title": "Homepage"
   },
   "intro": {
-    "subtitle": "creating succesful webs",
+    "subtitle": "let's create succesful websites",
     "cta": "Get started"
   },
   "techStack": {
@@ -27,10 +27,6 @@
         "name": "Tailwind CSS",
         "description": "Utility-first CSS framework"
       },
-      "gsap": {
-        "name": "GSAP",
-        "description": "Animation library for smooth effects"
-      },
       "typescript": {
         "name": "TypeScript",
         "description": "Typed JavaScript for scalable code"
@@ -39,10 +35,6 @@
         "name": "PHP",
         "description": "Server-side scripting language"
       },
-      "nette": {
-        "name": "Nette",
-        "description": "PHP framework for web applications"
-      },
       "postgresql": {
         "name": "PostgreSQL",
         "description": "Powerful open-source relational database"
@@ -50,6 +42,25 @@
       "windows": {
         "name": "Windows",
         "description": "Microsoft operating system mastery"
+      },
+      "html": {
+        "name": "HTML",
+        "description": "Markup language for web pages"
+      },
+      "javascript": {
+        "name": "JavaScript",
+        "description": "Programming language for interactivity"
+      },
+      "mysql": { "name": "MySQL", "description": "Relational database system" },
+      "scss": { "name": "SCSS", "description": "CSS preprocessor" },
+      "git": { "name": "Git", "description": "Version control system" },
+      "docker": {
+        "name": "Docker",
+        "description": "Containerization platform"
+      },
+      "powershell": {
+        "name": "PowerShell",
+        "description": "Windows automation and scripting"
       }
     }
   },

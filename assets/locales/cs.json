@@ -9,7 +9,7 @@
     "title": "Homepage"
   },
   "intro": {
-    "subtitle": "tvořím weby, které mají výsledky",
+    "subtitle": "pojďme tvořit úspěšné weby",
     "cta": "Začněte svou cestu"
   },
   "techStack": {
@@ -27,10 +27,6 @@
         "name": "Tailwind CSS",
         "description": "Utility-first CSS framework"
       },
-      "gsap": {
-        "name": "GSAP",
-        "description": "Knihovna pro plynulé animace"
-      },
       "typescript": {
         "name": "TypeScript",
         "description": "Typovaný JavaScript pro škálovatelný kód"
@@ -39,17 +35,37 @@
         "name": "PHP",
         "description": "Skriptovací jazyk pro serverovou stranu"
       },
-      "nette": {
-        "name": "Nette",
-        "description": "PHP framework pro webové aplikace"
-      },
       "postgresql": {
         "name": "PostgreSQL",
         "description": "Výkonná relační databáze s otevřeným kódem"
       },
-      "windows": {
-        "name": "Windows",
-        "description": "Zvládnutí operačního systému od Microsoftu"
+      "html": {
+        "name": "HTML",
+        "description": "Značkovací jazyk pro tvorbu webových stránek"
+      },
+      "javascript": {
+        "name": "JavaScript",
+        "description": "Programovací jazyk pro interaktivitu na webu"
+      },
+      "mysql": {
+        "name": "MySQL",
+        "description": "Populární relační databáze s otevřeným kódem"
+      },
+      "scss": {
+        "name": "SCSS",
+        "description": "CSS preprocesor s rozšířenými funkcemi"
+      },
+      "git": {
+        "name": "Git",
+        "description": "Distribuovaný systém správy verzí"
+      },
+      "docker": {
+        "name": "Docker",
+        "description": "Platforma pro kontejnerizaci aplikací"
+      },
+      "powershell": {
+        "name": "PowerShell",
+        "description": "Nástroj pro automatizaci a skriptování ve Windows"
       }
     }
   },

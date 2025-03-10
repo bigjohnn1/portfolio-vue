@@ -41,12 +41,16 @@ const techStack = [
   { key: "vue", icon: "logos:vue" },
   { key: "nuxt", icon: "logos:nuxt-icon" },
   { key: "tailwind", icon: "logos:tailwindcss-icon" },
-  { key: "gsap", icon: "logos:gsap-icon" },
   { key: "typescript", icon: "logos:typescript-icon" },
   { key: "php", icon: "logos:php" },
-  { key: "nette", icon: "logos:nette" },
   { key: "postgresql", icon: "logos:postgresql" },
-  { key: "windows", icon: "logos:microsoft-windows" },
+  { key: "html", icon: "logos:html-5" },
+  { key: "javascript", icon: "logos:javascript" },
+  { key: "mysql", icon: "logos:mysql" },
+  { key: "scss", icon: "logos:sass" },
+  { key: "git", icon: "logos:git-icon" },
+  { key: "docker", icon: "logos:docker-icon" },
+  { key: "powershell", icon: "ic:baseline-terminal" },
 ];
 
 const techItems = ref<(Element | null)[]>([]);

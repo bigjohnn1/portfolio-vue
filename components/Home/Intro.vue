@@ -68,7 +68,7 @@ onMounted(() => {
 
   if (canvas.value) {
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, 1, 1, 2000);
+    const camera = new THREE.PerspectiveCamera(70, 1, 1, 2000);
     const renderer = new THREE.WebGLRenderer({
       canvas: canvas.value,
       alpha: true,
