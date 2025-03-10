@@ -1,9 +1,9 @@
 <template>
   <header
-    class="relative mx-auto p-6 sticky top-0 z-50 w-full md:w-3/4 transition-colors duration-300"
+    class="relative mx-auto p-6 sticky top-0 z-50 w-full md:w-3/4 transition-colors duration-300 flex flex-wrap items-center justify-between"
   >
-    <div class="relative z-10 flex items-center justify-center">
-      <nav class="hidden xl:flex space-x-32">
+    <div class="flex items-center justify-center flex-1 min-w-0">
+      <nav class="hidden xl:flex flex-wrap space-x-32">
         <NuxtLink
           v-for="link in leftLinks"
           :key="link.to"
@@ -30,30 +30,27 @@
           {{ $t(link.label) }}
         </NuxtLink>
       </nav>
+    </div>
 
-      <div
-        class="absolute right-6 top-1/2 transform -translate-y-1/2 flex items-center space-x-2"
+    <div class="flex items-center space-x-2">
+      <AppLocaleSwitcher class="locale-switcher" />
+      <button
+        @click="toggleTheme"
+        class="theme-switcher p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
       >
-        <AppLocaleSwitcher class="locale-switcher" />
-        <button
-          @click="toggleTheme"
-          class="theme-switcher p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
-        >
-          <span ref="iconWrapper" class="inline-block">
-            <Icon
-              :name="
-                themeStore.currentTheme === 'light'
-                  ? 'mingcute:sun-fill'
-                  : 'mingcute:moon-fill'
-              "
-              size="24"
-              class="text-current"
-            />
-          </span>
-        </button>
-      </div>
-
-      <button class="hamburger-btn" @click="toggleMenu">
+        <span ref="iconWrapper" class="inline-block">
+          <Icon
+            :name="
+              themeStore.currentTheme === 'light'
+                ? 'mingcute:sun-fill'
+                : 'mingcute:moon-fill'
+            "
+            size="24"
+            class="text-current"
+          />
+        </span>
+      </button>
+      <button class="hamburger-btn xl:hidden" @click="toggleMenu">
         <span ref="hamburgerIcon" class="inline-block">
           <Icon
             :name="isMenuOpen ? 'mingcute:close-fill' : 'mingcute:menu-fill'"
@@ -62,30 +59,30 @@
           />
         </span>
       </button>
+    </div>
 
-      <div
-        v-if="isMenuOpen"
-        v-click-outside="closeMenu"
-        ref="mobileMenu"
-        class="mobile-menu"
+    <div
+      v-if="isMenuOpen"
+      v-click-outside="closeMenu"
+      ref="mobileMenu"
+      class="mobile-menu"
+    >
+      <NuxtLink
+        v-for="link in links"
+        :key="link.to"
+        :to="link.to"
+        class="nav-link hover:text-light-accent dark:hover:text-dark-accent"
+        @click="closeMenu"
       >
-        <NuxtLink
-          v-for="link in links"
-          :key="link.to"
-          :to="link.to"
-          class="nav-link hover:text-light-accent dark:hover:text-dark-accent"
-          @click="closeMenu"
-        >
-          {{ $t(link.label) }}
-        </NuxtLink>
-        <NuxtLink to="/" class="logo-link" @click="closeMenu">
-          <NuxtImg
-            src="/logo_bj.webp"
-            alt="Site Logo"
-            class="h-12 w-auto transform hover:scale-110 transition-transform duration-300"
-          />
-        </NuxtLink>
-      </div>
+        {{ $t(link.label) }}
+      </NuxtLink>
+      <NuxtLink to="/" class="logo-link" @click="closeMenu">
+        <NuxtImg
+          src="/logo_bj.webp"
+          alt="Site Logo"
+          class="h-12 w-auto transform hover:scale-110 transition-transform duration-300"
+        />
+      </NuxtLink>
     </div>
   </header>
 </template>
@@ -102,17 +99,14 @@ const hamburgerIcon = templateRef("hamburgerIcon");
 const mobileMenu = templateRef("mobileMenu");
 const isMenuOpen = ref(false);
 
-const { height: menuHeight, width: menuWidth } = useElementBounding(mobileMenu);
+const { height: menuHeight } = useElementBounding(mobileMenu);
 
 const centerMenu = () => {
   if (mobileMenu.value) {
     const viewportHeight = window.innerHeight;
-    const viewportWidth = window.innerWidth;
     const topPosition = (viewportHeight - menuHeight.value) / 2;
-    const leftPosition = (viewportWidth - menuWidth.value) / 2;
 
     mobileMenu.value.style.top = `${topPosition}px`;
-    mobileMenu.value.style.left = `${leftPosition}px`;
   }
 };
 
@@ -183,7 +177,7 @@ onClickOutside(mobileMenu, () => {
   closeMenu();
 });
 
-watch([menuHeight, menuWidth], () => {
+watch([menuHeight], () => {
   if (isMenuOpen.value) centerMenu();
 });
 
@@ -270,10 +264,8 @@ header {
   display: none;
   position: fixed;
   left: 1rem;
-  top: 1rem;
   z-index: 60;
   padding: 0.5rem;
-  background: none;
   border: none;
   cursor: pointer;
 }

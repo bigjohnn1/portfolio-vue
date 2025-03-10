@@ -46,7 +46,6 @@ const techStack = [
   { key: "php", icon: "logos:php" },
   { key: "nette", icon: "logos:nette" },
   { key: "postgresql", icon: "logos:postgresql" },
-  { key: "linux", icon: "logos:linux-tux" },
   { key: "windows", icon: "logos:microsoft-windows" },
 ];
 

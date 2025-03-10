@@ -67,7 +67,7 @@ const projects = [
   { key: "skola-zivota", image: "skolazivota.png" },
   {
     key: "milk-world",
-    image: "https://via.placeholder.com/400x300?text=MilkWorld",
+    image: "milkworld.png",
   },
   { key: "tint-shadow", image: "tint.png" },
   { key: "hexcodium", image: "hexcodium.png" },

@@ -47,10 +47,6 @@
         "name": "PostgreSQL",
         "description": "Výkonná relační databáze s otevřeným kódem"
       },
-      "linux": {
-        "name": "Linux",
-        "description": "Zvládnutí open-source operačního systému"
-      },
       "windows": {
         "name": "Windows",
         "description": "Zvládnutí operačního systému od Microsoftu"
@@ -71,7 +67,7 @@
         "timeline": "Červen 2024 (1 měsíc)"
       },
       "tint-shadow": {
-        "title": "TINT s.r.o shadow project",
+        "title": "TINT s.r.o - shadow project",
         "description": "Stínový návrh pro IT společnost, postaveno na míru",
         "timeline": "Září 2024 (2 týdny)"
       },
