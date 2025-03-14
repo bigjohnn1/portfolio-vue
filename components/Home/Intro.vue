@@ -18,6 +18,7 @@
       >
         {{ t("intro.cta") }}
       </button>
+      <AppLocaleSwitcher class="locale-switcher" />
     </div>
     <canvas
       ref="canvas"
@@ -166,5 +167,24 @@ onMounted(() => {
 <style scoped lang="scss">
 canvas {
   filter: drop-shadow(0 0 20px var(--shadow-color));
+}
+.locale-switcher {
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  color: #374151;
+  transition: all 0.3s ease;
+
+  html[class="dark"] & {
+    background-color: rgba(17, 24, 39, 0.5);
+    color: #e5e7eb;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    html[class="dark"] & {
+      background-color: rgba(17, 24, 39, 0.7);
+    }
+  }
 }
 </style>

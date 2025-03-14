@@ -1,9 +1,11 @@
 <template>
   <header
-    class="relative mx-auto p-6 sticky top-0 z-50 w-full md:w-3/4 transition-colors duration-300 flex flex-wrap items-center justify-between"
+    class="relative mx-auto p-6 sticky top-0 z-50 w-full md:w-3/4 transition-colors duration-300 flex flex-wrap items-center justify-center"
   >
     <div class="flex items-center justify-center flex-1 min-w-0">
-      <nav class="hidden xl:flex flex-wrap space-x-32">
+      <nav
+        class="hidden xl:flex flex-wrap items-center justify-center space-x-32"
+      >
         <NuxtLink
           v-for="link in leftLinks"
           :key="link.to"
@@ -33,23 +35,6 @@
     </div>
 
     <div class="flex items-center space-x-2">
-      <AppLocaleSwitcher class="locale-switcher" />
-      <button
-        @click="toggleTheme"
-        class="theme-switcher p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
-      >
-        <span ref="iconWrapper" class="inline-block">
-          <Icon
-            :name="
-              themeStore.currentTheme === 'light'
-                ? 'mingcute:sun-fill'
-                : 'mingcute:moon-fill'
-            "
-            size="24"
-            class="text-current"
-          />
-        </span>
-      </button>
       <button class="hamburger-btn xl:hidden" @click="toggleMenu">
         <span ref="hamburgerIcon" class="inline-block">
           <Icon
@@ -60,6 +45,23 @@
         </span>
       </button>
     </div>
+
+    <button
+      @click="toggleTheme"
+      class="theme-switcher absolute top-6 right-6 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
+    >
+      <span ref="iconWrapper" class="inline-block">
+        <Icon
+          :name="
+            themeStore.currentTheme === 'light'
+              ? 'mingcute:sun-fill'
+              : 'mingcute:moon-fill'
+          "
+          size="24"
+          class="text-current"
+        />
+      </span>
+    </button>
 
     <div
       v-if="isMenuOpen"
@@ -253,13 +255,6 @@ header {
   text-decoration: none;
 }
 
-.theme-switcher,
-.locale-switcher {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .hamburger-btn {
   display: none;
   position: fixed;
@@ -359,26 +354,6 @@ header {
 
   html[class="dark"] & {
     background-color: rgba(17, 24, 39, 0.5);
-  }
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    html[class="dark"] & {
-      background-color: rgba(17, 24, 39, 0.7);
-    }
-  }
-}
-
-.locale-switcher {
-  padding: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 9999px;
-  color: #374151;
-  transition: all 0.3s ease;
-
-  html[class="dark"] & {
-    background-color: rgba(17, 24, 39, 0.5);
-    color: #e5e7eb;
   }
 
   &:hover {
