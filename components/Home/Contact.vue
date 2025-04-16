@@ -103,51 +103,62 @@
                 leave-to="opacity-0 scale-90"
               >
                 <DialogPanel
-                  class="w-full max-w-lg bg-white dark:bg-fantasy-bg p-8 rounded-2xl shadow-2xl flex flex-col gap-6 border border-primary-200 dark:border-primary-800"
+                  class="w-full max-w-lg bg-white dark:bg-fantasy-bg p-10 rounded-3xl shadow-2xl flex flex-col gap-8 border backdrop-blur-sm"
                 >
-                  <DialogTitle
-                    class="text-2xl font-bold text-primary-700 dark:text-primary-300"
-                    >Kontaktujte mě</DialogTitle
-                  >
-                  <div class="flex flex-col gap-5">
-                    <label class="flex flex-col gap-2">
-                      <span class="text-sm font-semibold">Vaše jméno</span>
+                  <DialogTitle class="text-3xl font-bold tracking-tight">
+                    Kontaktujte mě
+                  </DialogTitle>
+                  <div class="flex flex-col gap-6">
+                    <label class="flex flex-col gap-3">
+                      <span
+                        class="text-sm font-medium uppercase tracking-wide opacity-80"
+                      >
+                        Vaše jméno
+                      </span>
                       <input
                         v-model="form.name"
                         type="text"
-                        placeholder="Vaše jméno"
-                        class="p-4 border border-primary-200 dark:border-primary-800 rounded-xl bg-light-bg dark:bg-dark-bg text-base focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
+                        placeholder="Jméno a přijmení"
+                        class="p-4 rounded-2xl text-base focus:outline-none border-b-2 focus:ring-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
                       />
                     </label>
-                    <label class="flex flex-col gap-2">
-                      <span class="text-sm font-semibold">Váš email</span>
+                    <label class="flex flex-col gap-3">
+                      <span
+                        class="text-sm font-medium uppercase tracking-wide opacity-80"
+                      >
+                        Váš email
+                      </span>
                       <input
                         v-model="form.email"
                         type="email"
-                        placeholder="Váš email"
-                        class="p-4 border border-primary-200 dark:border-primary-800 rounded-xl bg-light-bg dark:bg-dark-bg text-base focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
+                        placeholder="Email"
+                        class="p-4 rounded-2xl text-base focus:outline-none focus:ring-2 border-b-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
                       />
                     </label>
-                    <label class="flex flex-col gap-2">
-                      <span class="text-sm font-semibold">Vaše zpráva</span>
+                    <label class="flex flex-col gap-3">
+                      <span
+                        class="text-sm font-medium uppercase tracking-wide opacity-80"
+                      >
+                        Vaše zpráva
+                      </span>
                       <textarea
                         v-model="form.message"
-                        placeholder="Vaše zpráva"
                         rows="5"
-                        class="p-4 border border-primary-200 dark:border-primary-800 rounded-xl bg-light-bg dark:bg-dark-bg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
+                        placeholder="Co máte na srdci ?"
+                        class="p-4 rounded-2xl text-base resize-none border-b-2 focus:outline-none focus:ring-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
                       />
                     </label>
                   </div>
                   <div class="flex gap-4 justify-end">
                     <button
                       @click="isOpen = false"
-                      class="px-6 py-3 bg-fantasy-text/20 dark:bg-fantasy-text/30 rounded-xl text-base hover:bg-fantasy-accent hover:text-white transition-all duration-300"
+                      class="px-6 py-3 rounded-xl text-base font-medium hover:bg-fantasy-accent/80 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-md"
                     >
                       Zrušit
                     </button>
                     <button
                       @click="submitForm"
-                      class="px-6 py-3 bg-primary-600 dark:bg-primary-500 rounded-xl text-base hover:bg-primary-700 dark:hover:bg-primary-400 transition-all duration-300 shadow-md hover:shadow-lg"
+                      class="px-6 py-3 rounded-xl text-base font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
                     >
                       Odeslat
                     </button>
@@ -159,7 +170,9 @@
         </TransitionRoot>
       </div>
     </div>
-    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+    <div
+      class="fixed bottom-6 right-6 z-50 flex flex-col gap-4 backdrop-blur-lg"
+    >
       <div
         v-for="toast in toasts"
         :key="toast.id"
@@ -194,7 +207,6 @@ interface Toast {
 let toasts = reactive<Toast[]>([]);
 
 const submitForm = () => {
-  // console.log("Formulář odeslán:", form.value);
   const toastId = Date.now();
   toasts.push({
     id: toastId,
@@ -205,7 +217,7 @@ const submitForm = () => {
   form.value = { name: "", email: "", message: "" };
 
   setTimeout(() => {
-    const toast = toasts.find((t) => t.id === toastId);
+    const toast = toasts.pop();
     toast!.isExiting = true;
   }, 2700);
 };
