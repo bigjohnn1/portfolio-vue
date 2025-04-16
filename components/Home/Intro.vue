@@ -1,29 +1,35 @@
 <template>
   <section
-    class="relative w-full h-screen flex items-center justify-center bg-base-bg text-base-text overflow-hidden"
+    class="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-light-bg to-primary-50 overflow-hidden"
   >
-    <div class="absolute flex flex-col items-start justify-center z-10 pl-32">
-      <h1
-        ref="title"
-        class="text-h1 font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-gray-500 to-gray-800 text-[clamp(52px,6vw,68px)]"
-      >
-        Big John
-      </h1>
-      <p ref="subtitle" class="text-p mt-10 text-[clamp(20px,3vw,26px)]">
-        - {{ t("intro.subtitle") }}
-      </p>
-      <button
-        ref="cta"
-        class="mt-14 px-10 py-5 bg-gradient-to-r from-gray-600 to-gray-900 text-white rounded-xl shadow-lg hover:shadow-2xl hover:from-gray-700 hover:to-gray-950 text-xl font-semibold"
-      >
-        {{ t("intro.cta") }}
-      </button>
-      <AppLocaleSwitcher class="locale-switcher" />
+    <div class="absolute top-10 right-10 z-20">
+      <AppLocaleSwitcher />
     </div>
-    <canvas
-      ref="canvas"
-      class="absolute top-1/2 right-0 transform -translate-y-1/2 w-[700px] h-[700px] z-0"
-    ></canvas>
+    <div
+      class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-16 relative z-10"
+    >
+      <div class="flex flex-col gap-8">
+        <h1
+          ref="title"
+          class="text-h1 font-extrabold bg-gradient-to-r from-primary-500 to-primary-800 text-[clamp(52px,6vw,68px)] [text-shadow:_0_0_1px_#000,0_0_4px_#000]"
+        >
+          Big John
+        </h1>
+        <p
+          ref="subtitle"
+          class="text-p text-[clamp(20px,3vw,26px)] text-fantasy-text"
+        >
+          - {{ t("intro.subtitle") }}
+        </p>
+        <button
+          ref="cta"
+          class="px-12 py-6 bg-gradient-to-r from-primary-600 to-primary-800 text-white text-2xl font-bold rounded-xl shadow-xl hover:shadow-2xl hover:from-primary-700 hover:to-primary-900 transition-all duration-300 transform hover:scale-110 animate-fade-up"
+        >
+          {{ t("intro.cta") }}
+        </button>
+      </div>
+      <canvas ref="canvas" class="lg:w-1/2 w-[800px] h-[800px] z-0"></canvas>
+    </div>
   </section>
 </template>
 
@@ -31,6 +37,8 @@
 import { gsap } from "gsap";
 import { templateRef } from "@vueuse/core";
 import * as THREE from "three";
+import { useDark } from "@vueuse/core";
+
 const { t } = useI18n();
 
 const title = templateRef("title");
@@ -38,34 +46,11 @@ const subtitle = templateRef("subtitle");
 const cta = templateRef("cta");
 const canvas = ref<HTMLCanvasElement | null>(null);
 
+const isDark = useDark();
+
 onMounted(() => {
   gsap.from(title.value, { x: -100, opacity: 0, duration: 0.8 });
   gsap.from(subtitle.value, { x: -100, opacity: 0, duration: 1, delay: 0.2 });
-  gsap.from(cta.value, {
-    y: 20,
-    opacity: 0,
-    duration: 0.8,
-    delay: 0.4,
-    ease: "power2.out",
-  });
-
-  const ctaEl = cta.value;
-  ctaEl?.addEventListener("mouseenter", () => {
-    gsap.to(ctaEl, {
-      scale: 1.05,
-      duration: 0.3,
-      ease: "power2.out",
-      background: "linear-gradient(to right, #4b5563, #1f2937)",
-    });
-  });
-  ctaEl?.addEventListener("mouseleave", () => {
-    gsap.to(ctaEl, {
-      scale: 1,
-      duration: 0.3,
-      ease: "power2.out",
-      background: "linear-gradient(to right, #4b5563, #111827)",
-    });
-  });
 
   if (canvas.value) {
     const scene = new THREE.Scene();
@@ -74,7 +59,7 @@ onMounted(() => {
       canvas: canvas.value,
       alpha: true,
     });
-    renderer.setSize(700, 700);
+    renderer.setSize(800, 800);
 
     const sphereGeometry = new THREE.SphereGeometry(2, 58, 58);
     const sphereMaterial = new THREE.ShaderMaterial({
@@ -131,20 +116,11 @@ onMounted(() => {
 
     camera.position.z = 4;
 
-    const updateColors = () => {
-      const isDark = document.documentElement.classList.contains("dark");
-      const globeColor = isDark ? 0xb0b0b0 : 0x000000;
+    watchEffect(() => {
+      const globeColor = isDark.value ? 0xb0b0b0 : 0x000000;
       sphereMaterial.uniforms.color.value.set(globeColor);
       ringMaterial.color.set(globeColor);
       particlesMaterial.color.set(globeColor);
-    };
-
-    updateColors();
-
-    const observer = new MutationObserver(() => updateColors());
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
     });
 
     const animate = () => {
@@ -153,13 +129,32 @@ onMounted(() => {
       ring.rotation.z += 0.001;
       sphereMaterial.uniforms.time.value += 0.01;
       particles.rotation.y += 0.0005;
+      sphere.scale.set(
+        1 + Math.sin(sphereMaterial.uniforms.time.value * 0.5) * 0.05,
+        1 + Math.sin(sphereMaterial.uniforms.time.value * 0.5) * 0.05,
+        1 + Math.sin(sphereMaterial.uniforms.time.value * 0.5) * 0.05
+      );
       renderer.render(scene, camera);
     };
     animate();
-
-    onUnmounted(() => {
-      observer.disconnect();
-    });
   }
 });
 </script>
+
+<style>
+.animate-fade-up {
+  animation: fadeUp 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
