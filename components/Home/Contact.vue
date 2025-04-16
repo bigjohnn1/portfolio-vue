@@ -116,8 +116,7 @@
                         v-model="form.name"
                         type="text"
                         placeholder="Vaše jméno"
-                        required
-                        class="p-3 border border-primary-300 rounded-lg bg-light-bg dark:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
+                        class="p-4 border border-primary-200 dark:border-primary-800 rounded-xl bg-light-bg dark:bg-dark-bg text-base focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
                       />
                     </label>
                     <label class="flex flex-col gap-2">
@@ -126,8 +125,7 @@
                         v-model="form.email"
                         type="email"
                         placeholder="Váš email"
-                        required
-                        class="p-3 border border-primary-300 rounded-lg bg-light-bg dark:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
+                        class="p-4 border border-primary-200 dark:border-primary-800 rounded-xl bg-light-bg dark:bg-dark-bg text-base focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
                       />
                     </label>
                     <label class="flex flex-col gap-2">
@@ -135,22 +133,21 @@
                       <textarea
                         v-model="form.message"
                         placeholder="Vaše zpráva"
-                        required
                         rows="5"
-                        class="p-3 border border-primary-300 rounded-lg bg-light-bg dark:bg-dark-bg resize-none focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
+                        class="p-4 border border-primary-200 dark:border-primary-800 rounded-xl bg-light-bg dark:bg-dark-bg text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
                       />
                     </label>
                   </div>
                   <div class="flex gap-4 justify-end">
                     <button
                       @click="isOpen = false"
-                      class="px-5 py-2 bg-fantasy-text/20 dark:bg-fantasy-text/30 rounded-lg hover:bg-fantasy-accent hover:text-white transition-all duration-300"
+                      class="px-6 py-3 bg-fantasy-text/20 dark:bg-fantasy-text/30 rounded-xl text-base hover:bg-fantasy-accent hover:text-white transition-all duration-300"
                     >
                       Zrušit
                     </button>
                     <button
                       @click="submitForm"
-                      class="px-5 py-2 bg-primary-600 dark:bg-primary-500 rounded-lg hover:bg-primary-700 dark:hover:bg-primary-400 transition-all duration-300 shadow-md hover:shadow-lg"
+                      class="px-6 py-3 bg-primary-600 dark:bg-primary-500 rounded-xl text-base hover:bg-primary-700 dark:hover:bg-primary-400 transition-all duration-300 shadow-md hover:shadow-lg"
                     >
                       Odeslat
                     </button>
@@ -160,6 +157,17 @@
             </div>
           </Dialog>
         </TransitionRoot>
+      </div>
+    </div>
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+      <div
+        v-for="toast in toasts"
+        :key="toast.id"
+        class="flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg animate-slide-in"
+        :class="{ 'animate-slide-out': toast.isExiting }"
+      >
+        <Icon name="mdi:check-circle" size="24" class="text-green-400" />
+        <span>{{ toast.message }}</span>
       </div>
     </div>
   </section>
@@ -177,9 +185,60 @@ import {
 const isOpen = ref(false);
 const form = ref({ name: "", email: "", message: "" });
 
+interface Toast {
+  id: number;
+  message: string;
+  isExiting: boolean;
+}
+
+let toasts = reactive<Toast[]>([]);
+
 const submitForm = () => {
-  console.log("Formulář odeslán:", form.value);
+  // console.log("Formulář odeslán:", form.value);
+  const toastId = Date.now();
+  toasts.push({
+    id: toastId,
+    message: "Zpráva byla úspěšně odeslána!",
+    isExiting: false,
+  });
   isOpen.value = false;
   form.value = { name: "", email: "", message: "" };
+
+  setTimeout(() => {
+    const toast = toasts.find((t) => t.id === toastId);
+    toast!.isExiting = true;
+  }, 2700);
 };
 </script>
+
+<style scoped>
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-slide-out {
+  animation: slideOut 0.3s ease-in forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
+</style>
