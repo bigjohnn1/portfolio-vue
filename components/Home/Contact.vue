@@ -1,37 +1,61 @@
 <template>
   <section
     id="contact"
-    class="relative w-full min-h-screen py-16 bg-base-bg text-base-text overflow-hidden"
+    class="relative w-full min-h-screen py-16 bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text overflow-hidden"
   >
     <div
-      class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row gap-8 relative"
+      class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row gap-12 relative"
     >
-      <div class="lg:w-1/2 flex flex-col gap-6">
-        <h2 class="text-4xl font-bold">Kontakt</h2>
-        <p class="text-lg">
+      <div class="lg:w-1/2 flex flex-col gap-8">
+        <h2
+          class="text-5xl font-bold text-primary-700 dark:text-primary-300 tracking-tight"
+        >
+          Kontakt
+        </h2>
+        <p class="text-xl text-fantasy-text leading-relaxed">
           Dotaz, návrhy, spolupráce - není problém! Napište mi rovnou nebo mě
           kontaktujte na sociálních sítích.
         </p>
-        <div class="flex flex-col gap-4">
-          <p><strong>Jméno:</strong> Bg john</p>
-          <p><strong>Adresa:</strong>Mordor</p>
-          <p><strong>Telefon:</strong> +420 123 456 789</p>
-          <p><strong>Email:</strong> bb@email.com</p>
+        <div class="flex flex-col gap-5 text-lg">
+          <p>
+            <strong class="text-primary-600 dark:text-primary-400"
+              >Jméno:</strong
+            >
+            Bg john
+          </p>
+          <p>
+            <strong class="text-primary-600 dark:text-primary-400"
+              >Adresa:</strong
+            >
+            Mordor
+          </p>
+          <p>
+            <strong class="text-primary-600 dark:text-primary-400"
+              >Telefon:</strong
+            >
+            +420 123 456 789
+          </p>
+          <p>
+            <strong class="text-primary-600 dark:text-primary-400"
+              >Email:</strong
+            >
+            bb@email.com
+          </p>
         </div>
-        <div class="flex gap-4">
+        <div class="flex gap-6">
           <a
             href="https://instagram.com"
             target="_blank"
-            class="text-gray-600 dark:text-gray-400 hover:text-light-accent dark:hover:text-dark-accent transition-colors"
+            class="text-fantasy-text hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-110"
           >
-            <Icon name="mdi:instagram" size="32" />
+            <Icon name="mdi:instagram" size="36" />
           </a>
           <a
             href="https://linkedin.com"
             target="_blank"
-            class="text-gray-600 dark:text-gray-400 hover:text-light-accent dark:hover:text-dark-accent transition-colors"
+            class="text-fantasy-text hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-110"
           >
-            <Icon name="mdi:linkedin" size="32" />
+            <Icon name="mdi:linkedin" size="36" />
           </a>
         </div>
       </div>
@@ -39,17 +63,17 @@
         class="absolute hidden lg:block top-0 left-1/2 transform -translate-x-1/2 w-1 h-full"
       >
         <svg
-          class="w-full h-full fill-current text-gray-200 dark:text-gray-800"
+          class="w-full h-full fill-current text-primary-200 dark:text-primary-800"
           viewBox="0 0 100 1440"
           preserveAspectRatio="none"
         >
           <path d="M0,0 C100,480 0,960 100,1440 L100,1440 L0,1440 Z" />
         </svg>
       </div>
-      <div class="lg:w-1/2 flex flex-col items-center justify-center gap-4">
+      <div class="lg:w-1/2 flex flex-col items-center justify-center gap-6">
         <button
           @click="isOpen = true"
-          class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+          class="px-8 py-4 bg-primary-600 dark:bg-primary-500 text-lg font-semibold rounded-xl shadow-lg hover:bg-primary-700 dark:hover:bg-primary-400 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
         >
           Napište mi
         </button>
@@ -65,67 +89,77 @@
               leave-to="opacity-0"
             >
               <div
-                class="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
+                class="fixed inset-0 bg-black/70 backdrop-blur-md transition-opacity"
               />
             </TransitionChild>
-            <div class="fixed inset-0 flex items-center justify-center p-4">
+            <div class="fixed inset-0 flex items-center justify-center p-6">
               <TransitionChild
                 as="template"
                 enter="ease-out duration-300"
-                enter-from="opacity-0 scale-95"
+                enter-from="opacity-0 scale-90"
                 enter-to="opacity-100 scale-100"
                 leave="ease-in duration-200"
                 leave-from="opacity-100 scale-100"
-                leave-to="opacity-0 scale-95"
+                leave-to="opacity-0 scale-90"
               >
                 <DialogPanel
-                  class="w-full max-w-md bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg flex flex-col gap-4"
+                  class="w-full max-w-lg bg-white dark:bg-fantasy-bg p-8 rounded-2xl shadow-2xl flex flex-col gap-6 border border-primary-200 dark:border-primary-800"
                 >
-                  <DialogTitle class="text-xl font-semibold"
+                  <DialogTitle
+                    class="text-2xl font-bold text-primary-700 dark:text-primary-300"
                     >Kontaktujte mě</DialogTitle
                   >
-                  <div class="flex flex-col gap-3">
-                    <label class="flex flex-col gap-1">
-                      <span class="text-sm font-medium">Vaše jméno</span>
+                  <div class="flex flex-col gap-5">
+                    <label class="flex flex-col gap-2">
+                      <span
+                        class="text-sm font-semibold text-light-text dark:text-dark-text"
+                        >Vaše jméno</span
+                      >
                       <input
                         v-model="form.name"
                         type="text"
                         placeholder="Vaše jméno"
                         required
-                        class="p-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-base-text focus:outline-none focus:ring-2 focus:ring-green-500"
+                        class="p-3 border border-primary-300 dark:border-primary-700 rounded-lg bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200"
                       />
                     </label>
-                    <label class="flex flex-col gap-1">
-                      <span class="text-sm font-medium">Váš email</span>
+                    <label class="flex flex-col gap-2">
+                      <span
+                        class="text-sm font-semibold text-light-text dark:text-dark-text"
+                        >Váš email</span
+                      >
                       <input
                         v-model="form.email"
                         type="email"
                         placeholder="Váš email"
                         required
-                        class="p-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-base-text focus:outline-none focus:ring-2 focus:ring-green-500"
+                        class="p-3 border border-primary-300 dark:border-primary-700 rounded-lg bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200"
                       />
                     </label>
-                    <label class="flex flex-col gap-1">
-                      <span class="text-sm font-medium">Vaše zpráva</span>
+                    <label class="flex flex-col gap-2">
+                      <span
+                        class="text-sm font-semibold text-light-text dark:text-dark-text"
+                        >Vaše zpráva</span
+                      >
                       <textarea
                         v-model="form.message"
                         placeholder="Vaše zpráva"
                         required
-                        rows="4"
-                        class="p-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-base-text resize-none focus:outline-none focus:ring-2 focus:ring-green-500"
+                        rows="5"
+                        class="p-3 border border-primary-300 dark:border-primary-700 rounded-lg bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text resize-none focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200"
                       />
                     </label>
                   </div>
                   <div class="flex gap-4 justify-end">
                     <button
                       @click="isOpen = false"
-                      class="px-4 py-2 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 transition-colors"
+                      class="px-5 py-2 bg-fantasy-text/20 dark:bg-fantasy-text/30 text-light-text dark:text-dark-text rounded-lg hover:bg-fantasy-accent hover:text-white transition-all duration-300"
                     >
                       Zrušit
                     </button>
                     <button
                       @click="submitForm"
-                      class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                      class="px-5 py-2 bg-primary-600 dark:bg-primary-500 rounded-lg hover:bg-primary-700 dark:hover:bg-primary-400 transition-all duration-300 shadow-md hover:shadow-lg"
                     >
                       Odeslat
                     </button>
@@ -141,7 +175,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
 import {
   Dialog,
   DialogPanel,
