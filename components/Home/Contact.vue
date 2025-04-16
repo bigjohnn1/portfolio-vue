@@ -10,35 +10,34 @@
         <h2
           class="text-5xl font-bold text-primary-700 dark:text-primary-300 tracking-tight"
         >
-          Kontakt
+          {{ $t("contact.heading") }}
         </h2>
         <p class="text-xl text-fantasy-text leading-relaxed">
-          Dotaz, návrhy, spolupráce - není problém! Napište mi rovnou nebo mě
-          kontaktujte na sociálních sítích.
+          {{ $t("contact.description") }}
         </p>
         <div class="flex flex-col gap-5 text-lg">
           <p>
-            <strong class="text-primary-600 dark:text-primary-400"
-              >Jméno:</strong
-            >
+            <strong class="text-primary-600 dark:text-primary-400">
+              {{ $t("contact.name") }}:
+            </strong>
             Bg john
           </p>
           <p>
-            <strong class="text-primary-600 dark:text-primary-400"
-              >Adresa:</strong
-            >
+            <strong class="text-primary-600 dark:text-primary-400">
+              {{ $t("contact.address") }}:
+            </strong>
             Mordor
           </p>
           <p>
-            <strong class="text-primary-600 dark:text-primary-400"
-              >Telefon:</strong
-            >
+            <strong class="text-primary-600 dark:text-primary-400">
+              {{ $t("contact.phone") }}:
+            </strong>
             +420 123 456 789
           </p>
           <p>
-            <strong class="text-primary-600 dark:text-primary-400"
-              >Email:</strong
-            >
+            <strong class="text-primary-600 dark:text-primary-400">
+              {{ $t("contact.email") }}:
+            </strong>
             bb@email.com
           </p>
         </div>
@@ -75,7 +74,7 @@
           @click="isOpen = true"
           class="px-8 py-4 bg-primary-600 dark:bg-primary-500 text-lg font-semibold rounded-xl shadow-lg hover:bg-primary-700 dark:hover:bg-primary-400 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
         >
-          Napište mi
+          {{ $t("contact.button") }}
         </button>
         <TransitionRoot :show="isOpen" as="template">
           <Dialog as="div" class="relative z-50" @close="isOpen = false">
@@ -106,19 +105,19 @@
                   class="w-full max-w-lg bg-white dark:bg-fantasy-bg p-10 rounded-3xl shadow-2xl flex flex-col gap-8 border backdrop-blur-sm"
                 >
                   <DialogTitle class="text-3xl font-bold tracking-tight">
-                    Kontaktujte mě
+                    {{ $t("contact.dialogTitle") }}
                   </DialogTitle>
                   <div class="flex flex-col gap-6">
                     <label class="flex flex-col gap-3">
                       <span
                         class="text-sm font-medium uppercase tracking-wide opacity-80"
                       >
-                        Vaše jméno
+                        {{ $t("contact.name") }}
                       </span>
                       <input
                         v-model="form.name"
                         type="text"
-                        placeholder="Jméno a přijmení"
+                        :placeholder="$t('contact.namePlaceholder')"
                         class="p-4 rounded-2xl text-base focus:outline-none border-b-2 focus:ring-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
                       />
                     </label>
@@ -126,12 +125,12 @@
                       <span
                         class="text-sm font-medium uppercase tracking-wide opacity-80"
                       >
-                        Váš email
+                        {{ $t("contact.email") }}
                       </span>
                       <input
                         v-model="form.email"
                         type="email"
-                        placeholder="Email"
+                        :placeholder="$t('contact.emailPlaceholder')"
                         class="p-4 rounded-2xl text-base focus:outline-none focus:ring-2 border-b-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
                       />
                     </label>
@@ -139,12 +138,12 @@
                       <span
                         class="text-sm font-medium uppercase tracking-wide opacity-80"
                       >
-                        Vaše zpráva
+                        {{ $t("contact.message") }}
                       </span>
                       <textarea
                         v-model="form.message"
                         rows="5"
-                        placeholder="Co máte na srdci ?"
+                        :placeholder="$t('contact.messagePlaceholder')"
                         class="p-4 rounded-2xl text-base resize-none border-b-2 focus:outline-none focus:ring-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
                       />
                     </label>
@@ -154,13 +153,13 @@
                       @click="isOpen = false"
                       class="px-6 py-3 rounded-xl text-base font-medium hover:bg-fantasy-accent/80 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-md"
                     >
-                      Zrušit
+                      {{ $t("contact.cancelButton") }}
                     </button>
                     <button
                       @click="submitForm"
                       class="px-6 py-3 rounded-xl text-base font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
                     >
-                      Odeslat
+                      {{ $t("contact.submitButton") }}
                     </button>
                   </div>
                 </DialogPanel>
@@ -194,6 +193,7 @@ import {
   TransitionRoot,
   TransitionChild,
 } from "@headlessui/vue";
+const { $i18n } = useNuxtApp();
 
 const isOpen = ref(false);
 const form = ref({ name: "", email: "", message: "" });
@@ -210,14 +210,14 @@ const submitForm = () => {
   const toastId = Date.now();
   toasts.push({
     id: toastId,
-    message: "Zpráva byla úspěšně odeslána!",
+    message: $i18n.t("contact.toastSuccess"),
     isExiting: false,
   });
   isOpen.value = false;
   form.value = { name: "", email: "", message: "" };
 
   setTimeout(() => {
-    const toast = toasts.pop();
+    const toast = toasts.find((t) => t.id === toastId);
     toast!.isExiting = true;
   }, 2700);
 };

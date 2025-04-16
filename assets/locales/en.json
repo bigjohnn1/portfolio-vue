@@ -113,6 +113,13 @@
     "phone": "Phone",
     "email": "Email",
     "button": "Write me",
-    "dialogTitle": "Contact me"
+    "message": "You can write me here",
+    "dialogTitle": "Contact me",
+    "namePlaceholder": "First and last name",
+    "emailPlaceholder": "Email",
+    "messagePlaceholder": "What's on your mind?",
+    "cancelButton": "Cancel",
+    "submitButton": "Send",
+    "toastSuccess": "Message sent successfully!"
   }
 }

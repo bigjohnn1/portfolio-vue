@@ -118,6 +118,13 @@
     "phone": "Telefon",
     "email": "Email",
     "button": "Napište mi",
-    "dialogTitle": "Kontaktujte mě"
+    "message": "Můžete mi napsat zde",
+    "dialogTitle": "Kontaktujte mě",
+    "namePlaceholder": "Jméno a příjmení",
+    "emailPlaceholder": "Email",
+    "messagePlaceholder": "Co máte na srdci?",
+    "cancelButton": "Zrušit",
+    "submitButton": "Odeslat",
+    "toastSuccess": "Zpráva byla úspěšně odeslána!"
   }
 }
