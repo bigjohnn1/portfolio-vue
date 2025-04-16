@@ -61,19 +61,19 @@ const techItems = ref<(Element | null)[]>([]);
 const tippyInstances = ref<Instance[]>([]);
 
 onMounted(() => {
-  techItems.value.forEach((item, index) => {
+  techItems.value.forEach((item, i) => {
     const instance = tippy(item!, {
-      content: $i18n.t(`techStack.items.${techStack[index].key}.description`),
+      content: $i18n.t(`techStack.items.${techStack[i].key}.description`),
       placement: "top",
       theme: "light",
     });
-    tippyInstances.value[index] = instance;
+    tippyInstances.value[i] = instance;
   });
 
   watch($i18n.locale, () => {
-    techItems.value.forEach((item, index) => {
-      tippyInstances.value[index].setContent(
-        $i18n.t(`techStack.items.${techStack[index].key}.description`)
+    techItems.value.forEach((item, i) => {
+      tippyInstances.value[i].setContent(
+        $i18n.t(`techStack.items.${techStack[i].key}.description`)
       );
     });
   });
