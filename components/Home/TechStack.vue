@@ -14,10 +14,10 @@
         </p>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div
-            v-for="(tech, index) in techStack"
+            v-for="(tech, i) in techStack"
             :key="tech.key"
             class="tech-item flex flex-col items-center p-4 bg-gray-200 dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-            :ref="(el) => (techItems[index] = el as Element)"
+            :ref="(el) => (techItems[i] = el as Element)"
           >
             <Icon
               :name="tech.icon"
@@ -39,7 +39,6 @@ import type { Instance } from "tippy.js";
 import "tippy.js/dist/tippy.css";
 
 const { $i18n } = useNuxtApp();
-
 const techStack = [
   { key: "vue", icon: "logos:vue" },
   { key: "nuxt", icon: "logos:nuxt-icon" },
@@ -54,6 +53,8 @@ const techStack = [
   { key: "git", icon: "logos:git-icon" },
   { key: "docker", icon: "logos:docker-icon" },
   { key: "powershell", icon: "ic:baseline-terminal" },
+  { key: "prisma", icon: "logos:prisma" },
+  { key: "redis", icon: "logos:redis" },
 ];
 
 const techItems = ref<(Element | null)[]>([]);

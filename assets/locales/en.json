@@ -62,6 +62,14 @@
       "powershell": {
         "name": "PowerShell",
         "description": "Windows automation and scripting"
+      },
+      "prisma": {
+        "name": "Prisma",
+        "description": "ORM for Node.js and TypeScript"
+      },
+      "redis": {
+        "name": "Redis",
+        "description": "In-memory data structure store for fast data access"
       }
     }
   },

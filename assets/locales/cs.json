@@ -67,6 +67,14 @@
       "powershell": {
         "name": "PowerShell",
         "description": "Nástroj pro automatizaci a skriptování ve Windows"
+      },
+      "prisma": {
+        "name": "Prisma",
+        "description": "ORM na REST API, pro Node.js a TypeScript"
+      },
+      "redis": {
+        "name": "Redis",
+        "description": "In-memory datová struktura pro rychlé ukládání dat"
       }
     }
   },
