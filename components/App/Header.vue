@@ -1,6 +1,6 @@
 <template>
   <header
-    class="relative mx-auto p-4 sticky top-0 z-50 w-full transition-colors duration-300 bg-white/10 backdrop-blur-lg border-b border-black/20 dark:bg-gray-900/50 dark:border-white flex items-center justify-between"
+    class="mx-auto p-4 sticky top-0 z-50 w-full transition-colors duration-300 bg-white/10 backdrop-blur-lg border-b border-black/20 dark:bg-gray-900/50 dark:border-white flex items-center justify-between"
   >
     <button
       class="hamburger-btn xl:hidden p-2 cursor-pointer"
