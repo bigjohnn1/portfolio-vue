@@ -1,6 +1,7 @@
 <template>
   <section
     class="relative w-full min-h-screen bg-base-bg text-base-text py-16 overflow-hidden"
+    id="references"
   >
     <div class="max-w-4xl mx-auto px-4">
       <div class="relative">

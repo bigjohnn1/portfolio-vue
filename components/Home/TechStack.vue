@@ -2,6 +2,7 @@
   <div>
     <section
       class="tech-stack relative w-full py-16 bg-base-bg text-base-text overflow-hidden"
+      id="stack"
     >
       <div class="max-w-5xl mx-auto px-4">
         <h2

@@ -6,31 +6,31 @@
       <nav
         class="hidden xl:flex flex-wrap items-center justify-center space-x-32"
       >
-        <NuxtLink
+        <a
           v-for="link in leftLinks"
           :key="link.to"
-          :to="link.to"
+          :href="link.to"
           class="text-lg hover:text-light-accent dark:hover:text-dark-accent relative transition-colors duration-300 px-2 py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-current after:transition-[width] after:duration-300 hover:after:w-full"
           @click="closeMenu"
         >
           {{ $t(link.label) }}
-        </NuxtLink>
-        <NuxtLink to="/" class="logo-link" @click="closeMenu">
+        </a>
+        <a href="/" class="logo-link" @click="closeMenu">
           <NuxtImg
             src="/logo_bj.webp"
             alt="Site Logo"
             class="h-12 w-auto transform hover:scale-110 transition-transform duration-300"
           />
-        </NuxtLink>
-        <NuxtLink
+        </a>
+        <a
           v-for="link in rightLinks"
           :key="link.to"
-          :to="link.to"
+          :href="link.to"
           class="text-lg hover:text-light-accent dark:hover:text-dark-accent relative transition-colors duration-300 px-2 py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-current after:transition-[width] after:duration-300 hover:after:w-full"
           @click="closeMenu"
         >
           {{ $t(link.label) }}
-        </NuxtLink>
+        </a>
       </nav>
     </div>
 
@@ -72,22 +72,22 @@
       ref="mobileMenu"
       class="mobile-menu fixed w-4/5 max-w-xs min-h-[50vh] p-12 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg flex flex-col justify-center items-center gap-8 z-50 shadow-lg rounded-xl overflow-y-auto sm:w-11/12 sm:min-h-[60vh] sm:p-8 sm:gap-6"
     >
-      <NuxtLink
+      <a
         v-for="link in links"
         :key="link.to"
-        :to="link.to"
+        :href="link.to"
         class="text-xl w-full text-center py-4 px-6 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-light-accent dark:hover:text-dark-accent transition-colors duration-300"
         @click="closeMenu"
       >
         {{ $t(link.label) }}
-      </NuxtLink>
-      <NuxtLink to="/" class="logo-link my-4" @click="closeMenu">
+      </a>
+      <a href="/" class="logo-link my-4" @click="closeMenu">
         <NuxtImg
           src="/logo_bj.webp"
           alt="Site Logo"
           class="h-12 w-auto transform hover:scale-110 transition-transform duration-300"
         />
-      </NuxtLink>
+      </a>
     </div>
   </header>
 </template>
@@ -186,10 +186,10 @@ watch([menuHeight], () => {
 });
 
 const links = [
-  { to: "/contact", label: "nav.contact" },
-  { to: "/references", label: "nav.references" },
-  { to: "/progress", label: "nav.progress" },
-  { to: "/about", label: "nav.about" },
+  { to: "#contact", label: "nav.contact" },
+  { to: "#references", label: "nav.references" },
+  { to: "#stack", label: "nav.stack" },
+  { to: "#about", label: "nav.about" },
 ];
 
 const midIndex = Math.floor(links.length / 2);
