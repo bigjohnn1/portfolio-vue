@@ -14,6 +14,7 @@
   },
   "techStack": {
     "title": "My Tech Stack",
+    "description": "Stack, with which I will bring your ideas to life",
     "items": {
       "vue": {
         "name": "Vue.js",

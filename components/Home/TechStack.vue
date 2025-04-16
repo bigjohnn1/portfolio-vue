@@ -9,6 +9,9 @@
         >
           {{ $t("techStack.title") }}
         </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400 text-center mb-8">
+          {{ $t("techStack.description") }}
+        </p>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div
             v-for="(tech, index) in techStack"
