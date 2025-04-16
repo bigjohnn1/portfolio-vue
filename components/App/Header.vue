@@ -16,7 +16,7 @@
     </button>
 
     <nav
-      class="hidden xl:flex flex-wrap items-center justify-center space-x-24 flex-1"
+      class="hidden xl:flex flex-wrap items-center justify-center space-x-32 flex-1"
     >
       <a
         v-for="link in leftLinks"
@@ -31,7 +31,7 @@
         <NuxtImg
           src="/logo_bj.webp"
           alt="Site Logo"
-          class="h-12 w-auto transform hover:scale-110 transition-transform duration-300"
+          class="h-12 w-auto transform hover:scale-110 transition-transform duration-300 ml-4"
         />
       </a>
       <a
@@ -47,7 +47,7 @@
 
     <button
       @click="toggleTheme"
-      class="theme-switcher p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
+      class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
     >
       <span ref="iconWrapper" class="inline-block">
         <Icon
@@ -66,7 +66,7 @@
       v-if="isMenuOpen"
       v-click-outside="closeMenu"
       ref="mobileMenu"
-      class="mobile-menu fixed left-0 top-[64px] w-full h-[calc(100vh-64px)] p-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg flex flex-col items-center gap-8 z-50 overflow-y-auto"
+      class="fixed left-0 top-[64px] w-full h-[calc(100vh-64px)] p-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg flex flex-col items-center gap-8 z-50 overflow-y-auto"
     >
       <a
         v-for="link in links"
@@ -152,9 +152,9 @@ onClickOutside(mobileMenu, () => {
 });
 
 const links = [
-  { to: "#contact", label: "nav.contact" },
   { to: "#references", label: "nav.references" },
   { to: "#stack", label: "nav.stack" },
+  { to: "#contact", label: "nav.contact" },
   { to: "#about", label: "nav.about" },
 ];
 
