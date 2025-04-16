@@ -61,9 +61,7 @@ const tippyInstances = ref<Instance[]>([]);
 
 onMounted(() => {
   techItems.value.forEach((item, index) => {
-    if (!item) return;
-
-    const instance = tippy(item, {
+    const instance = tippy(item!, {
       content: $i18n.t(`techStack.items.${techStack[index].key}.description`),
       placement: "top",
       theme: "light",
@@ -73,31 +71,10 @@ onMounted(() => {
 
   watch($i18n.locale, () => {
     techItems.value.forEach((item, index) => {
-      if (tippyInstances.value[index]) {
-        tippyInstances.value[index].setContent(
-          $i18n.t(`techStack.items.${techStack[index].key}.description`)
-        );
-      }
+      tippyInstances.value[index].setContent(
+        $i18n.t(`techStack.items.${techStack[index].key}.description`)
+      );
     });
   });
 });
 </script>
-
-<style lang="scss" scoped>
-.tech-stack {
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-
-  html[class="dark"] & {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-}
-
-.tech-item {
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-  }
-}
-</style>
