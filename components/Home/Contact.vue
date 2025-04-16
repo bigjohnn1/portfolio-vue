@@ -1,7 +1,7 @@
 <template>
   <section
     id="contact"
-    class="relative w-full min-h-screen py-16 bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text overflow-hidden"
+    class="relative w-full min-h-screen py-16 bg-light-bg dark:bg-dark-bg overflow-hidden"
   >
     <div
       class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row gap-12 relative"
@@ -46,14 +46,14 @@
           <a
             href="https://instagram.com"
             target="_blank"
-            class="text-fantasy-text hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-110"
+            class="text-fantasy-text hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-[1.02]"
           >
             <Icon name="mdi:instagram" size="36" />
           </a>
           <a
             href="https://linkedin.com"
             target="_blank"
-            class="text-fantasy-text hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-110"
+            class="text-fantasy-text hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-[1.02]"
           >
             <Icon name="mdi:linkedin" size="36" />
           </a>
@@ -84,7 +84,7 @@
               enter="ease-out duration-300"
               enter-from="opacity-0"
               enter-to="opacity-100"
-              leave="ease-in duration-200"
+              leave="ease-in"
               leave-from="opacity-100"
               leave-to="opacity-0"
             >
@@ -98,7 +98,7 @@
                 enter="ease-out duration-300"
                 enter-from="opacity-0 scale-90"
                 enter-to="opacity-100 scale-100"
-                leave="ease-in duration-200"
+                leave="ease-in"
                 leave-from="opacity-100 scale-100"
                 leave-to="opacity-0 scale-90"
               >
@@ -111,49 +111,40 @@
                   >
                   <div class="flex flex-col gap-5">
                     <label class="flex flex-col gap-2">
-                      <span
-                        class="text-sm font-semibold text-light-text dark:text-dark-text"
-                        >Vaše jméno</span
-                      >
+                      <span class="text-sm font-semibold">Vaše jméno</span>
                       <input
                         v-model="form.name"
                         type="text"
                         placeholder="Vaše jméno"
                         required
-                        class="p-3 border border-primary-300 dark:border-primary-700 rounded-lg bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200"
+                        class="p-3 border border-primary-300 rounded-lg bg-light-bg dark:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
                       />
                     </label>
                     <label class="flex flex-col gap-2">
-                      <span
-                        class="text-sm font-semibold text-light-text dark:text-dark-text"
-                        >Váš email</span
-                      >
+                      <span class="text-sm font-semibold">Váš email</span>
                       <input
                         v-model="form.email"
                         type="email"
                         placeholder="Váš email"
                         required
-                        class="p-3 border border-primary-300 dark:border-primary-700 rounded-lg bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200"
+                        class="p-3 border border-primary-300 rounded-lg bg-light-bg dark:bg-dark-bg focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
                       />
                     </label>
                     <label class="flex flex-col gap-2">
-                      <span
-                        class="text-sm font-semibold text-light-text dark:text-dark-text"
-                        >Vaše zpráva</span
-                      >
+                      <span class="text-sm font-semibold">Vaše zpráva</span>
                       <textarea
                         v-model="form.message"
                         placeholder="Vaše zpráva"
                         required
                         rows="5"
-                        class="p-3 border border-primary-300 dark:border-primary-700 rounded-lg bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text resize-none focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-200"
+                        class="p-3 border border-primary-300 rounded-lg bg-light-bg dark:bg-dark-bg resize-none focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
                       />
                     </label>
                   </div>
                   <div class="flex gap-4 justify-end">
                     <button
                       @click="isOpen = false"
-                      class="px-5 py-2 bg-fantasy-text/20 dark:bg-fantasy-text/30 text-light-text dark:text-dark-text rounded-lg hover:bg-fantasy-accent hover:text-white transition-all duration-300"
+                      class="px-5 py-2 bg-fantasy-text/20 dark:bg-fantasy-text/30 rounded-lg hover:bg-fantasy-accent hover:text-white transition-all duration-300"
                     >
                       Zrušit
                     </button>

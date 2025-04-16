@@ -22,7 +22,7 @@
         v-for="link in leftLinks"
         :key="link.to"
         :href="link.to"
-        class="text-lg hover:text-light-accent dark:hover:text-dark-accent relative transition-colors duration-300 px-2 py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-current after:transition-[width] after:duration-300 hover:after:w-full"
+        class="text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent relative duration-300 px-2 py-1 before:content-[''] before:absolute before:w-0 before:h-0.5 before:bottom-[-4px] before:left-0 before:bg-current before:transition-[width] before:duration-300 hover:before:w-full"
         @click="closeMenu"
       >
         {{ $t(link.label) }}
@@ -38,7 +38,7 @@
         v-for="link in rightLinks"
         :key="link.to"
         :href="link.to"
-        class="text-lg hover:text-light-accent dark:hover:text-dark-accent relative transition-colors duration-300 px-2 py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-current after:transition-[width] after:duration-300 hover:after:w-full"
+        class="text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent relative duration-300 px-2 py-1 before:content-[''] before:absolute before:w-0 before:h-0.5 before:bottom-[-4px] before:left-0 before:bg-current before:transition-[width] before:duration-300 hover:before:w-full"
         @click="closeMenu"
       >
         {{ $t(link.label) }}
