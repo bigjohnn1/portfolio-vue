@@ -1,10 +1,8 @@
 import { defineNuxtConfig } from "nuxt/config";
-import tailwind from "unplugin-tailwindcss/vite";
-
 export default defineNuxtConfig({
-  ssr: true,
   modules: [
     "@nuxtjs/i18n",
+    "@nuxtjs/tailwindcss",
     "@nuxt/eslint",
     "@pinia/nuxt",
     "@nuxt/icon",
@@ -19,17 +17,63 @@ export default defineNuxtConfig({
       ],
     },
   },
-  runtimeConfig: {
-    public: {
-      youtubeApiKey: process.env.NUXT_PUBLIC_YOUTUBE_API || "",
-      supaServiceKey: process.env.NUXT_PUBLIC_SUPABASE_SERVICE_KEY || "",
-      supaUrl: process.env.NUXT_PUBLIC_SUPABASE_URL || "",
-    },
+  image: {
+    formats: ["webp"],
+    quality: 85,
   },
   pinia: { storesDirs: ["./stores/**"] },
   imports: { dirs: ["./stores"] },
   pages: true,
   css: ["~/assets/scss/base.scss"],
+  tailwindcss: {
+    viewer: false,
+    exposeConfig: true,
+    editorSupport: true,
+    cssPath: "~/assets/scss/base.scss",
+    config: {
+      mode: "jit",
+      darkMode: "class",
+      theme: {
+        screens: {
+          "3xs": "320px",
+          "2xs": "425px",
+          xs: "480px",
+          sm: "640px",
+          md: "768px",
+          lg: "1024px",
+          xl: "1280px",
+          "2xl": "1440px",
+          "3xl": "1920px",
+        },
+        extend: {
+          colors: {
+            primary: {
+              "50": "rgb(var(--color-primary-50))",
+              "100": "rgb(var(--color-primary-100))",
+              "200": "rgb(var(--color-primary-200))",
+              "300": "rgb(var(--color-primary-300))",
+              "400": "rgb(var(--color-primary-400))",
+              "500": "rgb(var(--color-primary-500))",
+              "600": "rgb(var(--color-primary-600))",
+              "700": "rgb(var(--color-primary-700))",
+              "800": "rgb(var(--color-primary-800))",
+              "900": "rgb(var(--color-primary-900))",
+              "950": "rgb(var(--color-primary-950))",
+            },
+            "light-bg": "#F9FAFB",
+            "light-text": "#1F2937",
+            "light-accent": "#3B82F6",
+            "dark-bg": "#111827",
+            "dark-text": "#E5E7EB",
+            "dark-accent": "#60A5FA",
+            "fantasy-bg": "#1E293B",
+            "fantasy-text": "#9CA3AF",
+            "fantasy-accent": "#8B5CF6",
+          },
+        },
+      },
+    },
+  },
   i18n: {
     lazy: true,
     langDir: "assets/locales/",
@@ -63,7 +107,4 @@ export default defineNuxtConfig({
   },
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-  vite: {
-    plugins: [tailwind() as any],
-  },
 });
