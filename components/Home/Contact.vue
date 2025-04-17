@@ -74,9 +74,19 @@
         </svg>
       </div>
       <div class="lg:w-1/2 flex flex-col items-center justify-center gap-6">
+        <div class="flex flex-col items-center gap-4">
+          <Icon
+            name="mdi:email-outline"
+            size="48"
+            class="text-primary-600 dark:text-primary-400"
+          />
+          <h3 class="text-2xl font-semibold">
+            {{ $t("contact.formHeading") }}
+          </h3>
+        </div>
         <button
           @click="isOpen = true"
-          class="px-8 py-4 bg-primary-600 dark:bg-primary-500 text-lg font-semibold rounded-xl shadow-lg hover:bg-primary-700 dark:hover:bg-primary-400 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+          class="px-8 py-4 text-lg font-semibold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl"
         >
           {{ $t("contact.button") }}
         </button>

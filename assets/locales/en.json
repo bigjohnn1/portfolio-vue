@@ -111,6 +111,7 @@
     "name": "Your full name",
     "hours": "Worktime (CET)",
     "timespan": "Mo-Fri 9 AM - 5 PM",
+    "formHeading": "Contact me here and I'll respond ASAP",
     "address": "Address",
     "phone": "Phone",
     "email": "Email",
