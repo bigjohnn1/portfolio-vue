@@ -49,16 +49,26 @@
           <a
             href="https://instagram.com"
             target="_blank"
-            class="text-fantasy-text hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-[1.02]"
+            rel="noopener noreferrer"
+            class="hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-[1.02]"
           >
             <Icon name="mdi:instagram" size="36" />
           </a>
           <a
             href="https://linkedin.com"
             target="_blank"
-            class="text-fantasy-text hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-[1.02]"
+            rel="noopener noreferrer"
+            class="hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-[1.02]"
           >
             <Icon name="mdi:linkedin" size="36" />
+          </a>
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-[1.02]"
+          >
+            <Icon name="mdi:github" size="36" />
           </a>
         </div>
       </div>
