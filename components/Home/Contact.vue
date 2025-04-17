@@ -18,28 +18,32 @@
         <div class="flex flex-col gap-5 text-lg">
           <p>
             <strong class="text-primary-600 dark:text-primary-400">
-              {{ $t("contact.name") }}:
-            </strong>
-            Bg john
-          </p>
-          <p>
-            <strong class="text-primary-600 dark:text-primary-400">
+              <Icon name="mdi:map-marker" size="20" class="mr-2" />
               {{ $t("contact.address") }}:
             </strong>
             Mordor
           </p>
           <p>
             <strong class="text-primary-600 dark:text-primary-400">
+              <Icon name="mdi:phone" size="20" class="mr-2" />
               {{ $t("contact.phone") }}:
             </strong>
-            +420 123 456 789
+            <a href="tel:+420123456789">+420 123 456 789</a>
           </p>
           <p>
             <strong class="text-primary-600 dark:text-primary-400">
+              <Icon name="mdi:email" size="20" class="mr-2" />
               {{ $t("contact.email") }}:
             </strong>
-            bb@email.com
+            <a href="mailto:bb@email.com">bb@email.com</a>
           </p>
+          <!-- <p>
+            <strong class="text-primary-600 dark:text-primary-400">
+              <Icon name="mdi:briefcase" size="20" class="mr-2" />
+              {{ $t("contact.vat") }}:
+            </strong>
+            CZ12345678
+          </p> -->
         </div>
         <div class="flex gap-6">
           <a
