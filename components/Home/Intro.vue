@@ -27,7 +27,7 @@
         </p>
         <button
           ref="cta"
-          class="px-8 py-4 sm:px-10 sm:py-5 mx-auto lg:mx-0 bg-gradient-to-r from-primary-600 to-primary-800 text-white text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-xl hover:shadow-2xl hover:from-primary-700 hover:to-primary-900 transition-all duration-300 transform hover:scale-105 animate-fade-up w-fit border border-white/20"
+          class="px-8 py-4 sm:px-10 sm:py-5 mx-auto lg:mx-0 text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-md hover:from-primary-700 hover:to-primary-900 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-up w-fit border border-white/20"
         >
           {{ t("intro.cta") }}
         </button>
