@@ -108,6 +108,9 @@
   "contact": {
     "heading": "Contact",
     "description": "Questions, suggestions, collaboration – no problem! Send me a message directly or reach out on social media.",
+    "name": "Your full name",
+    "hours": "Worktime (CET)",
+    "timespan": "Mo-Fri 9 AM - 5 PM",
     "address": "Address",
     "phone": "Phone",
     "email": "Email",

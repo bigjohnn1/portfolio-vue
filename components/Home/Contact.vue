@@ -28,47 +28,37 @@
               <Icon name="mdi:phone" size="20" class="mr-2" />
               {{ $t("contact.phone") }}:
             </strong>
-            <a href="tel:+420123456789">+420 123 456 789</a>
+            <a href="tel:+420123456789" aria-label="Zavolat na +420 123 456 789"
+              >+420 123 456 789</a
+            >
           </p>
           <p>
             <strong class="text-primary-600 dark:text-primary-400">
               <Icon name="mdi:email" size="20" class="mr-2" />
               {{ $t("contact.email") }}:
             </strong>
-            <a href="mailto:bb@email.com">bb@email.com</a>
+            <a href="mailto:bb@email.com" aria-label="Napsat na bb@email.com"
+              >bb@email.com</a
+            >
           </p>
-          <!-- <p>
+          <p>
             <strong class="text-primary-600 dark:text-primary-400">
-              <Icon name="mdi:briefcase" size="20" class="mr-2" />
-              {{ $t("contact.vat") }}:
+              <Icon name="mdi:clock-outline" size="20" class="mr-2" />
+              {{ $t("contact.hours") }}:
             </strong>
-            CZ12345678
-          </p> -->
+            {{ $t("contact.timespan") }}
+          </p>
         </div>
         <div class="flex gap-6">
           <a
-            href="https://instagram.com"
+            v-for="social in socialLinks"
+            :key="social.platform"
+            :href="social.url"
             target="_blank"
             rel="noopener noreferrer"
-            class="hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-[1.02]"
+            class="text-fantasy-text hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-[1.02]"
           >
-            <Icon name="mdi:instagram" size="36" />
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-[1.02]"
-          >
-            <Icon name="mdi:linkedin" size="36" />
-          </a>
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-[1.02]"
-          >
-            <Icon name="mdi:github" size="36" />
+            <Icon :name="social.icon" size="36" />
           </a>
         </div>
       </div>
@@ -132,7 +122,7 @@
                         v-model="form.name"
                         type="text"
                         :placeholder="$t('contact.namePlaceholder')"
-                        class="p-4 rounded-2xl text-base focus:outline-none border-b-2 focus:ring-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
+                        class="p-4 rounded-2xl text-base focus-outline-none border-b-2 focus:ring-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
                       />
                     </label>
                     <label class="flex flex-col gap-3">
@@ -235,6 +225,16 @@ const submitForm = () => {
     toast!.isExiting = true;
   }, 2700);
 };
+
+const socialLinks = [
+  {
+    platform: "Instagram",
+    url: "https://instagram.com",
+    icon: "mdi:instagram",
+  },
+  { platform: "LinkedIn", url: "https://linkedin.com", icon: "mdi:linkedin" },
+  { platform: "GitHub", url: "https://github.com", icon: "mdi:github" },
+];
 </script>
 
 <style scoped>
@@ -268,3 +268,4 @@ const submitForm = () => {
   }
 }
 </style>
+```

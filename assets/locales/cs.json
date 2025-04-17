@@ -46,7 +46,7 @@
   },
   "techStack": {
     "title": "Můj stack",
-    "description": "Stack, se kterým oživím vaše nápady",
+    "description": "Technologie, se kterými oživím vaše nápady",
     "items": {
       "vue": {
         "name": "Vue.js",
@@ -113,6 +113,9 @@
   "contact": {
     "heading": "Kontakt",
     "description": "Dotaz, návrhy, spolupráce – není problém! Napište mi rovnou nebo mě kontaktujte na sociálních sítích.",
+    "name": "Vaše celé jméno",
+    "hours": "Pracovní doba",
+    "timespan": "Po-Pá 9:00 - 17:00",
     "address": "Adresa",
     "phone": "Telefon",
     "email": "Email",
