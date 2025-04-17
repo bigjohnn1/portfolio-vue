@@ -19,7 +19,7 @@
         enter="ease-out duration-300"
         enter-from="opacity-0 scale-90"
         enter-to="opacity-100 scale-100"
-        leave="ease-in"
+        leave="ease-in duration-100"
         leave-from="opacity-100 scale-100"
         leave-to="opacity-0 scale-90"
       >

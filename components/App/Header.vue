@@ -29,9 +29,10 @@
       </a>
       <a href="/" class="logo-link" @click="closeMenu">
         <NuxtImg
-          src="/logo_bj.webp"
+          src="/bj.png"
           alt="Site Logo"
           class="h-12 w-auto transform hover:scale-110 transition-transform duration-300 ml-4"
+          format="webp"
         />
       </a>
       <a
