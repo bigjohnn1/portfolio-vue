@@ -48,6 +48,7 @@
     <button
       @click="toggleTheme"
       class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
+      ref="themeButton"
     >
       <span ref="iconWrapper" class="inline-block">
         <Icon
@@ -64,7 +65,6 @@
 
     <div
       v-if="isMenuOpen"
-      v-click-outside="closeMenu"
       ref="mobileMenu"
       class="fixed left-0 top-[64px] w-full h-[calc(100vh-64px)] p-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg flex flex-col items-center gap-8 z-50 overflow-y-auto"
     >
@@ -96,8 +96,8 @@ import { onClickOutside } from "@vueuse/core";
 
 const themeStore = useThemeStore();
 const iconWrapper = templateRef("iconWrapper");
-const hamburgerIcon = templateRef("hamburgerIcon");
 const mobileMenu = templateRef("mobileMenu");
+const themeButton = templateRef("themeButton");
 const isMenuOpen = ref(false);
 
 const toggleTheme = () => {
@@ -147,9 +147,13 @@ const closeMenu = () => {
   }
 };
 
-onClickOutside(mobileMenu, () => {
-  closeMenu();
-});
+onClickOutside(
+  mobileMenu,
+  () => {
+    closeMenu();
+  },
+  { ignore: [themeButton] }
+);
 
 const links = [
   { to: "#references", label: "nav.references" },

@@ -1,7 +1,7 @@
 <template>
   <section
     id="contact"
-    class="relative w-full min-h-screen py-16 bg-light-bg dark:bg-dark-bg overflow-hidden"
+    class="relative w-full min-h-fit py-16 bg-light-bg dark:bg-dark-bg overflow-hidden"
   >
     <div
       class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row gap-12 relative"
@@ -63,14 +63,16 @@
         </div>
       </div>
       <div
-        class="absolute hidden lg:block top-0 left-1/2 transform -translate-x-1/2 w-1 h-full"
+        class="absolute hidden lg:block top-0 left-1/2 transform -translate-x-1/2 w-8 h-full"
       >
         <svg
           class="w-full h-full fill-current text-primary-200 dark:text-primary-800"
           viewBox="0 0 100 1440"
           preserveAspectRatio="none"
         >
-          <path d="M0,0 C100,480 0,960 100,1440 L100,1440 L0,1440 Z" />
+          <path
+            d="M0,0 C20,120 80,120 100,240 C80,360 20,360 0,480 C20,600 80,600 100,720 C80,840 20,840 0,960 C20,1080 80,1080 100,1200 C80,1320 20,1320 0,1440 L0,1440 L100,1440 L100,0 Z"
+          />
         </svg>
       </div>
       <div class="lg:w-1/2 flex flex-col items-center justify-center gap-6">
@@ -233,7 +235,11 @@ const socialLinks = [
     icon: "mdi:instagram",
   },
   { platform: "LinkedIn", url: "https://linkedin.com", icon: "mdi:linkedin" },
-  { platform: "GitHub", url: "https://github.com", icon: "mdi:github" },
+  {
+    platform: "GitHub",
+    url: "https://github.com/bigjohnn1",
+    icon: "mdi:github",
+  },
 ];
 </script>
 
