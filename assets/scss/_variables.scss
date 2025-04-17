@@ -13,6 +13,7 @@ html[class="light"] {
   --border-color: #374151;
   --shadow-color: rgba(0, 0, 0, 0.3);
   --button-bg: rgba(146, 137, 137, 0.1);
+  --input-bg: rgba(241, 235, 235, 0.979);
   --color-md: light;
 
   --color-primary-50: #f0f9ff;
@@ -30,6 +31,7 @@ html[class="dark"] {
   --border-color: #d1d5db;
   --shadow-color: rgba(0, 0, 0, 0.1);
   --button-bg: rgba(94, 87, 87, 0.1);
+  --input-bg: rgba(51, 48, 48, 0.1);
   --color-md: dark;
 
   --color-primary-50: #f4f7fc;
@@ -50,6 +52,7 @@ $text-color: var(--base-text);
 $border-color: var(--border-color);
 $shadow-color: var(--shadow-color);
 $button-background: var(--button-bg);
+$input-background: var(--input-bg);
 $color-md: var(--color-md);
 
 $light-bg: #f9fafb;

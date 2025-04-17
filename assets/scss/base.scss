@@ -66,6 +66,10 @@ b {
   font-size: $fontSize-b;
 }
 
+input,
+textarea {
+  background-color: $input-background;
+}
 button {
   background-color: $button-background;
 }
