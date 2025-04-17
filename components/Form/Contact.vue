@@ -90,7 +90,7 @@
   </Dialog>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {
   Dialog,
   DialogPanel,
@@ -98,7 +98,10 @@ import {
   TransitionChild,
 } from "@headlessui/vue";
 
-const emit = defineEmits(["close", "submit"]);
+const emit = defineEmits<{
+  (e: "close"): boolean;
+  (e: "submit"): boolean;
+}>();
 
 const form = ref({
   name: "",
