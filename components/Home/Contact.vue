@@ -81,7 +81,7 @@
           {{ $t("contact.button") }}
         </button>
         <TransitionRoot :show="isOpen" as="template">
-          <FormContact @close="handleClose" />
+          <FormContact @close="isOpen = false" @submit="handleClose()" />
         </TransitionRoot>
       </div>
     </div>
@@ -105,7 +105,7 @@
 import { TransitionRoot } from "@headlessui/vue";
 const { $i18n } = useNuxtApp();
 
-const isOpen = ref(false);
+const isOpen = shallowRef(false);
 const toasts = reactive([]);
 
 const socialLinks = [
@@ -132,7 +132,7 @@ const addToast = () => {
 
   setTimeout(() => {
     const toast = toasts.find((t) => t.id === toastId);
-    if (toast) toast.isExiting = true;
+    toast.isExiting = true;
   }, 2700);
 };
 

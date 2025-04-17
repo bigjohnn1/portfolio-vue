@@ -78,7 +78,7 @@
               {{ $t("contact.cancelButton") }}
             </button>
             <button
-              @click="submitForm"
+              @click="emit('submit')"
               class="px-6 py-3 rounded-xl text-base font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
             >
               {{ $t("contact.submitButton") }}
@@ -98,15 +98,11 @@ import {
   TransitionChild,
 } from "@headlessui/vue";
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(["close", "submit"]);
 
 const form = ref({
   name: "",
   email: "",
   message: "",
 });
-
-const submitForm = () => {
-  emit("close");
-};
 </script>
