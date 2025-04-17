@@ -66,7 +66,7 @@
     <div
       v-if="isMenuOpen"
       ref="mobileMenu"
-      class="fixed left-0 top-[64px] w-full h-[calc(100vh-64px)] p-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg flex flex-col items-center gap-8 z-50 overflow-y-auto"
+      class="fixed left-0 top-[64px] w-full h-[calc(100vh-64px)] p-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg flex flex-col items-center gap-8 z-50 overflow-y-auto xl:h-0 xl:overflow-hidden"
     >
       <a
         v-for="link in links"
@@ -88,7 +88,7 @@
   </header>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { useThemeStore } from "~/stores/theme";
 import { gsap } from "gsap";
 import { templateRef } from "@vueuse/core";
@@ -147,13 +147,7 @@ const closeMenu = () => {
   }
 };
 
-onClickOutside(
-  mobileMenu,
-  () => {
-    closeMenu();
-  },
-  { ignore: [themeButton] }
-);
+onClickOutside(mobileMenu, () => closeMenu(), { ignore: [themeButton] });
 
 const links = [
   { to: "#references", label: "nav.references" },
