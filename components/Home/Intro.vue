@@ -1,34 +1,41 @@
 <template>
   <section
-    class="relative w-full h-screen flex items-center justify-center bg-gradient-to-b from-light-bg to-primary-50 overflow-hidden"
+    class="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-light-bg to-primary-50 overflow-hidden py-8"
   >
-    <div class="absolute top-10 right-10 z-20">
+    <div
+      class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 z-20"
+    >
       <AppLocaleSwitcher />
     </div>
     <div
-      class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-16 relative z-10"
+      class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 relative z-10"
     >
-      <div class="flex flex-col gap-8">
+      <div
+        class="flex flex-col gap-6 sm:gap-8 w-full lg:w-1/2 text-center lg:text-left"
+      >
         <h1
           ref="title"
-          class="text-h1 font-extrabold bg-gradient-to-r from-primary-500 to-primary-800 text-[clamp(52px,6vw,68px)] [text-shadow:_0_0_1px_#000,0_0_4px_#000]"
+          class="text-h1 font-extrabold bg-gradient-to-r from-primary-500 to-primary-800 text-[clamp(40px,6vw,68px)] sm:text-[clamp(48px,6vw,68px)] [text-shadow:_0_0_1px_#000,0_0_4px_#000]"
         >
           Big John
         </h1>
         <p
           ref="subtitle"
-          class="text-p text-[clamp(20px,3vw,26px)] text-fantasy-text"
+          class="text-p text-[clamp(16px,2.5vw,26px)] sm:text-[clamp(18px,2.5vw,26px)] text-fantasy-text"
         >
           - {{ t("intro.subtitle") }}
         </p>
         <button
           ref="cta"
-          class="px-12 py-6 bg-gradient-to-r from-primary-600 to-primary-800 text-white text-2xl font-bold rounded-xl shadow-xl hover:shadow-2xl hover:from-primary-700 hover:to-primary-900 transition-all duration-300 transform hover:scale-110 animate-fade-up"
+          class="px-8 py-4 sm:px-10 sm:py-5 mx-auto lg:mx-0 bg-gradient-to-r from-primary-600 to-primary-800 text-white text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-xl hover:shadow-2xl hover:from-primary-700 hover:to-primary-900 transition-all duration-300 transform hover:scale-105 animate-fade-up w-fit border border-white/20"
         >
           {{ t("intro.cta") }}
         </button>
       </div>
-      <canvas ref="canvas" class="lg:w-1/2 w-[800px] h-[800px] z-0"></canvas>
+      <canvas
+        ref="canvas"
+        class="w-full max-w-[400px] sm:max-w-[600px] lg:max-w-[800px] aspect-square z-0"
+      ></canvas>
     </div>
   </section>
 </template>
@@ -59,7 +66,13 @@ onMounted(() => {
       canvas: canvas.value,
       alpha: true,
     });
-    renderer.setSize(800, 800);
+    const resizeCanvas = () => {
+      const size = canvas.value?.parentElement?.clientWidth || 800;
+      const newSize = Math.min(size, 800);
+      renderer.setSize(newSize, newSize);
+    };
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
     const sphereGeometry = new THREE.SphereGeometry(2, 58, 58);
     const sphereMaterial = new THREE.ShaderMaterial({
