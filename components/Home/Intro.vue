@@ -41,23 +41,21 @@
 </template>
 
 <script setup lang="ts">
-import { gsap } from "gsap";
 import { templateRef } from "@vueuse/core";
 import * as THREE from "three";
 import { useDark } from "@vueuse/core";
 
 const { t } = useI18n();
-
 const title = templateRef("title");
 const subtitle = templateRef("subtitle");
-const cta = templateRef("cta");
 const canvas = ref<HTMLCanvasElement | null>(null);
+const { $gsap } = useNuxtApp();
 
 const isDark = useDark();
 
 onMounted(() => {
-  gsap.from(title.value, { x: -100, opacity: 0, duration: 0.8 });
-  gsap.from(subtitle.value, { x: -100, opacity: 0, duration: 1, delay: 0.2 });
+  $gsap.from(title.value, { x: -100, opacity: 0, duration: 0.8 });
+  $gsap.from(subtitle.value, { x: -100, opacity: 0, duration: 1, delay: 0.2 });
 
   if (canvas.value) {
     const scene = new THREE.Scene();

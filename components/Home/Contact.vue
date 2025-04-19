@@ -98,8 +98,7 @@
 
 <script setup>
 import { TransitionRoot } from "@headlessui/vue";
-import { gsap } from "gsap";
-const { $i18n } = useNuxtApp();
+const { $i18n, $gsap } = useNuxtApp();
 
 const isOpen = shallowRef(false);
 const toasts = reactive([]);
@@ -128,7 +127,7 @@ const addToast = () => {
   const toastElement = document.querySelector(
     `.toast-item:nth-child(${toasts.length})`
   );
-  gsap.from(toastElement, {
+  $gsap.from(toastElement, {
     y: 20,
     opacity: 0,
     duration: 0.5,
@@ -140,7 +139,7 @@ const addToast = () => {
     const toastElement = document.querySelector(
       `.toast-item:nth-child(${toastIndex + 1})`
     );
-    gsap.to(toastElement, {
+    $gsap.to(toastElement, {
       y: 20,
       opacity: 0,
       duration: 0.5,

@@ -92,7 +92,6 @@
 
 <script setup>
 import { useThemeStore } from "~/stores/theme";
-import { gsap } from "gsap";
 import { templateRef } from "@vueuse/core";
 import { onClickOutside } from "@vueuse/core";
 
@@ -101,16 +100,17 @@ const iconWrapper = templateRef("iconWrapper");
 const mobileMenu = templateRef("mobileMenu");
 const themeButton = templateRef("themeButton");
 const isMenuOpen = ref(false);
+const { $gsap } = useNuxtApp();
 
 const toggleTheme = () => {
-  gsap.to(iconWrapper.value, {
+  $gsap.to(iconWrapper.value, {
     rotation: themeStore.currentTheme === "light" ? 90 : -90,
     opacity: 0,
     duration: 0.4,
     ease: "power2.inOut",
     onComplete: () => {
       themeStore.toggleTheme();
-      gsap.fromTo(
+      $gsap.fromTo(
         iconWrapper.value,
         {
           rotation: themeStore.currentTheme === "light" ? -90 : 90,
@@ -125,13 +125,13 @@ const toggleTheme = () => {
 const toggleMenu = () => {
   if (!isMenuOpen.value) {
     isMenuOpen.value = true;
-    gsap.fromTo(
+    $gsap.fromTo(
       mobileMenu.value,
       { x: "100%", opacity: 0 },
       { x: "0%", opacity: 1, duration: 0.4, ease: "power2.out" }
     );
   } else {
-    gsap.to(mobileMenu.value, {
+    $gsap.to(mobileMenu.value, {
       x: "100%",
       opacity: 0,
       duration: 0.4,

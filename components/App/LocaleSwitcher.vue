@@ -34,9 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { gsap } from "gsap";
-
-const { $i18n } = useNuxtApp();
+const { $i18n, $gsap } = useNuxtApp();
 const availableLocales = $i18n.locales;
 const isOpen = ref(false);
 const dropdown = ref(null);
@@ -63,7 +61,7 @@ const switchLocale = (localeCode: string) => {
 
 const animateDropdownOpen = () => {
   if (dropdown.value) {
-    gsap.fromTo(
+    $gsap.fromTo(
       dropdown.value,
       { opacity: 0, y: -10, scale: 0.95 },
       { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "power2.out" }
@@ -74,7 +72,7 @@ const animateDropdownOpen = () => {
 onMounted(() => {
   const button = document.querySelector(".lang-switcher button");
   if (button) {
-    gsap.from(button, {
+    $gsap.from(button, {
       y: -10,
       opacity: 0,
       duration: 0.4,

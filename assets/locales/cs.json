@@ -130,10 +130,36 @@
   },
   "about": {
     "title": "Kdo jsem",
-    "description": "Jsem 19letý programátor a rád převádím nápady do kódu. Webové aplikace jsou moje #1, ať už jde o front-end nebo back-end. Žiju pro sebezlepšování, zdravý životní styl a neustálé učení nových technologií, abych posouval svoje projekty na další level. A mimo to, občas si i rád zahraju třeba Zaklínače.",
+    "story": {
+      "title": "Můj příběh",
+      "description": "Jsem 19letý programátor a rád převádím nápady do kódu. Webové aplikace jsou moje #1, ať už jde o front-end nebo back-end. Žiju pro sebezlepšování, zdravý životní styl a neustálé učení se nových technologií, abych posouval svoje projekty na další level. A mimo to, občas si i rád zahraju třeba Zaklínače."
+    },
     "points": {
-      "education": "Studuju vývoj webovek a e-marketing, po večerech se vzdělávám ve Vue, Nuxt nebo TypeScript.",
-      "experience": "Mám za sebou komerční i neziskové projekty – od e-shopů přes vzdělávací platformy až po custom řešení."
+      "education": {
+        "title": "Vzdělání",
+        "description": "Studuju vývoj webovek a e-marketing, po večerech se vzdělávám ve Vue, Nuxt nebo TypeScript."
+      },
+      "experience": {
+        "title": "Zkušenosti",
+        "description": "Mám za sebou komerční i neziskové projekty – od e-shopů přes vzdělávací platformy až po custom řešení."
+      }
+    },
+    "facts": {
+      "title": "Zajímavosti o mně",
+      "items": {
+        "coding": {
+          "title": "Kód je můj svět",
+          "description": "Miluju tvořit aplikace od nuly. Vue a Nuxt jsou moje go-to."
+        },
+        "lifestyle": {
+          "title": "Zdravý život",
+          "description": "Běh, posilka nebo zdravé jídlo mě udržují v tempu pro projekty."
+        },
+        "rpg": {
+          "title": "Fantasy lover",
+          "description": "Zaklínač nebo D&D – tyhle světy mě inspirují i při kódování."
+        }
+      }
     }
   }
 }

@@ -55,10 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+const { $gsap } = useNuxtApp();
 
 function truncate(str: string, n: number): string {
   return str.length > n ? str.substr(0, n) + "..." : str;
@@ -80,7 +77,7 @@ onMounted(() => {
   const projectItems = document.querySelectorAll(".project-item");
 
   projectItems.forEach((item, index) => {
-    gsap.from(item, {
+    $gsap.from(item, {
       x: index % 2 === 0 ? 100 : -100,
       opacity: 0,
       duration: 0.8,
