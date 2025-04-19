@@ -87,8 +87,7 @@
       <div
         v-for="toast in toasts"
         :key="toast.id"
-        class="flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg animate-slide-in"
-        :class="{ 'animate-slide-out': toast.isExiting }"
+        class="toast-item flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg"
       >
         <Icon name="mdi:check-circle" size="24" class="text-green-400" />
         <span>{{ toast.message }}</span>
@@ -99,6 +98,7 @@
 
 <script setup>
 import { TransitionRoot } from "@headlessui/vue";
+import { gsap } from "gsap";
 const { $i18n } = useNuxtApp();
 
 const isOpen = shallowRef(false);
@@ -123,12 +123,34 @@ const addToast = () => {
   toasts.push({
     id: toastId,
     message: $i18n.t("contact.toastSuccess"),
-    isExiting: false,
   });
 
+  const toastElement = document.querySelector(
+    `.toast-item:nth-child(${toasts.length})`
+  );
+  if (toastElement) {
+    gsap.from(toastElement, {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power2.out",
+    });
+  }
+
   setTimeout(() => {
-    const toast = toasts.find((t) => t.id === toastId);
-    toast.isExiting = true;
+    const toastIndex = toasts.findIndex((t) => t.id === toastId);
+    const toastElement = document.querySelector(
+      `.toast-item:nth-child(${toastIndex + 1})`
+    );
+    gsap.to(toastElement, {
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: "power2.in",
+      onComplete: () => {
+        toasts.splice(toastIndex, 1);
+      },
+    });
   }, 2700);
 };
 
@@ -137,35 +159,3 @@ const handleClose = () => {
   isOpen.value = false;
 };
 </script>
-
-<style scoped>
-.animate-slide-in {
-  animation: slideIn 0.3s ease-out;
-}
-
-.animate-slide-out {
-  animation: slideOut 0.3s ease-in forwards;
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideOut {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-}
-</style>
