@@ -18,13 +18,6 @@
         <div class="flex flex-col gap-5 text-lg">
           <p>
             <strong class="text-primary-600 dark:text-primary-400">
-              <Icon name="mdi:map-marker" size="20" class="mr-2" />
-              {{ $t("contact.address") }}:
-            </strong>
-            Mordor
-          </p>
-          <p>
-            <strong class="text-primary-600 dark:text-primary-400">
               <Icon name="mdi:phone" size="20" class="mr-2" />
               {{ $t("contact.phone") }}:
             </strong>
@@ -40,13 +33,6 @@
             <a href="mailto:bb@email.com" aria-label="Napsat na bb@email.com"
               >bb@email.com</a
             >
-          </p>
-          <p>
-            <strong class="text-primary-600 dark:text-primary-400">
-              <Icon name="mdi:clock-outline" size="20" class="mr-2" />
-              {{ $t("contact.hours") }}:
-            </strong>
-            {{ $t("contact.timespan") }}
           </p>
         </div>
         <div class="flex gap-6">
