@@ -24,7 +24,6 @@ export default defineNuxtConfig({
   pinia: { storesDirs: ["./stores/**"] },
   imports: { dirs: ["./stores"] },
   pages: true,
-  plugins: ["~/plugins/gsap.client.ts"],
   css: ["~/assets/scss/base.scss"],
   tailwindcss: {
     viewer: false,
