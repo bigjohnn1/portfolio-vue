@@ -5,6 +5,7 @@
     <HomeProjects />
     <HomeTechStack />
     <HomeContact />
+    <HomeAbout />
     <AppFooter />
   </VueFrag>
 </template>
