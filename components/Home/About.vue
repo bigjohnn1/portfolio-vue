@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative w-full py-20 bg-light-bg dark:bg-dark-bg text-base-text z-10 overflow-hidden"
+    class="relative w-full py-20 bg-base-bg text-base-text z-10 overflow-hidden"
     id="about"
   >
     <div class="max-w-6xl mx-auto px-4">
