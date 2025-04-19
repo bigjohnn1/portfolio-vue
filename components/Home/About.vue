@@ -17,7 +17,6 @@
           <ul class="list-disc list-inside text-gray-600 dark:text-gray-400">
             <li>{{ $t("about.points.education") }}</li>
             <li>{{ $t("about.points.experience") }}</li>
-            <li>{{ $t("about.points.skills") }}</li>
           </ul>
         </div>
       </div>

@@ -122,5 +122,13 @@
     "cancelButton": "Cancel",
     "submitButton": "Send",
     "toastSuccess": "Message sent successfully!"
+  },
+  "about": {
+    "title": "Who I Am",
+    "description": "I’m a 19-year-old coder with a passion for crafting awesome web apps! From slick front-ends to robust back-ends, I love bringing ideas to life. When I’m not coding, you’ll find me diving into fantasy RPGs or rolling dice in Dungeons & Dragons – those epic worlds spark my creativity. I’m all about self-improvement, healthy living, and soaking up new tech to level up my projects.",
+    "points": {
+      "education": "I’m an IT student in high school, but I spend my nights mastering cutting-edge tools like Vue, Nuxt, and TypeScript.",
+      "experience": "I’ve tackled commercial and nonprofit projects, building everything from e-commerce platforms to educational tools and custom solutions."
+    }
   }
 }
