@@ -97,26 +97,12 @@
 </template>
 
 <script setup>
+import { socialLinks } from "~/consts/socials";
 import { TransitionRoot } from "@headlessui/vue";
 const { $i18n, $gsap } = useNuxtApp();
 
 const isOpen = shallowRef(false);
 const toasts = reactive([]);
-
-const socialLinks = [
-  {
-    platform: "Instagram",
-    url: "https://instagram.com",
-    icon: "mdi:instagram",
-  },
-  { platform: "LinkedIn", url: "https://linkedin.com", icon: "mdi:linkedin" },
-  {
-    platform: "GitHub",
-    url: "https://github.com/bigjohnn1",
-    icon: "mdi:github",
-  },
-];
-
 const addToast = () => {
   const toastId = Date.now();
   toasts.push({

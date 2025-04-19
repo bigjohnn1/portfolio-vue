@@ -19,27 +19,15 @@
       ></div>
     </div>
     <div class="relative z-10">
-      <div class="footer-social flex justify-center gap-6 mb-4">
+      <div class="flex justify-center gap-6 mb-4">
         <NuxtLink
-          to="https://github.com/"
+          v-for="social in socialLinks"
+          :key="social.platform"
+          :to="social.url"
           target="_blank"
           class="hover:text-gray-300"
         >
-          <Icon name="mdi:github" class="h-6 w-6" />
-        </NuxtLink>
-        <NuxtLink
-          to="https://linkedin.com/in/"
-          target="_blank"
-          class="hover:text-gray-300"
-        >
-          <Icon name="mdi:linkedin" class="h-6 w-6" />
-        </NuxtLink>
-        <NuxtLink
-          to="https://instagram.com/"
-          target="_blank"
-          class="hover:text-gray-300"
-        >
-          <Icon name="mdi:instagram" class="h-6 w-6" />
+          <Icon :name="social.icon" class="h-6 w-6" />
         </NuxtLink>
       </div>
       <p class="text-white">© {{ year }} Big John</p>
@@ -48,6 +36,7 @@
 </template>
 
 <script lang="ts" setup>
+import { socialLinks } from "~/consts/socials";
 import { useIntersectionObserver } from "@vueuse/core";
 
 interface Star {
@@ -95,12 +84,6 @@ function generateStars() {
   }
   100% {
     opacity: 1;
-  }
-}
-
-.footer-social {
-  a {
-    transition: color 0.3s ease;
   }
 }
 </style>
