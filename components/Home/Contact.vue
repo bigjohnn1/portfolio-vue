@@ -128,14 +128,12 @@ const addToast = () => {
   const toastElement = document.querySelector(
     `.toast-item:nth-child(${toasts.length})`
   );
-  if (toastElement) {
-    gsap.from(toastElement, {
-      y: 20,
-      opacity: 0,
-      duration: 0.5,
-      ease: "power2.out",
-    });
-  }
+  gsap.from(toastElement, {
+    y: 20,
+    opacity: 0,
+    duration: 0.5,
+    ease: "power2.out",
+  });
 
   setTimeout(() => {
     const toastIndex = toasts.findIndex((t) => t.id === toastId);

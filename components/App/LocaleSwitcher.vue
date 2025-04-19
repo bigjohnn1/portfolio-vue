@@ -53,15 +53,12 @@ const toggleDropdown = async () => {
   if (isOpen.value) {
     await nextTick();
     animateDropdownOpen();
-  } else {
-    animateDropdownClose();
   }
 };
 
 const switchLocale = (localeCode: string) => {
   $i18n.setLocale(localeCode);
   isOpen.value = false;
-  animateDropdownClose();
 };
 
 const animateDropdownOpen = () => {
@@ -71,18 +68,6 @@ const animateDropdownOpen = () => {
       { opacity: 0, y: -10, scale: 0.95 },
       { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "power2.out" }
     );
-  }
-};
-
-const animateDropdownClose = () => {
-  if (dropdown.value) {
-    gsap.to(dropdown.value, {
-      opacity: 0,
-      y: -10,
-      scale: 0.95,
-      duration: 0.2,
-      ease: "power2.in",
-    });
   }
 };
 
@@ -98,27 +83,3 @@ onMounted(() => {
   }
 });
 </script>
-
-<style lang="scss" scoped>
-.lang-switcher {
-  position: relative;
-  display: inline-block;
-}
-
-button {
-  cursor: pointer;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-li {
-  &:last-child {
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-  }
-}
-</style>
