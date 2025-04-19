@@ -125,10 +125,36 @@
   },
   "about": {
     "title": "Who I Am",
-    "description": "I’m a 19-year-old coder with a passion for crafting awesome web apps! From slick front-ends to robust back-ends, I love bringing ideas to life. When I’m not coding, you’ll find me diving into fantasy RPGs or rolling dice in Dungeons & Dragons – those epic worlds spark my creativity. I’m all about self-improvement, healthy living, and soaking up new tech to level up my projects.",
+    "story": {
+      "title": "My Story",
+      "description": "I’m a 19-year-old coder who loves turning ideas into code. Web apps are my #1, whether it’s front-end or back-end. I’m all about self-improvement, healthy living, and constantly learning new tech to take my projects to the next level. And when I’m not coding, you might catch me slaying monsters in The Witcher or Skyrim."
+    },
     "points": {
-      "education": "I’m an IT student in high school, but I spend my nights mastering cutting-edge tools like Vue, Nuxt, and TypeScript.",
-      "experience": "I’ve tackled commercial and nonprofit projects, building everything from e-commerce platforms to educational tools and custom solutions."
+      "education": {
+        "title": "Education",
+        "description": "I’m studying web development and e-marketing, but I spend my evenings diving into Vue, Nuxt, and TypeScript."
+      },
+      "experience": {
+        "title": "Experience",
+        "description": "I’ve worked on commercial and nonprofit projects, from e-commerce platforms to educational tools and custom solutions."
+      }
+    },
+    "facts": {
+      "title": "Fun Facts About Me",
+      "items": {
+        "coding": {
+          "title": "Code is My Liberation",
+          "description": "I love building apps from scratch. Vue and Nuxt are my favorite go-to tools."
+        },
+        "lifestyle": {
+          "title": "Healthy Living",
+          "description": "Running, gym, or healthy meals keep me fueled for my projects."
+        },
+        "rpg": {
+          "title": "Fantasy Fan",
+          "description": "The Witcher or D&D – these worlds inspire me, even when coding."
+        }
+      }
     }
   }
 }

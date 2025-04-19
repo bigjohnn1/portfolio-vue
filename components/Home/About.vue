@@ -101,8 +101,8 @@ const { $gsap } = useNuxtApp();
 
 const facts = [
   { key: "coding", icon: "mdi:code-tags" },
-  { key: "rpg", icon: "mdi:sword" },
   { key: "lifestyle", icon: "mdi:leaf" },
+  { key: "rpg", icon: "mdi:sword" },
 ];
 
 onMounted(() => {
