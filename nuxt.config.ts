@@ -9,7 +9,25 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@hypernym/nuxt-gsap",
     "@pinia-plugin-persistedstate/nuxt",
+    "nuxt-nodemailer",
   ],
+  nodemailer: {
+    from: `"Portfolio" ${process.env.NUXT_MAIL_USER}`,
+    service: "gmail",
+    secure: true,
+    auth: {
+      user: process.env.NUXT_MAIL_USER,
+      pass: process.env.NUXT_MAIL_PASS,
+    },
+  },
+  runtimeConfig: {
+    smtpUser: process.env.NUXT_MAIL_USER,
+    smtpPass: process.env.NUXT_MAIL_PASS,
+    contactMail: process.env.NUXT_CONTACT_MAIL,
+    public: {
+      contactMail: undefined,
+    },
+  },
   app: {
     head: {
       link: [{ rel: "icon", type: "image/ico", href: "/img/favicon.ico" }],
