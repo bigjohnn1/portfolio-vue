@@ -27,10 +27,6 @@ export const useThemeStore = defineStore(
     return { currentTheme, toggleTheme };
   },
   {
-    persist: process.client
-      ? {
-          storage: localStorage,
-        }
-      : false,
+    persist: true,
   }
 );

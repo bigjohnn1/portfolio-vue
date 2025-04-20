@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     "@nuxt/icon",
     "@nuxt/image",
     "@hypernym/nuxt-gsap",
+    "@pinia-plugin-persistedstate/nuxt",
   ],
   app: {
     head: {
