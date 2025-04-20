@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxt/icon",
     "@nuxt/image",
+    "@hypernym/nuxt-gsap",
   ],
   app: {
     head: {
@@ -103,6 +104,14 @@ export default defineNuxtConfig({
     compilation: {
       strictMessage: false,
       escapeHtml: false,
+    },
+  },
+  gsap: {
+    extraPlugins: {
+      scrollTrigger: true,
+    },
+    extraEases: {
+      expoScale: true,
     },
   },
   compatibilityDate: "2024-11-01",
