@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.23",
+    "@hypernym/nuxt-gsap": "^2.4.3",
     "@pinia/nuxt": "^0.10.1",
     "@supabase/supabase-js": "^2.49.1",
     "@types/three": "^0.174.0",
