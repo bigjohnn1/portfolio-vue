@@ -68,7 +68,8 @@
             <div
               v-for="fact in facts"
               :key="fact.key"
-              class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+              class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-shadow duration-300 fact-item"
+              ref="factItems"
             >
               <div class="flex items-center gap-4">
                 <Icon
@@ -95,15 +96,21 @@
   </section>
 </template>
 
-<script setup>
-import { onMounted } from "vue";
+<script setup lang="ts">
 const { $gsap } = useNuxtApp();
 
-const facts = [
+interface Fact {
+  key: string;
+  icon: string;
+}
+
+const facts: Fact[] = [
   { key: "coding", icon: "mdi:code-tags" },
   { key: "lifestyle", icon: "mdi:leaf" },
   { key: "rpg", icon: "mdi:sword" },
 ];
+
+const factItems: Ref<HTMLElement[]> = ref([]);
 
 onMounted(() => {
   $gsap.from(".animate-title", {
@@ -111,10 +118,7 @@ onMounted(() => {
     opacity: 0,
     duration: 0.8,
     ease: "power2.out",
-    scrollTrigger: {
-      trigger: ".animate-title",
-      start: "top 80%",
-    },
+    scrollTrigger: { trigger: ".animate-title", start: "top 80%" },
   });
 
   $gsap.from(".animate-story", {
@@ -122,10 +126,7 @@ onMounted(() => {
     opacity: 0,
     duration: 0.8,
     ease: "power2.out",
-    scrollTrigger: {
-      trigger: ".animate-story",
-      start: "top 80%",
-    },
+    scrollTrigger: { trigger: ".animate-story", start: "top 80%" },
   });
 
   $gsap.from(".animate-points li", {
@@ -134,10 +135,7 @@ onMounted(() => {
     duration: 0.6,
     stagger: 0.2,
     ease: "power2.out",
-    scrollTrigger: {
-      trigger: ".animate-points",
-      start: "top 80%",
-    },
+    scrollTrigger: { trigger: ".animate-points", start: "top 80%" },
   });
 
   $gsap.from(".animate-facts > div", {
@@ -146,10 +144,44 @@ onMounted(() => {
     duration: 0.6,
     stagger: 0.2,
     ease: "back.out(1.7)",
-    scrollTrigger: {
-      trigger: ".animate-facts",
-      start: "top 80%",
-    },
+    scrollTrigger: { trigger: ".animate-facts", start: "top 80%" },
+  });
+
+  factItems.value.forEach((item: HTMLElement) => {
+    if (!item) return;
+
+    const onMouseMove = (e: MouseEvent) => {
+      const rect: DOMRect = item.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const maxTilt = 15;
+
+      const tiltX = ((y - centerY) / centerY) * maxTilt;
+      const tiltY = -((x - centerX) / centerX) * maxTilt;
+
+      $gsap.to(item, {
+        rotateX: tiltX,
+        rotateY: tiltY,
+        boxShadow: "0 15px 30px rgba(0, 0, 0, 0.2)",
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    };
+
+    const onMouseLeave = (): void => {
+      $gsap.to(item, {
+        rotateX: 0,
+        rotateY: 0,
+        boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    };
+
+    item.addEventListener("mousemove", onMouseMove);
+    item.addEventListener("mouseleave", onMouseLeave);
   });
 });
 </script>
