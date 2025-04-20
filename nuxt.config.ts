@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     "@hypernym/nuxt-gsap",
     "@pinia-plugin-persistedstate/nuxt",
     "nuxt-nodemailer",
+    "nuxt-security",
   ],
   nodemailer: {
     from: `"Portfolio" ${process.env.NUXT_MAIL_USER}`,
@@ -26,6 +27,19 @@ export default defineNuxtConfig({
     contactMail: process.env.NUXT_CONTACT_MAIL,
     public: {
       contactMail: undefined,
+    },
+  },
+  security: {
+    rateLimiter: {
+      interval: 10 * 1000,
+      tokensPerInterval: 5,
+    },
+    headers: {
+      contentSecurityPolicy: {
+        "img-src": ["'self'", "data:", "blob:"],
+        "script-src": ["'self'"],
+        "style-src": ["'self'", "'unsafe-inline'"],
+      },
     },
   },
   app: {
