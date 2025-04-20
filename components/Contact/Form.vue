@@ -78,10 +78,13 @@
               {{ $t("contact.cancelButton") }}
             </button>
             <button
-              @click="emit('submit')"
+              @click="submit"
+              :disabled="isLoading"
               class="px-6 py-3 rounded-xl text-base font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
             >
-              {{ $t("contact.submitButton") }}
+              {{
+                isLoading ? $t("contact.sending") : $t("contact.submitButton")
+              }}
             </button>
           </div>
         </DialogPanel>
@@ -100,7 +103,7 @@ import {
 
 const emit = defineEmits<{
   (e: "close"): boolean;
-  (e: "submit"): boolean;
+  (e: "success"): boolean;
 }>();
 
 const form = ref({
@@ -108,4 +111,24 @@ const form = ref({
   email: "",
   message: "",
 });
+
+const isLoading = ref(false);
+
+const submit = async () => {
+  isLoading.value = true;
+  try {
+    const response = await $fetch("/api/contact", {
+      method: "POST",
+      body: form.value,
+    });
+    form.value = { name: "", email: "", message: "" };
+    emit("success");
+  } catch (error: any) {
+    throw new Error(
+      error.data?.statusMessage || "Nepodařilo se odeslat e-mail."
+    );
+  } finally {
+    isLoading.value = false;
+  }
+};
 </script>

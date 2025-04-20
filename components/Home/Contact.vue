@@ -77,7 +77,7 @@
           {{ $t("contact.button") }}
         </button>
         <TransitionRoot :show="isOpen" as="template">
-          <FormContact @close="isOpen = false" @submit="handleClose()" />
+          <ContactForm @close="isOpen = false" @success="handleSuccess" />
         </TransitionRoot>
       </div>
     </div>
@@ -103,6 +103,7 @@ const { $i18n, $gsap } = useNuxtApp();
 
 const isOpen = shallowRef(false);
 const toasts = reactive([]);
+
 const addToast = () => {
   const toastId = Date.now();
   toasts.push({
@@ -137,7 +138,7 @@ const addToast = () => {
   }, 2700);
 };
 
-const handleClose = () => {
+const handleSuccess = () => {
   addToast();
   isOpen.value = false;
 };

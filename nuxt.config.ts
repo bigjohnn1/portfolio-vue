@@ -29,19 +29,19 @@ export default defineNuxtConfig({
       contactMail: undefined,
     },
   },
-  security: {
-    rateLimiter: {
-      interval: 10 * 1000,
-      tokensPerInterval: 5,
-    },
-    headers: {
-      contentSecurityPolicy: {
-        "img-src": ["'self'", "data:", "blob:"],
-        "script-src": ["'self'"],
-        "style-src": ["'self'", "'unsafe-inline'"],
-      },
-    },
-  },
+  // security: {
+  //   rateLimiter: {
+  //     interval: 5 * 1000,
+  //     tokensPerInterval: 5,
+  //   },
+  //   headers: {
+  //     contentSecurityPolicy: {
+  //       "img-src": ["'self'", "data:", "blob:"],
+  //       "script-src": ["'self'"],
+  //       "style-src": ["'self'", "'unsafe-inline'"],
+  //     },
+  //   },
+  // },
   app: {
     head: {
       link: [{ rel: "icon", type: "image/ico", href: "/img/favicon.ico" }],
