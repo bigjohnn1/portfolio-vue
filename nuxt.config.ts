@@ -25,9 +25,6 @@ export default defineNuxtConfig({
     smtpUser: process.env.NUXT_MAIL_USER,
     smtpPass: process.env.NUXT_MAIL_PASS,
     contactMail: process.env.NUXT_CONTACT_MAIL,
-    public: {
-      contactMail: undefined,
-    },
   },
   // security: {
   //   rateLimiter: {
@@ -37,8 +34,6 @@ export default defineNuxtConfig({
   //   headers: {
   //     contentSecurityPolicy: {
   //       "img-src": ["'self'", "data:", "blob:"],
-  //       "script-src": ["'self'"],
-  //       "style-src": ["'self'", "'unsafe-inline'"],
   //     },
   //   },
   // },
