@@ -127,7 +127,12 @@
     "cancelButton": "Zrušit",
     "submitButton": "Odeslat",
     "toastSuccess": "Zpráva byla úspěšně odeslána!",
-    "toastError": "Chyba při odesílání zprávy!",
+    "name_min_length": "Jméno musí mít alespoň 2 znaky.",
+    "name_max_length": "Jméno je příliš dlouhé (max 50 znaků).",
+    "invalid_email": "Neplatná e-mailová adresa.",
+    "message_min_length": "Zpráva musí mít alespoň 10 znaků.",
+    "message_max_length": "Zpráva je příliš dlouhá (max 1000 znaků).",
+    "toastError": "Nepodařilo se odeslat zprávu.",
     "sending": "Odesílám..."
   },
   "about": {
@@ -155,7 +160,7 @@
         },
         "lifestyle": {
           "title": "Zdravý život",
-          "description": "Běh, posilka nebo zdravé jídlo mě udržují v tempu pro projekty."
+          "description": "Běh, posilka a zdravé jídlo mě udržují v tempu pro projekty."
         },
         "rpg": {
           "title": "Fantasy lover",

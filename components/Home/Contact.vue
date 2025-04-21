@@ -87,7 +87,7 @@
       <div
         v-for="toast in toasts"
         :key="toast.id"
-        class="toast-item flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg"
+        class="toast-item flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg z-[999]"
         :class="toast.success ? 'bg-green-500/10' : 'bg-red-500/10'"
       >
         <Icon
@@ -119,9 +119,7 @@ const addToast = (success: boolean, message?: string) => {
   toasts.push({
     id: toastId,
     success,
-    message: success
-      ? $i18n.t("contact.toastSuccess")
-      : $i18n.t("contact.toastError"),
+    message: message!,
   });
 
   const toastElement = document.querySelector(

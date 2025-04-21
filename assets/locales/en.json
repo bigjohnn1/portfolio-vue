@@ -122,7 +122,12 @@
     "cancelButton": "Cancel",
     "submitButton": "Send",
     "toastSuccess": "Message sent successfully!",
-    "toastError": "Error sending message!",
+    "name_min_length": "Name must be at least 2 characters long.",
+    "name_max_length": "Name is too long (max 50 characters).",
+    "invalid_email": "Invalid email address.",
+    "message_min_length": "Message must be at least 10 characters long.",
+    "message_max_length": "Message is too long (max 1000 characters).",
+    "toastError": "Failed to send message.",
     "sending": "Sending..."
   },
   "about": {

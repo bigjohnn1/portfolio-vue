@@ -101,6 +101,8 @@ import {
   TransitionChild,
 } from "@headlessui/vue";
 
+const { $i18n } = useNuxtApp();
+
 const emit = defineEmits<{
   (e: "close"): boolean;
   (e: "result", data: { success: boolean; message?: string }): void;
@@ -116,22 +118,24 @@ const isLoading = ref(false);
 
 const submit = async () => {
   isLoading.value = true;
-  try {
-    await $fetch("/api/contact", {
+  const res = await $fetch<{ success?: boolean; error?: string }>(
+    "/api/contact",
+    {
       method: "POST",
       body: form.value,
-    });
-    form.value = { name: "", email: "", message: "" };
-    emit("result", { success: true });
-    emit("close");
-  } catch (error: any) {
+    }
+  );
+  isLoading.value = false;
+  if (res.error) {
     emit("result", {
       success: false,
-      message: error.data?.statusMessage || "Nepodařilo se odeslat e-mail.",
+      message: $i18n.t(`contact.${res.error}`),
     });
     emit("close");
-  } finally {
-    isLoading.value = false;
+    return;
   }
+  form.value = { name: "", email: "", message: "" };
+  emit("result", { success: true });
+  emit("close");
 };
 </script>
