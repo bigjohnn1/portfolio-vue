@@ -126,7 +126,9 @@
     "messagePlaceholder": "Co máte na srdci?",
     "cancelButton": "Zrušit",
     "submitButton": "Odeslat",
-    "toastSuccess": "Zpráva byla úspěšně odeslána!"
+    "toastSuccess": "Zpráva byla úspěšně odeslána!",
+    "toastError": "Chyba při odesílání zprávy!",
+    "sending": "Odesílám..."
   },
   "about": {
     "title": "Kdo jsem",

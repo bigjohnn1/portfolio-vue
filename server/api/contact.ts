@@ -35,6 +35,4 @@ export default defineEventHandler(async (e) => {
     subject: `Nová zpráva od ${s.name}`,
     text: `Jméno: ${s.name}\nE-mail: ${s.email}\nZpráva: ${s.message}`,
   });
-
-  return { success: true };
 });

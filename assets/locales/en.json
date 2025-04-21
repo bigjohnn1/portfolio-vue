@@ -121,7 +121,9 @@
     "messagePlaceholder": "What's on your mind?",
     "cancelButton": "Cancel",
     "submitButton": "Send",
-    "toastSuccess": "Message sent successfully!"
+    "toastSuccess": "Message sent successfully!",
+    "toastError": "Error sending message!",
+    "sending": "Sending..."
   },
   "about": {
     "title": "Who I Am",
