@@ -103,7 +103,7 @@ import {
 
 const emit = defineEmits<{
   (e: "close"): boolean;
-  (e: "success"): boolean;
+  (e: "result", data: { success: boolean; message?: string }): void;
 }>();
 
 const form = ref({
@@ -117,16 +117,19 @@ const isLoading = ref(false);
 const submit = async () => {
   isLoading.value = true;
   try {
-    const response = await $fetch("/api/contact", {
+    await $fetch("/api/contact", {
       method: "POST",
       body: form.value,
     });
     form.value = { name: "", email: "", message: "" };
-    emit("success");
+    emit("result", { success: true });
+    emit("close");
   } catch (error: any) {
-    throw new Error(
-      error.data?.statusMessage || "Nepodařilo se odeslat e-mail."
-    );
+    emit("result", {
+      success: false,
+      message: error.data?.statusMessage || "Nepodařilo se odeslat e-mail.",
+    });
+    emit("close");
   } finally {
     isLoading.value = false;
   }

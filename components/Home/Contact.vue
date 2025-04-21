@@ -77,7 +77,7 @@
           {{ $t("contact.button") }}
         </button>
         <TransitionRoot :show="isOpen" as="template">
-          <ContactForm @close="isOpen = false" @success="handleSuccess" />
+          <ContactForm @close="isOpen = false" @result="handleResult" />
         </TransitionRoot>
       </div>
     </div>
@@ -88,27 +88,40 @@
         v-for="toast in toasts"
         :key="toast.id"
         class="toast-item flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg"
+        :class="toast.success ? 'bg-green-500/10' : 'bg-red-500/10'"
       >
-        <Icon name="mdi:check-circle" size="24" class="text-green-400" />
+        <Icon
+          :name="toast.success ? 'mdi:check-circle' : 'mdi:alert-circle'"
+          size="24"
+          :class="toast.success ? 'text-green-400' : 'text-red-400'"
+        />
         <span>{{ toast.message }}</span>
       </div>
     </div>
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { socialLinks } from "~/consts/socials";
 import { TransitionRoot } from "@headlessui/vue";
+
 const { $i18n, $gsap } = useNuxtApp();
-
+type Toast = {
+  id: number;
+  success: boolean;
+  message: string;
+};
 const isOpen = shallowRef(false);
-const toasts = reactive([]);
+const toasts = reactive<Toast[]>([]);
 
-const addToast = () => {
+const addToast = (success: boolean, message?: string) => {
   const toastId = Date.now();
   toasts.push({
     id: toastId,
-    message: $i18n.t("contact.toastSuccess"),
+    success,
+    message: success
+      ? $i18n.t("contact.toastSuccess")
+      : $i18n.t("contact.toastError"),
   });
 
   const toastElement = document.querySelector(
@@ -138,8 +151,7 @@ const addToast = () => {
   }, 2700);
 };
 
-const handleSuccess = () => {
-  addToast();
-  isOpen.value = false;
+const handleResult = (data: { success: boolean; message?: string }) => {
+  addToast(data.success, data.message);
 };
 </script>
