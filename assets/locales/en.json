@@ -128,6 +128,15 @@
     "message_min_length": "Message must be at least 10 characters long.",
     "message_max_length": "Message is too long (max 1000 characters).",
     "toastError": "Failed to send message.",
+    "reason": "Reason for Contact",
+    "reasonPlaceholder": "Select a reason",
+    "reasons": {
+      "inquiry": "Inquiry",
+      "suggestion": "Suggestion",
+      "request": "Request",
+      "collaboration": "Collaboration"
+    },
+    "invalid_reason": "Please select a valid reason.",
     "sending": "Sending..."
   },
   "about": {

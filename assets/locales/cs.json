@@ -133,6 +133,15 @@
     "message_min_length": "Zpráva musí mít alespoň 10 znaků.",
     "message_max_length": "Zpráva je příliš dlouhá (max 1000 znaků).",
     "toastError": "Nepodařilo se odeslat zprávu.",
+    "reason": "Důvod kontaktu",
+    "reasonPlaceholder": "Vyberte důvod",
+    "reasons": {
+      "inquiry": "Dotaz",
+      "suggestion": "Návrh",
+      "request": "Poptávka",
+      "collaboration": "Spolupráce"
+    },
+    "invalid_reason": "Vyberte platný důvod.",
     "sending": "Odesílám..."
   },
   "about": {

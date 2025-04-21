@@ -60,6 +60,24 @@
               <span
                 class="text-sm font-medium uppercase tracking-wide opacity-80"
               >
+                {{ $t("contact.reason") }}
+              </span>
+              <select
+                v-model="form.reason"
+                class="p-4 rounded-2xl text-base focus:outline-none border-b-2 focus:ring-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
+              >
+                <option disabled value="">
+                  {{ $t("contact.reasonPlaceholder") }}
+                </option>
+                <option v-for="r in reasons" :key="r.value" :value="r.value">
+                  {{ $t(`contact.reasons.${r.value}`) }}
+                </option>
+              </select>
+            </label>
+            <label class="flex flex-col gap-3">
+              <span
+                class="text-sm font-medium uppercase tracking-wide opacity-80"
+              >
                 {{ $t("contact.message") }}
               </span>
               <textarea
@@ -111,31 +129,44 @@ const emit = defineEmits<{
 const form = ref({
   name: "",
   email: "",
+  reason: "",
   message: "",
 });
+
+const reasons = [
+  { value: "inquiry", label: "Dotaz" },
+  { value: "suggestion", label: "Návrh" },
+  { value: "request", label: "Poptávka" },
+  { value: "collaboration", label: "Spolupráce" },
+];
 
 const isLoading = ref(false);
 
 const submit = async () => {
   isLoading.value = true;
-  const res = await $fetch<{ success?: boolean; error?: string }>(
-    "/api/contact",
-    {
+  try {
+    const res = await $fetch<{
+      status: number;
+      success?: boolean;
+      error?: string;
+    }>("/api/contact", {
       method: "POST",
       body: form.value,
-    }
-  );
-  isLoading.value = false;
-  if (res.error) {
-    emit("result", {
-      success: false,
-      message: $i18n.t(`contact.${res.error}`),
     });
+    if (res.error) {
+      emit("result", {
+        success: false,
+        message: $i18n.t(`contact.${res.error}`),
+      });
+      return;
+    }
+    form.value = { name: "", email: "", reason: "", message: "" };
+    emit("result", { success: true });
     emit("close");
-    return;
+  } catch {
+    emit("result", { success: false, message: $i18n.t("contact.toastError") });
+  } finally {
+    isLoading.value = false;
   }
-  form.value = { name: "", email: "", message: "" };
-  emit("result", { success: true });
-  emit("close");
 };
 </script>
