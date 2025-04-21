@@ -64,9 +64,9 @@
               </span>
               <select
                 v-model="form.reason"
-                class="p-4 rounded-2xl text-base focus:outline-none border-b-2 focus:ring-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
+                class="p-4 rounded-lg text-base border-b-[1px] border-gray-600 focus:border-primary-500 transition-all duration-300 shadow-sm hover:shadow-md"
               >
-                <option disabled value="">
+                <option disabled value="" class="text-base">
                   {{ $t("contact.reasonPlaceholder") }}
                 </option>
                 <option v-for="r in reasons" :key="r.value" :value="r.value">
@@ -161,7 +161,7 @@ const submit = async () => {
       return;
     }
     form.value = { name: "", email: "", reason: "", message: "" };
-    emit("result", { success: true });
+    emit("result", { success: true, message: $i18n.t("contact.toastSuccess") });
     emit("close");
   } catch {
     emit("result", { success: false, message: $i18n.t("contact.toastError") });
