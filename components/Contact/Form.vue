@@ -160,13 +160,12 @@ const submit = async () => {
       });
       return;
     }
-    form.value = { name: "", email: "", reason: "inquiry", message: "" };
     emit("result", { success: true, message: $i18n.t("contact.toastSuccess") });
-    emit("close");
   } catch {
     emit("result", { success: false, message: $i18n.t("contact.toastError") });
   } finally {
     isLoading.value = false;
+    emit("close");
   }
 };
 </script>
