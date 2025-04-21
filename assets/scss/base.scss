@@ -1,4 +1,4 @@
-@use "@/assets/scss/_variables.scss" as *;
+@use "_variables.scss" as *;
 
 @tailwind base;
 @tailwind components;
@@ -15,7 +15,7 @@
 
 html {
   color: $text-color;
-  background-color: $base-background;
+  background-color: $base-bg;
 }
 #__nuxt,
 #app {
@@ -67,13 +67,18 @@ b {
 }
 
 input,
-textarea {
-  background-color: $input-background;
+textarea,
+select {
+  background-color: $input-bg;
 }
 button {
-  background-color: $button-background;
+  background-color: $button-bg;
 }
-
 border {
   border-color: $border-color;
+}
+select option {
+  background-color: $option-bg;
+  color: black;
+  font-size: 16px;
 }

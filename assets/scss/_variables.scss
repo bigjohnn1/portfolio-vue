@@ -14,6 +14,7 @@ html[class="light"] {
   --shadow-color: rgba(0, 0, 0, 0.3);
   --button-bg: rgba(146, 137, 137, 0.1);
   --input-bg: rgba(241, 235, 235, 0.979);
+  --option-bg: rgba(247, 242, 242, 0.979);
   --color-md: light;
 
   --color-primary-50: #f0f9ff;
@@ -32,6 +33,7 @@ html[class="dark"] {
   --shadow-color: rgba(0, 0, 0, 0.1);
   --button-bg: rgba(94, 87, 87, 0.1);
   --input-bg: rgba(51, 48, 48, 0.1);
+  --option-bg: rgba(255, 255, 255, 0.1);
   --color-md: dark;
 
   --color-primary-50: #f4f7fc;
@@ -47,13 +49,14 @@ html[class="dark"] {
   --color-primary-950: #101728;
 }
 
-$base-background: var(--base-bg);
+$base-bg: var(--base-bg);
 $text-color: var(--base-text);
 $border-color: var(--border-color);
 $shadow-color: var(--shadow-color);
-$button-background: var(--button-bg);
-$input-background: var(--input-bg);
+$button-bg: var(--button-bg);
+$input-bg: var(--input-bg);
 $color-md: var(--color-md);
+$option-bg: var(--option-bg);
 
 $light-bg: #f9fafb;
 $light-text: #1f2937;

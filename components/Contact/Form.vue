@@ -129,7 +129,7 @@ const emit = defineEmits<{
 const form = ref({
   name: "",
   email: "",
-  reason: "",
+  reason: "inquiry",
   message: "",
 });
 
@@ -160,7 +160,7 @@ const submit = async () => {
       });
       return;
     }
-    form.value = { name: "", email: "", reason: "", message: "" };
+    form.value = { name: "", email: "", reason: "inquiry", message: "" };
     emit("result", { success: true, message: $i18n.t("contact.toastSuccess") });
     emit("close");
   } catch {
