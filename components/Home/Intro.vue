@@ -34,7 +34,7 @@
       </div>
       <canvas
         ref="canvas"
-        class="w-full max-w-[400px] sm:max-w-[600px] lg:max-w-[800px] aspect-square z-0"
+        class="w-full max-w-[400px] sm:max-w-[600px] xl2:max-w-[800px] aspect-square z-0"
       ></canvas>
     </div>
   </section>
