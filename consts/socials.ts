@@ -7,12 +7,12 @@ type SocialLink = {
 export const socialLinks: SocialLink[] = [
   {
     platform: "Instagram",
-    url: "https://instagram.com",
+    url: "https://www.instagram.com/vojtatomanik/",
     icon: "mdi:instagram",
   },
   {
     platform: "LinkedIn",
-    url: "https://linkedin.com",
+    url: "https://www.linkedin.com/in/benjamin-toman%C3%ADk-622404346/",
     icon: "mdi:linkedin",
   },
   {
