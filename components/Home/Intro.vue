@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-light-bg to-primary-50 overflow-hidden py-8"
+    class="relative w-full min-h-screen flex items-center justify-center py-8"
   >
     <div
       class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 z-20"
@@ -15,19 +15,19 @@
       >
         <h1
           ref="title"
-          class="text-h1 font-extrabold bg-gradient-to-r from-primary-500 to-primary-800 text-[clamp(40px,6vw,68px)] sm:text-[clamp(48px,6vw,68px)] [text-shadow:_0_0_1px_#000,0_0_4px_#000]"
+          class="text-h1 text-[clamp(40px,6vw,68px)] sm:text-[clamp(48px,6vw,68px)] [text-shadow:_0_0_1px_#000,0_0_4px_#000]"
         >
           Big John
         </h1>
         <p
           ref="subtitle"
-          class="text-p text-[clamp(16px,2.5vw,26px)] sm:text-[clamp(18px,2.5vw,26px)] text-fantasy-text"
+          class="text-[clamp(16px,2.5vw,26px)] sm:text-[clamp(18px,2.5vw,26px)]"
         >
           - {{ t("intro.subtitle") }}
         </p>
         <button
           ref="cta"
-          class="px-8 py-4 sm:px-10 sm:py-5 mx-auto lg:mx-0 text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-md hover:from-primary-700 hover:to-primary-900 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-up w-fit border border-white/20"
+          class="px-8 py-4 sm:px-10 sm:py-5 mx-auto lg:mx-0 text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-300 animate-fade-up w-fit"
         >
           {{ t("intro.cta") }}
         </button>
