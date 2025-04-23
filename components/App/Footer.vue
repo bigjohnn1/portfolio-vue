@@ -14,7 +14,6 @@
           width: star.size + 'px',
           height: star.size + 'px',
           backgroundColor: '#E5E7EB',
-          animation: `twinkle ${star.duration}s infinite alternate`,
         }"
       ></div>
     </div>
@@ -76,14 +75,3 @@ function generateStars() {
   }
 }
 </script>
-
-<style scoped>
-@keyframes twinkle {
-  0% {
-    opacity: 0.3;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-</style>
