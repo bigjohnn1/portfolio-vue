@@ -1,6 +1,6 @@
 <template>
   <header
-    class="mx-auto p-4 sticky top-0 z-50 w-full transition-colors duration-300 bg-white/10 backdrop-blur-lg border-b border-black/20 dark:bg-gray-900/50 dark:border-white flex items-center justify-between"
+    class="flex items-center justify-between p-4 sticky top-0 z-50 w-full transition-colors duration-300 bg-white/5 backdrop-blur-lg border-b border-black/20 dark:bg-gray-900/5 dark:border-white/20"
   >
     <button
       class="hamburger-btn xl:hidden p-2 cursor-pointer"
@@ -22,13 +22,13 @@
         v-for="link in leftLinks"
         :key="link.to"
         :href="link.to"
-        class="flex items-center text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent relative duration-300 px-2 py-1 before:content-[''] before:absolute before:w-0 before:h-0.5 before:bottom-[-4px] before:left-0 before:bg-current before:transition-[width] before:duration-300 hover:before:w-full"
+        class="flex items-center text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent px-2 py-1 nav-link"
         @click="closeMenu"
       >
         <Icon :name="link.icon" class="w-6 h-6" />
         <span class="ml-3">{{ $t(link.label) }}</span>
       </a>
-      <a href="/" class="logo-link" @click="closeMenu">
+      <a href="/" @click="closeMenu">
         <NuxtImg
           src="/bj.png"
           alt="Site Logo"
@@ -40,7 +40,7 @@
         v-for="link in rightLinks"
         :key="link.to"
         :href="link.to"
-        class="flex items-center text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent relative duration-300 px-2 py-1 before:content-[''] before:absolute before:w-0 before:h-0.5 before:bottom-[-4px] before:left-0 before:bg-current before:transition-[width] before:duration-300 hover:before:w-full"
+        class="flex items-center text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent px-2 py-1 nav-link"
         @click="closeMenu"
       >
         <Icon :name="link.icon" class="w-6 h-6" />
@@ -69,7 +69,7 @@
     <div
       v-if="isMenuOpen"
       ref="mobileMenu"
-      class="fixed left-0 top-[64px] w-full h-[calc(100vh-64px)] p-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg flex flex-col items-center gap-8 z-50 overflow-y-auto xl:h-0 xl:overflow-hidden"
+      class="fixed left-0 top-[64px] w-full h-[calc(100vh-64px)] p-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg flex flex-col items-center gap-8 z-50 overflow-y-auto xl:h-0"
     >
       <a
         v-for="link in links"
@@ -80,7 +80,7 @@
       >
         {{ $t(link.label) }}
       </a>
-      <a href="/" class="logo-link my-4" @click="closeMenu">
+      <a href="/" @click="closeMenu">
         <NuxtImg
           src="/bj.png"
           alt="Site Logo"
@@ -164,3 +164,26 @@ const midIndex = Math.floor(links.length / 2);
 const leftLinks = links.slice(0, midIndex);
 const rightLinks = links.slice(midIndex);
 </script>
+
+<style lang="scss" scoped>
+@mixin nav-link {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: currentColor;
+    transition: all 0.3s ease;
+  }
+  &:hover::before {
+    width: 100%;
+  }
+}
+
+.nav-link {
+  @include nav-link;
+}
+</style>
