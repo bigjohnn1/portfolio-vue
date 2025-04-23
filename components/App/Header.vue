@@ -22,10 +22,11 @@
         v-for="link in leftLinks"
         :key="link.to"
         :href="link.to"
-        class="text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent relative duration-300 px-2 py-1 before:content-[''] before:absolute before:w-0 before:h-0.5 before:bottom-[-4px] before:left-0 before:bg-current before:transition-[width] before:duration-300 hover:before:w-full"
+        class="flex items-center text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent relative duration-300 px-2 py-1 before:content-[''] before:absolute before:w-0 before:h-0.5 before:bottom-[-4px] before:left-0 before:bg-current before:transition-[width] before:duration-300 hover:before:w-full"
         @click="closeMenu"
       >
-        {{ $t(link.label) }}
+        <Icon :name="link.icon" class="w-6 h-6" />
+        <span class="ml-3">{{ $t(link.label) }}</span>
       </a>
       <a href="/" class="logo-link" @click="closeMenu">
         <NuxtImg
@@ -39,10 +40,11 @@
         v-for="link in rightLinks"
         :key="link.to"
         :href="link.to"
-        class="text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent relative duration-300 px-2 py-1 before:content-[''] before:absolute before:w-0 before:h-0.5 before:bottom-[-4px] before:left-0 before:bg-current before:transition-[width] before:duration-300 hover:before:w-full"
+        class="flex items-center text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent relative duration-300 px-2 py-1 before:content-[''] before:absolute before:w-0 before:h-0.5 before:bottom-[-4px] before:left-0 before:bg-current before:transition-[width] before:duration-300 hover:before:w-full"
         @click="closeMenu"
       >
-        {{ $t(link.label) }}
+        <Icon :name="link.icon" class="w-6 h-6" />
+        <span class="ml-3">{{ $t(link.label) }}</span>
       </a>
     </nav>
 
@@ -152,10 +154,10 @@ const closeMenu = () => {
 onClickOutside(mobileMenu, () => closeMenu(), { ignore: [themeButton] });
 
 const links = [
-  { to: "#references", label: "nav.references" },
-  { to: "#stack", label: "nav.stack" },
-  { to: "#contact", label: "nav.contact" },
-  { to: "#about", label: "nav.about" },
+  { to: "#references", label: "nav.references", icon: "mdi:book-open-variant" },
+  { to: "#stack", label: "nav.stack", icon: "mdi:stack-overflow" },
+  { to: "#contact", label: "nav.contact", icon: "mdi:email-outline" },
+  { to: "#about", label: "nav.about", icon: "mdi:information-outline" },
 ];
 
 const midIndex = Math.floor(links.length / 2);
