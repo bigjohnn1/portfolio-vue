@@ -148,15 +148,13 @@ onMounted(() => {
   });
 
   factItems.value.forEach((item: HTMLElement) => {
-    if (!item) return;
-
     const onMouseMove = (e: MouseEvent) => {
       const rect: DOMRect = item.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      const maxTilt = 15;
+      const maxTilt = 25;
 
       const tiltX = ((y - centerY) / centerY) * maxTilt;
       const tiltY = -((x - centerX) / centerX) * maxTilt;
