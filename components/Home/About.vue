@@ -117,16 +117,16 @@ onMounted(() => {
     y: 30,
     opacity: 0,
     duration: 0.8,
-    ease: "power2.out",
-    scrollTrigger: { trigger: ".animate-title", start: "top 80%" },
+    ease: "power3.out",
+    scrollTrigger: { trigger: ".animate-title", start: "top 90%" },
   });
 
   $gsap.from(".animate-story", {
     x: -50,
     opacity: 0,
     duration: 0.8,
-    ease: "power2.out",
-    scrollTrigger: { trigger: ".animate-story", start: "top 80%" },
+    ease: "power3.out",
+    scrollTrigger: { trigger: ".animate-story", start: "top 90%" },
   });
 
   $gsap.from(".animate-points li", {
@@ -134,8 +134,8 @@ onMounted(() => {
     opacity: 0,
     duration: 0.6,
     stagger: 0.2,
-    ease: "power2.out",
-    scrollTrigger: { trigger: ".animate-points", start: "top 80%" },
+    ease: "power3.out",
+    scrollTrigger: { trigger: ".animate-points", start: "top 90%" },
   });
 
   $gsap.from(".animate-facts > div", {
@@ -144,7 +144,7 @@ onMounted(() => {
     duration: 0.6,
     stagger: 0.2,
     ease: "back.out(1.7)",
-    scrollTrigger: { trigger: ".animate-facts", start: "top 80%" },
+    scrollTrigger: { trigger: ".animate-facts", start: "top 90%" },
   });
 
   factItems.value.forEach((item: HTMLElement) => {
