@@ -47,13 +47,12 @@
         <span class="ml-3">{{ $t(link.label) }}</span>
       </a>
     </nav>
-
     <button
       @click="toggleTheme"
       class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
       ref="themeButton"
     >
-      <span ref="iconWrapper" class="inline-block">
+      <span ref="iconWrapper" class="flex">
         <Icon
           :name="
             themeStore.currentTheme === 'light'
@@ -65,7 +64,6 @@
         />
       </span>
     </button>
-
     <div
       v-if="isMenuOpen"
       ref="mobileMenu"
