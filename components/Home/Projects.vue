@@ -18,7 +18,7 @@
             <NuxtImg
               :src="project.image"
               :alt="$t(`projects.items.${project.key}.title`)"
-              class="w-full h-48 object-cover rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+              class="w-full h-48 object-cover rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_12px_rgba(255,255,255,0.1)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.25)] dark:hover:shadow-[0_6px_16px_rgba(255,255,255,0.15)] transition-shadow duration-300"
             />
             <h3
               class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 mt-6"
