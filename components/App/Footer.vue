@@ -42,7 +42,6 @@ interface Star {
   left: number;
   top: number;
   size: number;
-  duration: number;
 }
 
 const year = new Date().getFullYear();
@@ -62,7 +61,6 @@ onMounted(() => {
     }
   );
 });
-
 function generateStars() {
   const starCount = 50;
   for (let i = 0; i < starCount; i++) {
@@ -70,7 +68,6 @@ function generateStars() {
       left: Math.random() * 100,
       top: Math.random() * 100,
       size: Math.random() * 2 + 1,
-      duration: Math.random() * 2 + 1,
     });
   }
 }

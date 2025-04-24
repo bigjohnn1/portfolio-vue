@@ -21,8 +21,8 @@
               <Icon name="mdi:phone" size="20" class="mr-2" />
               {{ $t("contact.phone") }}:
             </strong>
-            <a href="tel:+420123456789" aria-label="Zavolat na +420 123 456 789"
-              >+420 123 456 789</a
+            <a href="tel:+420123456789" aria-label="Zavolat na +420 705 206 985"
+              >+420 705 206 985</a
             >
           </p>
           <p>
@@ -30,8 +30,10 @@
               <Icon name="mdi:email" size="20" class="mr-2" />
               {{ $t("contact.email") }}:
             </strong>
-            <a href="mailto:bb@email.com" aria-label="Napsat na bb@email.com"
-              >bb@email.com</a
+            <a
+              href="mailto:benjamin.tomanik@gmail.com"
+              aria-label="Napsat na benjamin.tomanik@gmail.com"
+              >benjamin.tomanik@gmail.com</a
             >
           </p>
         </div>
