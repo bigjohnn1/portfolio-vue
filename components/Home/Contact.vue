@@ -1,7 +1,7 @@
 <template>
   <section
     id="contact"
-    class="relative w-full min-h-fit py-16 bg-base-bg overflow-hidden"
+    class="relative w-full py-28 bg-base-bg overflow-hidden"
   >
     <div
       class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row gap-12 relative min-h-[inherit]"
