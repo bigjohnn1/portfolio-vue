@@ -18,16 +18,16 @@
     <nav
       class="hidden xl:flex flex-wrap items-center justify-center space-x-32 flex-1"
     >
-      <a
+      <NuxtLink
         v-for="link in leftLinks"
         :key="link.to"
-        :href="link.to"
+        :to="link.to"
         class="flex items-center text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent px-2 py-1 nav-link"
         @click="closeMenu"
       >
         <Icon :name="link.icon" class="w-6 h-6" />
         <span class="ml-3">{{ $t(link.label) }}</span>
-      </a>
+      </NuxtLink>
       <NuxtLink to="#intro" @click="closeMenu">
         <NuxtImg
           src="/bj.png"
@@ -36,7 +36,7 @@
           format="webp"
         />
       </NuxtLink>
-      <a
+      <NuxtLink
         v-for="link in rightLinks"
         :key="link.to"
         :href="link.to"
@@ -45,7 +45,7 @@
       >
         <Icon :name="link.icon" class="w-6 h-6" />
         <span class="ml-3">{{ $t(link.label) }}</span>
-      </a>
+      </NuxtLink>
     </nav>
     <button
       @click="toggleTheme"
