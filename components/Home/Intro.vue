@@ -1,5 +1,6 @@
 <template>
   <section
+    id="intro"
     class="relative w-full min-h-screen flex items-center justify-center py-8"
   >
     <div
@@ -25,12 +26,14 @@
         >
           - {{ t("intro.subtitle") }}
         </p>
-        <button
-          ref="cta"
-          class="px-8 py-4 sm:px-10 sm:py-5 mx-auto lg:mx-0 text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-300 animate-fade-up w-fit"
-        >
-          {{ t("intro.cta") }}
-        </button>
+        <NuxtLink to="#contact">
+          <button
+            ref="cta"
+            class="px-8 py-4 sm:px-10 sm:py-5 mx-auto lg:mx-0 text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-300 animate-fade-up w-fit"
+          >
+            {{ t("intro.cta") }}
+          </button>
+        </NuxtLink>
       </div>
       <CanvasGlobe />
     </div>

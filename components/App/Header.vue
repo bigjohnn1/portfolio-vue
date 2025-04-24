@@ -28,14 +28,14 @@
         <Icon :name="link.icon" class="w-6 h-6" />
         <span class="ml-3">{{ $t(link.label) }}</span>
       </a>
-      <a href="/" @click="closeMenu">
+      <NuxtLink to="#intro" @click="closeMenu">
         <NuxtImg
           src="/bj.png"
           alt="Site Logo"
           class="h-12 w-auto transform hover:scale-110 transition-transform duration-300 ml-4"
           format="webp"
         />
-      </a>
+      </NuxtLink>
       <a
         v-for="link in rightLinks"
         :key="link.to"
