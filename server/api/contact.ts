@@ -46,14 +46,20 @@ export default defineEventHandler(async (e) => {
     });
 
     const { sendMail } = useNodeMailer();
-    await sendMail({
-      to: useRuntimeConfig().contactMail,
-      subject: `[${s.reason.toUpperCase()}] Nová zpráva od ${s.name}`,
-      text: `Důvod: ${s.reason}\nJméno: ${s.name}\nE-mail: ${s.email}\nZpráva: ${s.message}\nSouhlas: ${s.consent}`,
-    });
+    try {
+      await sendMail({
+        to: useRuntimeConfig().contactMail,
+        subject: `[${s.reason.toUpperCase()}] Nová zpráva od ${s.name}`,
+        text: `Důvod: ${s.reason}\nJméno: ${s.name}\nE-mail: ${s.email}\nZpráva: ${s.message}\nSouhlas: ${s.consent}`,
+      });
+    } catch (emailErr: any) {
+      console.error("Odeslání email selhalo:", emailErr);
+      return { status: 500, error: "email_failed", details: emailErr.message };
+    }
 
     return { status: 200, success: true };
-  } catch {
-    return { status: 500, error: "email_failed" };
+  } catch (err: any) {
+    console.error("Obecná chyba:", err);
+    return { status: 500, error: "server_error", details: err.message };
   }
 });
