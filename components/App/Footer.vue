@@ -4,7 +4,7 @@
     class="relative bg-gray-900 text-white p-6 text-center overflow-hidden"
   >
     <svg
-      class="absolute flex  w-32 h-auto opacity-50"
+      class="absolute flex right-12 w-32 h-auto opacity-50"
       viewBox="0 0 77 54"
       xmlns="http://www.w3.org/2000/svg"
     >
