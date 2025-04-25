@@ -17,6 +17,7 @@
     "@nuxtjs/recaptcha": "^1.1.2",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "@pinia/nuxt": "^0.10.1",
+    "@prisma/client": "^6.6.0",
     "@supabase/supabase-js": "^2.49.1",
     "@types/three": "^0.174.0",
     "@vueuse/core": "^12.8.2",
@@ -50,6 +51,7 @@
     "nodemailer": "^6.10.1",
     "nuxt-nodemailer": "^1.1.2",
     "prettier": "^3.5.3",
+    "prisma": "^6.6.0",
     "sass": "^1.85.1",
     "unplugin-tailwindcss": "^0.0.4",
     "yup": "^1.6.1"
