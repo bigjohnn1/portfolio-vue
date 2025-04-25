@@ -87,6 +87,23 @@
                 class="p-4 rounded-2xl text-base resize-none border-b-2 focus:outline-none focus:ring-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
               />
             </label>
+            <label class="flex items-center gap-3">
+              <input
+                type="checkbox"
+                v-model="form.consent"
+                class="w-5 h-5 rounded border-gray-300 text-primary-500 focus:ring-primary-500"
+              />
+              <span class="text-sm text-gray-600 dark:text-gray-400">
+                {{ $t("contact.consentLabel") }}
+                <a
+                  href="/privacy"
+                  class="text-primary-500 hover:underline"
+                  target="_blank"
+                >
+                  {{ $t("contact.privacyLink") }}
+                </a>
+              </span>
+            </label>
           </div>
           <div class="flex gap-4 justify-end">
             <button
@@ -97,8 +114,8 @@
             </button>
             <button
               @click="submit"
-              :disabled="isLoading"
-              class="px-6 py-3 rounded-xl text-base font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+              :disabled="isLoading || !form.consent"
+              class="px-6 py-3 rounded-xl text-base font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {{
                 isLoading ? $t("contact.sending") : $t("contact.submitButton")
@@ -131,6 +148,7 @@ const form = ref({
   email: "",
   reason: "inquiry",
   message: "",
+  consent: false,
 });
 
 const reasons = [
@@ -143,6 +161,7 @@ const reasons = [
 const isLoading = ref(false);
 
 const submit = async () => {
+  if (!form.value.consent) return;
   isLoading.value = true;
   try {
     const res = await $fetch<{

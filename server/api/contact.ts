@@ -1,6 +1,9 @@
-import { defineEventHandler, readBody, createError } from "h3";
+import { defineEventHandler, readBody } from "h3";
 import { z } from "zod";
 import validator from "validator";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 const schema = z.object({
   name: z.string().min(2, "name_min_length").max(50, "name_max_length"),
@@ -12,6 +15,9 @@ const schema = z.object({
     .string()
     .min(10, "message_min_length")
     .max(1000, "message_max_length"),
+  consent: z
+    .boolean()
+    .refine((val) => val === true, { message: "consent_required" }),
 });
 
 export default defineEventHandler(async (e) => {
@@ -25,15 +31,27 @@ export default defineEventHandler(async (e) => {
     email: validator.normalizeEmail(parsed.data.email) || parsed.data.email,
     reason: parsed.data.reason,
     message: validator.escape(parsed.data.message).trim(),
+    consent: parsed.data.consent,
   };
 
-  const { sendMail } = useNodeMailer();
   try {
+    await prisma.contactSubmission.create({
+      data: {
+        name: s.name,
+        email: s.email,
+        reason: s.reason,
+        message: s.message,
+        consent: s.consent,
+      },
+    });
+
+    const { sendMail } = useNodeMailer();
     await sendMail({
       to: useRuntimeConfig().contactMail,
       subject: `[${s.reason.toUpperCase()}] Nová zpráva od ${s.name}`,
-      text: `Důvod: ${s.reason}\nJméno: ${s.name}\nE-mail: ${s.email}\nZpráva: ${s.message}`,
+      text: `Důvod: ${s.reason}\nJméno: ${s.name}\nE-mail: ${s.email}\nZpráva: ${s.message}\nSouhlas: ${s.consent}`,
     });
+
     return { status: 200, success: true };
   } catch {
     return { status: 500, error: "email_failed" };
