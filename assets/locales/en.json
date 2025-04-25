@@ -175,5 +175,11 @@
         }
       }
     }
+  },
+  "consent": {
+    "title": "Privacy Policy",
+    "description1": "Your personal information (name, email, message) is used solely for the purpose of responding to your inquiry or message.",
+    "description2": "I do not share any data with third parties and retain it only for the necessary duration of communication.",
+    "closeButton": "Close"
   }
 }

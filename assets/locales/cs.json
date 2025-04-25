@@ -180,5 +180,11 @@
         }
       }
     }
+  },
+  "consent": {
+    "title": "Zásady ochrany osobních údajů",
+    "description1": "Vaše osobní údaje (jméno, e-mail, zpráva) jsou použity pouze pro účely odpovědi na váš dotaz nebo zprávu.",
+    "description2": "Nesdílím žádné údaje s třetími stranami.",
+    "closeButton": "Zavřít"
   }
 }

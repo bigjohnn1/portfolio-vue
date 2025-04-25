@@ -95,13 +95,12 @@
               />
               <span class="text-sm text-gray-600 dark:text-gray-400">
                 {{ $t("contact.consentLabel") }}
-                <a
-                  href="/privacy"
+                <button
+                  @click="isConsentOpen = true"
                   class="text-primary-500 hover:underline"
-                  target="_blank"
                 >
                   {{ $t("contact.privacyLink") }}
-                </a>
+                </button>
               </span>
             </label>
           </div>
@@ -125,6 +124,9 @@
         </DialogPanel>
       </TransitionChild>
     </div>
+    <TransitionRoot :show="isConsentOpen" as="template">
+      <Consent @close="isConsentOpen = false" />
+    </TransitionRoot>
   </Dialog>
 </template>
 
@@ -134,7 +136,9 @@ import {
   DialogPanel,
   DialogTitle,
   TransitionChild,
+  TransitionRoot,
 } from "@headlessui/vue";
+import Consent from "./Consent.vue";
 
 const { $i18n } = useNuxtApp();
 
@@ -159,6 +163,7 @@ const reasons = [
 ];
 
 const isLoading = ref(false);
+const isConsentOpen = ref(false);
 
 const submit = async () => {
   if (!form.value.consent) return;
