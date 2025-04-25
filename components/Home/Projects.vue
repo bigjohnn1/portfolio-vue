@@ -69,7 +69,7 @@ const projects = [
   },
   { key: "tint-shadow", image: "tint.png" },
   { key: "hexcodium", image: "hexcodium.png" },
-  { key: "matchmaker", image: "Matchmaker.png" },
+  { key: "matchmaker", image: "matchmaker.png" },
   { key: "v-okamihu", image: "v-okamihu.png" },
 ];
 
