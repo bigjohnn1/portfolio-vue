@@ -26,17 +26,20 @@ export default defineNuxtConfig({
     smtpPass: process.env.NUXT_MAIL_PASS,
     contactMail: process.env.NUXT_CONTACT_MAIL,
   },
-  // security: {
-  //   rateLimiter: {
-  //     interval: 5 * 1000,
-  //     tokensPerInterval: 5,
-  //   },
-  //   headers: {
-  //     contentSecurityPolicy: {
-  //       "img-src": ["'self'", "data:", "blob:"],
-  //     },
-  //   },
-  // },
+  security: {
+    rateLimiter: {
+      interval: 10 * 1000,
+      tokensPerInterval: 10,
+    },
+    headers: {
+      contentSecurityPolicy: {
+        "img-src": ["'self'", "data:", "blob:"],
+      },
+    },
+    xssValidator: {
+      escapeHtml: true,
+    },
+  },
   app: {
     head: {
       link: [{ rel: "icon", type: "image/ico", href: "/img/favicon.ico" }],
