@@ -20,10 +20,6 @@ export const useThemeStore = defineStore(
       colorMode.value = currentTheme.value;
     };
 
-    watch(currentTheme, (newTheme) => {
-      colorMode.value = newTheme;
-    });
-
     return { currentTheme, toggleTheme };
   },
   {

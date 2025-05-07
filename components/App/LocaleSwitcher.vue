@@ -71,13 +71,11 @@ const animateDropdownOpen = () => {
 
 onMounted(() => {
   const button = document.querySelector(".lang-switcher button");
-  if (button) {
-    $gsap.from(button, {
-      y: -10,
-      opacity: 0,
-      duration: 0.4,
-      ease: "power2.out",
-    });
-  }
+  $gsap.from(button, {
+    y: -10,
+    opacity: 0,
+    duration: 0.4,
+    ease: "power2.out",
+  });
 });
 </script>
