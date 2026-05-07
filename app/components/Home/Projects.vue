@@ -91,10 +91,7 @@ const projects: Project[] = [
   { key: 'topiqu', image: 'topiqu.png', link: 'https://reachio.topiqu.com' },
   { key: 'nimblo', image: 'nimblo.png', link: 'https://app.nimblo.io' },
   { key: 'v-okamihu', image: 'v-okamihu.png' },
-  { key: 'matchmaker', image: 'matchmaker.png' },
   { key: 'hexcodium', image: 'hexcodium.png' },
-  { key: 'tint-shadow', image: 'tint.png' },
-  { key: 'milk-world', image: 'milkworld.png' },
   { key: 'skola-zivota', image: 'skolazivota.png' },
 ]
 
