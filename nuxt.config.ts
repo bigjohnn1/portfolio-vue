@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '@pinia-plugin-persistedstate/nuxt',
     'nuxt-nodemailer',
     'nuxt-security',
+    '@nuxtjs/seo',
   ],
   pages: true,
   imports: { dirs: ['./stores'] },
@@ -26,6 +27,12 @@ export default defineNuxtConfig({
     },
   },
   css: ['~/assets/scss/base.scss'],
+  site: {
+    url: 'https://benjamin-tomanik.cz',
+    name: 'Big John',
+    description: 'Portfolio of Benjamin Tomanik',
+    defaultLocale: 'en',
+  },
   runtimeConfig: {
     smtpUser: process.env.NUXT_MAIL_USER,
     smtpPass: process.env.NUXT_MAIL_PASS,
@@ -47,7 +54,7 @@ export default defineNuxtConfig({
   },
   i18n: {
     lazy: true,
-    langDir: 'assets/locales/',
+    langDir: 'app/locales/',
     strategy: 'no_prefix',
     locales: [
       {
@@ -89,7 +96,7 @@ export default defineNuxtConfig({
       pass: process.env.NUXT_MAIL_PASS,
     },
   },
-  pinia: { storesDirs: ['./stores/**'] },
+  pinia: { storesDirs: ['~/stores/**'] },
   security: {
     rateLimiter: {
       interval: 10 * 1000,

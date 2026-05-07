@@ -6,6 +6,7 @@ export default withNuxt({
     'vue/no-v-html': 'off',
     'vue/html-self-closing': 'off',
     'vue/no-use-v-if-with-v-for': 'off',
+    'vue/multi-word-component-names': 'off',
     'object-shorthand': ['error', 'always'],
   },
 })
