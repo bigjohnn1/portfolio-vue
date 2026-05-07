@@ -66,9 +66,6 @@ function truncate(str: string, n: number): string {
 }
 
 const projects = [
-  { key: 'fastproject', image: 'fastproject.png' },
-  { key: 'nimblo', image: 'nimblo.png' },
-  { key: 'topiqu', image: 'topiqu.png' },
   { key: 'skola-zivota', image: 'skolazivota.png' },
   {
     key: 'milk-world',
@@ -78,6 +75,9 @@ const projects = [
   { key: 'hexcodium', image: 'hexcodium.png' },
   { key: 'matchmaker', image: 'matchmaker.png' },
   { key: 'v-okamihu', image: 'v-okamihu.png' },
+  { key: 'topiqu', image: 'topiqu.png' },
+  { key: 'fastproject', image: 'fastproject.png' },
+  { key: 'nimblo', image: 'nimblo.png' },
 ]
 
 onMounted(() => {
