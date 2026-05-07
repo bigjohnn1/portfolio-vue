@@ -17,11 +17,8 @@
     "toggleTheme": "Toggle theme",
     "switchLanguage": "Switch Language"
   },
-  "consent": {
-    "closeButton": "Close"
-  },
   "intro": {
-    "subtitle": "let's create succesful websites",
+    "subtitle": "let's create successful websites",
     "cta": "Get started",
     "ctaLabel": "Contact me"
   },
@@ -64,23 +61,97 @@
     "title": "My Tech Stack",
     "description": "Stack, with which I will bring your ideas to life",
     "items": {
-      "vue": { "name": "Vue.js", "description": "Progressive JavaScript framework" },
-      "nuxt": { "name": "Nuxt 4", "description": "The Intuitive Vue Framework" },
-      "react": { "name": "React", "description": "A library for web and native user interfaces" },
-      "nextjs": { "name": "Next.js", "description": "The React Framework for the Web" },
-      "tailwind": { "name": "Tailwind CSS", "description": "Utility-first CSS framework" },
-      "unocss": { "name": "UnoCSS", "description": "Instant on-demand atomic CSS engine" },
-      "typescript": { "name": "TypeScript", "description": "Typed superset of JavaScript" },
-      "javascript": { "name": "JavaScript", "description": "Programming language of the Web" },
+      "vue": {
+        "name": "Vue.js",
+        "description": "Progressive JavaScript framework"
+      },
+      "nuxt": {
+        "name": "Nuxt 4",
+        "description": "The Intuitive Vue Framework"
+      },
+      "react": {
+        "name": "React",
+        "description": "A library for web and native user interfaces"
+      },
+      "nextjs": {
+        "name": "Next.js",
+        "description": "The React Framework for the Web"
+      },
+      "tailwind": {
+        "name": "Tailwind CSS",
+        "description": "Utility-first CSS framework"
+      },
+      "unocss": {
+        "name": "UnoCSS",
+        "description": "Instant on-demand atomic CSS engine"
+      },
+      "typescript": {
+        "name": "TypeScript",
+        "description": "Typed superset of JavaScript"
+      },
+      "javascript": {
+        "name": "JavaScript",
+        "description": "Programming language of the Web"
+      },
       "php": { "name": "PHP", "description": "Server-side scripting language" },
-      "postgresql": { "name": "PostgreSQL", "description": "Open source relational database" },
-      "mysql": { "name": "MySQL", "description": "Open-source relational database management system" },
+      "postgresql": {
+        "name": "PostgreSQL",
+        "description": "Open source relational database"
+      },
+      "mysql": {
+        "name": "MySQL",
+        "description": "Open-source relational database management system"
+      },
+      "html": {
+        "name": "HTML",
+        "description": "Markup language for creating web pages"
+      },
+      "scss": {
+        "name": "SCSS",
+        "description": "CSS preprocessor with advanced features"
+      },
       "git": { "name": "Git", "description": "Version control system" },
-      "zenstack": { "name": "Zenstack v3", "description": "Access control and API generation for Prisma" },
-      "nitro": { "name": "Nitro", "description": "Next Generation Server Toolkit" },
-      "bun": { "name": "Bun", "description": "Fast all-in-one JavaScript runtime" },
-      "cloudflare": { "name": "Cloudflare", "description": "Global edge network and security" },
-      "vercel": { "name": "Vercel", "description": "Frontend Cloud platform" }
+      "docker": {
+        "name": "Docker",
+        "description": "Platform for containerizing applications"
+      },
+      "powershell": {
+        "name": "PowerShell",
+        "description": "Task automation and configuration management program"
+      },
+      "prisma": {
+        "name": "Prisma",
+        "description": "Next-generation Node.js and TypeScript ORM"
+      },
+      "redis": {
+        "name": "Redis",
+        "description": "In-memory data structure store"
+      },
+      "zenstack": {
+        "name": "Zenstack v3",
+        "description": "Access control and API generation for Prisma"
+      },
+      "nitro": {
+        "name": "Nitro",
+        "description": "Next Generation Server Toolkit"
+      },
+      "bun": {
+        "name": "Bun",
+        "description": "Fast all-in-one JavaScript runtime"
+      },
+      "cloudflare": {
+        "name": "Cloudflare",
+        "description": "Global edge network and security"
+      },
+      "vercel": { "name": "Vercel", "description": "Frontend Cloud platform" },
+      "nodejs": {
+        "name": "Node.js",
+        "description": "JavaScript runtime built on Chrome's V8"
+      },
+      "linux": {
+        "name": "Linux / WSL",
+        "description": "Operating system and dev environment"
+      }
     }
   },
   "contact": {
@@ -124,32 +195,32 @@
     "title": "Who I Am",
     "story": {
       "title": "My Story",
-      "description": "I’m a 19-year-old coder who loves turning ideas into code. Web apps are my #1, whether it’s front-end or back-end. I’m all about self-improvement, healthy living, and constantly learning new tech to take my projects to the next level. And when I’m not coding, you might catch me slaying monsters in The Witcher or Skyrim."
+      "description": "I am a product engineer from Czechia who loves fantasy, values extreme autonomy, and enjoys building things that make sense, without unnecessary bullshit. I recently co-founded a startup where I built the entire scalable architecture from scratch; from edge technologies like Vue & Nuxt or React & Next on the frontend to the database, infrastructure, and even the business model."
     },
     "points": {
-      "education": {
-        "title": "Education",
-        "description": "I’m studying web development and e-marketing, but I spend my evenings diving into Vue, Nuxt, and TypeScript."
+      "workflow": {
+        "title": "Workflow & Architecture",
+        "description": "My workflow is heavily AI-assisted. I like setting up worktrees with AI agents (Claude Code, Gemini CLI, v0) and delegating syntax-level work to them. This allows me to deliver results much faster, while my pipeline ensures that the output is safe for production right after deployment. Of course, I still validate important commits manually."
       },
-      "experience": {
-        "title": "Experience",
-        "description": "I’ve worked on commercial and nonprofit projects, from e-commerce platforms to educational tools and custom solutions."
+      "principles": {
+        "title": "Core Principles",
+        "description": "I value freedom and extreme autonomy above all else. Agile iterations take precedence over bureaucratic bullshit, with a strict focus on results and real impact."
       }
     },
     "facts": {
       "title": "Fun Facts About Me",
       "items": {
-        "coding": {
-          "title": "Code is My Liberation",
-          "description": "I love building apps from scratch. Vue and Nuxt are my favorite go-to tools."
+        "learning": {
+          "title": "Continuous Improvement",
+          "description": "Whether it's coding, business, or lifestyle, constant self-improvement and pushing my own boundaries is my daily routine."
         },
         "lifestyle": {
           "title": "Healthy Living",
-          "description": "Running, gym, or healthy meals keep me fueled for my projects."
+          "description": "Running, hitting the gym, or eating healthy keeps me fueled for my projects."
         },
         "rpg": {
           "title": "Fantasy Fan",
-          "description": "The Witcher or D&D – these worlds inspire me, even when coding."
+          "description": "The Witcher or D&D – these worlds inspire me, even when I'm coding."
         }
       }
     }

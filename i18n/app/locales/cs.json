@@ -17,9 +17,6 @@
     "toggleTheme": "Přepnout téma",
     "switchLanguage": "Změnit jazyk"
   },
-  "consent": {
-    "closeButton": "Zavřít"
-  },
   "intro": {
     "subtitle": "pojďme tvořit úspěšné weby",
     "cta": "Začněte svou cestu",
@@ -72,13 +69,26 @@
         "name": "Nuxt.js",
         "description": "Framework pro Vue aplikace s SSR"
       },
+      "react": {
+        "name": "React",
+        "description": "Knihovna pro tvorbu uživatelských rozhraní"
+      },
+      "nextjs": { "name": "Next.js", "description": "React framework pro web" },
       "tailwind": {
         "name": "Tailwind CSS",
         "description": "Utility-first CSS framework"
       },
+      "unocss": {
+        "name": "UnoCSS",
+        "description": "Okamžitý on-demand atomic CSS engine"
+      },
       "typescript": {
         "name": "TypeScript",
         "description": "Typovaný JavaScript pro škálovatelný kód"
+      },
+      "javascript": {
+        "name": "JavaScript",
+        "description": "Programovací jazyk pro interaktivitu na webu"
       },
       "php": {
         "name": "PHP",
@@ -88,17 +98,13 @@
         "name": "PostgreSQL",
         "description": "Výkonná relační databáze s otevřeným kódem"
       },
-      "html": {
-        "name": "HTML",
-        "description": "Mark-up jazyk pro tvorbu webových stránek"
-      },
-      "javascript": {
-        "name": "JavaScript",
-        "description": "Programovací jazyk pro interaktivitu na webu"
-      },
       "mysql": {
         "name": "MySQL",
         "description": "Populární relační databáze s otevřeným kódem"
+      },
+      "html": {
+        "name": "HTML",
+        "description": "Mark-up jazyk pro tvorbu webových stránek"
       },
       "scss": {
         "name": "SCSS",
@@ -123,6 +129,31 @@
       "redis": {
         "name": "Redis",
         "description": "In-memory datová struktura pro rychlé ukládání dat"
+      },
+      "zenstack": {
+        "name": "Zenstack v3",
+        "description": "Řízení přístupu a generování API pro Prisma"
+      },
+      "nitro": {
+        "name": "Nitro",
+        "description": "Serverový toolkit nové generace"
+      },
+      "bun": {
+        "name": "Bun",
+        "description": "Rychlý all-in-one JavaScript runtime"
+      },
+      "cloudflare": {
+        "name": "Cloudflare",
+        "description": "Globální edge síť a bezpečnost"
+      },
+      "vercel": { "name": "Vercel", "description": "Frontend cloud platforma" },
+      "nodejs": {
+        "name": "Node.js",
+        "description": "JavaScript runtime postavený na V8"
+      },
+      "linux": {
+        "name": "Linux / WSL",
+        "description": "Operační systém a vývojové prostředí"
       }
     }
   },
@@ -200,7 +231,7 @@
   "consent": {
     "title": "Zásady ochrany osobních údajů",
     "description1": "Vaše osobní údaje (jméno, e-mail, zpráva) jsou použity pouze pro účely odpovědi na váš dotaz nebo zprávu.",
-    "description2": "Nesdílím žádné údaje s třetími stranami.",
+    "description2": "Nesdílím žádné údaje s třetími stranami a uchovávám je pouze po nezbytnou dobu komunikace.",
     "closeButton": "Zavřít"
   }
 }
