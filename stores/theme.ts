@@ -1,28 +1,28 @@
-import { defineStore } from "pinia";
-import { useColorMode } from "@vueuse/core";
+import { defineStore } from 'pinia'
+import { useColorMode } from '@vueuse/core'
 
 export const useThemeStore = defineStore(
-  "theme",
+  'theme',
   () => {
     const colorMode = useColorMode({
-      attribute: "class",
+      attribute: 'class',
       modes: {
-        light: "light",
-        dark: "dark",
+        light: 'light',
+        dark: 'dark',
       },
-      initialValue: "light",
-    });
+      initialValue: 'light',
+    })
 
-    const currentTheme = ref(colorMode.value);
+    const currentTheme = ref(colorMode.value)
 
     const toggleTheme = () => {
-      currentTheme.value = currentTheme.value === "light" ? "dark" : "light";
-      colorMode.value = currentTheme.value;
-    };
+      currentTheme.value = currentTheme.value === 'light' ? 'dark' : 'light'
+      colorMode.value = currentTheme.value
+    }
 
-    return { currentTheme, toggleTheme };
+    return { currentTheme, toggleTheme }
   },
   {
     persist: true,
-  }
-);
+  },
+)
