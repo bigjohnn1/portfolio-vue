@@ -6,29 +6,29 @@
 </template>
 
 <script lang="ts" setup>
-import * as THREE from "three";
-import { useDark } from "@vueuse/core";
+import * as THREE from 'three'
+import { useDark } from '@vueuse/core'
 
-const canvas = ref<HTMLCanvasElement | null>(null);
-const isDark = useDark();
+const canvas = useTemplateRef<HTMLCanvasElement>('canvas')
+const isDark = useDark()
 
 onMounted(() => {
   if (canvas.value) {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(70, 1, 1, 2000);
+    const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(70, 1, 1, 2000)
     const renderer = new THREE.WebGLRenderer({
       canvas: canvas.value,
       alpha: true,
-    });
+    })
     const resizeCanvas = () => {
-      const size = canvas.value?.parentElement?.clientWidth || 800;
-      const newSize = Math.min(size, 800);
-      renderer.setSize(newSize, newSize);
-    };
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+      const size = canvas.value?.parentElement?.clientWidth || 800
+      const newSize = Math.min(size, 800)
+      renderer.setSize(newSize, newSize)
+    }
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
 
-    const sphereGeometry = new THREE.SphereGeometry(2, 58, 58);
+    const sphereGeometry = new THREE.SphereGeometry(2, 58, 58)
     const sphereMaterial = new THREE.ShaderMaterial({
       uniforms: {
         color: { value: new THREE.Color(0x000000) },
@@ -51,59 +51,59 @@ onMounted(() => {
         }
       `,
       wireframe: true,
-    });
-    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-    scene.add(sphere);
+    })
+    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
+    scene.add(sphere)
 
-    const ringGeometry = new THREE.RingGeometry(2.5, 2.7, 64);
+    const ringGeometry = new THREE.RingGeometry(2.5, 2.7, 64)
     const ringMaterial = new THREE.MeshBasicMaterial({
       color: 0x000000,
       side: THREE.DoubleSide,
-    });
-    const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-    ring.rotation.x = Math.PI / 2;
-    scene.add(ring);
+    })
+    const ring = new THREE.Mesh(ringGeometry, ringMaterial)
+    ring.rotation.x = Math.PI / 2
+    scene.add(ring)
 
-    const particleCount = 200;
-    const particlesGeometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
+    const particleCount = 200
+    const particlesGeometry = new THREE.BufferGeometry()
+    const positions = new Float32Array(particleCount * 3)
     for (let i = 0; i < particleCount * 3; i++) {
-      positions[i] = (Math.random() - 0.5) * 10;
+      positions[i] = (Math.random() - 0.5) * 10
     }
     particlesGeometry.setAttribute(
-      "position",
-      new THREE.BufferAttribute(positions, 3)
-    );
+      'position',
+      new THREE.BufferAttribute(positions, 3),
+    )
     const particlesMaterial = new THREE.PointsMaterial({
       color: 0x000000,
       size: 0.05,
-    });
-    const particles = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particles);
+    })
+    const particles = new THREE.Points(particlesGeometry, particlesMaterial)
+    scene.add(particles)
 
-    camera.position.z = 4;
+    camera.position.z = 4
 
     watchEffect(() => {
-      const globeColor = isDark.value ? 0xb0b0b0 : 0x000000;
-      sphereMaterial.uniforms.color.value.set(globeColor);
-      ringMaterial.color.set(globeColor);
-      particlesMaterial.color.set(globeColor);
-    });
+      const globeColor = isDark.value ? 0xb0b0b0 : 0x000000
+      sphereMaterial.uniforms.color.value.set(globeColor)
+      ringMaterial.color.set(globeColor)
+      particlesMaterial.color.set(globeColor)
+    })
 
     const animate = () => {
-      requestAnimationFrame(animate);
-      sphere.rotation.y += 0.001;
-      ring.rotation.z += 0.001;
-      sphereMaterial.uniforms.time.value += 0.01;
-      particles.rotation.y += 0.0005;
+      requestAnimationFrame(animate)
+      sphere.rotation.y += 0.001
+      ring.rotation.z += 0.001
+      sphereMaterial.uniforms.time.value += 0.01
+      particles.rotation.y += 0.0005
       sphere.scale.set(
         1 + Math.sin(sphereMaterial.uniforms.time.value * 0.5) * 0.05,
         1 + Math.sin(sphereMaterial.uniforms.time.value * 0.5) * 0.05,
-        1 + Math.sin(sphereMaterial.uniforms.time.value * 0.5) * 0.05
-      );
-      renderer.render(scene, camera);
-    };
-    animate();
+        1 + Math.sin(sphereMaterial.uniforms.time.value * 0.5) * 0.05,
+      )
+      renderer.render(scene, camera)
+    }
+    animate()
   }
-});
+})
 </script>

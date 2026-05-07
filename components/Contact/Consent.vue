@@ -1,5 +1,9 @@
 <template>
-  <Dialog as="div" class="relative z-50" @close="$emit('close')">
+  <Dialog
+    as="div"
+    class="relative z-50"
+    @close="$emit('close')"
+  >
     <TransitionChild
       as="template"
       enter="ease-out duration-300"
@@ -35,8 +39,9 @@
           </div>
           <div class="flex justify-end">
             <button
-              @click="$emit('close')"
+              :aria-label="$t('consent.closeButton')"
               class="px-6 py-3 rounded-xl text-base font-medium hover:bg-fantasy-accent/80 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-md"
+              @click="$emit('close')"
             >
               {{ $t("consent.closeButton") }}
             </button>
@@ -53,9 +58,9 @@ import {
   DialogPanel,
   DialogTitle,
   TransitionChild,
-} from "@headlessui/vue";
+} from '@headlessui/vue'
 
 defineEmits<{
-  (e: "close"): void;
-}>();
+  (e: 'close'): void
+}>()
 </script>
