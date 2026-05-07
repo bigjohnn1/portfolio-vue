@@ -54,6 +54,21 @@
         "title": "V Okamihu",
         "description": "První komerční týmový projekt, Vue + Tailwind FE, Nitro + Nuxt/Prisma/Zenstack BE",
         "timeline": "Březen 2025 (1 měsíc)"
+      },
+      "topiqu": {
+        "title": "Topiqu",
+        "description": "Multi-tenant B2B SaaS blog nástroj. Automatizované SEO články, Grok 4.1 AI tools, custom branding na Nuxt 4.",
+        "timeline": "Červen 2025 - Únor 2026"
+      },
+      "fastproject": {
+        "title": "FastProject",
+        "description": "Škálovatelný AI B2B nástroj pro řízení projektů s Two-way Sync (Asana/Jira), chytrým plánováním kapacit a RBAC.",
+        "timeline": "Listopad 2025 - Březen 2026"
+      },
+      "nimblo": {
+        "title": "Nimblo",
+        "description": "Generátor nabídek využívající AI na analýzu šablon a dynamické doplňování dat z meetingů (Fireflies).",
+        "timeline": "Leden 2025 - Březen 2026"
       }
     }
   },

@@ -54,6 +54,21 @@
         "title": "V Okamihu",
         "description": "First commercial team project, Vue + Tailwind FE, Nitro + Nuxt/Prisma/Zenstack BE",
         "timeline": "March 2025 (1 month)"
+      },
+      "topiqu": {
+        "title": "Topiqu",
+        "description": "Multi-tenant B2B SaaS blog tool with AI cron jobs, Grok 4.1 integrations, and advanced SEO/analytics tools.",
+        "timeline": "June 2025 - February 2026"
+      },
+      "fastproject": {
+        "title": "FastProject",
+        "description": "Scalable AI B2B project management tool with Two-way Sync (Asana/Jira), smart capacity planning, and RBAC.",
+        "timeline": "November 2025 - March 2026"
+      },
+      "nimblo": {
+        "title": "Nimblo",
+        "description": "Proposal generator with dynamic variables, AI template analysis and direct Fireflies integration.",
+        "timeline": "January 2025 - March 2026"
       }
     }
   },
