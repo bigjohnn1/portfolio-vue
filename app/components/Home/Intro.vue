@@ -39,7 +39,7 @@
           </button>
         </NuxtLink>
       </div>
-      <CanvasGlobe />
+      <LazyCanvasGlobe />
     </div>
   </section>
 </template>

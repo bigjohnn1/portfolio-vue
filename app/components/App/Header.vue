@@ -115,6 +115,7 @@
           :alt="$t('nav.logoAlt')"
           class="h-12 w-auto transform hover:scale-110 transition-transform duration-300"
           format="webp"
+          loading="eager"
         />
       </a>
     </div>
