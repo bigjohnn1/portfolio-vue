@@ -18,7 +18,7 @@
           ref="title"
           class="text-h1 text-[clamp(40px,6vw,68px)] sm:text-[clamp(48px,6vw,68px)] [text-shadow:_0_0_1px_#000,0_0_4px_#000]"
         >
-          Big John
+          {{ $t('global.name') }}
         </h1>
         <p
           ref="subtitle"

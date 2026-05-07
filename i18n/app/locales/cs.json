@@ -3,6 +3,9 @@
     "homeTitle": "Big John - Portfolio",
     "homeDescription": "Portfolio tvůrce Big John."
   },
+  "global": {
+    "name": "Vojtěch B. Tomaník"
+  },
   "nav": {
     "references": "Projekty",
     "about": "Kdo jsem",
@@ -164,32 +167,32 @@
     "title": "Kdo jsem",
     "story": {
       "title": "Můj příběh",
-      "description": "Jsem 19letý programátor a rád převádím nápady do kódu. Webové aplikace jsou moje #1, ať už jde o front-end nebo back-end. Žiju pro sebezlepšování, zdravý životní styl a neustálé učení se nových technologií, abych posouval svoje projekty na další level. A mimo to, občas si i rád zahraju třeba Zaklínače."
+      "description": "Jsem product engineer z Česka, který miluje fantasy, zakládá si na extrémní autonomii a rád staví věci, které dávají smysl, bez zbytečného bullshitu. Nedávno jsem spoluzaložil startup, kde jsem od nuly postavil celou škálovatelnou architekturu; od edge technologií jako Vue & Nuxt nebo React & Next na frontendu až po databázi, infrastrukturu a dokonce i byznys model."
     },
     "points": {
-      "education": {
-        "title": "Vzdělání",
-        "description": "Studuju vývoj webovek a e-marketing, po večerech se vzdělávám ve Vue, Nuxt nebo TypeScript."
+      "workflow": {
+        "title": "Workflow & Architektura",
+        "description": "Moje workflow je silně podpořené umělou inteligencí. Rád si nastavuji worktrees s AI agenty (Claude Code, Gemini CLI, v0) a deleguji na ně práci na úrovni syntaxe. Díky tomu dodávám výsledky mnohem rychleji, přičemž moje pipeline zajišťuje, že výsledek je bezpečný pro produkci hned po nasazení. Důležité commity samozřejmě stále validuji manuálně."
       },
-      "experience": {
-        "title": "Zkušenosti",
-        "description": "Mám za sebou komerční i neziskové projekty – od e-shopů přes vzdělávací platformy až po custom řešení."
+      "principles": {
+        "title": "Základní principy",
+        "description": "Cením si svobody a extrémní autonomie nade vše. Agilní iterace mají přednost před byrokratickým bullshitem, s tvrdou orientací na výsledek a skutečný dopad."
       }
     },
     "facts": {
       "title": "Zajímavosti o mně",
       "items": {
-        "coding": {
-          "title": "Kód je moje svoboda",
-          "description": "Miluju tvořit aplikace od nuly. Vue a Nuxt jsou moje go-to."
+        "learning": {
+          "title": "Neustálé zlepšování",
+          "description": "Ať už jde o kódování, byznys nebo životní styl, neustálé sebevzdělávání a posouvání vlastních hranic je moje denní rutina."
         },
         "lifestyle": {
-          "title": "Zdravý život",
-          "description": "Běh, posilka a zdravé jídlo mě udržují v tempu pro projekty."
+          "title": "Zdravý životní styl",
+          "description": "Běhání, posilovna nebo zdravé jídlo mě udržují v tempu pro moje projekty."
         },
         "rpg": {
-          "title": "Fantasy lover",
-          "description": "Zaklínač nebo D&D – tyhle světy mě inspirují i při kódování."
+          "title": "Fantasy Fanoušek",
+          "description": "Zaklínač nebo D&D – tyhle světy mě inspirují, i když zrovna programuji."
         }
       }
     }

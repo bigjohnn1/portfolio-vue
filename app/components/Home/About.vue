@@ -24,35 +24,37 @@
           <ul class="list-none space-y-6 animate-points">
             <li class="flex items-start gap-4">
               <Icon
-                name="mdi:school"
+                name="mdi:robot-outline"
                 size="24"
                 class="text-primary-600 dark:text-primary-400 shrink-0"
+                aria-hidden="true"
               />
               <div>
                 <h4
                   class="text-lg font-medium text-gray-800 dark:text-gray-100"
                 >
-                  {{ $t("about.points.education.title") }}
+                  {{ $t("about.points.workflow.title") }}
                 </h4>
                 <p class="text-gray-600 dark:text-gray-400">
-                  {{ $t("about.points.education.description") }}
+                  {{ $t("about.points.workflow.description") }}
                 </p>
               </div>
             </li>
             <li class="flex items-start gap-4">
               <Icon
-                name="mdi:briefcase"
+                name="mdi:rocket-launch"
                 size="24"
                 class="text-primary-600 dark:text-primary-400 shrink-0"
+                aria-hidden="true"
               />
               <div>
                 <h4
                   class="text-lg font-medium text-gray-800 dark:text-gray-100"
                 >
-                  {{ $t("about.points.experience.title") }}
+                  {{ $t("about.points.principles.title") }}
                 </h4>
                 <p class="text-gray-600 dark:text-gray-400">
-                  {{ $t("about.points.experience.description") }}
+                  {{ $t("about.points.principles.description") }}
                 </p>
               </div>
             </li>
@@ -106,7 +108,7 @@ interface Fact {
 }
 
 const facts: Fact[] = [
-  { key: 'coding', icon: 'mdi:code-tags' },
+  { key: 'learning', icon: 'mdi:code-tags' },
   { key: 'lifestyle', icon: 'mdi:leaf' },
   { key: 'rpg', icon: 'mdi:sword' },
 ]

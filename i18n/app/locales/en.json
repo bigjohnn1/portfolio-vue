@@ -1,7 +1,10 @@
 {
   "seo": {
-    "homeTitle": "Big John - Portfolio",
-    "homeDescription": "Portfolio of Big John."
+    "homeTitle": "Benjamin Tomanik - Product Engineer",
+    "homeDescription": "Portfolio of Benjamin Tomanik, Product Engineer & Technical Co-Founder."
+  },
+  "global": {
+    "name": "Benjamin Tomanik"
   },
   "nav": {
     "references": "Projects",
@@ -61,61 +64,23 @@
     "title": "My Tech Stack",
     "description": "Stack, with which I will bring your ideas to life",
     "items": {
-      "vue": {
-        "name": "Vue.js",
-        "description": "Reactive framework for building user interfaces"
-      },
-      "nuxt": {
-        "name": "Nuxt.js",
-        "description": "Framework for Vue applications with SSR"
-      },
-      "tailwind": {
-        "name": "Tailwind CSS",
-        "description": "Utility-first CSS framework"
-      },
-      "typescript": {
-        "name": "TypeScript",
-        "description": "Typed JavaScript for scalable code"
-      },
-      "php": {
-        "name": "PHP",
-        "description": "Server-side scripting language"
-      },
-      "postgresql": {
-        "name": "PostgreSQL",
-        "description": "Powerful open-source relational database"
-      },
-      "windows": {
-        "name": "Windows",
-        "description": "Microsoft operating system mastery"
-      },
-      "html": {
-        "name": "HTML",
-        "description": "Markup language for web pages"
-      },
-      "javascript": {
-        "name": "JavaScript",
-        "description": "Programming language for interactivity"
-      },
-      "mysql": { "name": "MySQL", "description": "Relational database system" },
-      "scss": { "name": "SCSS", "description": "CSS preprocessor" },
+      "vue": { "name": "Vue.js", "description": "Progressive JavaScript framework" },
+      "nuxt": { "name": "Nuxt 4", "description": "The Intuitive Vue Framework" },
+      "react": { "name": "React", "description": "A library for web and native user interfaces" },
+      "nextjs": { "name": "Next.js", "description": "The React Framework for the Web" },
+      "tailwind": { "name": "Tailwind CSS", "description": "Utility-first CSS framework" },
+      "unocss": { "name": "UnoCSS", "description": "Instant on-demand atomic CSS engine" },
+      "typescript": { "name": "TypeScript", "description": "Typed superset of JavaScript" },
+      "javascript": { "name": "JavaScript", "description": "Programming language of the Web" },
+      "php": { "name": "PHP", "description": "Server-side scripting language" },
+      "postgresql": { "name": "PostgreSQL", "description": "Open source relational database" },
+      "mysql": { "name": "MySQL", "description": "Open-source relational database management system" },
       "git": { "name": "Git", "description": "Version control system" },
-      "docker": {
-        "name": "Docker",
-        "description": "Containerization platform"
-      },
-      "powershell": {
-        "name": "PowerShell",
-        "description": "Windows automation and scripting"
-      },
-      "prisma": {
-        "name": "Prisma",
-        "description": "ORM for Node.js and TypeScript"
-      },
-      "redis": {
-        "name": "Redis",
-        "description": "In-memory data structure store for fast data access"
-      }
+      "zenstack": { "name": "Zenstack v3", "description": "Access control and API generation for Prisma" },
+      "nitro": { "name": "Nitro", "description": "Next Generation Server Toolkit" },
+      "bun": { "name": "Bun", "description": "Fast all-in-one JavaScript runtime" },
+      "cloudflare": { "name": "Cloudflare", "description": "Global edge network and security" },
+      "vercel": { "name": "Vercel", "description": "Frontend Cloud platform" }
     }
   },
   "contact": {
