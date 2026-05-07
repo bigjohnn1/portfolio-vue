@@ -62,12 +62,12 @@
       },
       "fastproject": {
         "title": "FastProject",
-        "description": "Škálovatelný AI B2B nástroj pro řízení projektů s Two-way Sync (Asana/Jira), chytrým plánováním kapacit a RBAC.",
+        "description": "Škálovatelný AI B2B nástroj pro řízení projektů v React & Next.js s Two-way Sync (Asana), chytrým plánováním kapacit a RBAC.",
         "timeline": "Listopad 2025 - Březen 2026"
       },
       "nimblo": {
         "title": "Nimblo",
-        "description": "Generátor nabídek využívající AI na analýzu šablon a dynamické doplňování dat z meetingů (Fireflies).",
+        "description": "Generátor nabídek v React & Next.js využívající AI na analýzu šablon a dynamické doplňování dat z meetingů (Fireflies).",
         "timeline": "Leden 2025 - Březen 2026"
       }
     }
