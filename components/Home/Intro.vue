@@ -26,9 +26,13 @@
         >
           - {{ t("intro.subtitle") }}
         </p>
-        <NuxtLink to="#contact">
+        <NuxtLink
+          to="#contact"
+          tabindex="-1"
+        >
           <button
             ref="cta"
+            :aria-label="t('intro.ctaLabel')"
             class="px-8 py-4 sm:px-10 sm:py-5 mx-auto lg:mx-0 text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-300 animate-fade-up w-fit"
           >
             {{ t("intro.cta") }}
@@ -41,16 +45,15 @@
 </template>
 
 <script setup lang="ts">
-import { templateRef } from "@vueuse/core";
-const { t } = useI18n();
-const title = templateRef("title");
-const subtitle = templateRef("subtitle");
-const { $gsap } = useNuxtApp();
+const { t } = useI18n()
+const title = useTemplateRef<HTMLElement>('title')
+const subtitle = useTemplateRef<HTMLElement>('subtitle')
+const { $gsap } = useNuxtApp()
 
 onMounted(() => {
-  $gsap.from(title.value, { x: -100, opacity: 0, duration: 0.8 });
-  $gsap.from(subtitle.value, { x: -100, opacity: 0, duration: 1, delay: 0.2 });
-});
+  $gsap.from(title.value, { x: -100, opacity: 0, duration: 0.8 })
+  $gsap.from(subtitle.value, { x: -100, opacity: 0, duration: 1, delay: 0.2 })
+})
 </script>
 
 <style>

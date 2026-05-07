@@ -1,7 +1,7 @@
 <template>
   <section
-    class="relative w-full min-h-screen bg-base-bg text-base-text py-16 overflow-hidden"
     id="references"
+    class="relative w-full min-h-screen bg-base-bg text-base-text py-16 overflow-hidden"
   >
     <div class="max-w-4xl mx-auto px-4">
       <div class="relative">
@@ -37,6 +37,7 @@
               <Icon
                 name="carbon:calendar"
                 class="ml-2 h-6 w-6 text-gray-700 dark:text-gray-200"
+                aria-hidden="true"
               />
             </span>
           </div>
@@ -55,40 +56,40 @@
 </template>
 
 <script setup lang="ts">
-const { $gsap } = useNuxtApp();
+const { $gsap } = useNuxtApp()
 
 function truncate(str: string, n: number): string {
-  return str.length > n ? str.substr(0, n) + "..." : str;
+  return str.length > n ? str.substr(0, n) + '...' : str
 }
 
 const projects = [
-  { key: "skola-zivota", image: "skolazivota.png" },
+  { key: 'skola-zivota', image: 'skolazivota.png' },
   {
-    key: "milk-world",
-    image: "milkworld.png",
+    key: 'milk-world',
+    image: 'milkworld.png',
   },
-  { key: "tint-shadow", image: "tint.png" },
-  { key: "hexcodium", image: "hexcodium.png" },
-  { key: "matchmaker", image: "matchmaker.png" },
-  { key: "v-okamihu", image: "v-okamihu.png" },
-];
+  { key: 'tint-shadow', image: 'tint.png' },
+  { key: 'hexcodium', image: 'hexcodium.png' },
+  { key: 'matchmaker', image: 'matchmaker.png' },
+  { key: 'v-okamihu', image: 'v-okamihu.png' },
+]
 
 onMounted(() => {
-  const projectItems = document.querySelectorAll(".project-item");
+  const projectItems = document.querySelectorAll('.project-item')
 
   projectItems.forEach((item, index) => {
     $gsap.from(item, {
       x: index % 2 === 0 ? 100 : -100,
       opacity: 0,
       duration: 0.8,
-      ease: "power2.out",
+      ease: 'power2.out',
       scrollTrigger: {
         trigger: item,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse",
+        start: 'top 80%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none reverse',
       },
-    });
-  });
-});
+    })
+  })
+})
 </script>
