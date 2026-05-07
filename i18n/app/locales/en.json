@@ -18,12 +18,13 @@
     "switchLanguage": "Switch Language"
   },
   "intro": {
-    "subtitle": "let's create successful websites",
+    "subtitle": "Building scalable SaaS & AI workflows.",
     "cta": "Get started",
     "ctaLabel": "Contact me"
   },
   "projects": {
     "title": "My Projects",
+    "liveDemo": "Live Demo",
     "items": {
       "skola-zivota": {
         "title": "School of Life - Web Revamp",
@@ -74,7 +75,7 @@
   },
   "techStack": {
     "title": "My Tech Stack",
-    "description": "Stack, with which I will bring your ideas to life",
+    "description": "Tools I use to ship fast and scale.",
     "items": {
       "vue": {
         "name": "Vue.js",

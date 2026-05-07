@@ -18,12 +18,13 @@
     "switchLanguage": "Změnit jazyk"
   },
   "intro": {
-    "subtitle": "pojďme tvořit úspěšné weby",
+    "subtitle": "Pojďme tvořit škálovatelné SaaS a AI produkty.",
     "cta": "Začněte svou cestu",
     "ctaLabel": "Kontaktovat"
   },
   "projects": {
     "title": "Moje projekty",
+    "liveDemo": "Živá ukázka",
     "items": {
       "skola-zivota": {
         "title": "Škola života - web revamp",
@@ -74,7 +75,7 @@
   },
   "techStack": {
     "title": "Můj stack",
-    "description": "Technologie, se kterými oživím vaše nápady",
+    "description": "Nástroje, díky kterým doručuji a škáluji.",
     "items": {
       "vue": {
         "name": "Vue.js",

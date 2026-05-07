@@ -38,14 +38,30 @@
               {{ $t(`projects.items.${project.key}.description`) }}
             </p>
 
-            <span class="inline-flex items-center mt-3 px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-full">
-              {{ $t(`projects.items.${project.key}.timeline`) }}
-              <Icon
-                name="carbon:calendar"
-                class="ml-2 h-6 w-6 text-gray-700 dark:text-gray-200"
-                aria-hidden="true"
-              />
-            </span>
+            <div class="flex flex-wrap gap-3 mt-3 items-center">
+              <span class="inline-flex items-center px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-full">
+                {{ $t(`projects.items.${project.key}.timeline`) }}
+                <Icon
+                  name="carbon:calendar"
+                  class="ml-2 h-5 w-5 text-gray-700 dark:text-gray-200"
+                  aria-hidden="true"
+                />
+              </span>
+
+              <NuxtLink
+                v-if="project.link"
+                :to="project.link"
+                target="_blank"
+                class="inline-flex items-center px-3 py-1 bg-primary text-sm font-medium text-white rounded-full hover:bg-opacity-90 transition-colors shadow-sm hover:shadow-md"
+              >
+                {{ $t('projects.liveDemo') }}
+                <Icon
+                  name="carbon:launch"
+                  class="ml-2 h-4 w-4"
+                  aria-hidden="true"
+                />
+              </NuxtLink>
+            </div>
           </div>
 
           <div
@@ -67,18 +83,19 @@ const { $gsap } = useNuxtApp()
 interface Project {
   key: string
   image: string
+  link?: string
 }
 
 const projects: Project[] = [
-  { key: 'skola-zivota', image: 'skolazivota.png' },
-  { key: 'milk-world', image: 'milkworld.png' },
-  { key: 'tint-shadow', image: 'tint.png' },
-  { key: 'hexcodium', image: 'hexcodium.png' },
-  { key: 'matchmaker', image: 'matchmaker.png' },
+  { key: 'fastproject', image: 'fastproject.png', link: 'https://app.fastproject.io' },
+  { key: 'topiqu', image: 'topiqu.png', link: 'https://reachio.topiqu.com' },
+  { key: 'nimblo', image: 'nimblo.png', link: 'https://app.nimblo.io' },
   { key: 'v-okamihu', image: 'v-okamihu.png' },
-  { key: 'topiqu', image: 'topiqu.png' },
-  { key: 'fastproject', image: 'fastproject.png' },
-  { key: 'nimblo', image: 'nimblo.png' },
+  { key: 'matchmaker', image: 'matchmaker.png' },
+  { key: 'hexcodium', image: 'hexcodium.png' },
+  { key: 'tint-shadow', image: 'tint.png' },
+  { key: 'milk-world', image: 'milkworld.png' },
+  { key: 'skola-zivota', image: 'skolazivota.png' },
 ]
 
 const projectElements = useTemplateRef<HTMLElement[]>('projectElements')
