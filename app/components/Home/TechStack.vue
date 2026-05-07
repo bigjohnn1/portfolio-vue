@@ -14,9 +14,9 @@
       </p>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
         <div
-          v-for="(tech, i) in techStack"
+          v-for="(tech) in techStack"
           :key="tech.key"
-          :ref="(el) => (techItems[i] = el as Element)"
+          ref="techItems"
           class="tech-item flex flex-col items-center p-4 bg-gray-200 dark:bg-gray-700 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
         >
           <Icon
@@ -57,7 +57,7 @@ const techStack = [
   { key: 'redis', icon: 'logos:redis' },
 ]
 
-const techItems = useTemplateRef<HTMLElement[]>('techItems')
+const techItems = ref<HTMLElement[]>([])
 const tippyInstances = ref<Instance[]>([])
 
 onMounted(() => {

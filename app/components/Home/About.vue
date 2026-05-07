@@ -111,7 +111,7 @@ const facts: Fact[] = [
   { key: 'rpg', icon: 'mdi:sword' },
 ]
 
-const factItems = useTemplateRef<HTMLElement[]>('factItems')
+const factItems = ref<HTMLElement[]>([])
 
 onMounted(() => {
   $gsap.from('.animate-title', {
@@ -149,39 +149,41 @@ onMounted(() => {
     scrollTrigger: { trigger: '.animate-points', start: 'top 90%' },
   })
 
-  factItems.value.forEach((item: HTMLElement) => {
-    const onMouseMove = (e: MouseEvent) => {
-      const rect: DOMRect = item.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-      const centerX = rect.width / 2
-      const centerY = rect.height / 2
-      const maxTilt = 25
+  if (factItems.value) {
+    factItems.value.forEach((item: HTMLElement) => {
+      const onMouseMove = (e: MouseEvent) => {
+        const rect: DOMRect = item.getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const y = e.clientY - rect.top
+        const centerX = rect.width / 2
+        const centerY = rect.height / 2
+        const maxTilt = 25
 
-      const tiltX = ((y - centerY) / centerY) * maxTilt
-      const tiltY = -((x - centerX) / centerX) * maxTilt
+        const tiltX = ((y - centerY) / centerY) * maxTilt
+        const tiltY = -((x - centerX) / centerX) * maxTilt
 
-      $gsap.to(item, {
-        rotateX: tiltX,
-        rotateY: tiltY,
-        boxShadow: '0 15px 30px rgba(0, 0, 0, 0.2)',
-        duration: 0.3,
-        ease: 'power2.out',
-      })
-    }
+        $gsap.to(item, {
+          rotateX: tiltX,
+          rotateY: tiltY,
+          boxShadow: '0 15px 30px rgba(0, 0, 0, 0.2)',
+          duration: 0.3,
+          ease: 'power2.out',
+        })
+      }
 
-    const onMouseLeave = (): void => {
-      $gsap.to(item, {
-        rotateX: 0,
-        rotateY: 0,
-        boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)',
-        duration: 0.3,
-        ease: 'power2.out',
-      })
-    }
+      const onMouseLeave = (): void => {
+        $gsap.to(item, {
+          rotateX: 0,
+          rotateY: 0,
+          boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)',
+          duration: 0.3,
+          ease: 'power2.out',
+        })
+      }
 
-    item.addEventListener('mousemove', onMouseMove)
-    item.addEventListener('mouseleave', onMouseLeave)
-  })
+      item.addEventListener('mousemove', onMouseMove)
+      item.addEventListener('mouseleave', onMouseLeave)
+    })
+  }
 })
 </script>
