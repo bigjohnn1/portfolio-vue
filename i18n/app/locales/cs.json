@@ -1,0 +1,190 @@
+{
+  "nav": {
+    "references": "Projekty",
+    "about": "Kdo jsem",
+    "contact": "Kontakty",
+    "stack": "S čím pracuji"
+  },
+  "intro": {
+    "subtitle": "pojďme tvořit úspěšné weby",
+    "cta": "Začněte svou cestu"
+  },
+  "projects": {
+    "title": "Moje projekty",
+    "items": {
+      "skola-zivota": {
+        "title": "Škola života - web revamp",
+        "description": "První web s PHP backendem pro neziskovou, charitativní organizaci",
+        "timeline": "Květen 2024 (2 týdny)"
+      },
+      "milk-world": {
+        "title": "Milk World",
+        "description": "Funkční e-shop v PHP, Nette explorer",
+        "timeline": "Červen 2024 (1 měsíc)"
+      },
+      "tint-shadow": {
+        "title": "TINT s.r.o - shadow project",
+        "description": "Stínový návrh pro IT společnost, postaveno na míru",
+        "timeline": "Září 2024 (2 týdny)"
+      },
+      "hexcodium": {
+        "title": "HexCodium",
+        "description": "Kurzová platforma, posun do full Nette, custom měna, RBAC...",
+        "timeline": "Září 2024 (3 měsíce)"
+      },
+      "matchmaker": {
+        "title": "Matchmaker (unfinished)",
+        "description": "Liveservice app, full Nette + pgSQL, Redis caching a další funkce",
+        "timeline": "Prosinec 2024 (1 měsíc)"
+      },
+      "v-okamihu": {
+        "title": "V Okamihu",
+        "description": "První komerční týmový projekt, Vue + Tailwind FE, Nitro + Nuxt/Prisma/Zenstack BE",
+        "timeline": "Březen 2025 (1 měsíc)"
+      }
+    }
+  },
+  "techStack": {
+    "title": "Můj stack",
+    "description": "Technologie, se kterými oživím vaše nápady",
+    "items": {
+      "vue": {
+        "name": "Vue.js",
+        "description": "Reaktivní framework pro tvorbu uživatelských rozhraní"
+      },
+      "nuxt": {
+        "name": "Nuxt.js",
+        "description": "Framework pro Vue aplikace s SSR"
+      },
+      "tailwind": {
+        "name": "Tailwind CSS",
+        "description": "Utility-first CSS framework"
+      },
+      "typescript": {
+        "name": "TypeScript",
+        "description": "Typovaný JavaScript pro škálovatelný kód"
+      },
+      "php": {
+        "name": "PHP",
+        "description": "Skriptovací jazyk pro serverovou stranu"
+      },
+      "postgresql": {
+        "name": "PostgreSQL",
+        "description": "Výkonná relační databáze s otevřeným kódem"
+      },
+      "html": {
+        "name": "HTML",
+        "description": "Mark-up jazyk pro tvorbu webových stránek"
+      },
+      "javascript": {
+        "name": "JavaScript",
+        "description": "Programovací jazyk pro interaktivitu na webu"
+      },
+      "mysql": {
+        "name": "MySQL",
+        "description": "Populární relační databáze s otevřeným kódem"
+      },
+      "scss": {
+        "name": "SCSS",
+        "description": "CSS preprocesor s rozšířenými funkcemi"
+      },
+      "git": {
+        "name": "Git",
+        "description": "Distribuovaný systém správy verzí"
+      },
+      "docker": {
+        "name": "Docker",
+        "description": "Platforma pro kontejnerizaci aplikací"
+      },
+      "powershell": {
+        "name": "PowerShell",
+        "description": "Nástroj pro automatizaci a skriptování ve Windows"
+      },
+      "prisma": {
+        "name": "Prisma",
+        "description": "ORM na REST API, pro Node.js a TypeScript"
+      },
+      "redis": {
+        "name": "Redis",
+        "description": "In-memory datová struktura pro rychlé ukládání dat"
+      }
+    }
+  },
+  "contact": {
+    "heading": "Kontakt",
+    "description": "Dotaz, návrhy, spolupráce – není problém! Napište mi rovnou nebo mě kontaktujte na sociálních sítích.",
+    "name": "Vaše celé jméno",
+    "hours": "Pracovní doba",
+    "formHeading": "Napište a ozvu se co nejdříve",
+    "phone": "Telefon",
+    "email": "Email",
+    "button": "Napište mi",
+    "message": "Můžete mi napsat zde",
+    "dialogTitle": "Kontaktujte mě",
+    "namePlaceholder": "Jméno a příjmení",
+    "emailPlaceholder": "Email",
+    "messagePlaceholder": "Co máte na srdci?",
+    "cancelButton": "Zrušit",
+    "submitButton": "Odeslat",
+    "toastSuccess": "Zpráva byla úspěšně odeslána!",
+    "name_min_length": "Jméno musí mít alespoň 2 znaky.",
+    "name_max_length": "Jméno je příliš dlouhé (max 50 znaků).",
+    "invalid_email": "Neplatná e-mailová adresa.",
+    "message_min_length": "Zpráva musí mít alespoň 10 znaků.",
+    "message_max_length": "Zpráva je příliš dlouhá (max 1000 znaků).",
+    "consent_required": "Udělte povolení ke zpracování údajů.",
+    "toastError": "Nepodařilo se odeslat zprávu.",
+    "reason": "Důvod kontaktu",
+    "reasonPlaceholder": "Vyberte důvod",
+    "consentLabel": "Souhlasím se zpracováním osobních údajů podle ",
+    "privacyLink": "zásad ochrany osobních údajů",
+    "reasons": {
+      "inquiry": "Dotaz",
+      "suggestion": "Návrh",
+      "request": "Poptávka",
+      "collaboration": "Spolupráce"
+    },
+    "invalid_reason": "Vyberte platný důvod.",
+    "sending": "Odesílám..."
+  },
+  "about": {
+    "title": "Kdo jsem",
+    "story": {
+      "title": "Můj příběh",
+      "description": "Jsem 19letý programátor a rád převádím nápady do kódu. Webové aplikace jsou moje #1, ať už jde o front-end nebo back-end. Žiju pro sebezlepšování, zdravý životní styl a neustálé učení se nových technologií, abych posouval svoje projekty na další level. A mimo to, občas si i rád zahraju třeba Zaklínače."
+    },
+    "points": {
+      "education": {
+        "title": "Vzdělání",
+        "description": "Studuju vývoj webovek a e-marketing, po večerech se vzdělávám ve Vue, Nuxt nebo TypeScript."
+      },
+      "experience": {
+        "title": "Zkušenosti",
+        "description": "Mám za sebou komerční i neziskové projekty – od e-shopů přes vzdělávací platformy až po custom řešení."
+      }
+    },
+    "facts": {
+      "title": "Zajímavosti o mně",
+      "items": {
+        "coding": {
+          "title": "Kód je moje svoboda",
+          "description": "Miluju tvořit aplikace od nuly. Vue a Nuxt jsou moje go-to."
+        },
+        "lifestyle": {
+          "title": "Zdravý život",
+          "description": "Běh, posilka a zdravé jídlo mě udržují v tempu pro projekty."
+        },
+        "rpg": {
+          "title": "Fantasy lover",
+          "description": "Zaklínač nebo D&D – tyhle světy mě inspirují i při kódování."
+        }
+      }
+    }
+  },
+  "consent": {
+    "title": "Zásady ochrany osobních údajů",
+    "description1": "Vaše osobní údaje (jméno, e-mail, zpráva) jsou použity pouze pro účely odpovědi na váš dotaz nebo zprávu.",
+    "description2": "Nesdílím žádné údaje s třetími stranami.",
+    "closeButton": "Zavřít"
+  }
+}
