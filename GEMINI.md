@@ -8,7 +8,7 @@
 - **State Management:** Pinia (`@pinia/nuxt`)
 - **i18n:** `@nuxtjs/i18n`
 - **Animations/3D:** GSAP, Three.js
-- **Database/ORM:** Prisma (have to migrate to pure Zenstack v3)
+- **Database/ORM:** ZenStack v3
 
 ## Documentation & Learning
 
