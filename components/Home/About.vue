@@ -1,7 +1,7 @@
 <template>
   <section
-    class="relative w-full py-28 bg-base-bg text-base-text z-10 overflow-hidden"
     id="about"
+    class="relative w-full py-28 bg-base-bg text-base-text z-10 overflow-hidden"
   >
     <div class="max-w-6xl mx-auto px-4">
       <h2
@@ -68,14 +68,15 @@
             <div
               v-for="fact in facts"
               :key="fact.key"
-              class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-shadow duration-300 fact-item"
               ref="factItems"
+              class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-shadow duration-300 fact-item"
             >
               <div class="flex items-center gap-4">
                 <Icon
                   :name="fact.icon"
                   size="32"
                   class="text-primary-600 dark:text-primary-400"
+                  aria-hidden="true"
                 />
                 <div>
                   <h4
@@ -97,90 +98,90 @@
 </template>
 
 <script setup lang="ts">
-const { $gsap } = useNuxtApp();
+const { $gsap } = useNuxtApp()
 
 interface Fact {
-  key: string;
-  icon: string;
+  key: string
+  icon: string
 }
 
 const facts: Fact[] = [
-  { key: "coding", icon: "mdi:code-tags" },
-  { key: "lifestyle", icon: "mdi:leaf" },
-  { key: "rpg", icon: "mdi:sword" },
-];
+  { key: 'coding', icon: 'mdi:code-tags' },
+  { key: 'lifestyle', icon: 'mdi:leaf' },
+  { key: 'rpg', icon: 'mdi:sword' },
+]
 
-const factItems: Ref<HTMLElement[]> = ref([]);
+const factItems = useTemplateRef<HTMLElement[]>('factItems')
 
 onMounted(() => {
-  $gsap.from(".animate-title", {
+  $gsap.from('.animate-title', {
     y: 30,
     opacity: 0,
     duration: 0.8,
-    ease: "power3.out",
-    scrollTrigger: { trigger: ".animate-title", start: "top 90%" },
-  });
+    ease: 'power3.out',
+    scrollTrigger: { trigger: '.animate-title', start: 'top 90%' },
+  })
 
-  $gsap.from(".animate-story", {
+  $gsap.from('.animate-story', {
     x: -50,
     opacity: 0,
     duration: 0.8,
-    ease: "power3.out",
-    scrollTrigger: { trigger: ".animate-story", start: "top 90%" },
-  });
+    ease: 'power3.out',
+    scrollTrigger: { trigger: '.animate-story', start: 'top 90%' },
+  })
 
-  $gsap.from(".animate-facts", {
+  $gsap.from('.animate-facts', {
     x: -50,
     y: 20,
     opacity: 0,
     duration: 0.8,
-    ease: "power2.out",
-    scrollTrigger: { trigger: ".animate-facts", start: "top 90%" },
-  });
+    ease: 'power2.out',
+    scrollTrigger: { trigger: '.animate-facts', start: 'top 90%' },
+  })
 
-  $gsap.from(".animate-points li", {
+  $gsap.from('.animate-points li', {
     x: -20,
     y: 40,
     opacity: 0,
     duration: 0.6,
     stagger: 0.2,
-    ease: "power3.out",
-    scrollTrigger: { trigger: ".animate-points", start: "top 90%" },
-  });
+    ease: 'power3.out',
+    scrollTrigger: { trigger: '.animate-points', start: 'top 90%' },
+  })
 
   factItems.value.forEach((item: HTMLElement) => {
     const onMouseMove = (e: MouseEvent) => {
-      const rect: DOMRect = item.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const maxTilt = 25;
+      const rect: DOMRect = item.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
+      const maxTilt = 25
 
-      const tiltX = ((y - centerY) / centerY) * maxTilt;
-      const tiltY = -((x - centerX) / centerX) * maxTilt;
+      const tiltX = ((y - centerY) / centerY) * maxTilt
+      const tiltY = -((x - centerX) / centerX) * maxTilt
 
       $gsap.to(item, {
         rotateX: tiltX,
         rotateY: tiltY,
-        boxShadow: "0 15px 30px rgba(0, 0, 0, 0.2)",
+        boxShadow: '0 15px 30px rgba(0, 0, 0, 0.2)',
         duration: 0.3,
-        ease: "power2.out",
-      });
-    };
+        ease: 'power2.out',
+      })
+    }
 
     const onMouseLeave = (): void => {
       $gsap.to(item, {
         rotateX: 0,
         rotateY: 0,
-        boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
+        boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)',
         duration: 0.3,
-        ease: "power2.out",
-      });
-    };
+        ease: 'power2.out',
+      })
+    }
 
-    item.addEventListener("mousemove", onMouseMove);
-    item.addEventListener("mouseleave", onMouseLeave);
-  });
-});
+    item.addEventListener('mousemove', onMouseMove)
+    item.addEventListener('mouseleave', onMouseLeave)
+  })
+})
 </script>

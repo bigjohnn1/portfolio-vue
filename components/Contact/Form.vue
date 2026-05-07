@@ -1,5 +1,9 @@
 <template>
-  <Dialog as="div" class="relative z-50" @close="emit('close')">
+  <Dialog
+    as="div"
+    class="relative z-50"
+    @close="emit('close')"
+  >
     <TransitionChild
       as="template"
       enter="ease-out duration-300"
@@ -40,6 +44,7 @@
                 v-model="form.name"
                 type="text"
                 :placeholder="$t('contact.namePlaceholder')"
+                :aria-label="$t('contact.name')"
                 class="p-4 rounded-2xl text-base focus:outline-none border-b-2 focus:ring-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
               />
             </label>
@@ -53,6 +58,7 @@
                 v-model="form.email"
                 type="email"
                 :placeholder="$t('contact.emailPlaceholder')"
+                :aria-label="$t('contact.email')"
                 class="p-4 rounded-2xl text-base focus:outline-none focus:ring-2 border-b-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
               />
             </label>
@@ -64,12 +70,21 @@
               </span>
               <select
                 v-model="form.reason"
+                :aria-label="$t('contact.reason')"
                 class="p-4 rounded-lg text-base border-b-[1px] border-gray-600 focus:border-primary-500 transition-all duration-300 shadow-sm hover:shadow-md"
               >
-                <option disabled value="" class="text-base">
+                <option
+                  disabled
+                  value=""
+                  class="text-base"
+                >
                   {{ $t("contact.reasonPlaceholder") }}
                 </option>
-                <option v-for="r in reasons" :key="r.value" :value="r.value">
+                <option
+                  v-for="r in reasons"
+                  :key="r.value"
+                  :value="r.value"
+                >
                   {{ $t(`contact.reasons.${r.value}`) }}
                 </option>
               </select>
@@ -84,20 +99,23 @@
                 v-model="form.message"
                 rows="5"
                 :placeholder="$t('contact.messagePlaceholder')"
+                :aria-label="$t('contact.message')"
                 class="p-4 rounded-2xl text-base resize-none border-b-2 focus:outline-none focus:ring-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
               />
             </label>
             <label class="flex items-center gap-3">
               <input
-                type="checkbox"
                 v-model="form.consent"
+                type="checkbox"
+                :aria-label="$t('contact.consentLabel')"
                 class="w-5 h-5 rounded border-gray-300 text-primary-500 focus:ring-primary-500"
               />
               <span class="text-sm text-gray-600 dark:text-gray-400">
                 {{ $t("contact.consentLabel") }}
                 <button
-                  @click="isConsentOpen = true"
+                  :aria-label="$t('contact.privacyLink')"
                   class="text-primary-500 hover:underline"
+                  @click.prevent="isConsentOpen = true"
                 >
                   {{ $t("contact.privacyLink") }}
                 </button>
@@ -106,15 +124,17 @@
           </div>
           <div class="flex gap-4 justify-end">
             <button
-              @click="emit('close')"
+              :aria-label="$t('contact.cancelButton')"
               class="px-6 py-3 rounded-xl text-base font-medium hover:bg-fantasy-accent/80 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-md"
+              @click="emit('close')"
             >
               {{ $t("contact.cancelButton") }}
             </button>
             <button
-              @click="submit"
+              :aria-label="isLoading ? $t('contact.sending') : $t('contact.submitButton')"
               :disabled="isLoading || !form.consent"
               class="px-6 py-3 rounded-xl text-base font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              @click="submit"
             >
               {{
                 isLoading ? $t("contact.sending") : $t("contact.submitButton")
@@ -124,7 +144,10 @@
         </DialogPanel>
       </TransitionChild>
     </div>
-    <TransitionRoot :show="isConsentOpen" as="template">
+    <TransitionRoot
+      :show="isConsentOpen"
+      as="template"
+    >
       <Consent @close="isConsentOpen = false" />
     </TransitionRoot>
   </Dialog>
@@ -137,59 +160,61 @@ import {
   DialogTitle,
   TransitionChild,
   TransitionRoot,
-} from "@headlessui/vue";
-import Consent from "./Consent.vue";
+} from '@headlessui/vue'
+import Consent from './Consent.vue'
 
-const { $i18n } = useNuxtApp();
+const { t } = useI18n()
 
 const emit = defineEmits<{
-  (e: "close"): boolean;
-  (e: "result", data: { success: boolean; message?: string }): void;
-}>();
+  (e: 'close'): boolean
+  (e: 'result', data: { success: boolean, message?: string }): void
+}>()
 
 const form = ref({
-  name: "",
-  email: "",
-  reason: "inquiry",
-  message: "",
+  name: '',
+  email: '',
+  reason: 'inquiry',
+  message: '',
   consent: false,
-});
+})
 
 const reasons = [
-  { value: "inquiry", label: "Dotaz" },
-  { value: "suggestion", label: "Návrh" },
-  { value: "request", label: "Poptávka" },
-  { value: "collaboration", label: "Spolupráce" },
-];
+  { value: 'inquiry', label: 'Dotaz' },
+  { value: 'suggestion', label: 'Návrh' },
+  { value: 'request', label: 'Poptávka' },
+  { value: 'collaboration', label: 'Spolupráce' },
+]
 
-const isLoading = ref(false);
-const isConsentOpen = ref(false);
+const isLoading = shallowRef(false)
+const isConsentOpen = shallowRef(false)
 
 const submit = async () => {
-  if (!form.value.consent) return;
-  isLoading.value = true;
+  if (!form.value.consent) return
+  isLoading.value = true
   try {
     const res = await $fetch<{
-      status: number;
-      success?: boolean;
-      error?: string;
-    }>("/api/contact", {
-      method: "POST",
+      status: number
+      success?: boolean
+      error?: string
+    }>('/api/contact', {
+      method: 'POST',
       body: form.value,
-    });
+    })
     if (res.error) {
-      emit("result", {
+      emit('result', {
         success: false,
-        message: $i18n.t(`contact.${res.error}`),
-      });
-      return;
+        message: t(`contact.${res.error}`),
+      })
+      return
     }
-    emit("result", { success: true, message: $i18n.t("contact.toastSuccess") });
-  } catch {
-    emit("result", { success: false, message: $i18n.t("contact.toastError") });
-  } finally {
-    isLoading.value = false;
-    emit("close");
+    emit('result', { success: true, message: t('contact.toastSuccess') })
   }
-};
+  catch {
+    emit('result', { success: false, message: t('contact.toastError') })
+  }
+  finally {
+    isLoading.value = false
+    emit('close')
+  }
+}
 </script>

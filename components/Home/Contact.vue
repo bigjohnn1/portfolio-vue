@@ -18,23 +18,33 @@
         <div class="flex flex-col gap-5 text-lg">
           <p>
             <strong class="text-primary-600 dark:text-primary-400">
-              <Icon name="mdi:phone" size="20" class="mr-2" />
+              <Icon
+                name="mdi:phone"
+                size="20"
+                class="mr-2"
+                aria-hidden="true"
+              />
               {{ $t("contact.phone") }}:
             </strong>
-            <a href="tel:+420123456789" aria-label="Zavolat na +420 705 206 985"
-              >+420 705 206 985</a
-            >
+            <a
+              href="tel:+420123456789"
+              :aria-label="$t('contact.callLabel')"
+            >+420 705 206 985</a>
           </p>
           <p>
             <strong class="text-primary-600 dark:text-primary-400">
-              <Icon name="mdi:email" size="20" class="mr-2" />
+              <Icon
+                name="mdi:email"
+                size="20"
+                class="mr-2"
+                aria-hidden="true"
+              />
               {{ $t("contact.email") }}:
             </strong>
             <a
               href="mailto:benjamin.tomanik@gmail.com"
-              aria-label="Napsat na benjamin.tomanik@gmail.com"
-              >benjamin.tomanik@gmail.com</a
-            >
+              :aria-label="$t('contact.emailLabel')"
+            >benjamin.tomanik@gmail.com</a>
           </p>
         </div>
         <div class="flex gap-6">
@@ -45,13 +55,19 @@
             target="_blank"
             rel="noopener noreferrer"
             class="text-fantasy-text hover:text-fantasy-accent transition-colors duration-300 transform hover:scale-[1.02]"
+            :aria-label="social.platform"
           >
-            <Icon :name="social.icon" size="36" />
+            <Icon
+              :name="social.icon"
+              size="36"
+              aria-hidden="true"
+            />
           </a>
         </div>
       </div>
       <div
         class="absolute hidden lg:block top-0 left-1/2 transform -translate-x-1/2 w-1 h-full"
+        aria-hidden="true"
       >
         <svg
           class="w-full h-full fill-current bg-light-bg dark:bg-dark-bg"
@@ -73,13 +89,19 @@
           </h3>
         </div>
         <button
-          @click="isOpen = true"
           class="px-8 py-4 text-lg font-semibold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl"
+          @click="isOpen = true"
         >
           {{ $t("contact.button") }}
         </button>
-        <TransitionRoot :show="isOpen" as="template">
-          <ContactForm @close="isOpen = false" @result="handleResult" />
+        <TransitionRoot
+          :show="isOpen"
+          as="template"
+        >
+          <ContactForm
+            @close="isOpen = false"
+            @result="handleResult"
+          />
         </TransitionRoot>
       </div>
     </div>
@@ -104,54 +126,54 @@
 </template>
 
 <script setup lang="ts">
-import { socialLinks } from "~/consts/socials";
-import { TransitionRoot } from "@headlessui/vue";
+import { TransitionRoot } from '@headlessui/vue'
+import { socialLinks } from '~/consts/socials'
 
-const { $i18n, $gsap } = useNuxtApp();
+const { $gsap } = useNuxtApp()
 type Toast = {
-  id: number;
-  success: boolean;
-  message: string;
-};
-const isOpen = shallowRef(false);
-const toasts = reactive<Toast[]>([]);
+  id: number
+  success: boolean
+  message: string
+}
+const isOpen = shallowRef(false)
+const toasts = reactive<Toast[]>([])
 
 const addToast = (success: boolean, message?: string) => {
-  const toastId = Date.now();
+  const toastId = Date.now()
   toasts.push({
     id: toastId,
     success,
     message: message!,
-  });
+  })
 
   const toastElement = document.querySelector(
-    `.toast-item:nth-child(${toasts.length})`
-  );
+    `.toast-item:nth-child(${toasts.length})`,
+  )
   $gsap.from(toastElement, {
     y: 20,
     opacity: 0,
     duration: 0.5,
-    ease: "power2.out",
-  });
+    ease: 'power2.out',
+  })
 
   setTimeout(() => {
-    const toastIndex = toasts.findIndex((t) => t.id === toastId);
+    const toastIndex = toasts.findIndex(t => t.id === toastId)
     const toastElement = document.querySelector(
-      `.toast-item:nth-child(${toastIndex + 1})`
-    );
+      `.toast-item:nth-child(${toastIndex + 1})`,
+    )
     $gsap.to(toastElement, {
       y: 20,
       opacity: 0,
       duration: 0.5,
-      ease: "power2.in",
+      ease: 'power2.in',
       onComplete: () => {
-        toasts.splice(toastIndex, 1);
+        toasts.splice(toastIndex, 1)
       },
-    });
-  }, 2700);
-};
+    })
+  }, 2700)
+}
 
-const handleResult = (data: { success: boolean; message?: string }) => {
-  addToast(data.success, data.message);
-};
+const handleResult = (data: { success: boolean, message?: string }) => {
+  addToast(data.success, data.message)
+}
 </script>
