@@ -49,6 +49,3 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
 - **`scss/`**
   - `base.scss`: Main stylesheet including Tailwind directives.
   - `_variables.scss`: SCSS variables.
-
-## Recent Changes & Modernization Efforts
-*Initial Mapping*: Documented the existing project structure. A parallel branch `SEO` was created via worktree. Current focus is on improving Accessibility (A11y) and removing unnecessary `ref` and `useNuxtApp()` calls.
