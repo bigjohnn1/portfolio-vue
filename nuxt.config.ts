@@ -26,7 +26,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ['app/assets/scss/base.scss'],
+  css: ['~/assets/scss/base.scss'],
   site: {
     url: 'https://benjamin-tomanik.cz',
     name: 'Big John',
@@ -37,10 +37,6 @@ export default defineNuxtConfig({
     smtpUser: process.env.NUXT_MAIL_USER,
     smtpPass: process.env.NUXT_MAIL_PASS,
     contactMail: process.env.NUXT_CONTACT_MAIL,
-  },
-  srcDir: 'app/',
-  future: {
-    compatibilityVersion: 4,
   },
   compatibilityDate: '2026-05-07',
   eslint: {
@@ -57,7 +53,6 @@ export default defineNuxtConfig({
     },
   },
   i18n: {
-    lazy: true,
     langDir: 'app/locales/',
     strategy: 'no_prefix',
     locales: [
@@ -124,6 +119,10 @@ export default defineNuxtConfig({
     editorSupport: true,
     cssPath: '~/assets/scss/base.scss',
     config: {
+      content: [
+        './app/**/*.{vue,js,ts}',
+        './app.vue',
+      ],
       mode: 'jit',
       darkMode: 'class',
       theme: {
