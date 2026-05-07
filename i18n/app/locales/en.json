@@ -1,13 +1,26 @@
 {
+  "seo": {
+    "homeTitle": "Big John - Portfolio",
+    "homeDescription": "Portfolio of Big John."
+  },
   "nav": {
     "references": "Projects",
     "about": "About",
     "contact": "Contact",
-    "stack": "My stack"
+    "stack": "My stack",
+    "toggleMenu": "Toggle menu",
+    "home": "Home",
+    "logoAlt": "Site Logo",
+    "toggleTheme": "Toggle theme",
+    "switchLanguage": "Switch Language"
+  },
+  "consent": {
+    "closeButton": "Close"
   },
   "intro": {
     "subtitle": "let's create succesful websites",
-    "cta": "Get started"
+    "cta": "Get started",
+    "ctaLabel": "Contact me"
   },
   "projects": {
     "title": "My Projects",

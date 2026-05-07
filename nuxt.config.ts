@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
   ],
   pages: true,
-  imports: { dirs: ['./stores'] },
+  imports: { dirs: ['~/stores', '~/consts'] },
   devtools: { enabled: true },
   app: {
     head: {
@@ -26,7 +26,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ['~/assets/scss/base.scss'],
+  css: ['app/assets/scss/base.scss'],
   site: {
     url: 'https://benjamin-tomanik.cz',
     name: 'Big John',
@@ -37,6 +37,10 @@ export default defineNuxtConfig({
     smtpUser: process.env.NUXT_MAIL_USER,
     smtpPass: process.env.NUXT_MAIL_PASS,
     contactMail: process.env.NUXT_CONTACT_MAIL,
+  },
+  srcDir: 'app/',
+  future: {
+    compatibilityVersion: 4,
   },
   compatibilityDate: '2026-05-07',
   eslint: {
@@ -95,6 +99,9 @@ export default defineNuxtConfig({
       user: process.env.NUXT_MAIL_USER,
       pass: process.env.NUXT_MAIL_PASS,
     },
+  },
+  ogImage: {
+    zeroRuntime: true,
   },
   pinia: { storesDirs: ['~/stores/**'] },
   security: {

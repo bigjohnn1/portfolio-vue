@@ -1,13 +1,26 @@
 {
+  "seo": {
+    "homeTitle": "Big John - Portfolio",
+    "homeDescription": "Portfolio tvůrce Big John."
+  },
   "nav": {
     "references": "Projekty",
     "about": "Kdo jsem",
     "contact": "Kontakty",
-    "stack": "S čím pracuji"
+    "stack": "S čím pracuji",
+    "toggleMenu": "Přepnout menu",
+    "home": "Domů",
+    "logoAlt": "Logo webu",
+    "toggleTheme": "Přepnout téma",
+    "switchLanguage": "Změnit jazyk"
+  },
+  "consent": {
+    "closeButton": "Zavřít"
   },
   "intro": {
     "subtitle": "pojďme tvořit úspěšné weby",
-    "cta": "Začněte svou cestu"
+    "cta": "Začněte svou cestu",
+    "ctaLabel": "Kontaktovat"
   },
   "projects": {
     "title": "Moje projekty",

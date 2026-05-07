@@ -13,6 +13,7 @@
 ## Documentation & Learning
 
 - **Latest Conventions:** Make sure to use **Context7** for documentation search (via MCP) if you aren't sure of something regarding Nuxt, Vue 3, or other libraries. Always follow the latest Vue 3.5 / Nuxt 4 best practices.
+- **Vitest** Before a change reaches production, make sure to run it through Vitest / similar tool.
 
 ## Project Structure & Mapping
 
