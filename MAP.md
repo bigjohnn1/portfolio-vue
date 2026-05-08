@@ -35,9 +35,6 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
   - `Globe.vue`: 3D/Canvas element (likely Three.js).
 - `VueFrag.vue`: Utility component (possibly for fragment wrapping).
 
-### `/stores`
-- `theme.ts`: Manages theme (light/dark/fantasy) preferences, persisted via `@pinia-plugin-persistedstate/nuxt`.
-
 ### `/server`
 - **`api/`**
   - `contact.ts`: Endpoint for handling contact form submissions (utilizes `nuxt-nodemailer` and Prisma).

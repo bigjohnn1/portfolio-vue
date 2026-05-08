@@ -11,11 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useThemeStore } from '~/stores/theme'
-
-const themeStore = useThemeStore()
+const colorMode = useColorMode()
 const loaderColor = computed(() => {
-  return themeStore.currentTheme === 'light' ? '#3B82F6' : '#60A5FA'
+  return colorMode.value === 'light' ? '#3B82F6' : '#60A5FA'
 })
 
 useSeoMeta({

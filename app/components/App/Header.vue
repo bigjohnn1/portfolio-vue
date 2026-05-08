@@ -78,7 +78,7 @@
       >
         <Icon
           :name="
-            themeStore.currentTheme === 'light'
+            colorMode.value === 'light'
               ? 'mingcute:sun-fill'
               : 'mingcute:moon-fill'
           "
@@ -124,9 +124,8 @@
 
 <script setup>
 import { onClickOutside } from '@vueuse/core'
-import { useThemeStore } from '~/stores/theme'
 
-const themeStore = useThemeStore()
+const colorMode = useColorMode()
 const iconWrapper = useTemplateRef('iconWrapper')
 const mobileMenu = useTemplateRef('mobileMenu')
 const themeButton = useTemplateRef('themeButton')
@@ -136,16 +135,16 @@ const { $gsap } = useNuxtApp()
 
 const toggleTheme = () => {
   $gsap.to(iconWrapper.value, {
-    rotation: themeStore.currentTheme === 'light' ? 90 : -90,
+    rotation: colorMode.value === 'light' ? 90 : -90,
     opacity: 0,
     duration: 0.4,
     ease: 'power2.inOut',
     onComplete: () => {
-      themeStore.toggleTheme()
+      colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
       $gsap.fromTo(
         iconWrapper.value,
         {
-          rotation: themeStore.currentTheme === 'light' ? -90 : 90,
+          rotation: colorMode.value === 'light' ? -90 : 90,
           opacity: 0,
         },
         { rotation: 0, opacity: 1, duration: 0.4, ease: 'power2.inOut' },

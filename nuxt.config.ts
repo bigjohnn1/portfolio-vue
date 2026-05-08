@@ -2,6 +2,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   modules: [
+    '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
     '@nuxt/eslint',
@@ -32,6 +33,11 @@ export default defineNuxtConfig({
     name: 'Big John',
     description: 'Portfolio of Benjamin Tomanik',
     defaultLocale: 'en',
+  },
+  colorMode: {
+    classSuffix: '',
+    preference: 'light',
+    fallback: 'light',
   },
   runtimeConfig: {
     smtpUser: process.env.NUXT_MAIL_USER,
