@@ -15,7 +15,7 @@ const colorMode = useColorMode()
 const loaderColor = computed(() => {
   return colorMode.value === 'light' ? '#3B82F6' : '#60A5FA'
 })
-
+//
 useSeoMeta({
   titleTemplate: (titleChunk) => {
     return titleChunk ? `${titleChunk} - Big John` : 'Big John'
