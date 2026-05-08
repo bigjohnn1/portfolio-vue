@@ -127,9 +127,10 @@
 
 <script setup lang="ts">
 import { TransitionRoot } from '@headlessui/vue'
+import type { gsap } from 'gsap'
 import { socialLinks } from '~/consts/socials'
 
-const { $gsap } = useNuxtApp()
+const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
 type Toast = {
   id: number
   success: boolean

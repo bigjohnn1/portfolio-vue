@@ -100,7 +100,9 @@
 </template>
 
 <script setup lang="ts">
-const { $gsap } = useNuxtApp()
+import type { gsap } from 'gsap'
+
+const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
 
 interface Fact {
   key: string
