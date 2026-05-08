@@ -49,8 +49,10 @@
 </template>
 
 <script setup lang="ts">
+import type { gsap } from 'gsap'
+
 const { locale, locales, setLocale } = useI18n()
-const { $gsap } = useNuxtApp()
+const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
 
 interface LocaleObject {
   code: string
@@ -66,7 +68,7 @@ const currentLocale = computed(() => {
   const found = availableLocales.value.find(
     l => l.code === locale.value,
   )
-  return found || availableLocales.value[0]
+  return found || availableLocales.value[0]!
 })
 
 const toggleDropdown = async () => {

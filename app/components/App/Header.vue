@@ -5,7 +5,7 @@
     <button
       class="hamburger-btn xl:hidden p-2 cursor-pointer"
       :aria-label="$t('nav.toggleMenu')"
-      :aria-expanded="isMenuOpen.toString()"
+      :aria-expanded="isMenuOpen"
       @click="toggleMenu"
     >
       <span
@@ -122,8 +122,9 @@
   </header>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
+import type { gsap } from 'gsap'
 
 const colorMode = useColorMode()
 const iconWrapper = useTemplateRef('iconWrapper')
@@ -131,7 +132,8 @@ const mobileMenu = useTemplateRef('mobileMenu')
 const themeButton = useTemplateRef('themeButton')
 const hamburgerIcon = useTemplateRef('hamburgerIcon')
 const isMenuOpen = shallowRef(false)
-const { $gsap } = useNuxtApp()
+
+const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
 
 const toggleTheme = () => {
   $gsap.to(iconWrapper.value, {
