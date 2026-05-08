@@ -66,21 +66,28 @@ const tippyInstances = ref<Instance[]>([])
 onMounted(() => {
   if (techItems.value) {
     techItems.value.forEach((item, i) => {
-      const instance = tippy(item, {
-        content: t(`techStack.items.${techStack[i].key}.description`),
-        placement: 'top',
-        theme: 'light',
-      })
-      tippyInstances.value[i] = instance
+      const tech = techStack[i]
+      if (tech) {
+        const instance = tippy(item, {
+          content: t(`techStack.items.${tech.key}.description`),
+          placement: 'top',
+          theme: 'light',
+        })
+        tippyInstances.value[i] = instance
+      }
     })
   }
 
   watch(locale, () => {
     if (techItems.value) {
       techItems.value.forEach((item, i) => {
-        tippyInstances.value[i].setContent(
-          t(`techStack.items.${techStack[i].key}.description`),
-        )
+        const tech = techStack[i]
+        const instance = tippyInstances.value[i]
+        if (tech && instance) {
+          instance.setContent(
+            t(`techStack.items.${tech.key}.description`),
+          )
+        }
       })
     }
   })

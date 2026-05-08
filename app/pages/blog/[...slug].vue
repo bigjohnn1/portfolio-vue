@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl mx-auto py-24 px-4 sm:px-6 lg:px-8 min-h-screen prose dark:prose-invert prose-primary lg:prose-lg">
+  <div class="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 min-h-screen">
     <div
       v-if="pending"
       class="text-gray-500"
@@ -7,39 +7,45 @@
       {{ $t('blog.loadingPost') }}
     </div>
 
-    <article v-else-if="post">
-      <NuxtLink
-        to="/blog"
-        class="text-primary-600 hover:text-primary-700 dark:text-primary-400 no-underline mb-8 inline-block"
-      >
-        <span v-html="$t('blog.backToBlog')" />
-      </NuxtLink>
+    <div v-else-if="post" class="lg:grid lg:grid-cols-[1fr_280px] xl:grid-cols-[1fr_320px] lg:gap-12 items-start">
+      <article class="prose dark:prose-invert prose-primary lg:prose-lg max-w-none min-w-0">
+        <NuxtLink
+          to="/blog"
+          class="text-primary-600 hover:text-primary-700 dark:text-primary-400 no-underline mb-8 inline-block"
+        >
+          <span v-html="$t('blog.backToBlog')" />
+        </NuxtLink>
 
-      <div
-        v-if="post.meta?.cover"
-        class="mb-8 rounded-2xl overflow-hidden shadow-lg"
-      >
-        <NuxtImg
-          :src="(post.meta.cover as string)"
-          :alt="post.title"
-          class="w-full max-h-[500px] object-cover"
-          format="webp"
-          priority
-        />
-      </div>
+        <div
+          v-if="post.meta?.cover"
+          class="mb-8 rounded-2xl overflow-hidden shadow-lg not-prose"
+        >
+          <NuxtImg
+            :src="(post.meta.cover as string)"
+            :alt="post.title"
+            class="w-full max-h-[500px] object-cover"
+            format="webp"
+            priority
+          />
+        </div>
 
-      <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-4">
-        {{ post.title }}
-      </h1>
-      <p
-        v-if="post.description"
-        class="text-xl text-gray-500 dark:text-gray-400 mb-8"
-      >
-        {{ post.description }}
-      </p>
+        <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl mb-4">
+          {{ post.title }}
+        </h1>
+        <p
+          v-if="post.description"
+          class="text-xl text-gray-500 dark:text-gray-400 mb-8"
+        >
+          {{ post.description }}
+        </p>
 
-      <ContentRenderer :value="post" />
-    </article>
+        <ContentRenderer :value="post" />
+      </article>
+
+      <aside class="hidden lg:block sticky top-32">
+        <BlogTableOfContents :toc="post.body?.toc" />
+      </aside>
+    </div>
 
     <div
       v-else

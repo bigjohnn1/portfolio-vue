@@ -85,7 +85,7 @@ onMounted(() => {
 
     watchEffect(() => {
       const globeColor = isDark.value ? 0xb0b0b0 : 0x000000
-      sphereMaterial.uniforms.color.value.set(globeColor)
+      sphereMaterial.uniforms!.color!.value.set(globeColor)
       ringMaterial.color.set(globeColor)
       particlesMaterial.color.set(globeColor)
     })
@@ -94,12 +94,12 @@ onMounted(() => {
       requestAnimationFrame(animate)
       sphere.rotation.y += 0.001
       ring.rotation.z += 0.001
-      sphereMaterial.uniforms.time.value += 0.01
+      sphereMaterial.uniforms!.time!.value += 0.01
       particles.rotation.y += 0.0005
       sphere.scale.set(
-        1 + Math.sin(sphereMaterial.uniforms.time.value * 0.5) * 0.05,
-        1 + Math.sin(sphereMaterial.uniforms.time.value * 0.5) * 0.05,
-        1 + Math.sin(sphereMaterial.uniforms.time.value * 0.5) * 0.05,
+        1 + Math.sin(sphereMaterial.uniforms!.time!.value * 0.5) * 0.05,
+        1 + Math.sin(sphereMaterial.uniforms!.time!.value * 0.5) * 0.05,
+        1 + Math.sin(sphereMaterial.uniforms!.time!.value * 0.5) * 0.05,
       )
       renderer.render(scene, camera)
     }

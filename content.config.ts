@@ -1,19 +1,14 @@
-import { defineCollection, defineContentConfig } from '@nuxt/content'
+import { defineCollection, defineContentConfig, z } from '@nuxt/content'
 
 export default defineContentConfig({
   collections: {
     blog: defineCollection({
       type: 'page',
-      source: {
-        repository: {
-          url: 'https://github.com/bigjohnn1/portfolio-vue',
-          auth: {
-            username: 'bigjohnn1',
-            token: process.env.GITHUB_TOKEN || '',
-          },
-        },
-        include: 'content/blog/**/*.md',
-      },
+      source: 'blog/**/*.md',
+      schema: z.object({
+        cover: z.string().optional(),
+        date: z.string().optional(),
+      })
     }),
   },
 })

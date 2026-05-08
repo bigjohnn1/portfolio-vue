@@ -79,8 +79,8 @@ const toggleDropdown = async () => {
   }
 }
 
-const switchLocale = (localeCode: string) => {
-  setLocale(localeCode)
+const switchLocale = (localeCode: 'en' | 'cs' | string) => {
+  setLocale(localeCode as 'en' | 'cs')
   isOpen.value = false
 }
 
