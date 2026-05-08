@@ -148,7 +148,7 @@
       },
       "zenstack": {
         "name": "Zenstack v3",
-        "description": "Řízení přístupu a generování API pro Prisma"
+        "description": "Řízení přístupu a generování API postavený nad Kysely"
       },
       "nitro": {
         "name": "Nitro",

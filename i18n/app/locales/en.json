@@ -145,7 +145,7 @@
       },
       "zenstack": {
         "name": "Zenstack v3",
-        "description": "Access control and API generation for Prisma"
+        "description": "Access control and API generation built on Kysely"
       },
       "nitro": {
         "name": "Nitro",
