@@ -41,6 +41,15 @@ export default defineNuxtConfig({
     preference: 'light',
     fallback: 'light',
   },
+  content: {
+    database: {
+      type: 'sqlite',
+      filename: '.data/content/db.sqlite',
+    },
+    experimental: {
+      sqliteConnector: 'native',
+    },
+  },
   runtimeConfig: {
     smtpUser: process.env.NUXT_MAIL_USER,
     smtpPass: process.env.NUXT_MAIL_PASS,
