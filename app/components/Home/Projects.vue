@@ -52,7 +52,7 @@
                 v-if="project.link"
                 :to="project.link"
                 target="_blank"
-                class="inline-flex items-center px-3 py-1 bg-primary text-sm font-medium text-white rounded-full hover:bg-opacity-90 transition-colors shadow-sm hover:shadow-md"
+                class="inline-flex items-center px-3 py-1 bg-primary-600 dark:bg-primary-500 text-sm font-medium text-white rounded-full hover:bg-primary-700 dark:hover:bg-primary-400 transition-colors shadow-sm hover:shadow-md"
               >
                 {{ $t('projects.liveDemo') }}
                 <Icon
@@ -78,7 +78,9 @@
 </template>
 
 <script setup lang="ts">
-const { $gsap } = useNuxtApp()
+import type { gsap } from 'gsap'
+
+const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
 
 interface Project {
   key: string

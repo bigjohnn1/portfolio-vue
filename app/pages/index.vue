@@ -6,6 +6,7 @@
     <LazyHomeTechStack />
     <LazyHomeContact />
     <LazyHomeAbout />
+    <LazyHomeBlog />
     <LazyAppFooter />
   </VueFrag>
 </template>

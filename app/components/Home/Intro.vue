@@ -45,10 +45,12 @@
 </template>
 
 <script setup lang="ts">
+import type { gsap } from 'gsap'
+
 const { t } = useI18n()
 const title = useTemplateRef<HTMLElement>('title')
 const subtitle = useTemplateRef<HTMLElement>('subtitle')
-const { $gsap } = useNuxtApp()
+const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
 
 onMounted(() => {
   $gsap.from(title.value, { x: -100, opacity: 0, duration: 0.8 })
