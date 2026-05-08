@@ -14,14 +14,14 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
 
 ### Root
 
-- `content.config.ts`: Configuration for Nuxt Content, parsing markdown files from a remote GitHub repository.
+- `content.config.ts`: Configuration for Nuxt Content, parsing markdown files from local `content/` directory.
 
 ### `/pages`
 
 - `index.vue`: The main entry point and single-page portfolio layout.
 - **`blog/`**
-  - `index.vue`: Lists all parsed blog posts from the GitHub repository.
-  - `[...slug].vue`: Dynamically renders individual markdown posts using `<ContentRenderer>`.
+  - `index.vue`: Lists all parsed blog posts from the local content directory.
+  - `[...slug].vue`: Dynamically renders individual markdown posts using `<ContentRenderer>` and includes a sticky `TableOfContents` on desktop layouts.
 
 ### `/layouts`
 
@@ -40,6 +40,8 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
   - `TechStack.vue`: Technology stack display.
   - `Contact.vue`: Contact section wrapper.
   - `Blog.vue`: Homepage preview of the latest 3 blog articles.
+- **`Blog/`**
+  - `TableOfContents.vue`: A sticky table of contents navigation component for blog articles.
 - **`Contact/`**
   - `Form.vue`: The contact form component.
   - `Consent.vue`: Privacy/consent checkbox component.
