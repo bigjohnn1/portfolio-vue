@@ -64,8 +64,27 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const { data: post, pending } = await useAsyncData(`blog-${route.path}`, () => {
-  return queryCollection('blog').path(route.path).first()
+const { data: post, pending } = await useAsyncData(`blog-${route.path}`, async () => {
+  const localPath = route.path
+  const remotePath = `/content${route.path}`
+
+  try {
+    const p = await queryCollection('blog').path(localPath).first()
+    if (p) return p
+  }
+  catch {
+    //
+  }
+
+  try {
+    const p = await queryCollection('blog').path(remotePath).first()
+    if (p) return p
+  }
+  catch {
+    //
+  }
+
+  return null
 })
 
 useSeoMeta({
