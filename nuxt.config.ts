@@ -1,7 +1,9 @@
 import { defineNuxtConfig } from 'nuxt/config'
+import typography from '@tailwindcss/typography'
 
 export default defineNuxtConfig({
   modules: [
+    '@nuxt/content',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
@@ -125,6 +127,7 @@ export default defineNuxtConfig({
     editorSupport: true,
     cssPath: '~/assets/scss/base.scss',
     config: {
+      plugins: [typography],
       content: [
         './app/**/*.{vue,js,ts}',
         './app.vue',

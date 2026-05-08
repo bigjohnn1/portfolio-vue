@@ -3,6 +3,7 @@
 This file documents the structure and key components of the Nuxt 4 portfolio project. **Every structural change or new functionality added MUST be documented here.**
 
 ## Core Setup
+
 - **Framework:** Nuxt 4 + Vue 3 + TypeScript
 - **Styling:** Tailwind CSS + SCSS (`assets/scss/base.scss`)
 - **State:** Pinia (`stores/theme.ts`)
@@ -11,13 +12,23 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
 
 ## Directory Structure
 
+### Root
+
+- `content.config.ts`: Configuration for Nuxt Content, parsing markdown files from a remote GitHub repository.
+
 ### `/pages`
+
 - `index.vue`: The main entry point and single-page portfolio layout.
+- **`blog/`**
+  - `index.vue`: Lists all parsed blog posts from the GitHub repository.
+  - `[...slug].vue`: Dynamically renders individual markdown posts using `<ContentRenderer>`.
 
 ### `/layouts`
+
 - `default.vue`: Main layout wrapping the pages.
 
 ### `/components`
+
 - **`App/`**
   - `Header.vue`: Main navigation header.
   - `Footer.vue`: Site footer.
@@ -28,6 +39,7 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
   - `Projects.vue`: Project showcase.
   - `TechStack.vue`: Technology stack display.
   - `Contact.vue`: Contact section wrapper.
+  - `Blog.vue`: Homepage preview of the latest 3 blog articles.
 - **`Contact/`**
   - `Form.vue`: The contact form component.
   - `Consent.vue`: Privacy/consent checkbox component.
@@ -36,13 +48,16 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
 - `VueFrag.vue`: Utility component (possibly for fragment wrapping).
 
 ### `/server`
+
 - **`api/`**
   - `contact.ts`: Endpoint for handling contact form submissions (utilizes `nuxt-nodemailer` and Prisma).
 
 ### `/assets`
+
 - **`locales/`**
   - `en.json`: English translation dictionary.
   - `cs.json`: Czech translation dictionary.
 - **`scss/`**
   - `base.scss`: Main stylesheet including Tailwind directives.
   - `_variables.scss`: SCSS variables.
+  
