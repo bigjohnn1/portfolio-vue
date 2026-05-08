@@ -9,6 +9,7 @@
   "nav": {
     "references": "Projects",
     "about": "About",
+    "blog": "Blog",
     "contact": "Contact",
     "stack": "My stack",
     "toggleMenu": "Toggle menu",
@@ -21,6 +22,25 @@
     "subtitle": "Building scalable SaaS & AI workflows.",
     "cta": "Get started",
     "ctaLabel": "Contact me"
+  },
+  "homeBlog": {
+    "title": "Latest Articles",
+    "readMore": "Read article",
+    "viewAll": "View all articles",
+    "noPosts": "No articles published yet.",
+    "recent": "Recent",
+    "loading": "Loading..."
+  },
+  "blog": {
+    "loadingPosts": "Loading posts...",
+    "noDescription": "No description provided.",
+    "readMore": "Read more &rarr;",
+    "noPostsFound": "No posts found.",
+    "loadingPost": "Loading post...",
+    "backToBlog": "&larr; Back to Blog",
+    "notFoundTitle": "Post Not Found",
+    "notFoundDesc": "The article you are looking for does not exist or has been moved.",
+    "returnToBlog": "Return to Blog"
   },
   "projects": {
     "title": "My Projects",
@@ -220,7 +240,7 @@
       },
       "principles": {
         "title": "Core Principles",
-        "description": "I value freedom and extreme autonomy above all else. Agile iterations take precedence over bureaucratic bullshit, with a strict focus on results and real impact."
+        "description": "I value freedom and extreme autonomy above all else. Agile iterations take precedence over bureaucracy, with a strict focus on results and real impact."
       }
     },
     "facts": {

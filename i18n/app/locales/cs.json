@@ -9,6 +9,7 @@
   "nav": {
     "references": "Projekty",
     "about": "Kdo jsem",
+    "blog": "Blog",
     "contact": "Kontakty",
     "stack": "S čím pracuji",
     "toggleMenu": "Přepnout menu",
@@ -21,6 +22,25 @@
     "subtitle": "Pojďme tvořit škálovatelné SaaS a AI produkty.",
     "cta": "Začněte svou cestu",
     "ctaLabel": "Kontaktovat"
+  },
+  "homeBlog": {
+    "title": "Nejnovější články",
+    "readMore": "Číst článek",
+    "viewAll": "Zobrazit všechny články",
+    "noPosts": "Zatím nebyly publikovány žádné články.",
+    "recent": "Nedávné",
+    "loading": "Načítám..."
+  },
+  "blog": {
+    "loadingPosts": "Načítám články...",
+    "noDescription": "Není k dispozici žádný popis.",
+    "readMore": "Číst dále &rarr;",
+    "noPostsFound": "Nebyly nalezeny žádné články.",
+    "loadingPost": "Načítám článek...",
+    "backToBlog": "&larr; Zpět na blog",
+    "notFoundTitle": "Článek nenalezen",
+    "notFoundDesc": "Článek, který hledáte, neexistuje nebo byl přesunut.",
+    "returnToBlog": "Zpět na blog"
   },
   "projects": {
     "title": "Moje projekty",
@@ -223,7 +243,7 @@
       },
       "principles": {
         "title": "Základní principy",
-        "description": "Cením si svobody a extrémní autonomie nade vše. Agilní iterace mají přednost před byrokratickým bullshitem, s tvrdou orientací na výsledek a skutečný dopad."
+        "description": "Cením si svobody a extrémní autonomie nade vše. Agilní iterace mají přednost před byrokracií, s tvrdou orientací na výsledek a skutečný dopad."
       }
     },
     "facts": {
