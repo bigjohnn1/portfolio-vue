@@ -24,7 +24,7 @@
         <NuxtLink
           v-for="post in posts"
           :key="post.path"
-          :to="post.path"
+          :to="post.path.replace(/^\/content/, '')"
           class="flex flex-col block group bg-base-bg dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full"
         >
           <div
