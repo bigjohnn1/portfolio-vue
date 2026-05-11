@@ -56,9 +56,9 @@
 </template>
 
 <script setup lang="ts">
-const { data: posts, pending } = await useAsyncData('blog-list', () => {
-  return queryCollection('blog').all()
-})
+const { data: posts, pending } = await useContentData('blog-list', () =>
+  queryCollection('blog').all(),
+)
 
 useSeoMeta({
   title: 'Blog - Big John',

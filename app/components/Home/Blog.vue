@@ -91,10 +91,7 @@
 </template>
 
 <script setup lang="ts">
-const { data: posts, pending } = await useAsyncData('home-blog-posts', () => {
-  return queryCollection('blog')
-    .order('id', 'DESC')
-    .limit(3)
-    .all()
-})
+const { data: posts, pending } = await useContentData('home-blog-posts', () =>
+  queryCollection('blog').order('id', 'DESC').limit(3).all(),
+)
 </script>

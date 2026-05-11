@@ -76,7 +76,7 @@
 const route = useRoute()
 const articleEl = useTemplateRef<HTMLElement>('articleEl')
 
-const { data: post, pending } = await useAsyncData(`blog-${route.path}`, async () => {
+const { data: post, pending } = await useContentData(`blog-${route.path}`, async () => {
   const localPath = route.path
   const remotePath = `/content${route.path}`
 
