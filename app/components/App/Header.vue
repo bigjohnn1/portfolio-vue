@@ -67,7 +67,7 @@
     </nav>
     <button
       type="button"
-      class="cmdk-hint hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 mr-2"
+      class="cmdk-hint hidden md:inline-flex absolute right-20 top-1/2 -translate-y-1/2 items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
       :aria-label="$t('cmdk.openHint')"
       @click="openCommandPalette"
     >
