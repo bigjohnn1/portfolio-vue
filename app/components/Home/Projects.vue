@@ -89,9 +89,9 @@ interface Project {
 }
 
 const projects: Project[] = [
+  { key: 'nimblo', image: 'nimblo.png', link: 'https://app.nimblo.io' },
   { key: 'fastproject', image: 'fastproject.png', link: 'https://app.fastproject.io' },
   { key: 'topiqu', image: 'topiqu.png', link: 'https://reachio.topiqu.com' },
-  { key: 'nimblo', image: 'nimblo.png', link: 'https://app.nimblo.io' },
   { key: 'v-okamihu', image: 'v-okamihu.png' },
   { key: 'hexcodium', image: 'hexcodium.png' },
   { key: 'skola-zivota', image: 'skolazivota.png' },
