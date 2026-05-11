@@ -1,9 +1,10 @@
 <template>
   <div class="w-full max-w-[400px] sm:max-w-[600px] xl2:max-w-[800px] aspect-square">
     <TresCanvas
-      clear-color="#00000000"
-      alpha
+      :alpha="true"
+      :clear-alpha="0"
       :antialias="true"
+      render-mode="always"
       class="w-full h-full"
     >
       <TresPerspectiveCamera

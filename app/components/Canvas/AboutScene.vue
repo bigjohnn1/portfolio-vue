@@ -2,6 +2,7 @@
   <TresCanvas
     clear-color="#0b1020"
     window-size
+    render-mode="always"
     :dpr="dpr"
     :antialias="!isMobile"
     class="absolute inset-0"
@@ -18,12 +19,12 @@
       :intensity="0.6"
     />
 
-    <TresGroup
-      ref="parallaxGroup"
-      :rotation="[0, 0, 0]"
-    >
-      <TresMesh :position="[0, 0, -4]">
-        <TresPlaneGeometry :args="[18, 12]" />
+    <TresGroup ref="parallaxGroup">
+      <TresMesh
+        :position="[0, 0, -4]"
+        :render-order="0"
+      >
+        <TresPlaneGeometry :args="[20, 14]" />
         <TresShaderMaterial
           :vertex-shader="vertexShader"
           :fragment-shader="fragmentShader"
@@ -33,24 +34,19 @@
         />
       </TresMesh>
 
-      <TresGroup
+      <TresMesh
         v-for="(logo, i) in logos"
         :key="logo.label"
+        :ref="(el: any) => { if (el) logoRefs[i] = el }"
         :position="logo.position"
+        :render-order="10"
       >
-        <TresMesh
-          :ref="(el: any) => { if (el) logoRefs[i] = el }"
-          :rotation="[0, 0, 0]"
-        >
-          <TresPlaneGeometry :args="[1.8, 0.6]" />
-          <TresMeshBasicMaterial
-            :map="logo.texture"
-            :transparent="true"
-            :opacity="0.92"
-            :depth-write="false"
-          />
-        </TresMesh>
-      </TresGroup>
+        <TresPlaneGeometry :args="[LOGO_W, LOGO_H]" />
+        <TresMeshBasicMaterial
+          :map="logo.texture"
+          :transparent="true"
+        />
+      </TresMesh>
     </TresGroup>
   </TresCanvas>
 </template>
@@ -66,6 +62,8 @@ const dpr = computed(() => (isMobile.value ? Math.min(window.devicePixelRatio, 1
 
 const { x: mouseX, y: mouseY } = useMouse({ type: 'client' })
 
+// ── Code-rain background ─────────────────────────────────────────────
+
 const codeLines = [
   '<script setup lang="ts">',
   'const route = useRoute()',
@@ -73,56 +71,61 @@ const codeLines = [
   'defineProps<{ open: boolean }>()',
   'const isOpen = ref(false)',
   'watch(() => props.open, (v) => emit(\'change\', v))',
-  'onMounted(() => { ... })',
+  'onMounted(() => { /* ... */ })',
   'useState(\'count\', () => 0)',
-  '<template><div></div></template>',
+  '<template><div /></template>',
   'export default defineNuxtConfig({',
   '  modules: [\'@nuxt/content\'],',
   '})',
   'const colorMode = useColorMode()',
   'useAsyncData(\'posts\', () => $fetch(\'/api\'))',
   'queryCollection(\'blog\').order(\'id\').all()',
-  'export function useToast() {',
-  '  const toasts = useState(...)',
-  '  return { push, dismiss }',
-  '}',
+  'export function useToast() { /* ... */ }',
   'import { useMagicKeys } from \'@vueuse/core\'',
   'navigateTo(\'/blog\')',
   'defineExpose({ open, close })',
-  '<NuxtLink :to=\"`/blog/${slug}`\">',
+  '<NuxtLink :to="`/blog/${slug}`">',
   'const router = useRouter()',
   'useSeoMeta({ title: () => post.title })',
-  'function* generate() { yield 42 }',
   'await Promise.all(tasks.map(run))',
   'const cache = new Map<string, T>()',
   'type Maybe<T> = T | null | undefined',
   'satisfies Record<string, unknown>',
-  'export const useScene = () => ({...})',
+  'export const useScene = () => ({ ... })',
+  'const colors = tw`bg-primary-600 text-white`',
+  'definePageMeta({ layout: \'blog\' })',
+  'useHead({ link: [{ rel: \'preconnect\' }] })',
+  'const { copy } = useClipboard()',
+  'const { y } = useWindowScroll()',
 ]
+
+const CODE_CANVAS_W = 2048
+const CODE_CANVAS_H = 4096
+const CODE_FONT_PX = 36
+const CODE_LINE_HEIGHT = 56
+const CODE_COLUMN_W = 720
 
 const makeCodeTexture = (): THREE.CanvasTexture => {
   const canvas = document.createElement('canvas')
-  canvas.width = 1024
-  canvas.height = 2048
+  canvas.width = CODE_CANVAS_W
+  canvas.height = CODE_CANVAS_H
+
   const ctx = canvas.getContext('2d')!
-  ctx.fillStyle = '#0b1020'
-  ctx.fillRect(0, 0, canvas.width, canvas.height)
-  ctx.font = '18px ui-monospace, SFMono-Regular, Menlo, monospace'
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
+  ctx.font = `${CODE_FONT_PX}px ui-monospace, SFMono-Regular, Menlo, monospace`
   ctx.textBaseline = 'top'
 
-  const lineHeight = 28
-  const columnWidth = 360
-  const columns = Math.ceil(canvas.width / columnWidth) + 1
+  const columns = Math.ceil(canvas.width / CODE_COLUMN_W) + 1
 
   for (let c = 0; c < columns; c++) {
-    const colX = c * columnWidth + 8 + Math.random() * 24
+    const colX = c * CODE_COLUMN_W + 16 + Math.random() * 48
     const offset = Math.floor(Math.random() * codeLines.length)
-    const linesInCol = Math.ceil(canvas.height / lineHeight)
+    const linesInCol = Math.ceil(canvas.height / CODE_LINE_HEIGHT)
     for (let l = 0; l < linesInCol; l++) {
       const line = codeLines[(offset + l) % codeLines.length]!
-      const alpha = 0.15 + Math.random() * 0.25
+      const alpha = 0.4 + Math.random() * 0.45
       ctx.fillStyle = `rgba(125, 211, 252, ${alpha})`
-      ctx.fillText(line, colX, l * lineHeight)
+      ctx.fillText(line, colX, l * CODE_LINE_HEIGHT)
     }
   }
 
@@ -131,6 +134,7 @@ const makeCodeTexture = (): THREE.CanvasTexture => {
   texture.wrapT = THREE.RepeatWrapping
   texture.minFilter = THREE.LinearFilter
   texture.magFilter = THREE.LinearFilter
+  texture.anisotropy = 4
   return texture
 }
 
@@ -155,10 +159,10 @@ const fragmentShader = /* glsl */ `
     uv.y -= uTime * 0.04;
     uv.y = fract(uv.y);
 
-    vec4 tex = texture2D(uTexture, uv * vec2(1.0, 2.0));
+    vec4 tex = texture2D(uTexture, uv * vec2(1.5, 2.0));
 
-    float vignette = smoothstep(1.2, 0.2, length(vUv - 0.5) * 1.8);
-    float scanline = 0.92 + 0.08 * sin(uv.y * 800.0);
+    float vignette = smoothstep(1.2, 0.2, length(vUv - 0.5) * 1.7);
+    float scanline = 0.92 + 0.08 * sin(uv.y * 1200.0);
 
     vec3 color = tex.rgb * scanline;
     float alpha = tex.a * uOpacity * vignette;
@@ -170,77 +174,126 @@ const fragmentShader = /* glsl */ `
 const uniforms = {
   uTexture: { value: codeTexture },
   uTime: { value: 0 },
-  uOpacity: { value: 0.55 },
+  uOpacity: { value: 0.9 },
 }
+
+// ── Logo pills ───────────────────────────────────────────────────────
 
 interface Logo {
   label: string
+  sublabel: string
   color: string
   position: [number, number, number]
   texture: THREE.CanvasTexture
 }
 
-const makeLabelTexture = (label: string, color: string): THREE.CanvasTexture => {
-  const canvas = document.createElement('canvas')
-  canvas.width = 512
-  canvas.height = 192
-  const ctx = canvas.getContext('2d')!
+const LOGO_W = 3
+const LOGO_H = 1.1
 
-  const radius = 48
+const makeLabelTexture = (label: string, sublabel: string, color: string): THREE.CanvasTexture => {
+  const W = 768
+  const H = 280
+
+  const canvas = document.createElement('canvas')
+  canvas.width = W
+  canvas.height = H
+
+  const ctx = canvas.getContext('2d')!
+  ctx.clearRect(0, 0, W, H)
+
+  // Glass-style pill background
+  const radius = 64
   ctx.beginPath()
   ctx.moveTo(radius, 0)
-  ctx.lineTo(canvas.width - radius, 0)
-  ctx.quadraticCurveTo(canvas.width, 0, canvas.width, radius)
-  ctx.lineTo(canvas.width, canvas.height - radius)
-  ctx.quadraticCurveTo(canvas.width, canvas.height, canvas.width - radius, canvas.height)
-  ctx.lineTo(radius, canvas.height)
-  ctx.quadraticCurveTo(0, canvas.height, 0, canvas.height - radius)
+  ctx.lineTo(W - radius, 0)
+  ctx.quadraticCurveTo(W, 0, W, radius)
+  ctx.lineTo(W, H - radius)
+  ctx.quadraticCurveTo(W, H, W - radius, H)
+  ctx.lineTo(radius, H)
+  ctx.quadraticCurveTo(0, H, 0, H - radius)
   ctx.lineTo(0, radius)
   ctx.quadraticCurveTo(0, 0, radius, 0)
   ctx.closePath()
 
-  const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height)
-  grad.addColorStop(0, `${color}cc`)
-  grad.addColorStop(1, `${color}77`)
-  ctx.fillStyle = grad
+  const bgGrad = ctx.createLinearGradient(0, 0, W, H)
+  bgGrad.addColorStop(0, 'rgba(17, 24, 39, 0.85)')
+  bgGrad.addColorStop(1, 'rgba(17, 24, 39, 0.55)')
+  ctx.fillStyle = bgGrad
   ctx.fill()
 
-  ctx.strokeStyle = `${color}ff`
+  ctx.strokeStyle = `${color}cc`
   ctx.lineWidth = 4
   ctx.stroke()
 
+  // Brand-color circular badge on the left
+  const badgeX = 105
+  const badgeY = H / 2
+  const badgeR = 75
+
+  const badgeGrad = ctx.createRadialGradient(badgeX - 18, badgeY - 22, 10, badgeX, badgeY, badgeR)
+  badgeGrad.addColorStop(0, `${color}ff`)
+  badgeGrad.addColorStop(1, `${color}aa`)
+
+  ctx.shadowColor = `${color}88`
+  ctx.shadowBlur = 22
+  ctx.beginPath()
+  ctx.arc(badgeX, badgeY, badgeR, 0, Math.PI * 2)
+  ctx.fillStyle = badgeGrad
+  ctx.fill()
+  ctx.shadowBlur = 0
+
+  ctx.strokeStyle = 'rgba(255,255,255,0.4)'
+  ctx.lineWidth = 2
+  ctx.stroke()
+
+  // First letter inside badge
   ctx.fillStyle = '#ffffff'
-  ctx.font = 'bold 76px ui-sans-serif, system-ui, sans-serif'
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
-  ctx.fillText(label, canvas.width / 2, canvas.height / 2 + 4)
+  ctx.font = `800 ${badgeR * 1.1}px ui-sans-serif, system-ui, sans-serif`
+  ctx.fillText(label.charAt(0), badgeX, badgeY + 4)
+
+  // Label + subtitle on the right
+  const textX = badgeX + badgeR + 30
+  ctx.textAlign = 'left'
+
+  ctx.fillStyle = '#ffffff'
+  ctx.font = '700 64px ui-sans-serif, system-ui, sans-serif'
+  ctx.fillText(label, textX, badgeY - 26)
+
+  ctx.fillStyle = `${color}ee`
+  ctx.font = '500 28px ui-sans-serif, system-ui, sans-serif'
+  ctx.fillText(sublabel, textX, badgeY + 32)
 
   const texture = new THREE.CanvasTexture(canvas)
   texture.minFilter = THREE.LinearFilter
   texture.magFilter = THREE.LinearFilter
+  texture.anisotropy = 4
   return texture
 }
 
-const logoConfigs: Array<{ label: string, color: string, position: [number, number, number] }> = [
-  { label: 'Vue', color: '#42b883', position: [-3.2, 1.6, 0.5] },
-  { label: 'Nuxt', color: '#00dc82', position: [3.0, 1.9, -0.2] },
-  { label: 'React', color: '#61dafb', position: [-2.8, -1.4, 0.8] },
-  { label: 'TS', color: '#3178c6', position: [2.7, -1.6, 1.2] },
-  { label: 'Tailwind', color: '#38bdf8', position: [0, 2.4, -0.5] },
-  { label: 'GSAP', color: '#88ce02', position: [0, -2.2, 0.4] },
+const logoConfigs: Array<{ label: string, sublabel: string, color: string, position: [number, number, number] }> = [
+  { label: 'Vue', sublabel: 'Reactive UI framework', color: '#42b883', position: [-3.5, 1.8, 0.3] },
+  { label: 'Nuxt', sublabel: 'Full-stack meta-framework', color: '#00dc82', position: [3.5, 1.8, -0.4] },
+  { label: 'Tailwind', sublabel: 'Utility-first CSS', color: '#38bdf8', position: [0, 2.4, -0.6] },
+  { label: 'React', sublabel: 'Component UI library', color: '#61dafb', position: [-3.5, -1.8, 0.6] },
+  { label: 'TS', sublabel: 'Static typing for JS', color: '#3178c6', position: [3.5, -1.8, -0.2] },
+  { label: 'GSAP', sublabel: 'Animation engine', color: '#88ce02', position: [0, -2.4, 0.5] },
 ]
 
 const logos: Logo[] = logoConfigs.map(c => ({
   ...c,
-  texture: makeLabelTexture(c.label, c.color),
+  texture: makeLabelTexture(c.label, c.sublabel, c.color),
 }))
 
 if (isMobile.value) {
   logos.splice(3)
 }
 
+// ── Scene animation ──────────────────────────────────────────────────
+
 const parallaxGroup = shallowRef<THREE.Group | null>(null)
-const logoRefs = shallowRef<THREE.Mesh[]>([])
+const logoRefs: THREE.Mesh[] = []
 
 const { onLoop, pause, resume } = useRenderLoop()
 
@@ -254,7 +307,7 @@ onLoop(({ elapsed }) => {
     parallaxGroup.value.rotation.x += (targetRotX - parallaxGroup.value.rotation.x) * 0.05
   }
 
-  logoRefs.value.forEach((mesh, i) => {
+  logoRefs.forEach((mesh, i) => {
     if (!mesh) return
     const cfg = logoConfigs[i]!
     mesh.position.y = cfg.position[1] + Math.sin(elapsed * 0.8 + i) * 0.15
