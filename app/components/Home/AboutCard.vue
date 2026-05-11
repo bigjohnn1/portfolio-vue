@@ -18,7 +18,6 @@
 
         <div class="relative h-full flex flex-col p-6 sm:p-8">
           <div class="flex items-center justify-between text-[11px] font-semibold tracking-[0.18em] text-gray-500 dark:text-gray-400">
-            <span>{{ $t('about.card.idLabel') }}</span>
             <span class="flex items-center gap-1.5">
               <Icon
                 name="twemoji:flag-czechia"
@@ -102,9 +101,6 @@
 
           <div class="mt-auto pt-5 flex items-end justify-between text-xs text-gray-500 dark:text-gray-400">
             <p class="font-mono">SIG · {{ signature }}</p>
-            <p class="font-mono text-[10px] text-gray-400 dark:text-gray-500">
-              v2026.01
-            </p>
           </div>
         </div>
 
@@ -144,7 +140,6 @@
         <div class="relative h-full flex flex-col p-6 sm:p-8">
           <div class="flex items-center justify-between text-[11px] font-semibold tracking-[0.18em] text-gray-500 dark:text-gray-400">
             <span>{{ $t('about.card.backTitle') }}</span>
-            <span>{{ $t('about.card.idLabel') }}</span>
           </div>
 
           <div class="mt-6 space-y-5 flex-grow">
@@ -188,10 +183,7 @@
           </div>
 
           <div class="pt-4 flex items-end justify-between text-xs text-gray-500 dark:text-gray-400">
-            <p class="font-mono">{{ signature }}</p>
-            <p class="font-mono text-[10px] text-gray-400 dark:text-gray-500">
-              v2026.01
-            </p>
+            <p class="font-mono">SIG · {{ signature }}</p>
           </div>
         </div>
 
