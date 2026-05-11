@@ -412,6 +412,13 @@ if (import.meta.client) {
   min-height: 0;
   display: flex;
   flex-direction: column;
+
+  /* Reka ComboboxContent injects inline position:absolute + transform
+     for popper behavior. Override to stay in flex flow. */
+  position: static !important;
+  transform: none !important;
+  width: 100% !important;
+  max-height: none !important;
 }
 
 .cmdk-viewport {
