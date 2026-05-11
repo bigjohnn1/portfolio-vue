@@ -16,7 +16,8 @@
     "home": "Home",
     "logoAlt": "Site Logo",
     "toggleTheme": "Toggle theme",
-    "switchLanguage": "Switch Language"
+    "switchLanguage": "Switch Language",
+    "backToTop": "Back to top"
   },
   "intro": {
     "subtitle": "Building scalable SaaS & AI workflows.",

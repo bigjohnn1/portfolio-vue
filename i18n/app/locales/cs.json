@@ -16,7 +16,8 @@
     "home": "Domů",
     "logoAlt": "Logo webu",
     "toggleTheme": "Přepnout téma",
-    "switchLanguage": "Změnit jazyk"
+    "switchLanguage": "Změnit jazyk",
+    "backToTop": "Zpět nahoru"
   },
   "intro": {
     "subtitle": "Pojďme tvořit škálovatelné SaaS a AI produkty.",
