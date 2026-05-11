@@ -8,17 +8,15 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
     '@nuxt/eslint',
-    '@pinia/nuxt',
     '@nuxt/icon',
     '@nuxt/image',
     '@hypernym/nuxt-gsap',
-    '@pinia-plugin-persistedstate/nuxt',
     'nuxt-nodemailer',
     'nuxt-security',
     '@nuxtjs/seo',
   ],
   pages: true,
-  imports: { dirs: ['~/stores', '~/consts'] },
+  imports: { dirs: ['~/consts'] },
   devtools: { enabled: true },
   app: {
     head: {
@@ -117,7 +115,6 @@ export default defineNuxtConfig({
   ogImage: {
     zeroRuntime: true,
   },
-  pinia: { storesDirs: ['~/stores/**'] },
   security: {
     rateLimiter: {
       interval: 10 * 1000,
