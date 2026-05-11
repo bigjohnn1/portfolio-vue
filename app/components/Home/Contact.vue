@@ -3,6 +3,7 @@
     id="contact"
     class="relative w-full py-28 bg-base-bg overflow-hidden"
   >
+    <AppLocalClock class="contact-clock" />
     <div
       class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row gap-12 relative min-h-[inherit]"
     >
@@ -10,11 +11,12 @@
         <h2
           class="text-5xl font-bold text-primary-700 dark:text-primary-300 tracking-tight"
         >
-          {{ $t("contact.heading") }}
+          {{ $t('contact.heading') }}
         </h2>
         <p class="text-xl text-fantasy-text leading-relaxed">
-          {{ $t("contact.description") }}
+          {{ $t('contact.description') }}
         </p>
+
         <div class="flex flex-col gap-5 text-lg">
           <p>
             <strong class="text-primary-600 dark:text-primary-400">
@@ -24,27 +26,39 @@
                 class="mr-2"
                 aria-hidden="true"
               />
-              {{ $t("contact.phone") }}:
+              {{ $t('contact.phone') }}:
             </strong>
             <a
               href="tel:+420705206985"
               :aria-label="$t('contact.callLabel')"
             >+420 705 206 985</a>
           </p>
-          <p>
-            <strong class="text-primary-600 dark:text-primary-400">
+          <p class="flex flex-wrap items-center gap-2">
+            <strong class="text-primary-600 dark:text-primary-400 flex items-center">
               <Icon
                 name="mdi:email"
                 size="20"
                 class="mr-2"
                 aria-hidden="true"
               />
-              {{ $t("contact.email") }}:
+              {{ $t('contact.email') }}:
             </strong>
             <a
-              href="mailto:benjamin.tomanik@gmail.com"
+              :href="`mailto:${email}`"
               :aria-label="$t('contact.emailLabel')"
-            >benjamin.tomanik@gmail.com</a>
+            >{{ email }}</a>
+            <button
+              type="button"
+              class="copy-btn"
+              :aria-label="$t('contact.copyEmail')"
+              @click="copyEmail"
+            >
+              <Icon
+                :name="copied ? 'mdi:check' : 'mdi:content-copy'"
+                size="16"
+                aria-hidden="true"
+              />
+            </button>
           </p>
         </div>
         <div class="flex gap-6">
@@ -84,15 +98,15 @@
             size="48"
             class="text-primary-600 dark:text-primary-400"
           />
-          <h3 class="text-2xl font-semibold">
-            {{ $t("contact.formHeading") }}
+          <h3 class="text-2xl font-semibold text-center">
+            {{ $t('contact.formHeading') }}
           </h3>
         </div>
         <button
           class="px-8 py-4 text-lg font-semibold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl"
           @click="isOpen = true"
         >
-          {{ $t("contact.button") }}
+          {{ $t('contact.button') }}
         </button>
         <TransitionRoot
           :show="isOpen"
@@ -105,76 +119,84 @@
         </TransitionRoot>
       </div>
     </div>
-    <div
-      class="fixed bottom-6 right-6 z-50 flex flex-col gap-4 backdrop-blur-lg"
-    >
-      <div
-        v-for="toast in toasts"
-        :key="toast.id"
-        class="toast-item flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg z-[999]"
-        :class="toast.success ? 'bg-green-500/10' : 'bg-red-500/10'"
-      >
-        <Icon
-          :name="toast.success ? 'mdi:check-circle' : 'mdi:alert-circle'"
-          size="24"
-          :class="toast.success ? 'text-green-400' : 'text-red-400'"
-        />
-        <span>{{ toast.message }}</span>
-      </div>
-    </div>
   </section>
 </template>
 
 <script setup lang="ts">
 import { TransitionRoot } from '@headlessui/vue'
-import type { gsap } from 'gsap'
+import { useClipboard } from '@vueuse/core'
+import { toast } from 'vue-sonner'
 import { socialLinks } from '~/consts/socials'
 
-const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
-type Toast = {
-  id: number
-  success: boolean
-  message: string
-}
+const { t } = useI18n()
+
+const email = 'benjamin.tomanik@gmail.com'
 const isOpen = shallowRef(false)
-const toasts = reactive<Toast[]>([])
 
-const addToast = (success: boolean, message?: string) => {
-  const toastId = Date.now()
-  toasts.push({
-    id: toastId,
-    success,
-    message: message!,
-  })
+const { copy, copied, isSupported } = useClipboard({ source: email, copiedDuring: 1800 })
 
-  const toastElement = document.querySelector(
-    `.toast-item:nth-child(${toasts.length})`,
-  )
-  $gsap.from(toastElement, {
-    y: 20,
-    opacity: 0,
-    duration: 0.5,
-    ease: 'power2.out',
-  })
-
-  setTimeout(() => {
-    const toastIndex = toasts.findIndex(t => t.id === toastId)
-    const toastElement = document.querySelector(
-      `.toast-item:nth-child(${toastIndex + 1})`,
-    )
-    $gsap.to(toastElement, {
-      y: 20,
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power2.in',
-      onComplete: () => {
-        toasts.splice(toastIndex, 1)
-      },
-    })
-  }, 2700)
+const copyEmail = async () => {
+  if (!isSupported.value) {
+    toast.error(t('contact.copyUnsupported'))
+    return
+  }
+  await copy(email)
+  toast.success(t('contact.emailCopied'))
 }
 
 const handleResult = (data: { success: boolean, message?: string }) => {
-  addToast(data.success, data.message)
+  const message = data.message ?? ''
+  if (data.success) toast.success(message)
+  else toast.error(message)
 }
 </script>
+
+<style scoped>
+.contact-clock {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .contact-clock {
+    top: 2rem;
+    right: 2rem;
+  }
+}
+
+.copy-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  border: 0;
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+:global(.dark) .copy-btn {
+  background: var(--color-primary-900);
+  color: var(--color-primary-200);
+}
+
+.copy-btn:hover,
+.copy-btn:focus-visible {
+  transform: translateY(-1px) scale(1.05);
+  background: var(--color-primary-100);
+  outline: none;
+}
+
+:global(.dark) .copy-btn:hover,
+:global(.dark) .copy-btn:focus-visible {
+  background: var(--color-primary-800);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
+</style>
