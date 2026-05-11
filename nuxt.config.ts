@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     '@hypernym/nuxt-gsap',
+    '@tresjs/nuxt',
     'nuxt-nodemailer',
     'nuxt-security',
     '@nuxtjs/seo',

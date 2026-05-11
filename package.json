@@ -20,6 +20,8 @@
     "@supabase/supabase-js": "^2.49.1",
     "@takumi-rs/core": "^1.1.2",
     "@types/three": "^0.174.0",
+    "@tresjs/core": "^4.3.0",
+    "@tresjs/nuxt": "^3.0.0",
     "@vueuse/core": "^12.8.2",
     "@vueuse/nuxt": "^12.8.2",
     "@zenstackhq/orm": "^3.6.4",
