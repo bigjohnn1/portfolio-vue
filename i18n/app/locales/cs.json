@@ -99,97 +99,103 @@
     "items": {
       "vue": {
         "name": "Vue.js",
-        "description": "Reaktivní framework pro tvorbu uživatelských rozhraní"
+        "description": "Reaktivní UI framework s Composition API"
       },
       "nuxt": {
-        "name": "Nuxt.js",
-        "description": "Framework pro Vue aplikace s SSR"
+        "name": "Nuxt 4",
+        "description": "Full-stack Vue meta-framework (SSR, SSG, hybrid rendering)"
       },
       "react": {
         "name": "React",
-        "description": "Knihovna pro tvorbu uživatelských rozhraní"
+        "description": "Komponentová UI knihovna pro web i native"
       },
-      "nextjs": { "name": "Next.js", "description": "React framework pro web" },
+      "nextjs": {
+        "name": "Next.js",
+        "description": "React meta-framework (SSR, SSG, RSC, App Router)"
+      },
       "tailwind": {
         "name": "Tailwind CSS",
-        "description": "Utility-first CSS framework"
+        "description": "Utility-first CSS framework s JIT engine"
       },
       "unocss": {
         "name": "UnoCSS",
-        "description": "Okamžitý on-demand atomic CSS engine"
+        "description": "Atomic CSS engine, on-demand a fully customizable"
       },
       "typescript": {
         "name": "TypeScript",
-        "description": "Typovaný JavaScript pro škálovatelný kód"
+        "description": "Statické typování nad JavaScriptem"
       },
       "javascript": {
         "name": "JavaScript",
-        "description": "Programovací jazyk pro interaktivitu na webu"
+        "description": "Jazyk webu, ES2024+"
       },
       "php": {
         "name": "PHP",
-        "description": "Skriptovací jazyk pro serverovou stranu"
+        "description": "Server-side scripting (Nette, Laravel)"
       },
       "postgresql": {
         "name": "PostgreSQL",
-        "description": "Výkonná relační databáze s otevřeným kódem"
+        "description": "Open source relační DB s pokročilým SQL a JSONB"
       },
       "mysql": {
         "name": "MySQL",
-        "description": "Populární relační databáze s otevřeným kódem"
+        "description": "Open source relační DB"
       },
       "html": {
         "name": "HTML",
-        "description": "Mark-up jazyk pro tvorbu webových stránek"
+        "description": "Sémantický markup webových stránek"
       },
       "scss": {
         "name": "SCSS",
-        "description": "CSS preprocesor s rozšířenými funkcemi"
+        "description": "CSS preprocesor — variables, mixins, nesting"
       },
       "git": {
         "name": "Git",
-        "description": "Distribuovaný systém správy verzí"
+        "description": "Distribuovaný version control system"
       },
       "docker": {
         "name": "Docker",
-        "description": "Platforma pro kontejnerizaci aplikací"
+        "description": "Kontejnerizace, izolovaná dev/prod prostředí"
       },
       "powershell": {
         "name": "PowerShell",
-        "description": "Nástroj pro automatizaci a skriptování ve Windows"
+        "description": "Cross-platform shell a scripting (Windows-native)"
       },
       "prisma": {
         "name": "Prisma",
-        "description": "ORM na REST API, pro Node.js a TypeScript"
+        "description": "Type-safe ORM pro Node.js a TypeScript"
       },
       "redis": {
         "name": "Redis",
-        "description": "In-memory datová struktura pro rychlé ukládání dat"
+        "description": "In-memory key-value store — cache, queue, pub/sub"
       },
       "zenstack": {
-        "name": "Zenstack v3",
-        "description": "Řízení přístupu a generování API postavený nad Kysely"
+        "name": "ZenStack v3",
+        "description": "Type-safe ORM s RBAC a auto-generovaným API (built on Kysely)"
       },
       "nitro": {
         "name": "Nitro",
-        "description": "Serverový toolkit nové generace"
+        "description": "Universal server engine pod kapotou Nuxt 4"
       },
       "bun": {
         "name": "Bun",
-        "description": "Rychlý all-in-one JavaScript runtime"
+        "description": "All-in-one JS runtime, bundler a package manager"
       },
       "cloudflare": {
         "name": "Cloudflare",
-        "description": "Globální edge síť a bezpečnost"
+        "description": "Edge network — CDN, Workers, R2, D1"
       },
-      "vercel": { "name": "Vercel", "description": "Frontend cloud platforma" },
+      "vercel": {
+        "name": "Vercel",
+        "description": "Serverless deploy platforma — edge functions, ISR, preview"
+      },
       "nodejs": {
         "name": "Node.js",
         "description": "JavaScript runtime postavený na V8"
       },
       "linux": {
         "name": "Linux / WSL",
-        "description": "Operační systém a vývojové prostředí"
+        "description": "Dev OS prostředí (Ubuntu na WSL2)"
       }
     }
   },
@@ -201,6 +207,8 @@
     "formHeading": "Napište a ozvu se co nejdříve",
     "phone": "Telefon",
     "email": "Email",
+    "callLabel": "Zavolat Benjaminu Tomaníkovi",
+    "emailLabel": "Napsat email Benjaminu Tomaníkovi",
     "button": "Napište mi",
     "message": "Můžete mi napsat zde",
     "dialogTitle": "Kontaktujte mě",
@@ -232,6 +240,18 @@
   },
   "about": {
     "title": "Kdo jsem",
+    "card": {
+      "idLabel": "PROFIL · 2026",
+      "name": "Benjamin Tomaník",
+      "role": "Product Engineer & Co-Founder",
+      "location": "Česko",
+      "tagline": "Stavím škálovatelný SaaS a AI workflow.",
+      "shortBio": "Product engineer, který miluje fantasy, zakládá si na extrémní autonomii a staví věci, co dávají smysl — bez zbytečného bullshitu.",
+      "signatureLabel": "Podpis",
+      "flipHint": "Otoč kartu",
+      "flipBack": "Otoč zpět",
+      "backTitle": "Jak pracuji"
+    },
     "story": {
       "title": "Můj příběh",
       "description": "Jsem product engineer z Česka, který miluje fantasy, zakládá si na extrémní autonomii a rád staví věci, které dávají smysl, bez zbytečného bullshitu. Nedávno jsem spoluzaložil startup, kde jsem od nuly postavil celou škálovatelnou architekturu; od edge technologií jako Vue & Nuxt nebo React & Next na frontendu až po databázi, infrastrukturu a dokonce i byznys model."

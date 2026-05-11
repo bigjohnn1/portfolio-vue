@@ -27,7 +27,7 @@
               {{ $t("contact.phone") }}:
             </strong>
             <a
-              href="tel:+420123456789"
+              href="tel:+420705206985"
               :aria-label="$t('contact.callLabel')"
             >+420 705 206 985</a>
           </p>

@@ -3,26 +3,25 @@
     class="flex items-center justify-between p-4 sticky top-0 z-50 w-full transition-colors duration-300 bg-white/5 backdrop-blur-lg border-b border-black/20 dark:bg-gray-900/5 dark:border-white/20"
   >
     <button
-      class="hamburger-btn xl:hidden p-2 cursor-pointer"
+      ref="hamburgerBtn"
+      class="hamburger-btn lg:hidden p-2 cursor-pointer relative"
       :aria-label="$t('nav.toggleMenu')"
       :aria-expanded="isMenuOpen"
-      @click="toggleMenu"
+      @click="onHamburgerClick"
     >
       <span
-        ref="hamburgerIcon"
-        class="inline-block"
+        class="hamburger-lines"
+        :class="{ 'is-open': isMenuOpen }"
+        aria-hidden="true"
       >
-        <Icon
-          :name="isMenuOpen ? 'mingcute:close-fill' : 'mingcute:menu-fill'"
-          size="24"
-          class="text-current transition-transform duration-300"
-          aria-hidden="true"
-        />
+        <span class="line line-top"></span>
+        <span class="line line-mid"></span>
+        <span class="line line-bot"></span>
       </span>
     </button>
 
     <nav
-      class="hidden xl:flex flex-wrap items-center justify-center space-x-32 flex-1"
+      class="hidden lg:flex flex-wrap items-center justify-center space-x-16 xl:space-x-32 flex-1"
       aria-label="Main Navigation"
     >
       <NuxtLink
@@ -89,35 +88,59 @@
       </span>
     </button>
     <div
-      v-if="isMenuOpen"
       ref="mobileMenu"
-      class="fixed left-0 top-[64px] w-full h-[calc(100vh-64px)] p-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg flex flex-col items-center gap-8 z-50 overflow-y-auto xl:h-0"
+      class="mobile-menu absolute left-4 right-4 top-[calc(100%+8px)] p-4 rounded-2xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl shadow-2xl border border-black/10 dark:border-white/10 z-40 lg:hidden"
+      :class="{ 'is-open': isMenuOpen }"
       role="dialog"
       aria-modal="true"
-      :aria-label="$t('nav.mobileMenu')"
+      :aria-hidden="!isMenuOpen"
+      :inert="!isMenuOpen"
+      :aria-label="$t('nav.toggleMenu')"
     >
-      <a
-        v-for="link in links"
-        :key="link.to"
-        :href="link.to"
-        class="text-xl w-full text-center py-4 px-6 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 hover:text-light-accent dark:hover:text-dark-accent transition-colors duration-300"
-        @click="closeMenu"
-      >
-        {{ $t(link.label) }}
-      </a>
-      <a
-        href="/"
-        :aria-label="$t('nav.home')"
-        @click="closeMenu"
-      >
-        <NuxtImg
-          src="/bj.png"
-          :alt="$t('nav.logoAlt')"
-          class="h-12 w-auto transform hover:scale-110 transition-transform duration-300"
-          format="webp"
-          loading="eager"
-        />
-      </a>
+      <div class="mobile-link flex items-center justify-between gap-3 pb-3 mb-3 border-b border-black/10 dark:border-white/10">
+        <a
+          href="#intro"
+          class="flex items-center gap-3 group"
+          :aria-label="$t('nav.home')"
+          @click="closeMenu"
+        >
+          <NuxtImg
+            src="/bj.png"
+            :alt="$t('nav.logoAlt')"
+            class="h-10 w-auto group-hover:scale-110 transition-transform duration-300"
+            format="webp"
+            loading="eager"
+          />
+          <span class="font-semibold text-base text-gray-900 dark:text-gray-50">
+            {{ $t('global.name') }}
+          </span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+        <a
+          v-for="link in links"
+          :key="link.to"
+          :href="link.to"
+          class="mobile-link group w-full py-3 px-3 rounded-xl flex items-center gap-3 hover:bg-primary-50 dark:hover:bg-white/5 transition-colors duration-200"
+          @click="closeMenu"
+        >
+          <span class="w-9 h-9 grid place-items-center rounded-lg bg-primary-50 dark:bg-primary-900 text-primary-700 dark:text-primary-300 group-hover:scale-110 transition-transform duration-300 shrink-0">
+            <Icon
+              :name="link.icon"
+              size="20"
+              aria-hidden="true"
+            />
+          </span>
+          <span class="font-medium text-base truncate">{{ $t(link.label) }}</span>
+          <Icon
+            name="mdi:arrow-right"
+            size="16"
+            class="ml-auto shrink-0 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary-600 dark:text-primary-300"
+            aria-hidden="true"
+          />
+        </a>
+      </div>
     </div>
   </header>
 </template>
@@ -128,9 +151,9 @@ import type { gsap } from 'gsap'
 
 const colorMode = useColorMode()
 const iconWrapper = useTemplateRef('iconWrapper')
-const mobileMenu = useTemplateRef('mobileMenu')
+const mobileMenu = useTemplateRef<HTMLElement>('mobileMenu')
 const themeButton = useTemplateRef('themeButton')
-const hamburgerIcon = useTemplateRef('hamburgerIcon')
+const hamburgerBtn = useTemplateRef<HTMLElement>('hamburgerBtn')
 const isMenuOpen = shallowRef(false)
 
 const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
@@ -156,34 +179,85 @@ const toggleTheme = () => {
 }
 
 const toggleMenu = () => {
-  if (!isMenuOpen.value) {
-    isMenuOpen.value = true
-    $gsap.fromTo(
-      mobileMenu.value,
-      { x: '100%', opacity: 0 },
-      { x: '0%', opacity: 1, duration: 0.4, ease: 'power2.out' },
-    )
-  }
-  else {
-    $gsap.to(mobileMenu.value, {
-      x: '100%',
-      opacity: 0,
-      duration: 0.4,
-      ease: 'power2.in',
-      onComplete: () => {
-        isMenuOpen.value = false
-      },
-    })
-  }
+  isMenuOpen.value = !isMenuOpen.value
 }
 
 const closeMenu = () => {
-  if (isMenuOpen.value) {
-    toggleMenu()
+  isMenuOpen.value = false
+}
+
+watch(isMenuOpen, async (open) => {
+  if (!open || !mobileMenu.value) return
+  await nextTick()
+  const items = mobileMenu.value.querySelectorAll('.mobile-link')
+  $gsap.fromTo(
+    items,
+    { x: -28, opacity: 0 },
+    {
+      x: 0,
+      opacity: 1,
+      duration: 0.55,
+      ease: 'power3.out',
+      stagger: 0.07,
+      delay: 0.15,
+    },
+  )
+})
+
+const clickStamps: number[] = []
+const easterEggActive = shallowRef(false)
+
+const onHamburgerClick = () => {
+  toggleMenu()
+
+  const now = Date.now()
+  clickStamps.push(now)
+  while (clickStamps.length > 5) clickStamps.shift()
+
+  if (
+    clickStamps.length === 5
+    && now - clickStamps[0]! < 2000
+    && !easterEggActive.value
+  ) {
+    clickStamps.length = 0
+    triggerEasterEgg()
   }
 }
 
-onClickOutside(mobileMenu, () => closeMenu(), { ignore: [themeButton] })
+const triggerEasterEgg = () => {
+  if (!import.meta.client) return
+  easterEggActive.value = true
+
+  const emojis = ['⚔️', '🛡️', '🐉', '🎲', '✨', '🧙', '🏰', '🔮', '📜']
+  const count = 28
+  const container = document.createElement('div')
+  container.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden;'
+  document.body.appendChild(container)
+
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('span')
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)] ?? '✨'
+    el.style.cssText = `position:absolute;top:-48px;left:${Math.random() * 100}vw;font-size:${22 + Math.random() * 24}px;will-change:transform,opacity;user-select:none;`
+    container.appendChild(el)
+
+    $gsap.to(el, {
+      y: window.innerHeight + 120,
+      x: (Math.random() - 0.5) * 200,
+      rotation: Math.random() * 720 - 360,
+      opacity: 0,
+      duration: 2.4 + Math.random() * 1.8,
+      ease: 'power1.in',
+      delay: Math.random() * 0.7,
+    })
+  }
+
+  window.setTimeout(() => {
+    container.remove()
+    easterEggActive.value = false
+  }, 5000)
+}
+
+onClickOutside(mobileMenu, () => closeMenu(), { ignore: [themeButton, hamburgerBtn] })
 
 const links = [
   { to: '#references', label: 'nav.references', icon: 'mdi:book-open-variant' },
@@ -217,5 +291,92 @@ const rightLinks = links.slice(midIndex)
 
 .nav-link {
   @include nav-link;
+}
+
+.hamburger-btn {
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba(0, 0, 0, 0.05);
+    outline: none;
+  }
+}
+
+:global(.dark) .hamburger-btn:hover,
+:global(.dark) .hamburger-btn:focus-visible {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.hamburger-lines {
+  position: relative;
+  display: inline-block;
+  width: 26px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: currentColor;
+  border-radius: 999px;
+  transform-origin: center;
+  transition:
+    transform 0.5s cubic-bezier(0.65, 0.05, 0.36, 1),
+    opacity 0.25s ease,
+    width 0.4s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+.line-top    { top: 0; }
+.line-mid    { top: 50%; transform: translateY(-50%); width: 75%; }
+.line-bot    { bottom: 0; width: 55%; }
+
+.hamburger-btn:hover .line-mid,
+.hamburger-btn:hover .line-bot {
+  width: 100%;
+}
+
+.is-open .line-top {
+  transform: translateY(8.75px) rotate(45deg);
+}
+.is-open .line-mid {
+  opacity: 0;
+  transform: translateY(-50%) scaleX(0);
+}
+.is-open .line-bot {
+  width: 100%;
+  transform: translateY(-8.75px) rotate(-45deg);
+}
+
+.mobile-menu {
+  opacity: 0;
+  transform: translateY(-8px) scale(0.96);
+  transform-origin: top left;
+  transition:
+    opacity 0.3s ease,
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.mobile-menu.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.mobile-link {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line,
+  .mobile-menu {
+    transition: none;
+  }
 }
 </style>

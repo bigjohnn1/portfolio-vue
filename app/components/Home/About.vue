@@ -1,95 +1,42 @@
 <template>
   <section
     id="about"
-    class="relative w-full py-28 bg-base-bg text-base-text z-10 overflow-hidden"
+    class="relative w-full py-24 md:py-32 bg-base-bg text-base-text overflow-hidden"
   >
-    <div class="max-w-6xl mx-auto px-4">
-      <h2
-        class="text-4xl md:text-5xl font-bold text-primary-700 dark:text-primary-300 text-center mb-16 tracking-tight animate-title"
-      >
-        {{ $t("about.title") }}
+    <div class="relative max-w-6xl mx-auto px-4">
+      <h2 class="text-4xl md:text-5xl font-bold text-primary-700 dark:text-primary-300 text-center tracking-tight mb-14 md:mb-20">
+        {{ $t('about.title') }}
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-        <div class="flex flex-col gap-8">
-          <div class="animate-story">
-            <h3
-              class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
-            >
-              {{ $t("about.story.title") }}
-            </h3>
-            <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-              {{ $t("about.story.description") }}
-            </p>
-          </div>
-          <ul class="list-none space-y-6 animate-points">
-            <li class="flex items-start gap-4">
-              <Icon
-                name="mdi:robot-outline"
-                size="24"
-                class="text-primary-600 dark:text-primary-400 shrink-0"
-                aria-hidden="true"
-              />
-              <div>
-                <h4
-                  class="text-lg font-medium text-gray-800 dark:text-gray-100"
-                >
-                  {{ $t("about.points.workflow.title") }}
-                </h4>
-                <p class="text-gray-600 dark:text-gray-400">
-                  {{ $t("about.points.workflow.description") }}
-                </p>
-              </div>
-            </li>
-            <li class="flex items-start gap-4">
-              <Icon
-                name="mdi:rocket-launch"
-                size="24"
-                class="text-primary-600 dark:text-primary-400 shrink-0"
-                aria-hidden="true"
-              />
-              <div>
-                <h4
-                  class="text-lg font-medium text-gray-800 dark:text-gray-100"
-                >
-                  {{ $t("about.points.principles.title") }}
-                </h4>
-                <p class="text-gray-600 dark:text-gray-400">
-                  {{ $t("about.points.principles.description") }}
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="animate-facts">
-          <h3
-            class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-6"
-          >
-            {{ $t("about.facts.title") }}
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <HomeAboutCard />
+
+        <div class="flex flex-col gap-6 facts-column">
+          <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">
+            {{ $t('about.facts.title') }}
           </h3>
-          <div class="grid grid-cols-1 gap-6">
-            <div
-              v-for="fact in facts"
-              :key="fact.key"
-              ref="factItems"
-              class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-shadow duration-300 fact-item"
-            >
-              <div class="flex items-center gap-4">
+          <div
+            v-for="fact in facts"
+            :key="fact.key"
+            ref="factItems"
+            class="fact-item p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700"
+          >
+            <div class="flex items-start gap-4">
+              <span class="w-11 h-11 grid place-items-center rounded-xl bg-primary-50 dark:bg-primary-900 shrink-0">
                 <Icon
                   :name="fact.icon"
-                  size="32"
-                  class="text-primary-600 dark:text-primary-400"
+                  size="22"
+                  class="text-primary-600 dark:text-primary-300"
                   aria-hidden="true"
                 />
-                <div>
-                  <h4
-                    class="text-lg font-medium text-gray-800 dark:text-gray-100"
-                  >
-                    {{ $t(`about.facts.items.${fact.key}.title`) }}
-                  </h4>
-                  <p class="text-gray-600 dark:text-gray-400">
-                    {{ $t(`about.facts.items.${fact.key}.description`) }}
-                  </p>
-                </div>
+              </span>
+              <div>
+                <h4 class="text-lg font-medium text-gray-900 dark:text-gray-50">
+                  {{ $t(`about.facts.items.${fact.key}.title`) }}
+                </h4>
+                <p class="mt-1 text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {{ $t(`about.facts.items.${fact.key}.description`) }}
+                </p>
               </div>
             </div>
           </div>
@@ -115,79 +62,54 @@ const facts: Fact[] = [
   { key: 'rpg', icon: 'mdi:sword' },
 ]
 
-const factItems = ref<HTMLElement[]>([])
+const factItems = useTemplateRef<HTMLElement[]>('factItems')
 
 onMounted(() => {
-  $gsap.from('.animate-title', {
-    y: 30,
-    opacity: 0,
-    duration: 0.8,
-    ease: 'power3.out',
-    scrollTrigger: { trigger: '.animate-title', start: 'top 90%' },
+  if (!factItems.value) return
+
+  factItems.value.forEach((item: HTMLElement) => {
+    const onMouseMove = (e: MouseEvent) => {
+      const rect = item.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      const tiltX = ((y - rect.height / 2) / (rect.height / 2)) * 12
+      const tiltY = -((x - rect.width / 2) / (rect.width / 2)) * 12
+
+      $gsap.to(item, {
+        rotateX: tiltX,
+        rotateY: tiltY,
+        duration: 0.3,
+        ease: 'power2.out',
+      })
+    }
+
+    const onMouseLeave = () => {
+      $gsap.to(item, {
+        rotateX: 0,
+        rotateY: 0,
+        duration: 0.4,
+        ease: 'power2.out',
+      })
+    }
+
+    item.addEventListener('mousemove', onMouseMove)
+    item.addEventListener('mouseleave', onMouseLeave)
   })
-
-  $gsap.from('.animate-story', {
-    x: -50,
-    opacity: 0,
-    duration: 0.8,
-    ease: 'power3.out',
-    scrollTrigger: { trigger: '.animate-story', start: 'top 90%' },
-  })
-
-  $gsap.from('.animate-facts', {
-    x: -50,
-    y: 20,
-    opacity: 0,
-    duration: 0.8,
-    ease: 'power2.out',
-    scrollTrigger: { trigger: '.animate-facts', start: 'top 90%' },
-  })
-
-  $gsap.from('.animate-points li', {
-    x: -20,
-    y: 40,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.2,
-    ease: 'power3.out',
-    scrollTrigger: { trigger: '.animate-points', start: 'top 90%' },
-  })
-
-  if (factItems.value) {
-    factItems.value.forEach((item: HTMLElement) => {
-      const onMouseMove = (e: MouseEvent) => {
-        const rect: DOMRect = item.getBoundingClientRect()
-        const x = e.clientX - rect.left
-        const y = e.clientY - rect.top
-        const centerX = rect.width / 2
-        const centerY = rect.height / 2
-        const maxTilt = 25
-
-        const tiltX = ((y - centerY) / centerY) * maxTilt
-        const tiltY = -((x - centerX) / centerX) * maxTilt
-
-        $gsap.to(item, {
-          rotateX: tiltX,
-          rotateY: tiltY,
-          boxShadow: '0 15px 30px rgba(0, 0, 0, 0.2)',
-          duration: 0.3,
-          ease: 'power2.out',
-        })
-      }
-
-      const onMouseLeave = (): void => {
-        $gsap.to(item, {
-          rotateX: 0,
-          rotateY: 0,
-          boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)',
-          duration: 0.3,
-          ease: 'power2.out',
-        })
-      }
-
-      item.addEventListener('mousemove', onMouseMove)
-      item.addEventListener('mouseleave', onMouseLeave)
-    })
-  }
 })
 </script>
+
+<style scoped>
+.facts-column {
+  perspective: 1200px;
+}
+
+.fact-item {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: box-shadow 0.3s ease;
+}
+
+.fact-item:hover {
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.15);
+}
+</style>

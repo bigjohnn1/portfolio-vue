@@ -99,94 +99,103 @@
     "items": {
       "vue": {
         "name": "Vue.js",
-        "description": "Progressive JavaScript framework"
+        "description": "Reactive UI framework with Composition API"
       },
       "nuxt": {
         "name": "Nuxt 4",
-        "description": "The Intuitive Vue Framework"
+        "description": "Full-stack Vue meta-framework (SSR, SSG, hybrid rendering)"
       },
       "react": {
         "name": "React",
-        "description": "A library for web and native user interfaces"
+        "description": "Component UI library for web and native"
       },
       "nextjs": {
         "name": "Next.js",
-        "description": "The React Framework for the Web"
+        "description": "React meta-framework (SSR, SSG, RSC, App Router)"
       },
       "tailwind": {
         "name": "Tailwind CSS",
-        "description": "Utility-first CSS framework"
+        "description": "Utility-first CSS framework with JIT engine"
       },
       "unocss": {
         "name": "UnoCSS",
-        "description": "Instant on-demand atomic CSS engine"
+        "description": "Atomic CSS engine, on-demand and fully customizable"
       },
       "typescript": {
         "name": "TypeScript",
-        "description": "Typed superset of JavaScript"
+        "description": "Static typing on top of JavaScript"
       },
       "javascript": {
         "name": "JavaScript",
-        "description": "Programming language of the Web"
+        "description": "Language of the web, ES2024+"
       },
-      "php": { "name": "PHP", "description": "Server-side scripting language" },
+      "php": {
+        "name": "PHP",
+        "description": "Server-side scripting (Nette, Laravel)"
+      },
       "postgresql": {
         "name": "PostgreSQL",
-        "description": "Open source relational database"
+        "description": "Open source relational DB with advanced SQL and JSONB"
       },
       "mysql": {
         "name": "MySQL",
-        "description": "Open-source relational database management system"
+        "description": "Open source relational DB"
       },
       "html": {
         "name": "HTML",
-        "description": "Markup language for creating web pages"
+        "description": "Semantic markup for the web"
       },
       "scss": {
         "name": "SCSS",
-        "description": "CSS preprocessor with advanced features"
+        "description": "CSS preprocessor — variables, mixins, nesting"
       },
-      "git": { "name": "Git", "description": "Version control system" },
+      "git": {
+        "name": "Git",
+        "description": "Distributed version control system"
+      },
       "docker": {
         "name": "Docker",
-        "description": "Platform for containerizing applications"
+        "description": "Containerization, isolated dev/prod environments"
       },
       "powershell": {
         "name": "PowerShell",
-        "description": "Task automation and configuration management program"
+        "description": "Cross-platform shell and scripting (Windows-native)"
       },
       "prisma": {
         "name": "Prisma",
-        "description": "Next-generation Node.js and TypeScript ORM"
+        "description": "Type-safe ORM for Node.js and TypeScript"
       },
       "redis": {
         "name": "Redis",
-        "description": "In-memory data structure store"
+        "description": "In-memory key-value store — cache, queue, pub/sub"
       },
       "zenstack": {
-        "name": "Zenstack v3",
-        "description": "Access control and API generation built on Kysely"
+        "name": "ZenStack v3",
+        "description": "Type-safe ORM with RBAC and auto-generated APIs (built on Kysely)"
       },
       "nitro": {
         "name": "Nitro",
-        "description": "Next Generation Server Toolkit"
+        "description": "Universal server engine powering Nuxt 4"
       },
       "bun": {
         "name": "Bun",
-        "description": "Fast all-in-one JavaScript runtime"
+        "description": "All-in-one JS runtime, bundler and package manager"
       },
       "cloudflare": {
         "name": "Cloudflare",
-        "description": "Global edge network and security"
+        "description": "Edge network — CDN, Workers, R2, D1"
       },
-      "vercel": { "name": "Vercel", "description": "Frontend Cloud platform" },
+      "vercel": {
+        "name": "Vercel",
+        "description": "Serverless deploy platform — edge functions, ISR, previews"
+      },
       "nodejs": {
         "name": "Node.js",
-        "description": "JavaScript runtime built on Chrome's V8"
+        "description": "JavaScript runtime built on V8"
       },
       "linux": {
         "name": "Linux / WSL",
-        "description": "Operating system and dev environment"
+        "description": "Dev OS environment (Ubuntu on WSL2)"
       }
     }
   },
@@ -198,6 +207,8 @@
     "formHeading": "Contact me here and I'll respond ASAP",
     "phone": "Phone",
     "email": "Email",
+    "callLabel": "Call Benjamin Tomanik",
+    "emailLabel": "Email Benjamin Tomanik",
     "button": "Write me",
     "message": "You can write me here",
     "dialogTitle": "Contact me",
@@ -229,6 +240,18 @@
   },
   "about": {
     "title": "Who I Am",
+    "card": {
+      "idLabel": "PROFILE · 2026",
+      "name": "Benjamin Tomanik",
+      "role": "Product Engineer & Co-Founder",
+      "location": "Czechia",
+      "tagline": "Building scalable SaaS & AI workflows.",
+      "shortBio": "Product engineer who loves fantasy, values extreme autonomy, and builds things that make sense — without unnecessary bullshit.",
+      "signatureLabel": "Signature",
+      "flipHint": "Flip card",
+      "flipBack": "Flip back",
+      "backTitle": "How I work"
+    },
     "story": {
       "title": "My Story",
       "description": "I am a product engineer from Czechia who loves fantasy, values extreme autonomy, and enjoys building things that make sense, without unnecessary bullshit. I recently co-founded a startup where I built the entire scalable architecture from scratch; from edge technologies like Vue & Nuxt or React & Next on the frontend to the database, infrastructure, and even the business model."

@@ -44,7 +44,9 @@ export default defineNuxtConfig({
   content: {
     database: {
       type: 'sqlite',
-      filename: '.data/content/db.sqlite',
+      filename: process.env.NODE_ENV === 'production'
+        ? '.data/content/db.sqlite'
+        : 'content-db.sqlite',
     },
     experimental: {
       sqliteConnector: 'native',
@@ -155,17 +157,17 @@ export default defineNuxtConfig({
         extend: {
           colors: {
             'primary': {
-              50: 'rgb(var(--color-primary-50))',
-              100: 'rgb(var(--color-primary-100))',
-              200: 'rgb(var(--color-primary-200))',
-              300: 'rgb(var(--color-primary-300))',
-              400: 'rgb(var(--color-primary-400))',
-              500: 'rgb(var(--color-primary-500))',
-              600: 'rgb(var(--color-primary-600))',
-              700: 'rgb(var(--color-primary-700))',
-              800: 'rgb(var(--color-primary-800))',
-              900: 'rgb(var(--color-primary-900))',
-              950: 'rgb(var(--color-primary-950))',
+              50: 'var(--color-primary-50)',
+              100: 'var(--color-primary-100)',
+              200: 'var(--color-primary-200)',
+              300: 'var(--color-primary-300)',
+              400: 'var(--color-primary-400)',
+              500: 'var(--color-primary-500)',
+              600: 'var(--color-primary-600)',
+              700: 'var(--color-primary-700)',
+              800: 'var(--color-primary-800)',
+              900: 'var(--color-primary-900)',
+              950: 'var(--color-primary-950)',
             },
             'light-bg': '#F9FAFB',
             'light-text': '#1F2937',
