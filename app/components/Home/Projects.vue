@@ -6,25 +6,25 @@
     <div class="max-w-4xl mx-auto px-4">
       <div class="relative">
         <div
-          class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-gray-400 to-gray-600 dark:from-gray-500 dark:to-gray-700"
+          class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-gray-400 to-gray-600 dark:from-gray-500 dark:to-gray-700"
           aria-hidden="true"
         ></div>
 
         <div
           v-for="(project, index) in projects"
           :key="project.key"
-          class="flex items-center mb-20 relative"
-          :class="{ 'flex-row-reverse': index % 2 === 0 }"
+          class="flex flex-col md:flex-row items-center mb-16 md:mb-20 relative"
+          :class="{ 'md:flex-row-reverse': index % 2 === 0 }"
         >
           <div
             ref="projectElements"
-            class="w-1/2 px-8"
+            class="w-full md:w-1/2 px-0 md:px-8 z-10"
           >
             <NuxtImg
               :src="project.image"
               :alt="$t(`projects.items.${project.key}.title`)"
               sizes="sm:100vw md:50vw lg:400px"
-              class="w-full h-48 object-cover rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_12px_rgba(255,255,255,0.1)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.25)] dark:hover:shadow-[0_6px_16px_rgba(255,255,255,0.15)] transition-shadow duration-300"
+              class="w-full h-56 md:h-48 object-cover rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_12px_rgba(255,255,255,0.1)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.25)] dark:hover:shadow-[0_6px_16px_rgba(255,255,255,0.15)] transition-shadow duration-300"
               loading="lazy"
               decoding="async"
               format="webp"
@@ -38,7 +38,7 @@
               {{ $t(`projects.items.${project.key}.description`) }}
             </p>
 
-            <div class="flex flex-wrap gap-3 mt-3 items-center">
+            <div class="flex flex-wrap gap-3 mt-4 items-center">
               <span class="inline-flex items-center px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-full">
                 {{ $t(`projects.items.${project.key}.timeline`) }}
                 <Icon
@@ -65,7 +65,7 @@
           </div>
 
           <div
-            class="w-1/2 flex justify-center relative"
+            class="hidden md:flex w-1/2 justify-center relative"
             aria-hidden="true"
           >
             <div class="absolute top-1/2 transform -translate-y-1/2 w-8 h-px bg-gray-500 dark:bg-gray-400"></div>
@@ -105,18 +105,39 @@ onMounted(() => {
   ctx = $gsap.context(() => {
     if (!projectElements.value) return
 
-    projectElements.value.forEach((item, index) => {
-      $gsap.from(item, {
-        x: index % 2 === 0 ? 100 : -100,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: item,
-          start: 'top 80%',
-          end: 'bottom 20%',
-          toggleActions: 'play none none reverse',
-        },
+    let mm = $gsap.matchMedia()
+
+    mm.add("(min-width: 768px)", () => {
+      projectElements.value!.forEach((item, index) => {
+        $gsap.from(item, {
+          x: index % 2 === 0 ? 100 : -100,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse',
+          },
+        })
+      })
+    })
+
+    mm.add("(max-width: 767px)", () => {
+      projectElements.value!.forEach((item) => {
+        $gsap.from(item, {
+          y: 50,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 85%',
+            end: 'bottom 15%',
+            toggleActions: 'play none none reverse',
+          },
+        })
       })
     })
   })
