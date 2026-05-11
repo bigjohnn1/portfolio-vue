@@ -235,11 +235,11 @@ const tags: SkillTag[] = [
   { label: 'Architecture', icon: 'mdi:graph-outline' },
 ]
 
-const signature = 'BT-2026'
 
 const flip = (next: boolean) => {
   flipped.value = next
 }
+const signature = useState('signature-year', () => 'BT-' + new Date().getFullYear())
 
 onMounted(() => {
   if (!rootEl.value) return
