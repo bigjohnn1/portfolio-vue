@@ -7,10 +7,10 @@
 
 <script lang="ts" setup>
 import * as THREE from 'three'
-import { useDark } from '@vueuse/core'
 
 const canvas = useTemplateRef<HTMLCanvasElement>('canvas')
-const isDark = useDark()
+const colorMode = useColorMode()
+const isDark = computed(() => colorMode.value === 'dark')
 
 onMounted(() => {
   if (canvas.value) {
