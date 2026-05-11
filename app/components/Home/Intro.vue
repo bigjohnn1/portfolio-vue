@@ -24,19 +24,15 @@
           ref="subtitle"
           class="text-[clamp(16px,2.5vw,26px)] sm:text-[clamp(18px,2.5vw,26px)]"
         >
-          - {{ t("intro.subtitle") }}
+          - {{ $t("intro.subtitle") }}
         </p>
         <NuxtLink
+          ref="cta"
           to="#contact"
-          tabindex="-1"
+          :aria-label="t('intro.ctaLabel')"
+          class="inline-block px-8 py-4 sm:px-10 sm:py-5 mx-auto lg:mx-0 text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-300 animate-fade-up w-fit"
         >
-          <button
-            ref="cta"
-            :aria-label="t('intro.ctaLabel')"
-            class="px-8 py-4 sm:px-10 sm:py-5 mx-auto lg:mx-0 text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-300 animate-fade-up w-fit"
-          >
-            {{ t("intro.cta") }}
-          </button>
+          {{ $t("intro.cta") }}
         </NuxtLink>
       </div>
       <LazyCanvasGlobe class="hidden sm:block" hydrateOnIdle />
@@ -83,7 +79,6 @@
 <script setup lang="ts">
 import type { gsap } from 'gsap'
 
-const { t } = useI18n()
 const title = useTemplateRef<HTMLElement>('title')
 const subtitle = useTemplateRef<HTMLElement>('subtitle')
 const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
