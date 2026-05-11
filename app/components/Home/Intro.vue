@@ -29,7 +29,7 @@
         <NuxtLink
           ref="cta"
           to="#contact"
-          :aria-label="t('intro.ctaLabel')"
+          :aria-label="$t('intro.ctaLabel')"
           class="inline-block px-8 py-4 sm:px-10 sm:py-5 mx-auto lg:mx-0 text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-md hover:shadow-lg transition-all duration-300 animate-fade-up w-fit"
         >
           {{ $t("intro.cta") }}
