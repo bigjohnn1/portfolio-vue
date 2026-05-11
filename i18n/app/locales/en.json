@@ -19,6 +19,25 @@
     "switchLanguage": "Switch Language",
     "backToTop": "Back to top"
   },
+  "cmdk": {
+    "title": "Command palette",
+    "search": "Search",
+    "openHint": "Open command palette",
+    "placeholder": "Type a command or search...",
+    "empty": "No results found.",
+    "navigate": "navigate",
+    "select": "select",
+    "close": "close",
+    "sections": "Sections",
+    "posts": "Blog posts",
+    "actions": "Actions",
+    "switchToDark": "Switch to dark mode",
+    "switchToLight": "Switch to light mode",
+    "switchToCzech": "Switch language to Czech",
+    "switchToEnglish": "Switch language to English",
+    "copyEmail": "Copy email",
+    "openSocial": "Open {platform}"
+  },
   "intro": {
     "subtitle": "Building scalable SaaS & AI workflows.",
     "cta": "Get started",

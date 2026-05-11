@@ -8,6 +8,7 @@
       <NuxtPage />
     </NuxtLayout>
     <AppBackToTop />
+    <AppCommandPalette />
     <Toaster
       position="bottom-right"
       :theme="colorMode.value === 'dark' ? 'dark' : 'light'"

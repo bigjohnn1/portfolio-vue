@@ -66,6 +66,20 @@
       </NuxtLink>
     </nav>
     <button
+      type="button"
+      class="cmdk-hint hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 mr-2"
+      :aria-label="$t('cmdk.openHint')"
+      @click="openCommandPalette"
+    >
+      <Icon
+        name="mdi:magnify"
+        size="16"
+        aria-hidden="true"
+      />
+      <span class="text-sm opacity-70">{{ $t('cmdk.search') }}</span>
+      <kbd class="cmdk-hint-kbd">{{ modKey }} K</kbd>
+    </button>
+    <button
       ref="themeButton"
       :aria-label="$t('nav.toggleTheme')"
       class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
@@ -150,6 +164,9 @@ import { onClickOutside } from '@vueuse/core'
 import type { gsap } from 'gsap'
 
 const colorMode = useColorMode()
+const { open: openCommandPalette } = useCommandPalette()
+const modKey = import.meta.client && /Mac|iPhone|iPad/.test(navigator.platform) ? '⌘' : 'Ctrl'
+
 const iconWrapper = useTemplateRef('iconWrapper')
 const mobileMenu = useTemplateRef<HTMLElement>('mobileMenu')
 const themeButton = useTemplateRef('themeButton')
@@ -291,6 +308,21 @@ const rightLinks = links.slice(midIndex)
 
 .nav-link {
   @include nav-link;
+}
+
+.cmdk-hint-kbd {
+  font-family: ui-monospace, monospace;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.3rem;
+  background: rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  line-height: 1;
+}
+
+:global(.dark) .cmdk-hint-kbd {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
 .hamburger-btn {

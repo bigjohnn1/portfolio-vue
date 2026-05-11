@@ -19,6 +19,25 @@
     "switchLanguage": "Změnit jazyk",
     "backToTop": "Zpět nahoru"
   },
+  "cmdk": {
+    "title": "Příkazová paleta",
+    "search": "Hledat",
+    "openHint": "Otevřít příkazovou paletu",
+    "placeholder": "Napiš příkaz nebo hledej...",
+    "empty": "Žádné výsledky.",
+    "navigate": "procházet",
+    "select": "vybrat",
+    "close": "zavřít",
+    "sections": "Sekce",
+    "posts": "Články",
+    "actions": "Akce",
+    "switchToDark": "Přepnout na tmavý režim",
+    "switchToLight": "Přepnout na světlý režim",
+    "switchToCzech": "Přepnout jazyk na češtinu",
+    "switchToEnglish": "Přepnout jazyk na angličtinu",
+    "copyEmail": "Zkopírovat email",
+    "openSocial": "Otevřít {platform}"
+  },
   "intro": {
     "subtitle": "Pojďme tvořit škálovatelné SaaS a AI produkty.",
     "cta": "Začněte svou cestu",
