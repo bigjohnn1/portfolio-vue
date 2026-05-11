@@ -29,7 +29,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ['~/assets/scss/base.scss'],
+  css: ['~/assets/scss/base.scss', 'vue-sonner/style.css'],
   site: {
     url: 'https://benjamin-tomanik.cz',
     name: 'Big John',
