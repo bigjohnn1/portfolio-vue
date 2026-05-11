@@ -76,28 +76,36 @@
 const route = useRoute()
 const articleEl = useTemplateRef<HTMLElement>('articleEl')
 
-const { data: post, pending } = await useContentData(`blog-${route.path}`, async () => {
-  const localPath = route.path
-  const remotePath = `/content${route.path}`
+const cleanPath = computed(() => decodeURI(route.path).replace(/\/$/, '') || '/')
 
-  try {
-    const p = await queryCollection('blog').path(localPath).first()
-    if (p) return p
-  }
-  catch {
-    //
-  }
+const { data: post, pending } = await useContentData(
+  `blog-${cleanPath.value}`,
+  async () => {
+    const localPath = cleanPath.value
+    const remotePath = `/content${cleanPath.value}`
 
-  try {
-    const p = await queryCollection('blog').path(remotePath).first()
-    if (p) return p
-  }
-  catch {
-    //
-  }
+    try {
+      const p = await queryCollection('blog').path(localPath).first()
+      if (p) return p
+    }
+    catch (e) {
+      console.warn('Local path fetch failed:', e)
+    }
 
-  return null
-})
+    try {
+      const p = await queryCollection('blog').path(remotePath).first()
+      if (p) return p
+    }
+    catch (e) {
+      console.warn('Remote path fetch failed:', e)
+    }
+
+    return null
+  },
+  {
+    watch: [cleanPath]
+  }
+)
 
 useSeoMeta({
   title: () => (post.value?.title ? `${post.value.title} - Big John` : 'Blog - Big John'),
