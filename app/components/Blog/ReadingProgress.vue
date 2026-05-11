@@ -17,8 +17,7 @@ const props = defineProps<{
   target: HTMLElement | null
 }>()
 
-const targetRef = computed(() => props.target)
-const { top, height } = useElementBounding(targetRef)
+const { top, height } = useElementBounding(() => props.target)
 const { height: viewportHeight } = useWindowSize()
 
 const progress = computed(() => {
