@@ -1,5 +1,10 @@
 <template>
   <div class="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 min-h-screen">
+    <BlogReadingProgress
+      v-if="post"
+      :target="articleEl"
+    />
+
     <div
       v-if="pending"
       class="text-gray-500"
@@ -8,7 +13,7 @@
     </div>
 
     <div v-else-if="post" class="lg:grid lg:grid-cols-[1fr_280px] xl:grid-cols-[1fr_320px] lg:gap-12 items-start">
-      <article class="prose dark:prose-invert prose-primary lg:prose-lg max-w-none min-w-0">
+      <article ref="articleEl" class="prose dark:prose-invert prose-primary lg:prose-lg max-w-none min-w-0">
         <NuxtLink
           to="/blog"
           class="text-primary-600 hover:text-primary-700 dark:text-primary-400 no-underline mb-8 inline-block"
@@ -69,6 +74,7 @@
 
 <script setup lang="ts">
 const route = useRoute()
+const articleEl = useTemplateRef<HTMLElement>('articleEl')
 
 const { data: post, pending } = await useAsyncData(`blog-${route.path}`, async () => {
   const localPath = route.path
