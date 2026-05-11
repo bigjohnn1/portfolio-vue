@@ -19,6 +19,13 @@
     "switchLanguage": "Změnit jazyk",
     "backToTop": "Zpět nahoru"
   },
+  "scene": {
+    "title": "3D scéna",
+    "description": "Interaktivní 3D scéna s plovoucími tech názvy a jemným code-rain pozadím. Stiskni Escape pro zavření.",
+    "openHint": "Otevřít 3D scénu",
+    "close": "Zavřít 3D scénu",
+    "escHint": "pro zavření"
+  },
   "cmdk": {
     "title": "Příkazová paleta",
     "search": "Hledat",
@@ -274,6 +281,7 @@
       "location": "Česko",
       "tagline": "Stavím škálovatelný SaaS a AI workflow.",
       "shortBio": "Product engineer, který miluje fantasy, zakládá si na extrémní autonomii a staví věci, co dávají smysl — bez zbytečného bullshitu.",
+      "photoAlt": "Portrét Big John",
       "signatureLabel": "Podpis",
       "flipHint": "Otoč kartu",
       "flipBack": "Otoč zpět",

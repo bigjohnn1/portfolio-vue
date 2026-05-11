@@ -1,109 +1,121 @@
 <template>
-  <canvas
-    ref="canvas"
-    class="w-full max-w-[400px] sm:max-w-[600px] xl2:max-w-[800px] aspect-square z-0"
-  ></canvas>
+  <div class="w-full max-w-[400px] sm:max-w-[600px] xl2:max-w-[800px] aspect-square">
+    <TresCanvas
+      clear-color="#00000000"
+      alpha
+      :antialias="true"
+      class="w-full h-full"
+    >
+      <TresPerspectiveCamera
+        :position="[0, 0, 4]"
+        :fov="70"
+        :near="1"
+        :far="2000"
+      />
+
+      <TresMesh ref="sphereRef">
+        <TresSphereGeometry :args="[2, 58, 58]" />
+        <TresShaderMaterial
+          :vertex-shader="vertexShader"
+          :fragment-shader="fragmentShader"
+          :uniforms="uniforms"
+          :wireframe="true"
+          :transparent="true"
+        />
+      </TresMesh>
+
+      <TresMesh
+        ref="ringRef"
+        :rotation="[Math.PI / 2, 0, 0]"
+      >
+        <TresRingGeometry :args="[2.5, 2.7, 64]" />
+        <TresMeshBasicMaterial
+          :color="globeColor"
+          :side="DoubleSide"
+        />
+      </TresMesh>
+
+      <TresPoints ref="particlesRef">
+        <TresBufferGeometry>
+          <TresBufferAttribute
+            attach="attributes-position"
+            :args="[particlePositions, 3]"
+          />
+        </TresBufferGeometry>
+        <TresPointsMaterial
+          :color="globeColor"
+          :size="0.05"
+        />
+      </TresPoints>
+    </TresCanvas>
+  </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
+import { useRenderLoop } from '@tresjs/core'
 import * as THREE from 'three'
 
-const canvas = useTemplateRef<HTMLCanvasElement>('canvas')
+const { DoubleSide } = THREE
+const Math_ = Math
+
 const colorMode = useColorMode()
 const isDark = computed(() => colorMode.value === 'dark')
 
-onMounted(() => {
-  if (canvas.value) {
-    const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(70, 1, 1, 2000)
-    const renderer = new THREE.WebGLRenderer({
-      canvas: canvas.value,
-      alpha: true,
-    })
-    const resizeCanvas = () => {
-      const size = canvas.value?.parentElement?.clientWidth || 800
-      const newSize = Math.min(size, 800)
-      renderer.setSize(newSize, newSize)
-    }
-    resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
+const globeColor = computed(() => (isDark.value ? '#b0b0b0' : '#000000'))
 
-    const sphereGeometry = new THREE.SphereGeometry(2, 58, 58)
-    const sphereMaterial = new THREE.ShaderMaterial({
-      uniforms: {
-        color: { value: new THREE.Color(0x000000) },
-        time: { value: 0.0 },
-      },
-      vertexShader: `
-        varying vec3 vPosition;
-        void main() {
-          vPosition = position;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }
-      `,
-      fragmentShader: `
-        uniform vec3 color;
-        uniform float time;
-        varying vec3 vPosition;
-        void main() {
-          float glow = 0.1 + abs(sin(time + vPosition.y)) * 0.15;
-          gl_FragColor = vec4(color, glow);
-        }
-      `,
-      wireframe: true,
-    })
-    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
-    scene.add(sphere)
+const sphereRef = shallowRef<THREE.Mesh | null>(null)
+const ringRef = shallowRef<THREE.Mesh | null>(null)
+const particlesRef = shallowRef<THREE.Points | null>(null)
 
-    const ringGeometry = new THREE.RingGeometry(2.5, 2.7, 64)
-    const ringMaterial = new THREE.MeshBasicMaterial({
-      color: 0x000000,
-      side: THREE.DoubleSide,
-    })
-    const ring = new THREE.Mesh(ringGeometry, ringMaterial)
-    ring.rotation.x = Math.PI / 2
-    scene.add(ring)
+const uniforms = {
+  color: { value: new THREE.Color(0x000000) },
+  time: { value: 0 },
+}
 
-    const particleCount = 200
-    const particlesGeometry = new THREE.BufferGeometry()
-    const positions = new Float32Array(particleCount * 3)
-    for (let i = 0; i < particleCount * 3; i++) {
-      positions[i] = (Math.random() - 0.5) * 10
-    }
-    particlesGeometry.setAttribute(
-      'position',
-      new THREE.BufferAttribute(positions, 3),
-    )
-    const particlesMaterial = new THREE.PointsMaterial({
-      color: 0x000000,
-      size: 0.05,
-    })
-    const particles = new THREE.Points(particlesGeometry, particlesMaterial)
-    scene.add(particles)
+watch(globeColor, (c) => {
+  uniforms.color.value.set(c)
+}, { immediate: true })
 
-    camera.position.z = 4
+const particleCount = 200
+const particlePositions = new Float32Array(particleCount * 3)
+for (let i = 0; i < particleCount * 3; i++) {
+  particlePositions[i] = (Math_.random() - 0.5) * 10
+}
 
-    watchEffect(() => {
-      const globeColor = isDark.value ? 0xb0b0b0 : 0x000000
-      sphereMaterial.uniforms!.color!.value.set(globeColor)
-      ringMaterial.color.set(globeColor)
-      particlesMaterial.color.set(globeColor)
-    })
+const vertexShader = /* glsl */ `
+  varying vec3 vPosition;
+  void main() {
+    vPosition = position;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`
 
-    const animate = () => {
-      requestAnimationFrame(animate)
-      sphere.rotation.y += 0.001
-      ring.rotation.z += 0.001
-      sphereMaterial.uniforms!.time!.value += 0.01
-      particles.rotation.y += 0.0005
-      sphere.scale.set(
-        1 + Math.sin(sphereMaterial.uniforms!.time!.value * 0.5) * 0.05,
-        1 + Math.sin(sphereMaterial.uniforms!.time!.value * 0.5) * 0.05,
-        1 + Math.sin(sphereMaterial.uniforms!.time!.value * 0.5) * 0.05,
-      )
-      renderer.render(scene, camera)
-    }
-    animate()
+const fragmentShader = /* glsl */ `
+  uniform vec3 color;
+  uniform float time;
+  varying vec3 vPosition;
+  void main() {
+    float glow = 0.1 + abs(sin(time + vPosition.y)) * 0.15;
+    gl_FragColor = vec4(color, glow);
+  }
+`
+
+const { onLoop } = useRenderLoop()
+
+onLoop(({ delta }) => {
+  uniforms.time.value += delta
+
+  if (sphereRef.value) {
+    sphereRef.value.rotation.y += 0.001
+    const t = uniforms.time.value
+    const scale = 1 + Math_.sin(t * 0.5) * 0.05
+    sphereRef.value.scale.set(scale, scale, scale)
+  }
+  if (ringRef.value) {
+    ringRef.value.rotation.z += 0.001
+  }
+  if (particlesRef.value) {
+    particlesRef.value.rotation.y += 0.0005
   }
 })
 </script>

@@ -9,6 +9,7 @@
     </NuxtLayout>
     <LazyAppBackToTop hydrateOnIdle />
     <LazyAppCommandPalette hydrateOnIdle />
+    <LazyAboutSceneOverlay v-if="sceneIsOpen" />
     <Toaster
       position="bottom-right"
       :theme="colorMode.value === 'dark' ? 'dark' : 'light'"
@@ -28,6 +29,7 @@ const loaderColor = computed(() => {
 })
 
 const { isOpen: paletteIsOpen } = useCommandPalette()
+const { isOpen: sceneIsOpen } = useScene()
 
 if (import.meta.client) {
   const keys = useMagicKeys({

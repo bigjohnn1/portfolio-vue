@@ -30,32 +30,42 @@
           </div>
 
           <div class="flex items-center gap-5 mt-6">
-            <div class="shrink-0 w-24 h-24 sm:w-28 sm:h-28">
-              <svg
-                viewBox="0 0 200 200"
-                class="w-full h-full"
-                role="img"
-                :aria-label="$t('about.card.name')"
-              >
-                <defs>
-                  <linearGradient id="avatar-halo" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#e0e7ff" />
-                    <stop offset="100%" stop-color="#fce7f3" />
-                  </linearGradient>
-                  <linearGradient id="avatar-body" x1="0" y1="1" x2="1" y2="0">
-                    <stop offset="0%" stop-color="#c7d2fe" />
-                    <stop offset="100%" stop-color="#fbcfe8" />
-                  </linearGradient>
-                  <linearGradient id="avatar-head" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#fde68a" />
-                    <stop offset="100%" stop-color="#fed7aa" />
-                  </linearGradient>
-                </defs>
-                <circle cx="100" cy="100" r="92" fill="url(#avatar-halo)" opacity="0.7" />
-                <path d="M30 200 Q100 120 170 200 Z" fill="url(#avatar-body)" />
-                <circle cx="100" cy="85" r="42" fill="url(#avatar-head)" />
-              </svg>
-            </div>
+            <button
+              type="button"
+              class="shrink-0 relative w-24 h-24 sm:w-28 sm:h-28 group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 rounded-2xl"
+              :aria-label="$t('scene.openHint')"
+              aria-haspopup="dialog"
+              @click="openScene"
+            >
+              <div
+                aria-hidden="true"
+                class="absolute -inset-3 rounded-3xl bg-gradient-to-br from-indigo-200 via-pink-200 to-amber-200 dark:from-indigo-500/25 dark:via-pink-500/20 dark:to-amber-500/25 blur-lg opacity-90 group-hover:opacity-100 group-hover:blur-xl transition-all duration-300"
+              />
+              <div class="relative w-full h-full rounded-2xl overflow-hidden ring-2 ring-white/90 dark:ring-gray-900/90 shadow-lg group-hover:scale-105 transition-transform duration-300 motion-reduce:transition-none motion-reduce:group-hover:scale-100">
+                <NuxtImg
+                  src="/bigjohn_dev.png"
+                  :alt="$t('about.card.photoAlt')"
+                  width="224"
+                  height="224"
+                  sizes="96px sm:112px"
+                  fit="cover"
+                  format="webp"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover"
+                />
+                <span
+                  aria-hidden="true"
+                  class="absolute inset-0 grid place-items-center bg-black/0 group-hover:bg-black/30 transition-colors duration-300"
+                >
+                  <Icon
+                    name="mdi:cube-outline"
+                    size="28"
+                    class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                </span>
+              </div>
+            </button>
 
             <div class="min-w-0">
               <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-50 leading-tight">
@@ -219,6 +229,7 @@ const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
 
 const flipped = shallowRef(false)
 const rootEl = useTemplateRef<HTMLElement>('rootEl')
+const { open: openScene } = useScene()
 
 interface SkillTag {
   label: string

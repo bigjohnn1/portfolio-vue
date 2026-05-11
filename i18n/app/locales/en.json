@@ -19,6 +19,13 @@
     "switchLanguage": "Switch Language",
     "backToTop": "Back to top"
   },
+  "scene": {
+    "title": "3D scene",
+    "description": "An interactive 3D scene featuring floating tech labels and a subtle code-rain backdrop. Press Escape to close.",
+    "openHint": "Open 3D scene",
+    "close": "Close 3D scene",
+    "escHint": "to close"
+  },
   "cmdk": {
     "title": "Command palette",
     "search": "Search",
@@ -274,6 +281,7 @@
       "location": "Czechia",
       "tagline": "Building scalable SaaS & AI workflows.",
       "shortBio": "Product engineer who loves fantasy, values extreme autonomy, and builds things that make sense — without unnecessary bullshit.",
+      "photoAlt": "Portrait of Big John",
       "signatureLabel": "Signature",
       "flipHint": "Flip card",
       "flipBack": "Flip back",
