@@ -6,7 +6,7 @@
     <div
       class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 z-20"
     >
-      <LazyAppLocaleSwitcher hydrateOnInteraction />
+      <LazyAppLocaleSwitcher hydrateOnIdle />
     </div>
     <div
       class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 relative z-10"
