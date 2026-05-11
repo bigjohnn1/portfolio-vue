@@ -109,7 +109,7 @@
 </template>
 
 <script setup lang="ts">
-import { useClipboard, useMagicKeys } from '@vueuse/core'
+import { useClipboard } from '@vueuse/core'
 import {
   ComboboxContent,
   ComboboxGroup,
@@ -160,7 +160,7 @@ const focusInput = () => {
 const email = 'benjamin.tomanik@gmail.com'
 const { copy: copyToClipboard, isSupported: clipboardSupported } = useClipboard({ source: email })
 
-const { data: posts } = await useAsyncData(
+const { data: posts } = await useContentData(
   'cmdk-blog-posts',
   () => queryCollection('blog').order('id', 'DESC').limit(3).all(),
   { default: () => [] },
@@ -314,23 +314,6 @@ const onSelect = async (id: string | null) => {
 watch(isOpen, (open) => {
   if (!open) query.value = ''
 })
-
-if (import.meta.client) {
-  const keys = useMagicKeys({
-    passive: false,
-    onEventFired(e) {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k' && e.type === 'keydown') {
-        e.preventDefault()
-      }
-    },
-  })
-  const cmdK = keys['Meta+K']
-  const ctrlK = keys['Ctrl+K']
-
-  watch([cmdK, ctrlK], ([m, c]) => {
-    if (m || c) isOpen.value = !isOpen.value
-  })
-}
 </script>
 
 <style scoped>

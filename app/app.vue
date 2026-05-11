@@ -7,8 +7,8 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <AppBackToTop />
-    <AppCommandPalette />
+    <LazyAppBackToTop hydrateOnIdle />
+    <LazyAppCommandPalette hydrateOnIdle />
     <Toaster
       position="bottom-right"
       :theme="colorMode.value === 'dark' ? 'dark' : 'light'"
@@ -19,12 +19,30 @@
 </template>
 
 <script lang="ts" setup>
+import { useMagicKeys } from '@vueuse/core'
 import { Toaster } from 'vue-sonner'
 
 const colorMode = useColorMode()
 const loaderColor = computed(() => {
   return colorMode.value === 'light' ? '#3B82F6' : '#60A5FA'
 })
+
+const { isOpen: paletteIsOpen } = useCommandPalette()
+
+if (import.meta.client) {
+  const keys = useMagicKeys({
+    passive: false,
+    onEventFired(e) {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k' && e.type === 'keydown') {
+        e.preventDefault()
+      }
+    },
+  })
+
+  watch([keys['Meta+K'], keys['Ctrl+K']], ([m, c]) => {
+    if (m || c) paletteIsOpen.value = !paletteIsOpen.value
+  })
+}
 
 useSeoMeta({
   titleTemplate: (titleChunk) => {
