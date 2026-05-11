@@ -1,23 +1,30 @@
 <template>
   <div
     ref="rootEl"
-    class="about-card relative w-full max-w-md mx-auto md:mx-0"
+    class="relative w-full max-w-md mx-auto md:mx-0 [perspective:1600px]"
   >
     <div
-      class="card-inner relative w-full"
-      :class="{ 'is-flipped': flipped }"
+      class="relative w-full min-h-[560px] sm:min-h-[600px] [transform-style:preserve-3d] transition-transform duration-[850ms] ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none"
+      :class="flipped ? '[transform:rotateY(180deg)]' : ''"
     >
       <article
-        class="card-face card-front absolute inset-0 rounded-[2rem] overflow-hidden border border-gray-200 dark:border-white/10 shadow-xl bg-white dark:bg-gray-900"
+        class="absolute inset-0 rounded-[2rem] overflow-hidden border border-gray-200 dark:border-white/10 shadow-xl bg-white dark:bg-gray-900 [backface-visibility:hidden]"
         :aria-hidden="flipped"
       >
-        <div class="card-bg" aria-hidden="true"></div>
+        <div
+          aria-hidden="true"
+          class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_100%_0%,rgba(224,231,255,0.55),transparent_45%),radial-gradient(circle_at_0%_100%,rgba(252,231,243,0.45),transparent_50%)] dark:bg-[radial-gradient(circle_at_100%_0%,rgba(99,102,241,0.12),transparent_45%),radial-gradient(circle_at_0%_100%,rgba(244,114,182,0.08),transparent_50%)]"
+        />
 
         <div class="relative h-full flex flex-col p-6 sm:p-8">
           <div class="flex items-center justify-between text-[11px] font-semibold tracking-[0.18em] text-gray-500 dark:text-gray-400">
             <span>{{ $t('about.card.idLabel') }}</span>
             <span class="flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <Icon
+                name="twemoji:flag-czechia"
+                class="w-3.5 h-3.5 rounded-sm shadow-sm"
+                aria-hidden="true"
+              />
               {{ $t('about.card.location') }}
             </span>
           </div>
@@ -63,13 +70,19 @@
             </div>
           </div>
 
-          <div class="mt-5 flex flex-wrap gap-2">
+          <div class="mt-5 flex flex-wrap gap-1.5">
             <span
               v-for="tag in tags"
-              :key="tag"
-              class="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-200"
+              :key="tag.label"
+              class="group inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full bg-primary-50 dark:bg-primary-900/60 border border-primary-200/70 dark:border-primary-700/50 text-primary-700 dark:text-primary-200 hover:scale-105 hover:shadow-sm hover:bg-primary-100 dark:hover:bg-primary-800/70 transition-all duration-200 motion-reduce:transition-none motion-reduce:hover:scale-100"
             >
-              {{ tag }}
+              <Icon
+                :name="tag.icon"
+                size="14"
+                class="opacity-75 group-hover:opacity-100 transition-opacity"
+                aria-hidden="true"
+              />
+              {{ tag.label }}
             </span>
           </div>
 
@@ -87,20 +100,36 @@
 
         <button
           type="button"
-          class="corner-flip"
+          class="absolute bottom-0 right-0 w-11 h-11 hover:w-[68px] hover:h-[68px] focus-visible:w-[68px] focus-visible:h-[68px] cursor-pointer overflow-visible bg-transparent border-0 p-0 transition-[width,height] duration-[350ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none outline-none
+            before:content-[''] before:absolute before:inset-0 before:[clip-path:polygon(100%_0%,100%_100%,0%_100%)] before:rounded-br-[2rem] before:bg-gradient-to-br before:from-slate-50 before:via-gray-200 before:to-slate-300 before:shadow-[inset_1px_1px_0_rgba(255,255,255,0.9),_-2px_-2px_6px_rgba(15,23,42,0.12)] dark:before:from-gray-800 dark:before:via-gray-700 dark:before:to-gray-600 dark:before:shadow-[inset_1px_1px_0_rgba(255,255,255,0.08),_-2px_-2px_6px_rgba(0,0,0,0.4)]
+            after:content-[''] after:absolute after:inset-0 after:rounded-br-[2rem] after:pointer-events-none after:[background:linear-gradient(135deg,transparent_calc(50%-1px),rgba(15,23,42,0.18)_50%,transparent_calc(50%+1px))] dark:after:[background:linear-gradient(135deg,transparent_calc(50%-1px),rgba(0,0,0,0.5)_50%,transparent_calc(50%+1px))]"
           :aria-label="$t('about.card.flipHint')"
           :tabindex="flipped ? -1 : 0"
           @click="flip(true)"
         >
-          <span class="corner-flip-crease" aria-hidden="true"></span>
+          <svg
+            class="absolute bottom-2 right-2 w-3.5 h-3.5 opacity-60 group-hover:opacity-85 pointer-events-none"
+            viewBox="0 0 14 14"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <line x1="2" y1="12" x2="12" y2="2" />
+            <line x1="5" y1="12" x2="12" y2="5" />
+          </svg>
         </button>
       </article>
 
       <article
-        class="card-face card-back absolute inset-0 rounded-[2rem] overflow-hidden border border-gray-200 dark:border-white/10 shadow-xl bg-white dark:bg-gray-900"
+        class="absolute inset-0 rounded-[2rem] overflow-hidden border border-gray-200 dark:border-white/10 shadow-xl bg-white dark:bg-gray-900 [backface-visibility:hidden] [transform:rotateY(180deg)]"
         :aria-hidden="!flipped"
       >
-        <div class="card-bg card-bg-back" aria-hidden="true"></div>
+        <div
+          aria-hidden="true"
+          class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_0%_0%,rgba(254,243,199,0.45),transparent_45%),radial-gradient(circle_at_100%_100%,rgba(199,210,254,0.45),transparent_50%)] dark:bg-[radial-gradient(circle_at_0%_0%,rgba(251,191,36,0.1),transparent_45%),radial-gradient(circle_at_100%_100%,rgba(99,102,241,0.12),transparent_50%)]"
+        />
 
         <div class="relative h-full flex flex-col p-6 sm:p-8">
           <div class="flex items-center justify-between text-[11px] font-semibold tracking-[0.18em] text-gray-500 dark:text-gray-400">
@@ -158,12 +187,25 @@
 
         <button
           type="button"
-          class="corner-flip corner-flip-back"
+          class="absolute bottom-0 right-0 w-11 h-11 hover:w-[68px] hover:h-[68px] focus-visible:w-[68px] focus-visible:h-[68px] cursor-pointer overflow-visible bg-transparent border-0 p-0 transition-[width,height] duration-[350ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none outline-none
+            before:content-[''] before:absolute before:inset-0 before:[clip-path:polygon(100%_0%,100%_100%,0%_100%)] before:rounded-br-[2rem] before:bg-gradient-to-br before:from-slate-50 before:via-gray-200 before:to-slate-300 before:shadow-[inset_1px_1px_0_rgba(255,255,255,0.9),_-2px_-2px_6px_rgba(15,23,42,0.12)] dark:before:from-gray-800 dark:before:via-gray-700 dark:before:to-gray-600 dark:before:shadow-[inset_1px_1px_0_rgba(255,255,255,0.08),_-2px_-2px_6px_rgba(0,0,0,0.4)]
+            after:content-[''] after:absolute after:inset-0 after:rounded-br-[2rem] after:pointer-events-none after:[background:linear-gradient(135deg,transparent_calc(50%-1px),rgba(15,23,42,0.18)_50%,transparent_calc(50%+1px))] dark:after:[background:linear-gradient(135deg,transparent_calc(50%-1px),rgba(0,0,0,0.5)_50%,transparent_calc(50%+1px))]"
           :aria-label="$t('about.card.flipBack')"
           :tabindex="flipped ? 0 : -1"
           @click="flip(false)"
         >
-          <span class="corner-flip-crease" aria-hidden="true"></span>
+          <svg
+            class="absolute bottom-2 right-2 w-3.5 h-3.5 opacity-60 pointer-events-none"
+            viewBox="0 0 14 14"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <line x1="2" y1="12" x2="12" y2="2" />
+            <line x1="5" y1="12" x2="12" y2="5" />
+          </svg>
         </button>
       </article>
     </div>
@@ -178,7 +220,18 @@ const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
 const flipped = shallowRef(false)
 const rootEl = useTemplateRef<HTMLElement>('rootEl')
 
-const tags = ['Vue · Nuxt', 'React · Next', 'AI Workflows', 'Architecture']
+interface SkillTag {
+  label: string
+  icon: string
+}
+
+const tags: SkillTag[] = [
+  { label: 'Vue · Nuxt', icon: 'mdi:vuejs' },
+  { label: 'React · Next', icon: 'mdi:react' },
+  { label: 'AI Workflows', icon: 'mdi:robot-happy-outline' },
+  { label: 'Architecture', icon: 'mdi:graph-outline' },
+]
+
 const signature = 'BT-2026'
 
 const flip = (next: boolean) => {
@@ -196,153 +249,3 @@ onMounted(() => {
   })
 })
 </script>
-
-<style scoped>
-.about-card {
-  perspective: 1600px;
-}
-
-.card-inner {
-  transform-style: preserve-3d;
-  transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
-  min-height: 560px;
-}
-
-@media (min-width: 640px) {
-  .card-inner {
-    min-height: 600px;
-  }
-}
-
-.card-inner.is-flipped {
-  transform: rotateY(180deg);
-}
-
-.card-face {
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-.card-back {
-  transform: rotateY(180deg);
-}
-
-.card-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background:
-    radial-gradient(circle at 100% 0%, rgba(224, 231, 255, 0.55), transparent 45%),
-    radial-gradient(circle at 0% 100%, rgba(252, 231, 243, 0.45), transparent 50%);
-}
-
-.card-bg-back {
-  background:
-    radial-gradient(circle at 0% 0%, rgba(254, 243, 199, 0.45), transparent 45%),
-    radial-gradient(circle at 100% 100%, rgba(199, 210, 254, 0.45), transparent 50%);
-}
-
-:global(.dark) .card-bg {
-  background:
-    radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.12), transparent 45%),
-    radial-gradient(circle at 0% 100%, rgba(244, 114, 182, 0.08), transparent 50%);
-}
-
-:global(.dark) .card-bg-back {
-  background:
-    radial-gradient(circle at 0% 0%, rgba(251, 191, 36, 0.1), transparent 45%),
-    radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.12), transparent 50%);
-}
-
-.corner-flip {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 44px;
-  height: 44px;
-  cursor: pointer;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  border-bottom-right-radius: 2rem;
-  transition: width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), height 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  overflow: visible;
-}
-
-.corner-flip::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  clip-path: polygon(100% 0%, 100% 100%, 0% 100%);
-  background: linear-gradient(135deg, #f8fafc 0%, #e5e7eb 60%, #cbd5e1 100%);
-  border-bottom-right-radius: 2rem;
-  box-shadow:
-    inset 1px 1px 0 rgba(255, 255, 255, 0.9),
-    -2px -2px 6px rgba(15, 23, 42, 0.12);
-}
-
-.corner-flip::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, transparent calc(50% - 1px), rgba(15, 23, 42, 0.18) 50%, transparent calc(50% + 1px));
-  pointer-events: none;
-  border-bottom-right-radius: 2rem;
-}
-
-.corner-flip:hover,
-.corner-flip:focus-visible {
-  width: 68px;
-  height: 68px;
-  outline: none;
-}
-
-:global(.dark) .corner-flip::before {
-  background: linear-gradient(135deg, #1f2937 0%, #374151 60%, #4b5563 100%);
-  box-shadow:
-    inset 1px 1px 0 rgba(255, 255, 255, 0.08),
-    -2px -2px 6px rgba(0, 0, 0, 0.4);
-}
-
-:global(.dark) .corner-flip::after {
-  background: linear-gradient(135deg, transparent calc(50% - 1px), rgba(0, 0, 0, 0.5) 50%, transparent calc(50% + 1px));
-}
-
-.corner-flip-crease {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 14px;
-  height: 14px;
-  pointer-events: none;
-  opacity: 0.6;
-  background:
-    linear-gradient(135deg, transparent 45%, rgba(15, 23, 42, 0.35) 45%, rgba(15, 23, 42, 0.35) 55%, transparent 55%),
-    linear-gradient(135deg, transparent 65%, rgba(15, 23, 42, 0.25) 65%, rgba(15, 23, 42, 0.25) 75%, transparent 75%);
-  transition: bottom 0.3s ease, right 0.3s ease, opacity 0.3s ease;
-}
-
-.corner-flip:hover .corner-flip-crease,
-.corner-flip:focus-visible .corner-flip-crease {
-  bottom: 14px;
-  right: 14px;
-  opacity: 0.85;
-}
-
-:global(.dark) .corner-flip-crease {
-  background:
-    linear-gradient(135deg, transparent 45%, rgba(255, 255, 255, 0.45) 45%, rgba(255, 255, 255, 0.45) 55%, transparent 55%),
-    linear-gradient(135deg, transparent 65%, rgba(255, 255, 255, 0.3) 65%, rgba(255, 255, 255, 0.3) 75%, transparent 75%);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .card-inner,
-  .corner-flip,
-  .corner-flip-crease {
-    transition: none;
-  }
-}
-</style>
