@@ -39,7 +39,7 @@
             activeId === link.id
               ? 'text-gray-900 dark:text-white font-semibold translate-x-1.5'
               : 'text-gray-500 dark:text-gray-500 hover:text-gray-800 dark:hover:text-gray-300 hover:translate-x-1',
-            link.depth === 2 ? 'pl-5 text-sm' : 'pl-8 text-xs'
+            link.depth === 2 ? 'pl-5 text-sm' : 'pl-8 text-xs',
           ]"
           @click="scrollTo(link.id, $event)"
         >

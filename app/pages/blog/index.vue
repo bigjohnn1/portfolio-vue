@@ -18,8 +18,14 @@
       </h1>
     </header>
 
-    <div v-if="pending" class="flex-grow py-32 text-center text-gray-400">
-      <Icon name="carbon:circle-dash" class="w-10 h-10 animate-spin mx-auto mb-6 text-primary-500" />
+    <div
+      v-if="pending"
+      class="flex-grow py-32 text-center text-gray-400"
+    >
+      <Icon
+        name="carbon:circle-dash"
+        class="w-10 h-10 animate-spin mx-auto mb-6 text-primary-500"
+      />
       <span class="text-sm uppercase tracking-widest">{{ $t('blog.loadingPosts') }}</span>
     </div>
 
@@ -38,7 +44,10 @@
           >
         </div>
 
-        <div v-if="allTags.length" class="flex flex-wrap gap-3 w-full md:w-auto">
+        <div
+          v-if="allTags.length"
+          class="flex flex-wrap gap-3 w-full md:w-auto"
+        >
           <button
             type="button"
             class="px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-300 border"
@@ -60,7 +69,10 @@
         </div>
       </div>
 
-      <div v-if="paginatedPosts.length" class="grid gap-12 md:grid-cols-2 flex-grow">
+      <div
+        v-if="paginatedPosts.length"
+        class="grid gap-12 md:grid-cols-2 flex-grow"
+      >
         <NuxtLink
           v-for="post in paginatedPosts"
           :key="post.path"
@@ -78,13 +90,19 @@
               format="webp"
             />
           </div>
-          
+
           <div class="flex flex-col flex-grow">
             <div class="flex items-center gap-3 mb-4">
-              <time v-if="post.meta?.date" class="text-xs font-mono text-gray-500 dark:text-gray-400 uppercase tracking-widest">
+              <time
+                v-if="post.meta?.date"
+                class="text-xs font-mono text-gray-500 dark:text-gray-400 uppercase tracking-widest"
+              >
                 {{ formatDate(post.meta.date) }}
               </time>
-              <div v-if="post.meta?.tags?.length" class="flex gap-2">
+              <div
+                v-if="post.meta?.tags?.length"
+                class="flex gap-2"
+              >
                 <span
                   v-for="tag in post.meta.tags.slice(0, 2)"
                   :key="tag"
@@ -94,25 +112,34 @@
                 </span>
               </div>
             </div>
-            
+
             <h2 class="text-3xl font-serif text-gray-900 dark:text-white mb-4 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors leading-tight decoration-2 underline-offset-4 group-hover:underline">
               {{ post.title }}
             </h2>
-            
+
             <p class="text-gray-600 dark:text-gray-400 mb-8 line-clamp-3 text-base leading-relaxed flex-grow">
               {{ post.description || $t('blog.noDescription') }}
             </p>
-            
+
             <div class="mt-auto flex items-center text-xs font-bold uppercase tracking-widest text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
               <span v-html="$t('blog.readMore')" />
-              <Icon name="carbon:arrow-right" class="w-4 h-4 ml-3 transform group-hover:translate-x-2 transition-transform duration-300" />
+              <Icon
+                name="carbon:arrow-right"
+                class="w-4 h-4 ml-3 transform group-hover:translate-x-2 transition-transform duration-300"
+              />
             </div>
           </div>
         </NuxtLink>
       </div>
 
-      <div v-else class="flex flex-col items-center justify-center py-32 text-center flex-grow border-y border-dashed border-gray-200 dark:border-gray-800">
-        <Icon name="carbon:search-advanced" class="w-12 h-12 text-gray-300 dark:text-gray-700 mb-6" />
+      <div
+        v-else
+        class="flex flex-col items-center justify-center py-32 text-center flex-grow border-y border-dashed border-gray-200 dark:border-gray-800"
+      >
+        <Icon
+          name="carbon:search-advanced"
+          class="w-12 h-12 text-gray-300 dark:text-gray-700 mb-6"
+        />
         <h3 class="text-2xl font-serif text-gray-900 dark:text-white mb-3">
           {{ $t('blog.noPostsFound') }}
         </h3>
@@ -128,7 +155,10 @@
         </button>
       </div>
 
-      <nav v-if="totalPages > 1" class="mt-20 pt-10 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between">
+      <nav
+        v-if="totalPages > 1"
+        class="mt-20 pt-10 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between"
+      >
         <button
           type="button"
           class="group flex items-center text-xs font-bold uppercase tracking-widest disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400"
@@ -136,10 +166,13 @@
           :aria-label="$t('blog.prevPage')"
           @click="currentPage--"
         >
-          <Icon name="carbon:arrow-left" class="w-4 h-4 mr-3 transform group-hover:-translate-x-2 transition-transform duration-300 group-disabled:transform-none" />
+          <Icon
+            name="carbon:arrow-left"
+            class="w-4 h-4 mr-3 transform group-hover:-translate-x-2 transition-transform duration-300 group-disabled:transform-none"
+          />
           {{ $t('blog.prevPage') }}
         </button>
-        
+
         <div class="hidden sm:flex items-center gap-4">
           <button
             v-for="page in totalPages"
@@ -161,12 +194,18 @@
           @click="currentPage++"
         >
           {{ $t('blog.nextPage') }}
-          <Icon name="carbon:arrow-right" class="w-4 h-4 ml-3 transform group-hover:translate-x-2 transition-transform duration-300 group-disabled:transform-none" />
+          <Icon
+            name="carbon:arrow-right"
+            class="w-4 h-4 ml-3 transform group-hover:translate-x-2 transition-transform duration-300 group-disabled:transform-none"
+          />
         </button>
       </nav>
     </template>
 
-    <div v-else class="flex-grow flex items-center justify-center py-32 text-gray-500 dark:text-gray-400 font-serif text-xl border-y border-dashed border-gray-200 dark:border-gray-800">
+    <div
+      v-else
+      class="flex-grow flex items-center justify-center py-32 text-gray-500 dark:text-gray-400 font-serif text-xl border-y border-dashed border-gray-200 dark:border-gray-800"
+    >
       {{ $t('blog.noPostsFound') }}
     </div>
   </div>
@@ -185,7 +224,7 @@ interface BlogPost {
 }
 
 const { data: posts, pending } = await useContentData<BlogPost[]>('blog-list', () =>
-  queryCollection('blog').order('id', 'DESC').all()
+  queryCollection('blog').order('id', 'DESC').all(),
 )
 
 useSeoMeta({
@@ -238,7 +277,7 @@ const filteredPosts = computed(() => {
   if (searchQuery.value) {
     const q = normalizeText(searchQuery.value)
     if (q) {
-      result = result.filter(post => {
+      result = result.filter((post) => {
         const titleMatch = normalizeText(post.title).includes(q)
         const descMatch = normalizeText(post.description).includes(q)
         return titleMatch || descMatch

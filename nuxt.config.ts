@@ -116,23 +116,25 @@ export default defineNuxtConfig({
   ogImage: {
     zeroRuntime: true,
   },
-security: {
+  security: {
     rateLimiter: {
       interval: 5 * 1000,
       tokensPerInterval: 15,
     },
     headers: {
-      contentSecurityPolicy: process.env.NODE_ENV === 'development' ? false : {
-        'img-src': ["'self'", 'data:', 'blob:'],
-        'script-src': [
-          "'self'",
-          "https:",
-          "'unsafe-inline'",
-          "'strict-dynamic'",
-          "'nonce-{{nonce}}'",
-          "'wasm-unsafe-eval'"
-        ],
-      },
+      contentSecurityPolicy: process.env.NODE_ENV === 'development'
+        ? false
+        : {
+            'img-src': ['\'self\'', 'data:', 'blob:'],
+            'script-src': [
+              '\'self\'',
+              'https:',
+              '\'unsafe-inline\'',
+              '\'strict-dynamic\'',
+              '\'nonce-{{nonce}}\'',
+              '\'wasm-unsafe-eval\'',
+            ],
+          },
     },
     xssValidator: {
       escapeHtml: true,

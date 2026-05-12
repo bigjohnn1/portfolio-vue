@@ -1,6 +1,7 @@
 <template>
   <VueFrag>
     <HomeIntro />
+    <TestField />
     <AppHeader />
     <LazyHomeProjects />
     <LazyHomeTechStack />
