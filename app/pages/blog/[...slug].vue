@@ -80,27 +80,8 @@ const cleanPath = computed(() => decodeURI(route.path).replace(/\/$/, '') || '/'
 
 const { data: post, pending } = await useContentData(
   `blog-${cleanPath.value}`,
-  async () => {
-    const localPath = cleanPath.value
-    const remotePath = `/content${cleanPath.value}`
-
-    try {
-      const p = await queryCollection('blog').path(localPath).first()
-      if (p) return p
-    }
-    catch (e) {
-      console.warn('Local path fetch failed:', e)
-    }
-
-    try {
-      const p = await queryCollection('blog').path(remotePath).first()
-      if (p) return p
-    }
-    catch (e) {
-      console.warn('Remote path fetch failed:', e)
-    }
-
-    return null
+  () => {
+    return queryCollection('blog').path(cleanPath.value).first()
   },
   {
     watch: [cleanPath]
