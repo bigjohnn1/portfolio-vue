@@ -1,63 +1,53 @@
 <template>
-  <div
+  <nav
     v-if="flattenedLinks.length > 0"
-    class="sticky top-32 overflow-hidden flex flex-col max-h-[calc(100vh-10rem)]"
+    class="sticky top-32 max-h-[calc(100vh-8rem)] overflow-y-auto overscroll-contain pr-4 -mr-4
+           [&::-webkit-scrollbar]:w-1
+           [&::-webkit-scrollbar-track]:bg-transparent
+           [&::-webkit-scrollbar-thumb]:bg-gray-200/60
+           dark:[&::-webkit-scrollbar-thumb]:bg-gray-700/50
+           hover:[&::-webkit-scrollbar-thumb]:bg-gray-300
+           dark:hover:[&::-webkit-scrollbar-thumb]:bg-gray-600
+           [&::-webkit-scrollbar-thumb]:rounded-full"
   >
-    <!-- Header -->
-    <div class="flex items-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-900 rounded-t-xl border border-b-0 border-gray-200 dark:border-gray-700 font-mono text-xs text-gray-500 dark:text-gray-400 shadow-sm">
-      <div class="flex gap-1.5">
-        <div class="w-3 h-3 rounded-full bg-red-400 border border-red-500/20"></div>
-        <div class="w-3 h-3 rounded-full bg-yellow-400 border border-yellow-500/20"></div>
-        <div class="w-3 h-3 rounded-full bg-green-400 border border-green-500/20"></div>
-      </div>
-      <span class="ml-2 flex-1 font-semibold text-gray-700 dark:text-gray-300">~/TOC.sh</span>
-      <Icon
-        name="carbon:terminal"
-        class="w-4 h-4 opacity-50"
-      />
-    </div>
+    <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 mb-6 pl-5">
+      {{ $t('blog.tableOfContents') || 'Obsah' }}
+    </p>
 
-    <!-- Body -->
-    <nav class="flex-1 overflow-y-auto bg-white/50 dark:bg-gray-800/30 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-b-xl p-5 custom-scrollbar shadow-sm">
-      <ul class="relative border-l-2 border-gray-100 dark:border-gray-700/50 ml-2 space-y-3">
-        <li
-          v-for="link in flattenedLinks"
-          :key="link.id"
-          class="relative group"
+    <ul class="relative border-l border-gray-200/50 dark:border-gray-800/50 flex flex-col">
+      <li
+        v-for="link in flattenedLinks"
+        :key="link.id"
+        class="relative"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-primary-500/10 dark:from-primary-400/10 to-transparent transition-opacity duration-700 ease-out rounded-r-lg pointer-events-none"
+          :class="activeId === link.id ? 'opacity-100' : 'opacity-0'"
+          aria-hidden="true"
+        ></div>
+
+        <div
+          class="absolute left-0 top-0 w-[2px] bg-primary-600 dark:bg-primary-400 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] -ml-[1px]"
+          :class="activeId === link.id ? 'h-full shadow-[0_0_12px_rgba(var(--color-primary-500),0.4)]' : 'h-0 top-1/2'"
+          aria-hidden="true"
+        ></div>
+
+        <a
+          :href="`#${link.id}`"
+          class="block py-2.5 pr-3 transition-all duration-500 ease-out relative z-10"
+          :class="[
+            activeId === link.id
+              ? 'text-gray-900 dark:text-white font-semibold translate-x-1.5'
+              : 'text-gray-500 dark:text-gray-500 hover:text-gray-800 dark:hover:text-gray-300 hover:translate-x-1',
+            link.depth === 2 ? 'pl-5 text-sm' : 'pl-8 text-xs'
+          ]"
+          @click="scrollTo(link.id, $event)"
         >
-          <!-- Active Line Indicator -->
-          <div
-            class="absolute w-4 h-[2px] bg-gray-200 dark:bg-gray-700 top-1/2 -translate-y-1/2 transition-all duration-300 rounded-r"
-            :class="{ '!bg-primary-500 shadow-[0_0_8px_rgba(var(--color-primary-500),0.6)]': activeId === link.id }"
-          ></div>
-
-          <!-- Node Dot -->
-          <div
-            class="absolute w-2.5 h-2.5 rounded-full border-2 border-white dark:border-gray-900 bg-gray-300 dark:bg-gray-600 -left-[7px] top-1/2 -translate-y-1/2 transition-all duration-300 z-10"
-            :class="{ '!bg-primary-500 !border-primary-100 dark:!border-primary-900 shadow-[0_0_10px_rgba(var(--color-primary-500),1)] scale-125': activeId === link.id, 'group-hover:bg-primary-400': activeId !== link.id }"
-          ></div>
-
-          <a
-            :href="`#${link.id}`"
-            class="block pl-6 pr-2 py-1 text-sm font-mono transition-all duration-200 hover:translate-x-1"
-            :class="[
-              activeId === link.id
-                ? 'text-primary-600 dark:text-primary-400 font-bold'
-                : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100',
-            ]"
-            :style="{ marginLeft: `${(link.depth - 2) * 1.5}rem` }"
-            @click="scrollTo(link.id, $event)"
-          >
-            <span
-              class="mr-1 opacity-40 transition-opacity"
-              :class="{ '!opacity-100 text-primary-500': activeId === link.id }"
-            >>_</span>
-            <span>{{ link.text }}</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+          {{ link.text }}
+        </a>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script setup lang="ts">
@@ -74,7 +64,7 @@ const props = defineProps<{
   }
 }>()
 
-const activeId = shallowRef('')
+const activeId = ref('')
 
 const flattenedLinks = computed(() => {
   const result: TocLink[] = []
@@ -115,7 +105,7 @@ onMounted(() => {
       const el = document.getElementById(link.id)
       if (el) observer?.observe(el)
     })
-  }, 1000)
+  }, 100)
 })
 
 onUnmounted(() => {
@@ -138,27 +128,7 @@ const scrollTo = (id: string, e: Event) => {
     })
 
     activeId.value = id
-
     history.pushState(null, '', `#${id}`)
   }
 }
 </script>
-
-<style scoped>
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 163, 175, 0.3);
-  border-radius: 20px;
-}
-.dark .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(75, 85, 99, 0.5);
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(156, 163, 175, 0.5);
-}
-</style>

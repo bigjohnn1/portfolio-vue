@@ -2,7 +2,7 @@
 title: 'Nuxt 4 vs React 19 + Next.js: Why I Still Choose Vue'
 description: 'React 19 brought Server Actions, the React Compiler, and a lot of hype. Yet after using both daily, I still reach for Nuxt 4 every single time. Here’s why.'
 date: '2026-05-09'
-cover: '/hexcodium.png'
+cover: '/fastproject.png'
 ---
 
 The JavaScript ecosystem moves insanely fast. **React 19** dropped with native Server Actions, the long-awaited React Compiler, and big improvements in the server-first world. Next.js is stronger than ever.
