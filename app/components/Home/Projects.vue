@@ -16,10 +16,7 @@
           class="flex flex-col md:flex-row items-center mb-16 md:mb-20 relative"
           :class="{ 'md:flex-row-reverse': index % 2 === 0 }"
         >
-          <div
-            ref="projectElements"
-            class="w-full md:w-1/2 px-0 md:px-8 z-10"
-          >
+          <div ref="projectElements" class="w-full md:w-1/2 px-0 md:px-8 z-10">
             <NuxtImg
               :src="project.image"
               :alt="$t(`projects.items.${project.key}.title`)"
@@ -30,16 +27,22 @@
               format="webp"
             />
 
-            <h3 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 mt-6">
+            <h3
+              class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 mt-6"
+            >
               {{ $t(`projects.items.${project.key}.title`) }}
             </h3>
 
-            <p class="text-base text-gray-600 dark:text-gray-300 mt-2 line-clamp-3">
+            <p
+              class="text-base text-gray-600 dark:text-gray-300 mt-2 line-clamp-3"
+            >
               {{ $t(`projects.items.${project.key}.description`) }}
             </p>
 
             <div class="flex flex-wrap gap-3 mt-4 items-center">
-              <span class="inline-flex items-center px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-full">
+              <span
+                class="inline-flex items-center px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-full"
+              >
                 {{ $t(`projects.items.${project.key}.timeline`) }}
                 <Icon
                   name="carbon:calendar"
@@ -54,7 +57,7 @@
                 target="_blank"
                 class="inline-flex items-center px-3 py-1 bg-primary-600 dark:bg-primary-500 text-sm font-medium text-white rounded-full hover:bg-primary-700 dark:hover:bg-primary-400 transition-colors shadow-sm hover:shadow-md"
               >
-                {{ $t('projects.liveDemo') }}
+                {{ $t("projects.liveDemo") }}
                 <Icon
                   name="carbon:launch"
                   class="ml-2 h-4 w-4"
@@ -68,8 +71,12 @@
             class="hidden md:flex w-1/2 justify-center relative"
             aria-hidden="true"
           >
-            <div class="absolute top-1/2 transform -translate-y-1/2 w-8 h-px bg-gray-500 dark:bg-gray-400"></div>
-            <div class="w-5 h-5 bg-gray-800 dark:bg-gray-200 rounded-full z-10 border-2 border-gray-400 dark:border-gray-500 shadow-md"></div>
+            <div
+              class="absolute top-1/2 transform -translate-y-1/2 w-8 h-px bg-gray-500 dark:bg-gray-400"
+            ></div>
+            <div
+              class="w-5 h-5 bg-gray-800 dark:bg-gray-200 rounded-full z-10 border-2 border-gray-400 dark:border-gray-500 shadow-md"
+            ></div>
           </div>
         </div>
       </div>
@@ -78,34 +85,42 @@
 </template>
 
 <script setup lang="ts">
-import type { gsap } from 'gsap'
+import type { gsap } from "gsap";
 
-const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
+const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap };
 
 interface Project {
-  key: string
-  image: string
-  link?: string
+  key: string;
+  image: string;
+  link?: string;
 }
 
 const projects: Project[] = [
-  { key: 'nimblo', image: 'nimblo.png', link: 'https://app.nimblo.io' },
-  { key: 'fastproject', image: 'fastproject.png', link: 'https://app.fastproject.io' },
-  { key: 'topiqu', image: 'topiqu.png', link: 'https://reachio.topiqu.com' },
-  { key: 'v-okamihu', image: 'v-okamihu.png' },
-  { key: 'hexcodium', image: 'hexcodium.png' },
-  { key: 'skola-zivota', image: 'skolazivota.png' },
-]
+  { key: "nimblo", image: "nimblo.png", link: "https://app.nimblo.io" },
+  {
+    key: "fastproject",
+    image: "fastproject.png",
+    link: "https://app.fastproject.io",
+  },
+  { key: "topiqu", image: "topiqu.png", link: "https://reachio.topiqu.com" },
+  {
+    key: "v-okamihu",
+    image: "v-okamihu.png",
+    link: "https://vokamihu.sk/",
+  },
+  { key: "hexcodium", image: "hexcodium.png" },
+  { key: "skola-zivota", image: "skolazivota.png" },
+];
 
-const projectElements = useTemplateRef<HTMLElement[]>('projectElements')
+const projectElements = useTemplateRef<HTMLElement[]>("projectElements");
 
-let ctx: gsap.Context | undefined
+let ctx: gsap.Context | undefined;
 
 onMounted(() => {
   ctx = $gsap.context(() => {
-    if (!projectElements.value) return
+    if (!projectElements.value) return;
 
-    let mm = $gsap.matchMedia()
+    const mm = $gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
       projectElements.value!.forEach((item, index) => {
@@ -113,16 +128,16 @@ onMounted(() => {
           x: index % 2 === 0 ? 100 : -100,
           opacity: 0,
           duration: 0.8,
-          ease: 'power2.out',
+          ease: "power2.out",
           scrollTrigger: {
             trigger: item,
-            start: 'top 80%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none reverse',
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse",
           },
-        })
-      })
-    })
+        });
+      });
+    });
 
     mm.add("(max-width: 767px)", () => {
       projectElements.value!.forEach((item) => {
@@ -130,20 +145,20 @@ onMounted(() => {
           y: 50,
           opacity: 0,
           duration: 0.8,
-          ease: 'power2.out',
+          ease: "power2.out",
           scrollTrigger: {
             trigger: item,
-            start: 'top 85%',
-            end: 'bottom 15%',
-            toggleActions: 'play none none reverse',
+            start: "top 85%",
+            end: "bottom 15%",
+            toggleActions: "play none none reverse",
           },
-        })
-      })
-    })
-  })
-})
+        });
+      });
+    });
+  });
+});
 
 onUnmounted(() => {
-  if (ctx) ctx.revert()
-})
+  if (ctx) ctx.revert();
+});
 </script>
