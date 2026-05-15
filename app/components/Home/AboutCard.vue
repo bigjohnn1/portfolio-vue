@@ -100,7 +100,9 @@
           </p>
 
           <div class="mt-auto pt-5 flex items-end justify-between text-xs text-gray-500 dark:text-gray-400">
-            <p class="font-mono">SIG · {{ signature }}</p>
+            <p class="font-mono">
+              SIG · {{ signature }}
+            </p>
           </div>
         </div>
 
@@ -122,8 +124,18 @@
             stroke-linecap="round"
             aria-hidden="true"
           >
-            <line x1="2" y1="12" x2="12" y2="2" />
-            <line x1="5" y1="12" x2="12" y2="5" />
+            <line
+              x1="2"
+              y1="12"
+              x2="12"
+              y2="2"
+            />
+            <line
+              x1="5"
+              y1="12"
+              x2="12"
+              y2="5"
+            />
           </svg>
         </button>
       </article>
@@ -183,7 +195,9 @@
           </div>
 
           <div class="pt-4 flex items-end justify-between text-xs text-gray-500 dark:text-gray-400">
-            <p class="font-mono">SIG · {{ signature }}</p>
+            <p class="font-mono">
+              SIG · {{ signature }}
+            </p>
           </div>
         </div>
 
@@ -205,8 +219,18 @@
             stroke-linecap="round"
             aria-hidden="true"
           >
-            <line x1="2" y1="12" x2="12" y2="2" />
-            <line x1="5" y1="12" x2="12" y2="5" />
+            <line
+              x1="2"
+              y1="12"
+              x2="12"
+              y2="2"
+            />
+            <line
+              x1="5"
+              y1="12"
+              x2="12"
+              y2="5"
+            />
           </svg>
         </button>
       </article>
@@ -234,7 +258,6 @@ const tags: SkillTag[] = [
   { label: 'AI Workflows', icon: 'mdi:robot-happy-outline' },
   { label: 'Architecture', icon: 'mdi:graph-outline' },
 ]
-
 
 const flip = (next: boolean) => {
   flipped.value = next

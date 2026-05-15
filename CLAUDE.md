@@ -13,7 +13,7 @@
 ## Documentation & Learning
 
 - **Latest Conventions:** Make sure to use **Context7** for documentation search (via MCP) if you aren't sure of something regarding Nuxt, Vue 3, or other libraries. Always follow the latest Vue 3.5 / Nuxt 4 best practices.
-- **Vitest** Before a change reaches production, make sure to run it through Vitest / similar tool.
+- **Vitest** Before a change reaches production, make sure to run it through Vitest.
 
 ## Project Structure & Mapping
 
@@ -34,3 +34,4 @@
 
 - Use ESLint for linting.
 - Follow Vue 3.5 recommended component structures. Use auto-imports provided by Nuxt whenever possible.
+- Keep your reasoning lines of thoughts concise, be prepared to back up your changes at all times when confronted. Argue why you decided to use your solution.

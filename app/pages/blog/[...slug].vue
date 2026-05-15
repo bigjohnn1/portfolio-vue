@@ -12,8 +12,14 @@
       {{ $t('blog.loadingPost') }}
     </div>
 
-    <div v-else-if="post" class="lg:grid lg:grid-cols-[1fr_280px] xl:grid-cols-[1fr_320px] lg:gap-12 items-start">
-      <article ref="articleEl" class="prose dark:prose-invert prose-primary lg:prose-lg max-w-none min-w-0">
+    <div
+      v-else-if="post"
+      class="lg:grid lg:grid-cols-[1fr_280px] xl:grid-cols-[1fr_320px] lg:gap-12 items-start"
+    >
+      <article
+        ref="articleEl"
+        class="prose dark:prose-invert prose-primary lg:prose-lg max-w-none min-w-0"
+      >
         <NuxtLink
           to="/blog"
           class="text-primary-600 hover:text-primary-700 dark:text-primary-400 no-underline mb-8 inline-block"
@@ -84,8 +90,8 @@ const { data: post, pending } = await useContentData(
     return queryCollection('blog').path(cleanPath.value).first()
   },
   {
-    watch: [cleanPath]
-  }
+    watch: [cleanPath],
+  },
 )
 
 useSeoMeta({

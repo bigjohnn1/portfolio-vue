@@ -7,8 +7,8 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <LazyAppBackToTop hydrateOnIdle />
-    <LazyAppCommandPalette hydrateOnIdle />
+    <LazyAppBackToTop hydrate-on-idle />
+    <LazyAppCommandPalette hydrate-on-idle />
     <LazyAboutSceneOverlay v-if="sceneIsOpen" />
     <Toaster
       position="bottom-right"

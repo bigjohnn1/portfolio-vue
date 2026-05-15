@@ -16,7 +16,10 @@
           class="flex flex-col md:flex-row items-center mb-16 md:mb-20 relative"
           :class="{ 'md:flex-row-reverse': index % 2 === 0 }"
         >
-          <div ref="projectElements" class="w-full md:w-1/2 px-0 md:px-8 z-10">
+          <div
+            ref="projectElements"
+            class="w-full md:w-1/2 px-0 md:px-8 z-10"
+          >
             <NuxtImg
               :src="project.image"
               :alt="$t(`projects.items.${project.key}.title`)"
@@ -85,80 +88,80 @@
 </template>
 
 <script setup lang="ts">
-import type { gsap } from "gsap";
+import type { gsap } from 'gsap'
 
-const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap };
+const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
 
 interface Project {
-  key: string;
-  image: string;
-  link?: string;
+  key: string
+  image: string
+  link?: string
 }
 
 const projects: Project[] = [
-  { key: "nimblo", image: "nimblo.png", link: "https://app.nimblo.io" },
+  { key: 'nimblo', image: 'nimblo.png', link: 'https://app.nimblo.io' },
   {
-    key: "fastproject",
-    image: "fastproject.png",
-    link: "https://app.fastproject.io",
+    key: 'fastproject',
+    image: 'fastproject.png',
+    link: 'https://app.fastproject.io',
   },
-  { key: "topiqu", image: "topiqu.png", link: "https://reachio.topiqu.com" },
+  { key: 'topiqu', image: 'topiqu.png', link: 'https://reachio.topiqu.com' },
   {
-    key: "v-okamihu",
-    image: "v-okamihu.png",
-    link: "https://vokamihu.sk/",
+    key: 'v-okamihu',
+    image: 'v-okamihu.png',
+    link: 'https://vokamihu.sk/',
   },
-  { key: "hexcodium", image: "hexcodium.png" },
-  { key: "skola-zivota", image: "skolazivota.png" },
-];
+  { key: 'hexcodium', image: 'hexcodium.png' },
+  { key: 'skola-zivota', image: 'skolazivota.png' },
+]
 
-const projectElements = useTemplateRef<HTMLElement[]>("projectElements");
+const projectElements = useTemplateRef<HTMLElement[]>('projectElements')
 
-let ctx: gsap.Context | undefined;
+let ctx: gsap.Context | undefined
 
 onMounted(() => {
   ctx = $gsap.context(() => {
-    if (!projectElements.value) return;
+    if (!projectElements.value) return
 
-    const mm = $gsap.matchMedia();
+    const mm = $gsap.matchMedia()
 
-    mm.add("(min-width: 768px)", () => {
+    mm.add('(min-width: 768px)', () => {
       projectElements.value!.forEach((item, index) => {
         $gsap.from(item, {
           x: index % 2 === 0 ? 100 : -100,
           opacity: 0,
           duration: 0.8,
-          ease: "power2.out",
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: item,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse',
           },
-        });
-      });
-    });
+        })
+      })
+    })
 
-    mm.add("(max-width: 767px)", () => {
+    mm.add('(max-width: 767px)', () => {
       projectElements.value!.forEach((item) => {
         $gsap.from(item, {
           y: 50,
           opacity: 0,
           duration: 0.8,
-          ease: "power2.out",
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: item,
-            start: "top 85%",
-            end: "bottom 15%",
-            toggleActions: "play none none reverse",
+            start: 'top 85%',
+            end: 'bottom 15%',
+            toggleActions: 'play none none reverse',
           },
-        });
-      });
-    });
-  });
-});
+        })
+      })
+    })
+  })
+})
 
 onUnmounted(() => {
-  if (ctx) ctx.revert();
-});
+  if (ctx) ctx.revert()
+})
 </script>

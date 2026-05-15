@@ -37,14 +37,20 @@
       <TresMesh
         v-for="(logo, i) in logos"
         :key="logo.label"
-        :ref="(el: any) => { if (el) logoRefs[i] = el }"
+        :ref="
+          (el: any) => {
+            if (el) logoRefs[i] = el;
+          }
+        "
         :position="logo.position"
+        :scale="0"
         :render-order="10"
       >
         <TresPlaneGeometry :args="[LOGO_W, LOGO_H]" />
         <TresMeshBasicMaterial
           :map="logo.texture"
           :transparent="true"
+          :opacity="0"
         />
       </TresMesh>
     </TresGroup>
@@ -58,7 +64,11 @@ import * as THREE from 'three'
 
 const { width: vw } = useWindowSize()
 const isMobile = computed(() => vw.value < 640)
-const dpr = computed(() => (isMobile.value ? Math.min(window.devicePixelRatio, 1.5) : Math.min(window.devicePixelRatio, 2)))
+const dpr = computed(() =>
+  isMobile.value
+    ? Math.min(window.devicePixelRatio, 1.5)
+    : Math.min(window.devicePixelRatio, 2),
+)
 
 const { x: mouseX, y: mouseY } = useMouse({ type: 'client' })
 
@@ -190,7 +200,86 @@ interface Logo {
 const LOGO_W = 3
 const LOGO_H = 1.1
 
-const makeLabelTexture = (label: string, sublabel: string, color: string): THREE.CanvasTexture => {
+const BRAND_PATHS: Record<string, string> = {
+  Vue: 'M24,1.61H14.06L12,5.16 9.94,1.61H0L12,22.39ZM12,14.08 5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z',
+  Nuxt: 'M13.5 2.6 22.9 19a2 2 0 0 1-1.7 3H14l-2.3-4 3.7-6.4-3-5.2a1.4 1.4 0 0 0-2.4 0L1 19a2 2 0 0 0 1.8 3h4.6c1.7 0 2.9-.7 3.7-2.1l5.3-9.2H13l-2 3.5-2-3.5L11.1 2.6a1.4 1.4 0 0 1 2.4 0z',
+  Tailwind:
+    'M12 6c-2.7 0-4.3 1.3-5 4 1-1.3 2.2-1.8 3.5-1.5.7.2 1.3.7 1.9 1.4 1 1.1 2.2 2.4 4.9 2.4 2.7 0 4.3-1.3 5-4-1 1.3-2.2 1.8-3.5 1.5-.7-.2-1.3-.7-1.9-1.4-1-1.1-2.2-2.4-4.9-2.4zm-5 6c-2.7 0-4.3 1.3-5 4 1-1.3 2.2-1.8 3.5-1.5.7.2 1.3.7 1.9 1.4 1 1.1 2.2 2.4 4.9 2.4 2.7 0 4.3-1.3 5-4-1 1.3-2.2 1.8-3.5 1.5-.7-.2-1.3-.7-1.9-1.4-1-1.1-2.2-2.4-4.9-2.4z',
+  React: '',
+  TS: '',
+  GSAP: '',
+}
+
+const drawBrandIcon = (
+  ctx: CanvasRenderingContext2D,
+  label: string,
+  cx: number,
+  cy: number,
+  r: number,
+) => {
+  ctx.save()
+  ctx.translate(cx, cy)
+  const s = (2 * r) / 24
+  ctx.scale(s, s)
+  ctx.translate(-12, -12)
+  ctx.fillStyle = '#ffffff'
+
+  const path = BRAND_PATHS[label]
+  if (path) {
+    ctx.fill(new Path2D(path))
+    ctx.restore()
+    return
+  }
+
+  ctx.restore()
+  ctx.save()
+  ctx.translate(cx, cy)
+
+  if (label === 'React') {
+    ctx.fillStyle = '#ffffff'
+    ctx.beginPath()
+    ctx.arc(0, 0, r * 0.18, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.strokeStyle = '#ffffff'
+    ctx.lineWidth = r * 0.11
+    for (let i = 0; i < 3; i++) {
+      ctx.save()
+      ctx.rotate((i * Math.PI) / 3)
+      ctx.beginPath()
+      ctx.ellipse(0, 0, r * 0.95, r * 0.38, 0, 0, Math.PI * 2)
+      ctx.stroke()
+      ctx.restore()
+    }
+  }
+  else if (label === 'TS') {
+    ctx.fillStyle = '#ffffff'
+    ctx.font = `800 ${r * 1.25}px ui-monospace, SFMono-Regular, Menlo, monospace`
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+    ctx.fillText('TS', 0, r * 0.08)
+  }
+  else if (label === 'GSAP') {
+    ctx.strokeStyle = '#ffffff'
+    ctx.lineWidth = r * 0.18
+    ctx.lineCap = 'round'
+    ctx.lineJoin = 'round'
+    ctx.beginPath()
+    ctx.arc(0, 0, r * 0.7, Math.PI * 0.25, Math.PI * 1.9)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.moveTo(r * 0.05, 0)
+    ctx.lineTo(r * 0.75, 0)
+    ctx.lineTo(r * 0.45, r * 0.35)
+    ctx.stroke()
+  }
+  ctx.restore()
+}
+
+const makeLabelTexture = (
+  label: string,
+  sublabel: string,
+  color: string,
+): THREE.CanvasTexture => {
   const W = 768
   const H = 280
 
@@ -201,7 +290,6 @@ const makeLabelTexture = (label: string, sublabel: string, color: string): THREE
   const ctx = canvas.getContext('2d')!
   ctx.clearRect(0, 0, W, H)
 
-  // Glass-style pill background
   const radius = 64
   ctx.beginPath()
   ctx.moveTo(radius, 0)
@@ -225,12 +313,18 @@ const makeLabelTexture = (label: string, sublabel: string, color: string): THREE
   ctx.lineWidth = 4
   ctx.stroke()
 
-  // Brand-color circular badge on the left
   const badgeX = 105
   const badgeY = H / 2
   const badgeR = 75
 
-  const badgeGrad = ctx.createRadialGradient(badgeX - 18, badgeY - 22, 10, badgeX, badgeY, badgeR)
+  const badgeGrad = ctx.createRadialGradient(
+    badgeX - 18,
+    badgeY - 22,
+    10,
+    badgeX,
+    badgeY,
+    badgeR,
+  )
   badgeGrad.addColorStop(0, `${color}ff`)
   badgeGrad.addColorStop(1, `${color}aa`)
 
@@ -246,14 +340,8 @@ const makeLabelTexture = (label: string, sublabel: string, color: string): THREE
   ctx.lineWidth = 2
   ctx.stroke()
 
-  // First letter inside badge
-  ctx.fillStyle = '#ffffff'
-  ctx.textAlign = 'center'
-  ctx.textBaseline = 'middle'
-  ctx.font = `800 ${badgeR * 1.1}px ui-sans-serif, system-ui, sans-serif`
-  ctx.fillText(label.charAt(0), badgeX, badgeY + 4)
+  drawBrandIcon(ctx, label, badgeX, badgeY, badgeR * 0.78)
 
-  // Label + subtitle on the right
   const textX = badgeX + badgeR + 30
   ctx.textAlign = 'left'
 
@@ -272,13 +360,48 @@ const makeLabelTexture = (label: string, sublabel: string, color: string): THREE
   return texture
 }
 
-const logoConfigs: Array<{ label: string, sublabel: string, color: string, position: [number, number, number] }> = [
-  { label: 'Vue', sublabel: 'Reactive UI framework', color: '#42b883', position: [-3.5, 1.8, 0.3] },
-  { label: 'Nuxt', sublabel: 'Full-stack meta-framework', color: '#00dc82', position: [3.5, 1.8, -0.4] },
-  { label: 'Tailwind', sublabel: 'Utility-first CSS', color: '#38bdf8', position: [0, 2.4, -0.6] },
-  { label: 'React', sublabel: 'Component UI library', color: '#61dafb', position: [-3.5, -1.8, 0.6] },
-  { label: 'TS', sublabel: 'Static typing for JS', color: '#3178c6', position: [3.5, -1.8, -0.2] },
-  { label: 'GSAP', sublabel: 'Animation engine', color: '#88ce02', position: [0, -2.4, 0.5] },
+const logoConfigs: Array<{
+  label: string
+  sublabel: string
+  color: string
+  position: [number, number, number]
+}> = [
+  {
+    label: 'Vue',
+    sublabel: 'Reactive UI framework',
+    color: '#42b883',
+    position: [-3.5, 1.8, 0.3],
+  },
+  {
+    label: 'Nuxt',
+    sublabel: 'Full-stack meta-framework',
+    color: '#00dc82',
+    position: [3.5, 1.8, -0.4],
+  },
+  {
+    label: 'Tailwind',
+    sublabel: 'Utility-first CSS',
+    color: '#38bdf8',
+    position: [0, 2.4, -0.6],
+  },
+  {
+    label: 'React',
+    sublabel: 'Component UI library',
+    color: '#61dafb',
+    position: [-3.5, -1.8, 0.6],
+  },
+  {
+    label: 'TS',
+    sublabel: 'Static typing for JS',
+    color: '#3178c6',
+    position: [3.5, -1.8, -0.2],
+  },
+  {
+    label: 'GSAP',
+    sublabel: 'Animation engine',
+    color: '#88ce02',
+    position: [0, -2.4, 0.5],
+  },
 ]
 
 const logos: Logo[] = logoConfigs.map(c => ({
@@ -290,37 +413,58 @@ if (isMobile.value) {
   logos.splice(3)
 }
 
-// ── Scene animation ──────────────────────────────────────────────────
-
 const parallaxGroup = shallowRef<THREE.Group | null>(null)
 const logoRefs: THREE.Mesh[] = []
 
-const { onLoop, pause, resume } = useRenderLoop()
+// `useRenderLoop` is a Tres-wide singleton — never call its `pause()` here,
+// it would also freeze other TresCanvas instances (e.g. CanvasGlobe).
+const { onLoop } = useRenderLoop()
 
-onLoop(({ elapsed }) => {
+const INTRO_STAGGER = 0.12
+const INTRO_DURATION = 0.9
+const easeOutBack = (t: number) => {
+  const c = 1.70158
+  const p = t - 1
+  return 1 + (c + 1) * p * p * p + c * p * p
+}
+
+let introStart = 0
+
+const { off: stopLoop } = onLoop(({ elapsed }) => {
+  if (!introStart) introStart = elapsed
   uniforms.uTime.value = elapsed
 
   if (parallaxGroup.value) {
     const targetRotY = (mouseX.value / window.innerWidth - 0.5) * 0.35
     const targetRotX = -(mouseY.value / window.innerHeight - 0.5) * 0.2
-    parallaxGroup.value.rotation.y += (targetRotY - parallaxGroup.value.rotation.y) * 0.05
-    parallaxGroup.value.rotation.x += (targetRotX - parallaxGroup.value.rotation.x) * 0.05
+    parallaxGroup.value.rotation.y
+      += (targetRotY - parallaxGroup.value.rotation.y) * 0.05
+    parallaxGroup.value.rotation.x
+      += (targetRotX - parallaxGroup.value.rotation.x) * 0.05
   }
 
   logoRefs.forEach((mesh, i) => {
     if (!mesh) return
     const cfg = logoConfigs[i]!
+
+    const t = Math.min(
+      Math.max((elapsed - introStart - i * INTRO_STAGGER) / INTRO_DURATION, 0),
+      1,
+    )
+    const intro = easeOutBack(t)
+    mesh.scale.setScalar(intro)
+    const material = mesh.material as THREE.MeshBasicMaterial
+    material.opacity = t
+
     mesh.position.y = cfg.position[1] + Math.sin(elapsed * 0.8 + i) * 0.15
     mesh.rotation.z = Math.sin(elapsed * 0.4 + i) * 0.05
     mesh.rotation.y = Math.sin(elapsed * 0.3 + i * 1.7) * 0.12
   })
 })
 
-onBeforeUnmount(() => {
-  pause()
+onUnmounted(() => {
+  stopLoop()
   codeTexture.dispose()
   logos.forEach(l => l.texture.dispose())
 })
-
-defineExpose({ pause, resume })
 </script>
