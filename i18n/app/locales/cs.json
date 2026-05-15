@@ -7,11 +7,13 @@
     "name": "Vojtěch B. Tomaník"
   },
   "nav": {
+    "intro": "Úvod",
     "references": "Projekty",
     "about": "Kdo jsem",
     "blog": "Blog",
     "contact": "Kontakty",
     "stack": "S čím pracuji",
+    "sectionsLabel": "Sekce stránky",
     "toggleMenu": "Přepnout menu",
     "home": "Domů",
     "logoAlt": "Logo webu",

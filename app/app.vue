@@ -4,11 +4,16 @@
       :color="loaderColor"
       class="z-[9999]"
     />
+    <NuxtRouteAnnouncer />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
     <LazyAppBackToTop hydrate-on-idle />
     <LazyAppCommandPalette hydrate-on-idle />
+    <LazyAppSectionRail
+      v-if="isHome"
+      hydrate-on-idle
+    />
     <LazyAboutSceneOverlay v-if="sceneIsOpen" />
     <Toaster
       position="bottom-right"
@@ -30,6 +35,9 @@ const loaderColor = computed(() => {
 
 const { isOpen: paletteIsOpen } = useCommandPalette()
 const { isOpen: sceneIsOpen } = useScene()
+
+const route = useRoute()
+const isHome = computed(() => route.path === '/')
 
 if (import.meta.client) {
   const keys = useMagicKeys({

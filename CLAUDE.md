@@ -47,6 +47,7 @@
 - Keep components clean, readable, and well-structured.
 - When making changes, always be ready to explain the reasoning behind your decisions.
 - If presented with a suboptimal or incorrect approach, you **MUST** challenge it constructively and propose better alternatives.
+- Avoid writing your own <style> block; prefer pure Tailwind approach.
 
 ---
 

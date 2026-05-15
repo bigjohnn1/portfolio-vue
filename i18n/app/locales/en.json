@@ -7,11 +7,13 @@
     "name": "Benjamin Tomanik"
   },
   "nav": {
+    "intro": "Intro",
     "references": "Projects",
     "about": "About",
     "blog": "Blog",
     "contact": "Contact",
     "stack": "My stack",
+    "sectionsLabel": "Page sections",
     "toggleMenu": "Toggle menu",
     "home": "Home",
     "logoAlt": "Site Logo",

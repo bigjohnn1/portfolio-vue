@@ -75,7 +75,14 @@
 
     <span class="clock-meta">
       <span class="clock-city">{{ t('about.card.location') }}</span>
-      <span class="clock-time">{{ digital }}</span>
+      <NuxtTime
+        class="clock-time"
+        :datetime="now"
+        :locale="locale === 'cs' ? 'cs-CZ' : 'en-US'"
+        hour="2-digit"
+        minute="2-digit"
+        time-zone="Europe/Prague"
+      />
     </span>
 
     <Teleport to="body">
