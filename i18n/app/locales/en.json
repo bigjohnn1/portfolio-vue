@@ -80,6 +80,13 @@
   "projects": {
     "title": "My Projects",
     "liveDemo": "Live Demo",
+    "techStack": "Tech stack",
+    "tech": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "db": "Database",
+      "misc": "Misc"
+    },
     "items": {
       "skola-zivota": {
         "title": "School of Life - Web Revamp",

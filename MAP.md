@@ -40,7 +40,7 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
   - `Intro.vue`: Hero/intro section.
   - `About.vue`: About me section — orchestrates `HomeAboutCard` + 3× `HomeAboutFactCard` with per-fact accent (indigo / amber / violet).
   - `AboutFactCard.vue`: Polished fact card with shared chrome (mouse-tracked spotlight, accent rail, colored hover shadow) and per-fact micro-details: **learning** → animated sparkline (`stroke-dashoffset` on hover) + SMIL-pulsing end-dot; **lifestyle** → dumbbell with hover micro-rotation; **rpg** → inline SVG d20 with rolling face on hover (settles on natural 20) + rune watermark.
-  - `Projects.vue`: Project showcase.
+  - `Projects.vue`: Project showcase. Each card renders grouped tech-stack pills (`frontend` / `backend` / `db` / `misc`) sourced from a per-project `tech` object; group labels are i18n'd via `projects.tech.*`, technology names stay untranslated.
   - `TechStack.vue`: Technology stack display.
   - `Contact.vue`: Contact section wrapper.
   - `Blog.vue`: Homepage preview of the latest 3 blog articles.

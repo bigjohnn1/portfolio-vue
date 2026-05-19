@@ -80,6 +80,13 @@
   "projects": {
     "title": "Moje projekty",
     "liveDemo": "Živá ukázka",
+    "techStack": "Použité technologie",
+    "tech": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "db": "Databáze",
+      "misc": "Ostatní"
+    },
     "items": {
       "skola-zivota": {
         "title": "Škola života - web revamp",
