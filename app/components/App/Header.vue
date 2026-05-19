@@ -4,19 +4,27 @@
   >
     <button
       ref="hamburgerBtn"
-      class="hamburger-btn lg:hidden p-2 cursor-pointer relative"
+      class="group/btn lg:hidden p-2 cursor-pointer relative rounded-xl transition-colors duration-300 hover:bg-black/5 focus-visible:bg-black/5 focus-visible:outline-none dark:hover:bg-white/8 dark:focus-visible:bg-white/8"
       :aria-label="$t('nav.toggleMenu')"
       :aria-expanded="isMenuOpen"
       @click="onHamburgerClick"
     >
       <span
-        class="hamburger-lines"
-        :class="{ 'is-open': isMenuOpen }"
+        class="relative inline-block w-[26px] h-[20px] align-middle"
         aria-hidden="true"
       >
-        <span class="line line-top"></span>
-        <span class="line line-mid"></span>
-        <span class="line line-bot"></span>
+        <span
+          class="absolute left-0 right-0 h-[2.5px] bg-current rounded-full origin-center transition-all duration-500 ease-[cubic-bezier(0.65,0.05,0.36,1)] motion-reduce:transition-none top-0"
+          :class="isMenuOpen ? 'translate-y-[8.75px] rotate-45' : ''"
+        ></span>
+        <span
+          class="absolute left-0 right-0 h-[2.5px] bg-current rounded-full origin-center transition-all duration-500 ease-[cubic-bezier(0.65,0.05,0.36,1)] motion-reduce:transition-none top-1/2"
+          :class="isMenuOpen ? 'opacity-0 -translate-y-1/2 scale-x-0' : '-translate-y-1/2 w-[75%] group-hover/btn:w-full'"
+        ></span>
+        <span
+          class="absolute left-0 right-0 h-[2.5px] bg-current rounded-full origin-center transition-all duration-500 ease-[cubic-bezier(0.65,0.05,0.36,1)] motion-reduce:transition-none bottom-0"
+          :class="isMenuOpen ? 'w-full -translate-y-[8.75px] -rotate-45' : 'w-[55%] group-hover/btn:w-full'"
+        ></span>
       </span>
     </button>
 
@@ -28,7 +36,7 @@
         v-for="link in leftLinks"
         :key="link.to"
         :to="link.to"
-        class="flex items-center text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent px-2 py-1 nav-link"
+        class="flex items-center text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent px-2 py-1 relative before:content-[''] before:absolute before:w-0 before:h-[2px] before:-bottom-1 before:left-0 before:bg-current before:transition-all before:duration-300 hover:before:w-full"
         @click="closeMenu"
       >
         <Icon
@@ -54,7 +62,7 @@
         v-for="link in rightLinks"
         :key="link.to"
         :href="link.to"
-        class="flex items-center text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent px-2 py-1 nav-link"
+        class="flex items-center text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent px-2 py-1 relative before:content-[''] before:absolute before:w-0 before:h-[2px] before:-bottom-1 before:left-0 before:bg-current before:transition-all before:duration-300 hover:before:w-full"
         @click="closeMenu"
       >
         <Icon
@@ -77,7 +85,7 @@
         aria-hidden="true"
       />
       <span class="text-sm opacity-70">{{ $t('cmdk.search') }}</span>
-      <kbd class="cmdk-hint-kbd">{{ modKey }} K</kbd>
+      <kbd class="font-mono text-[0.7rem] py-[0.15rem] px-[0.45rem] rounded-[0.3rem] bg-[rgba(0,0,0,0.07)] border border-[rgba(0,0,0,0.1)] leading-none dark:bg-[rgba(255,255,255,0.08)] dark:border-[rgba(255,255,255,0.14)]">{{ modKey }} K</kbd>
     </button>
     <button
       ref="themeButton"
@@ -103,15 +111,15 @@
     </button>
     <div
       ref="mobileMenu"
-      class="mobile-menu absolute left-4 right-4 top-[calc(100%+8px)] p-4 rounded-2xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl shadow-2xl border border-black/10 dark:border-white/10 z-40 lg:hidden"
-      :class="{ 'is-open': isMenuOpen }"
+      class="absolute left-4 right-4 top-[calc(100%+8px)] p-4 rounded-2xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl shadow-2xl border border-black/10 dark:border-white/10 z-40 lg:hidden origin-top-left transition-all duration-400 ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none"
+      :class="isMenuOpen ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto' : 'opacity-0 -translate-y-2 scale-96 pointer-events-none'"
       role="dialog"
       aria-modal="true"
       :aria-hidden="!isMenuOpen"
       :inert="!isMenuOpen"
       :aria-label="$t('nav.toggleMenu')"
     >
-      <div class="mobile-link flex items-center justify-between gap-3 pb-3 mb-3 border-b border-black/10 dark:border-white/10">
+      <div class="mobile-link opacity-0 will-change-[transform,opacity] flex items-center justify-between gap-3 pb-3 mb-3 border-b border-black/10 dark:border-white/10">
         <a
           href="#intro"
           class="flex items-center gap-3 group"
@@ -136,7 +144,7 @@
           v-for="link in links"
           :key="link.to"
           :href="link.to"
-          class="mobile-link group w-full py-3 px-3 rounded-xl flex items-center gap-3 hover:bg-primary-50 dark:hover:bg-white/5 transition-colors duration-200"
+          class="mobile-link opacity-0 will-change-[transform,opacity] group w-full py-3 px-3 rounded-xl flex items-center gap-3 hover:bg-primary-50 dark:hover:bg-white/5 transition-colors duration-200"
           @click="closeMenu"
         >
           <span class="w-9 h-9 grid place-items-center rounded-lg bg-primary-50 dark:bg-primary-900 text-primary-700 dark:text-primary-300 group-hover:scale-110 transition-transform duration-300 shrink-0">
@@ -287,128 +295,3 @@ const midIndex = Math.floor(links.length / 2)
 const leftLinks = links.slice(0, midIndex)
 const rightLinks = links.slice(midIndex)
 </script>
-
-<style lang="scss" scoped>
-@mixin nav-link {
-  position: relative;
-  &::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background: currentColor;
-    transition: all 0.3s ease;
-  }
-  &:hover::before {
-    width: 100%;
-  }
-}
-
-.nav-link {
-  @include nav-link;
-}
-
-.cmdk-hint-kbd {
-  font-family: ui-monospace, monospace;
-  font-size: 0.7rem;
-  padding: 0.15rem 0.45rem;
-  border-radius: 0.3rem;
-  background: rgba(0, 0, 0, 0.07);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  line-height: 1;
-}
-
-:global(.dark) .cmdk-hint-kbd {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.14);
-}
-
-.hamburger-btn {
-  border-radius: 12px;
-  transition: background-color 0.3s ease;
-
-  &:hover,
-  &:focus-visible {
-    background-color: rgba(0, 0, 0, 0.05);
-    outline: none;
-  }
-}
-
-:global(.dark) .hamburger-btn:hover,
-:global(.dark) .hamburger-btn:focus-visible {
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
-.hamburger-lines {
-  position: relative;
-  display: inline-block;
-  width: 26px;
-  height: 20px;
-  vertical-align: middle;
-}
-
-.line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 2.5px;
-  background: currentColor;
-  border-radius: 999px;
-  transform-origin: center;
-  transition:
-    transform 0.5s cubic-bezier(0.65, 0.05, 0.36, 1),
-    opacity 0.25s ease,
-    width 0.4s cubic-bezier(0.65, 0.05, 0.36, 1);
-}
-
-.line-top    { top: 0; }
-.line-mid    { top: 50%; transform: translateY(-50%); width: 75%; }
-.line-bot    { bottom: 0; width: 55%; }
-
-.hamburger-btn:hover .line-mid,
-.hamburger-btn:hover .line-bot {
-  width: 100%;
-}
-
-.is-open .line-top {
-  transform: translateY(8.75px) rotate(45deg);
-}
-.is-open .line-mid {
-  opacity: 0;
-  transform: translateY(-50%) scaleX(0);
-}
-.is-open .line-bot {
-  width: 100%;
-  transform: translateY(-8.75px) rotate(-45deg);
-}
-
-.mobile-menu {
-  opacity: 0;
-  transform: translateY(-8px) scale(0.96);
-  transform-origin: top left;
-  transition:
-    opacity 0.3s ease,
-    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  pointer-events: none;
-}
-
-.mobile-menu.is-open {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
-}
-
-.mobile-link {
-  opacity: 0;
-  will-change: transform, opacity;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .line,
-  .mobile-menu {
-    transition: none;
-  }
-}
-</style>
