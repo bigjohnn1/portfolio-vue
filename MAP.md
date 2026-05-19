@@ -35,7 +35,7 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
   - `Footer.vue`: Site footer.
   - `LocaleSwitcher.vue`: Component to switch between languages (en/cs).
   - `LocalClock.vue`: Analog/digital Prague-time clock with tz-diff tooltip; uses `<NuxtTime>` for SSR-safe digital rendering.
-  - `SectionRail.vue`: Fixed vertical anchor rail (lg+ only, home route only). Tracks the active section with `useIntersectionObserver`, page progress with `useScroll`, idle auto-hide with `useIdle`, and `Alt+↑/↓` jump via `useMagicKeys`. Lazy-mounted in `app.vue` and gated to `/`.
+  - `SectionRail.vue`: Fixed vertical anchor rail (lg+ only, home route only). Tracks the active section with `useIntersectionObserver`, page progress with `useScroll`, idle auto-hide with `useIdle`, and `Alt+↑/↓` jump via `useMagicKeys`. Lazy-mounted in `app.vue` and gated to `/`. Hosts a compact **locale quick-action button** above the section dots — opens a small popover with `onClickOutside` (VueUse) and ESC-to-close; shares visibility with the rail so it only appears once the user scrolls past the intro.
 - **`Home/`**
   - `Intro.vue`: Hero/intro section.
   - `About.vue`: About me section.

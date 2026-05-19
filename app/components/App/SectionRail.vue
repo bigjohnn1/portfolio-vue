@@ -8,7 +8,7 @@
     <button
       v-show="drawerVisible"
       type="button"
-      class="group fixed right-0 top-1/2 z-40 hidden h-[56px] w-[22px] -translate-y-1/2 cursor-pointer items-center justify-center rounded-l-lg border border-r-0 border-gray-900/[0.08] bg-white/70 p-0 text-gray-900/[0.65] shadow-[-4px_0_16px_rgba(17,24,39,0.06)] backdrop-blur-md transition-[width,color] duration-[250ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:w-[28px] hover:text-gray-900/[0.95] focus-visible:w-[28px] focus-visible:text-gray-900/[0.95] focus-visible:outline-none motion-reduce:transition-none dark:border-white/[0.08] dark:bg-gray-900/70 dark:text-gray-200/70 dark:shadow-[-4px_0_16px_rgba(0,0,0,0.3)] dark:hover:text-gray-200 dark:focus-visible:text-gray-200 lg:inline-flex"
+      class="group fixed right-0 top-1/2 z-40 hidden h-[56px] w-[22px] -translate-y-1/2 cursor-pointer items-center justify-center rounded-l-lg border border-r-0 border-gray-900/10 bg-white/70 p-0 text-gray-900/60 shadow-sm backdrop-blur-md transition-[width,color] duration-[250ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:w-[28px] hover:text-gray-900 focus-visible:w-[28px] focus-visible:text-gray-900 focus-visible:outline-none motion-reduce:transition-none dark:border-white/10 dark:bg-gray-900/70 dark:text-gray-200/70 dark:hover:text-gray-100 dark:focus-visible:text-gray-100 lg:inline-flex"
       :aria-label="t('nav.sectionsLabel')"
       :aria-hidden="!drawerVisible"
       @mouseenter="reveal"
@@ -18,7 +18,7 @@
       <svg
         viewBox="0 0 12 18"
         aria-hidden="true"
-        class="h-[14px] w-[10px] transition-transform duration-[250ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-translate-x-[1px] group-focus-visible:-translate-x-[1px] motion-reduce:transition-none"
+        class="h-[14px] w-[10px] transition-transform duration-[250ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-translate-x-px group-focus-visible:-translate-x-px motion-reduce:transition-none"
       >
         <path
           d="M9 3 L3 9 L9 15"
@@ -41,63 +41,157 @@
     <nav
       v-show="visible"
       ref="rootEl"
-      class="fixed right-[clamp(1rem,2.2vw,2rem)] top-1/2 z-40 hidden -translate-y-1/2 py-[0.4rem] text-gray-900/[0.85] pointer-events-auto motion-reduce:transition-none dark:text-gray-200/90 lg:block"
+      class="fixed right-[clamp(1rem,2.2vw,2rem)] top-1/2 z-40 hidden -translate-y-1/2 text-gray-900 pointer-events-auto dark:text-gray-100 lg:block"
       :aria-label="t('nav.sectionsLabel')"
       :aria-hidden="!visible"
     >
-      <span
-        class="absolute bottom-[0.6rem] right-[0.62rem] top-[0.6rem] w-[1px] overflow-hidden bg-current opacity-[0.14]"
-        aria-hidden="true"
-      >
-        <span
-          class="absolute inset-0 origin-top bg-current opacity-70 transition-transform duration-[180ms] ease-linear motion-reduce:transition-none"
-          :style="{ transform: `scaleY(${progress})` }"
-        />
-      </span>
-
-      <ul class="relative m-0 flex flex-col gap-[1.1rem] list-none pr-[1.5rem]">
-        <li
-          v-for="(section, index) in sections"
-          :key="section.id"
+      <div class="relative flex w-[28px] flex-col items-center">
+        <div
+          class="absolute bottom-[7px] top-[7px] w-[1px] bg-gray-900/10 dark:bg-white/10"
+          aria-hidden="true"
         >
-          <a
-            :href="`#${section.id}`"
-            :class="['group relative flex h-[14px] items-center justify-end gap-[0.85rem] text-inherit no-underline outline-none', { 'is-active': activeId === section.id }]"
-            :aria-current="activeId === section.id ? 'true' : undefined"
-            :aria-label="t(section.labelKey)"
-            @click.prevent="scrollTo(section.id)"
+          <div
+            class="absolute inset-0 origin-top bg-gray-900 opacity-60 transition-transform duration-200 ease-linear dark:bg-white motion-reduce:transition-none"
+            :style="{ transform: `scaleY(${progress})` }"
+          />
+        </div>
+
+        <ul class="relative z-10 m-0 flex w-full flex-col gap-[1.25rem] p-0 list-none">
+          <li
+            v-for="(section, index) in sections"
+            :key="section.id"
+            class="relative flex w-full justify-center"
           >
-            <span
-              class="relative block h-[6px] w-[6px] rounded-full bg-current opacity-[0.35] transition-all duration-[250ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] after:absolute after:-inset-[6px] after:scale-50 after:rounded-full after:border after:border-current after:opacity-0 after:transition-all after:duration-[250ms] after:ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:opacity-90 group-focus-visible:opacity-90 group-focus-visible:shadow-[0_0_0_2px_currentColor] group-[.is-active]:scale-105 group-[.is-active]:opacity-100 group-[.is-active]:after:scale-100 group-[.is-active]:after:opacity-[0.55] motion-reduce:transition-none motion-reduce:after:transition-none"
+            <a
+              :href="`#${section.id}`"
+              :class="[
+                'group flex h-[14px] w-[14px] items-center justify-center outline-none',
+                { 'is-active': activeId === section.id },
+              ]"
+              :aria-current="activeId === section.id ? 'true' : undefined"
+              :aria-label="t(section.labelKey)"
+              @click.prevent="scrollTo(section.id)"
+            >
+              <span
+                class="absolute right-[calc(100%+0.75rem)] top-1/2 flex -translate-y-1/2 translate-x-2 items-center gap-2 whitespace-nowrap rounded-full border border-gray-900/10 bg-white/70 px-2.5 py-1 text-[0.75rem] font-medium tracking-wide uppercase opacity-0 shadow-sm backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] pointer-events-none group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 group-[.is-active]:translate-x-0 group-[.is-active]:opacity-100 dark:border-white/10 dark:bg-gray-900/70 motion-reduce:transition-none"
+              >
+                <span class="tabular-nums text-gray-900/50 dark:text-gray-100/50">
+                  {{ String(index + 1).padStart(2, '0') }}
+                </span>
+                <span>{{ t(section.labelKey) }}</span>
+              </span>
+
+              <span
+                class="relative block h-[6px] w-[6px] rounded-full bg-current opacity-30 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] after:absolute after:-inset-[4px] after:scale-50 after:rounded-full after:border after:border-current after:opacity-0 after:transition-all after:duration-300 group-hover:scale-125 group-hover:opacity-100 group-focus-visible:scale-125 group-focus-visible:opacity-100 group-[.is-active]:scale-110 group-[.is-active]:opacity-100 group-[.is-active]:after:scale-100 group-[.is-active]:after:opacity-50 motion-reduce:transition-none"
+                aria-hidden="true"
+              />
+            </a>
+          </li>
+        </ul>
+
+        <div class="absolute top-[calc(100%+2rem)] flex w-full justify-center">
+          <button
+            ref="langBtnRef"
+            type="button"
+            class="group/lang relative grid h-[28px] w-[28px] cursor-pointer place-items-center rounded-full border border-gray-900/10 bg-white/70 text-gray-900/80 shadow-sm backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-110 hover:text-gray-900 focus-visible:scale-110 focus-visible:text-gray-900 focus-visible:outline-none dark:border-white/10 dark:bg-gray-900/70 dark:text-gray-200/80 dark:hover:text-gray-100 motion-reduce:transition-none"
+            :aria-haspopup="true"
+            :aria-expanded="langOpen"
+            :aria-label="t('nav.switchLanguage')"
+            @click="toggleLang"
+          >
+            <Icon
+              :name="currentLocale.icon ?? 'mdi:translate'"
+              class="h-[16px] w-[16px]"
               aria-hidden="true"
             />
-            <span class="absolute right-[calc(100%+0.35rem)] top-1/2 flex -translate-y-1/2 translate-x-[0.4rem] items-baseline gap-[0.55rem] whitespace-nowrap rounded-full border border-gray-900/[0.08] bg-white/70 px-[0.55rem] py-[0.25rem] text-[0.72rem] tracking-[0.06em] uppercase opacity-0 backdrop-blur-[8px] transition-all duration-[200ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] pointer-events-none group-hover:-translate-y-1/2 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:-translate-y-1/2 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 group-[.is-active]:-translate-y-1/2 group-[.is-active]:translate-x-0 group-[.is-active]:opacity-100 dark:border-white/[0.08] dark:bg-gray-900/70 motion-reduce:transition-none">
-              <span class="tabular-nums opacity-[0.45]">{{ String(index + 1).padStart(2, '0') }}</span>
-              <span class="font-semibold">{{ t(section.labelKey) }}</span>
-            </span>
-          </a>
-        </li>
-      </ul>
+            <span class="sr-only">{{ currentLocale.name }}</span>
+          </button>
+
+          <Transition
+            enter-active-class="transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+            enter-from-class="opacity-0 -translate-y-2 scale-95"
+            leave-active-class="transition-all duration-200 ease-out"
+            leave-to-class="opacity-0 -translate-y-2 scale-95"
+          >
+            <ul
+              v-if="langOpen"
+              ref="langPopRef"
+              role="listbox"
+              :aria-label="t('nav.switchLanguage')"
+              class="absolute right-0 top-[calc(100%+0.75rem)] z-50 m-0 flex w-[130px] origin-top-right flex-col gap-1 rounded-xl border border-gray-900/10 bg-white/85 p-1.5 text-[0.8rem] text-gray-900/85 shadow-lg backdrop-blur-md will-change-transform dark:border-white/10 dark:bg-gray-900/85 dark:text-gray-100/90"
+            >
+              <li
+                v-for="item in availableLocales"
+                :key="item.code"
+                role="option"
+                :aria-selected="currentLocale.code === item.code"
+                :class="[
+                  'flex cursor-pointer select-none items-center gap-2.5 rounded-lg px-2.5 py-2 transition-colors duration-200',
+                  currentLocale.code === item.code
+                    ? 'bg-primary-50 font-semibold text-primary-900 dark:bg-primary-900/40 dark:text-primary-100'
+                    : 'font-medium hover:bg-gray-900/5 dark:hover:bg-white/5',
+                ]"
+                @click="pickLocale(item.code)"
+              >
+                <Icon
+                  :name="item.icon!"
+                  class="h-[16px] w-[16px] shrink-0"
+                  aria-hidden="true"
+                />
+                <span>{{ item.name }}</span>
+              </li>
+            </ul>
+          </Transition>
+        </div>
+      </div>
     </nav>
   </Transition>
 </template>
 
 <script setup lang="ts">
 import {
+  onClickOutside,
   useScroll,
   useIdle,
   useMagicKeys,
   useIntersectionObserver,
   usePreferredReducedMotion,
 } from '@vueuse/core'
-import { shallowRef, computed, watch, onMounted, nextTick } from 'vue'
 
 interface SectionDef {
   id: string
   labelKey: string
 }
 
-const { t } = useI18n()
+interface LocaleOption {
+  code: string
+  name?: string
+  icon?: string
+}
+
+const { t, locale, locales, setLocale } = useI18n()
+
+const availableLocales = computed(() => locales.value as LocaleOption[])
+const currentLocale = computed(
+  () => availableLocales.value.find(l => l.code === locale.value) ?? availableLocales.value[0]!,
+)
+
+const langOpen = shallowRef(false)
+const langBtnRef = useTemplateRef<HTMLElement>('langBtnRef')
+const langPopRef = useTemplateRef<HTMLElement>('langPopRef')
+
+onClickOutside(langPopRef, () => {
+  langOpen.value = false
+}, { ignore: [langBtnRef] })
+
+const toggleLang = () => {
+  langOpen.value = !langOpen.value
+}
+
+const pickLocale = (code: string) => {
+  setLocale(code as 'en' | 'cs')
+  langOpen.value = false
+}
 
 const sections: SectionDef[] = [
   { id: 'intro', labelKey: 'nav.intro' },
@@ -220,4 +314,15 @@ watch(altDown, (v) => {
 watch(altUp, (v) => {
   if (v) jump(-1)
 })
+
+watch(visible, (v) => {
+  if (!v) langOpen.value = false
+})
+
+if (import.meta.client) {
+  const escape = computed(() => !!keys.escape?.value)
+  watch(escape, (v) => {
+    if (v && langOpen.value) langOpen.value = false
+  })
+}
 </script>

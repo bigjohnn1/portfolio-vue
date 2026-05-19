@@ -18,40 +18,45 @@
       </span>
       <Icon
         :name="isOpen ? 'mingcute:up-fill' : 'mingcute:down-fill'"
-        class="h-4 w-4 text-gray-700 dark:text-gray-300"
+        class="h-4 w-4 text-gray-700 dark:text-gray-300 transition-transform duration-200"
         aria-hidden="true"
       />
     </button>
-    <ul
-      v-if="isOpen"
-      ref="dropdown"
-      role="listbox"
-      class="absolute w-32 mt-1 rounded-lg bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 shadow-lg z-[9999]"
+    <Transition
+      enter-active-class="transition-[opacity,transform] duration-[220ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-opacity motion-reduce:duration-[120ms]"
+      enter-from-class="opacity-0 -translate-y-2 scale-95 motion-reduce:translate-y-0 motion-reduce:scale-100"
+      leave-active-class="transition-[opacity,transform] duration-[160ms] ease-out motion-reduce:transition-opacity motion-reduce:duration-[100ms]"
+      leave-to-class="opacity-0 -translate-y-2 scale-95 motion-reduce:translate-y-0 motion-reduce:scale-100"
     >
-      <li
-        v-for="item in availableLocales"
-        :key="item.code"
-        role="option"
-        :aria-selected="currentLocale.code === item.code"
-        class="px-3 py-2 flex items-center hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer transition-colors duration-200"
-        @click="switchLocale(item.code)"
+      <ul
+        v-if="isOpen"
+        ref="dropdown"
+        role="listbox"
+        :aria-label="$t('nav.switchLanguage')"
+        class="absolute w-32 mt-1 rounded-lg bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 shadow-lg z-[9999] origin-top"
       >
-        <Icon
-          :name="item.icon!"
-          class="h-5 w-5 mr-2"
-          aria-hidden="true"
-        />
-        {{ item.name }}
-      </li>
-    </ul>
+        <li
+          v-for="item in availableLocales"
+          :key="item.code"
+          role="option"
+          :aria-selected="currentLocale.code === item.code"
+          class="px-3 py-2 flex items-center hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
+          @click="switchLocale(item.code)"
+        >
+          <Icon
+            :name="item.icon!"
+            class="h-5 w-5 mr-2"
+            aria-hidden="true"
+          />
+          {{ item.name }}
+        </li>
+      </ul>
+    </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { gsap } from 'gsap'
-
-const { locale, locales, setLocale } = useI18n()
-const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
+import { onClickOutside, useMagicKeys } from '@vueuse/core'
 
 interface LocaleObject {
   code: string
@@ -59,49 +64,35 @@ interface LocaleObject {
   icon?: string
 }
 
+const { locale, locales, setLocale } = useI18n()
+
 const availableLocales = computed(() => locales.value as LocaleObject[])
 const isOpen = shallowRef(false)
 const dropdown = useTemplateRef<HTMLElement>('dropdown')
 const switcherBtn = useTemplateRef<HTMLElement>('switcherBtn')
 
-const currentLocale = computed(() => {
-  const found = availableLocales.value.find(
-    l => l.code === locale.value,
-  )
-  return found || availableLocales.value[0]!
-})
+const currentLocale = computed(
+  () => availableLocales.value.find(l => l.code === locale.value) ?? availableLocales.value[0]!,
+)
 
-const toggleDropdown = async () => {
+const toggleDropdown = () => {
   isOpen.value = !isOpen.value
-  if (isOpen.value) {
-    await nextTick()
-    animateDropdownOpen()
-  }
 }
 
-const switchLocale = (localeCode: 'en' | 'cs' | string) => {
-  setLocale(localeCode as 'en' | 'cs')
+const switchLocale = (code: string) => {
+  setLocale(code as 'en' | 'cs')
   isOpen.value = false
 }
 
-const animateDropdownOpen = () => {
-  if (dropdown.value) {
-    $gsap.fromTo(
-      dropdown.value,
-      { opacity: 0, y: -10, scale: 0.95 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: 'power2.out' },
-    )
-  }
-}
+onClickOutside(dropdown, () => {
+  isOpen.value = false
+}, { ignore: [switcherBtn] })
 
-onMounted(() => {
-  if (switcherBtn.value) {
-    $gsap.from(switcherBtn.value, {
-      y: -10,
-      opacity: 0,
-      duration: 0.4,
-      ease: 'power2.out',
-    })
-  }
-})
+if (import.meta.client) {
+  const keys = useMagicKeys()
+  const escape = computed(() => !!keys.escape?.value)
+  watch(escape, (v) => {
+    if (v && isOpen.value) isOpen.value = false
+  })
+}
 </script>
