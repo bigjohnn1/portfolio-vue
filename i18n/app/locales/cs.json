@@ -331,7 +331,9 @@
           "title": "Fantasy fanoušek",
           "description": "Mám rád fantasy světy, jako je D&D, Zaklínač nebo Pán prstenů."
         }
-      }
+      },
+      "criticalSuccess": "Kritický úspěch",
+      "criticalFailure": "Kritické selhání"
     }
   },
   "consent": {

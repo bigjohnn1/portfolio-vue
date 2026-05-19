@@ -166,6 +166,47 @@
         </p>
       </div>
     </div>
+
+    <Transition
+      enter-active-class="transition-all duration-500 ease-[cubic-bezier(0.22,1.4,0.36,1)]"
+      enter-from-class="opacity-0 scale-50 -translate-y-2 rotate-[-4deg]"
+      enter-to-class="opacity-100 scale-100 translate-y-0 rotate-0"
+      leave-active-class="transition-all duration-300 ease-out"
+      leave-from-class="opacity-100 scale-100"
+      leave-to-class="opacity-0 scale-90"
+    >
+      <div
+        v-if="fact.key === 'rpg' && criticalResult"
+        :key="criticalResult"
+        class="pointer-events-none absolute right-4 top-4 z-20 flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.7rem] font-bold uppercase tracking-wider shadow-lg ring-1 motion-reduce:transition-none"
+        :class="criticalResult === 'success'
+          ? 'bg-gradient-to-r from-amber-400 to-yellow-500 text-amber-950 ring-amber-300/60 shadow-amber-500/40 dark:from-amber-300 dark:to-yellow-400 dark:text-amber-950 dark:ring-amber-200/40'
+          : 'bg-gradient-to-r from-red-500 to-rose-600 text-white ring-red-300/60 shadow-red-500/40 dark:from-red-500 dark:to-rose-600 dark:ring-red-300/40'"
+        role="status"
+        aria-live="polite"
+      >
+        <span
+          class="grid h-4 w-4 place-items-center rounded-full text-[0.6rem] font-black tabular-nums"
+          :class="criticalResult === 'success'
+            ? 'bg-amber-950/20 text-amber-950'
+            : 'bg-white/25 text-white'"
+        >
+          {{ criticalResult === 'success' ? '20' : '1' }}
+        </span>
+        <span class="animate-pulse motion-reduce:animate-none">
+          {{ criticalResult === 'success' ? t('about.facts.criticalSuccess') : t('about.facts.criticalFailure') }}
+        </span>
+      </div>
+    </Transition>
+
+    <span
+      v-if="fact.key === 'rpg' && criticalResult"
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 -z-10 rounded-2xl opacity-60 motion-reduce:hidden"
+      :class="criticalResult === 'success'
+        ? 'bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.18),transparent_60%)]'
+        : 'bg-[radial-gradient(circle_at_top_right,rgba(244,63,94,0.18),transparent_60%)]'"
+    />
   </article>
 </template>
 
@@ -222,6 +263,7 @@ const cardStyle = computed(() => {
 
 const diceFace = shallowRef(20)
 const diceRotation = shallowRef(0)
+const criticalResult = shallowRef<'success' | 'failure' | null>(null)
 let rollTimer: ReturnType<typeof setInterval> | null = null
 
 const stopRoll = () => {
@@ -231,17 +273,31 @@ const stopRoll = () => {
   }
 }
 
+const startRoll = () => {
+  stopRoll()
+  rollTimer = setInterval(() => {
+    const face = 1 + Math.floor(Math.random() * 20)
+    diceFace.value = face
+    diceRotation.value += 40 + Math.random() * 80
+    if (face === 1 || face === 20) {
+      stopRoll()
+      criticalResult.value = face === 20 ? 'success' : 'failure'
+    }
+  }, 75)
+}
+
 watch(isHovered, (v) => {
   if (props.fact.key !== 'rpg') return
   if (v) {
-    rollTimer = setInterval(() => {
-      diceFace.value = 1 + Math.floor(Math.random() * 20)
-      diceRotation.value += 40 + Math.random() * 80
-    }, 75)
+    if (criticalResult.value) {
+      criticalResult.value = null
+      diceFace.value = 20
+    }
+    startRoll()
   }
   else {
     stopRoll()
-    diceFace.value = 20
+    if (!criticalResult.value) diceFace.value = 20
   }
 })
 

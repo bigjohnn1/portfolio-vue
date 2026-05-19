@@ -331,7 +331,9 @@
           "title": "Fantasy Fan",
           "description": "I love fantasy worlds like D&D, The Witcher, or LOTR."
         }
-      }
+      },
+      "criticalSuccess": "Critical Success",
+      "criticalFailure": "Critical Failure"
     }
   },
   "consent": {
