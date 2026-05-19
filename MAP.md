@@ -15,6 +15,7 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
 ### Root
 
 - `content.config.ts`: Configuration for Nuxt Content, parsing markdown files from local `content/` directory.
+- `app/app.vue`: Global SEO + JSON-LD structured data via `useSchemaOrg` (`definePerson` with phone/email/sameAs/address, `defineWebSite`, `defineWebPage`) — emitted on every page through `@nuxtjs/seo` (nuxt-schema-org).
 
 ### `/pages`
 

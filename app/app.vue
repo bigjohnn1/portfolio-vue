@@ -59,4 +59,51 @@ useSeoMeta({
     return titleChunk ? `${titleChunk} - Big John` : 'Big John'
   },
 })
+
+useSchemaOrg([
+  definePerson({
+    '@id': 'https://benjamintomanik.me/#about',
+    'name': 'Benjamin Tomanik',
+    'alternateName': 'Big John',
+    'jobTitle': 'Product Engineer & Technical Co-Founder',
+    'description': 'Product engineer from Czechia building scalable full-stack architectures with Vue, Nuxt, React and Next.',
+    'image': 'https://benjamintomanik.me/bj.png',
+    'url': 'https://benjamintomanik.me',
+    'email': 'mailto:benjamin.tomanik@gmail.com',
+    'telephone': '+420705206985',
+    'address': {
+      '@type': 'PostalAddress',
+      'addressCountry': 'CZ',
+    },
+    'knowsAbout': [
+      'Vue.js',
+      'Nuxt',
+      'React',
+      'Next.js',
+      'TypeScript',
+      'Node.js',
+      'Tailwind CSS',
+      'Three.js',
+      'GSAP',
+      'Pinia',
+      'ZenStack',
+      'Prisma',
+    ],
+    'sameAs': socialLinks.map(s => s.url),
+  }),
+  defineWebSite({
+    '@id': 'https://benjamintomanik.me/#about',
+    'name': 'Big John — Benjamin Tomanik',
+    'description': 'Portfolio of Benjamin Tomanik, Product Engineer & Technical Co-Founder.',
+    'url': 'https://benjamintomanik.me',
+    'inLanguage': ['en', 'cs'],
+    'publisher': { '@id': 'https://benjamintomanik.me/#person' },
+  }),
+  defineWebPage({
+    '@type': 'WebPage',
+    'isPartOf': { '@id': 'https://benjamintomanik.me/#about' },
+    'about': { '@id': 'https://benjamintomanik.me/#person' },
+    'primaryImageOfPage': 'https://benjamintomanik.me/bj.png',
+  }),
+])
 </script>
