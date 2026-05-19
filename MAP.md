@@ -38,7 +38,8 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
   - `SectionRail.vue`: Fixed vertical anchor rail (lg+ only, home route only). Tracks the active section with `useIntersectionObserver`, page progress with `useScroll`, idle auto-hide with `useIdle`, and `Alt+↑/↓` jump via `useMagicKeys`. Lazy-mounted in `app.vue` and gated to `/`. Hosts a compact **locale quick-action button** above the section dots — opens a small popover with `onClickOutside` (VueUse) and ESC-to-close; shares visibility with the rail so it only appears once the user scrolls past the intro.
 - **`Home/`**
   - `Intro.vue`: Hero/intro section.
-  - `About.vue`: About me section.
+  - `About.vue`: About me section — orchestrates `HomeAboutCard` + 3× `HomeAboutFactCard` with per-fact accent (indigo / amber / violet).
+  - `AboutFactCard.vue`: Polished fact card with shared chrome (mouse-tracked spotlight, accent rail, colored hover shadow) and per-fact micro-details: **learning** → animated sparkline (`stroke-dashoffset` on hover) + SMIL-pulsing end-dot; **lifestyle** → dumbbell with hover micro-rotation; **rpg** → inline SVG d20 with rolling face on hover (settles on natural 20) + rune watermark.
   - `Projects.vue`: Project showcase.
   - `TechStack.vue`: Technology stack display.
   - `Contact.vue`: Contact section wrapper.
