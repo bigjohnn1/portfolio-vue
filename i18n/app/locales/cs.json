@@ -125,12 +125,12 @@
       },
       "fastproject": {
         "title": "FastProject",
-        "description": "Škálovatelný AI B2B nástroj pro řízení projektů v React & Next.js s Two-way Sync (Asana), chytrým plánováním kapacit a RBAC.",
+        "description": "Škálovatelný AI B2B nástroj pro řízení projektů. React SPA na Vite s Hono API běžícím na Cloudflare Workers (D1/KV/R2). Two-way Sync (Asana), chytré plánování kapacit a RBAC.",
         "timeline": "Listopad 2025 - Březen 2026"
       },
       "nimblo": {
         "title": "Nimblo",
-        "description": "Generátor nabídek v React & Next.js využívající AI na analýzu šablon a dynamické doplňování dat z meetingů (Fireflies).",
+        "description": "Generátor nabídek postavený jako React SPA na Vite s Hono API na Cloudflare Workers. AI analýza šablon, dynamické proměnné a přímá integrace s Fireflies.",
         "timeline": "Leden 2026 - Březen 2026"
       }
     }

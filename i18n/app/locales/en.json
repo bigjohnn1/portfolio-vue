@@ -125,12 +125,12 @@
       },
       "fastproject": {
         "title": "FastProject",
-        "description": "Scalable AI B2B project management tool built in React & Next.js. Features Two-way Sync (Asana), smart capacity planning, and RBAC.",
+        "description": "Scalable AI B2B project management tool. React SPA on Vite with a Hono API on Cloudflare Workers (D1/KV/R2). Features Two-way Sync (Asana), smart capacity planning, and RBAC.",
         "timeline": "November 2025 - March 2026"
       },
       "nimblo": {
         "title": "Nimblo",
-        "description": "Proposal generator in React & Next.js with dynamic variables, AI template analysis and direct Fireflies integration.",
+        "description": "Proposal generator built as a React SPA on Vite, backed by a Hono API on Cloudflare Workers. Dynamic variables, AI template analysis and direct Fireflies integration.",
         "timeline": "January 2026 - March 2026"
       }
     }
