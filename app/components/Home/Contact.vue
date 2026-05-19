@@ -126,7 +126,6 @@
 import { TransitionRoot } from '@headlessui/vue'
 import { useClipboard } from '@vueuse/core'
 import { toast } from 'vue-sonner'
-import { socialLinks } from '~/consts/socials'
 
 const { t } = useI18n()
 
