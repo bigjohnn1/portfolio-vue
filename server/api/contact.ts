@@ -33,6 +33,11 @@ const formSchema = z.object({
 
 export default defineEventHandler(async (e) => {
   const body = await readBody(e)
+
+  if (body && typeof body.website === 'string' && body.website.length > 0) {
+    return { status: 200, success: true }
+  }
+
   const parsed = formSchema.safeParse(body)
   if (!parsed.success)
     return { status: 400, error: parsed.error?.issues[0]?.message }

@@ -247,6 +247,7 @@
   "contact": {
     "heading": "Contact",
     "description": "Questions, suggestions, collaboration – no problem! Send me a message directly or reach out on social media.",
+    "availability": "Usually replies within a day",
     "name": "Your full name",
     "hours": "Worktime (CET)",
     "formHeading": "Contact me here and I'll respond ASAP",

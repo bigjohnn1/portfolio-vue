@@ -1,172 +1,156 @@
 <template>
-  <Dialog
-    as="div"
-    class="relative z-50"
-    @close="emit('close')"
-  >
-    <TransitionChild
-      as="template"
-      enter="ease-out duration-300"
-      enter-from="opacity-0"
-      enter-to="opacity-100"
-      leave="ease-in"
-      leave-from="opacity-100"
-      leave-to="opacity-0"
+  <div>
+    <form
+      class="relative flex flex-col gap-6 rounded-3xl border border-black/[0.06] bg-white/70 p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.15)] backdrop-blur-xl dark:border-white/[0.08] dark:bg-gray-900/40 dark:shadow-[0_1px_2px_rgba(0,0,0,0.4),0_12px_32px_-16px_rgba(0,0,0,0.6)] md:p-8"
+      novalidate
+      @submit.prevent="submit"
     >
       <div
-        class="fixed inset-0 bg-black/70 backdrop-blur-md transition-opacity"
-      />
-    </TransitionChild>
-    <div class="fixed inset-0 flex items-center justify-center p-6">
-      <TransitionChild
-        as="template"
-        enter="ease-out duration-300"
-        enter-from="opacity-0 scale-90"
-        enter-to="opacity-100 scale-100"
-        leave="ease-in duration-100"
-        leave-from="opacity-100 scale-100"
-        leave-to="opacity-0 scale-90"
+        aria-hidden="true"
+        class="pointer-events-none absolute -left-[9999px] top-auto h-px w-px overflow-hidden"
       >
-        <DialogPanel
-          class="w-full max-w-lg bg-white dark:bg-fantasy-bg p-10 rounded-3xl shadow-2xl flex flex-col gap-8 border backdrop-blur-sm"
+        <label>
+          Website
+          <input
+            v-model="form.website"
+            type="text"
+            tabindex="-1"
+            autocomplete="off"
+            name="website"
+          />
+        </label>
+      </div>
+
+      <h3 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-50">
+        {{ $t('contact.dialogTitle') }}
+      </h3>
+
+      <div class="grid gap-5 sm:grid-cols-2">
+        <label class="flex flex-col gap-2">
+          <span class="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500 dark:text-gray-400">
+            {{ $t('contact.name') }}
+          </span>
+          <input
+            v-model="form.name"
+            type="text"
+            required
+            :placeholder="$t('contact.namePlaceholder')"
+            :aria-label="$t('contact.name')"
+            class="w-full rounded-xl border border-black/[0.06] bg-white/80 px-4 py-3 text-base shadow-sm transition-all duration-200 placeholder:text-gray-400 focus:border-primary-400 focus:outline-none focus:ring-4 focus:ring-primary-100 dark:border-white/[0.08] dark:bg-gray-800/40 dark:placeholder:text-gray-500 dark:focus:border-primary-400/60 dark:focus:ring-primary-900/40"
+          />
+        </label>
+
+        <label class="flex flex-col gap-2">
+          <span class="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500 dark:text-gray-400">
+            {{ $t('contact.email') }}
+          </span>
+          <input
+            v-model="form.email"
+            type="email"
+            required
+            :placeholder="$t('contact.emailPlaceholder')"
+            :aria-label="$t('contact.email')"
+            class="w-full rounded-xl border border-black/[0.06] bg-white/80 px-4 py-3 text-base shadow-sm transition-all duration-200 placeholder:text-gray-400 focus:border-primary-400 focus:outline-none focus:ring-4 focus:ring-primary-100 dark:border-white/[0.08] dark:bg-gray-800/40 dark:placeholder:text-gray-500 dark:focus:border-primary-400/60 dark:focus:ring-primary-900/40"
+          />
+        </label>
+      </div>
+
+      <label class="flex flex-col gap-2">
+        <span class="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500 dark:text-gray-400">
+          {{ $t('contact.reason') }}
+        </span>
+        <select
+          v-model="form.reason"
+          :aria-label="$t('contact.reason')"
+          class="w-full rounded-xl border border-black/[0.06] bg-white/80 px-4 py-3 text-base shadow-sm transition-all duration-200 focus:border-primary-400 focus:outline-none focus:ring-4 focus:ring-primary-100 dark:border-white/[0.08] dark:bg-gray-800/40 dark:focus:border-primary-400/60 dark:focus:ring-primary-900/40"
         >
-          <DialogTitle class="text-3xl font-bold tracking-tight">
-            {{ $t("contact.dialogTitle") }}
-          </DialogTitle>
-          <div class="flex flex-col gap-6">
-            <label class="flex flex-col gap-3">
-              <span
-                class="text-sm font-medium uppercase tracking-wide opacity-80"
-              >
-                {{ $t("contact.name") }}
-              </span>
-              <input
-                v-model="form.name"
-                type="text"
-                :placeholder="$t('contact.namePlaceholder')"
-                :aria-label="$t('contact.name')"
-                class="p-4 rounded-2xl text-base focus:outline-none border-b-2 focus:ring-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
-              />
-            </label>
-            <label class="flex flex-col gap-3">
-              <span
-                class="text-sm font-medium uppercase tracking-wide opacity-80"
-              >
-                {{ $t("contact.email") }}
-              </span>
-              <input
-                v-model="form.email"
-                type="email"
-                :placeholder="$t('contact.emailPlaceholder')"
-                :aria-label="$t('contact.email')"
-                class="p-4 rounded-2xl text-base focus:outline-none focus:ring-2 border-b-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
-              />
-            </label>
-            <label class="flex flex-col gap-3">
-              <span
-                class="text-sm font-medium uppercase tracking-wide opacity-80"
-              >
-                {{ $t("contact.reason") }}
-              </span>
-              <select
-                v-model="form.reason"
-                :aria-label="$t('contact.reason')"
-                class="p-4 rounded-lg text-base border-b-[1px] border-gray-600 focus:border-primary-500 transition-all duration-300 shadow-sm hover:shadow-md"
-              >
-                <option
-                  disabled
-                  value=""
-                  class="text-base"
-                >
-                  {{ $t("contact.reasonPlaceholder") }}
-                </option>
-                <option
-                  v-for="r in reasons"
-                  :key="r.value"
-                  :value="r.value"
-                >
-                  {{ $t(`contact.reasons.${r.value}`) }}
-                </option>
-              </select>
-            </label>
-            <label class="flex flex-col gap-3">
-              <span
-                class="text-sm font-medium uppercase tracking-wide opacity-80"
-              >
-                {{ $t("contact.message") }}
-              </span>
-              <textarea
-                v-model="form.message"
-                rows="5"
-                :placeholder="$t('contact.messagePlaceholder')"
-                :aria-label="$t('contact.message')"
-                class="p-4 rounded-2xl text-base resize-none border-b-2 focus:outline-none focus:ring-2 focus:border-primary-500/70 transition-all duration-300 shadow-sm hover:shadow-md"
-              />
-            </label>
-            <label class="flex items-center gap-3">
-              <input
-                v-model="form.consent"
-                type="checkbox"
-                :aria-label="$t('contact.consentLabel')"
-                class="w-5 h-5 rounded border-gray-300 text-primary-500 focus:ring-primary-500"
-              />
-              <span class="text-sm text-gray-600 dark:text-gray-400">
-                {{ $t("contact.consentLabel") }}
-                <button
-                  :aria-label="$t('contact.privacyLink')"
-                  class="text-primary-500 hover:underline"
-                  @click.prevent="isConsentOpen = true"
-                >
-                  {{ $t("contact.privacyLink") }}
-                </button>
-              </span>
-            </label>
-          </div>
-          <div class="flex gap-4 justify-end">
-            <button
-              :aria-label="$t('contact.cancelButton')"
-              class="px-6 py-3 rounded-xl text-base font-medium hover:bg-fantasy-accent/80 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-md"
-              @click="emit('close')"
-            >
-              {{ $t("contact.cancelButton") }}
-            </button>
-            <button
-              :aria-label="isLoading ? $t('contact.sending') : $t('contact.submitButton')"
-              :disabled="isLoading || !form.consent"
-              class="px-6 py-3 rounded-xl text-base font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-              @click="submit"
-            >
-              {{
-                isLoading ? $t("contact.sending") : $t("contact.submitButton")
-              }}
-            </button>
-          </div>
-        </DialogPanel>
-      </TransitionChild>
-    </div>
+          <option
+            disabled
+            value=""
+          >
+            {{ $t('contact.reasonPlaceholder') }}
+          </option>
+          <option
+            v-for="r in reasons"
+            :key="r.value"
+            :value="r.value"
+          >
+            {{ $t(`contact.reasons.${r.value}`) }}
+          </option>
+        </select>
+      </label>
+
+      <label class="flex flex-col gap-2">
+        <span class="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500 dark:text-gray-400">
+          {{ $t('contact.message') }}
+        </span>
+        <textarea
+          v-model="form.message"
+          rows="5"
+          required
+          :placeholder="$t('contact.messagePlaceholder')"
+          :aria-label="$t('contact.message')"
+          class="w-full resize-none rounded-xl border border-black/[0.06] bg-white/80 px-4 py-3 text-base shadow-sm transition-all duration-200 placeholder:text-gray-400 focus:border-primary-400 focus:outline-none focus:ring-4 focus:ring-primary-100 dark:border-white/[0.08] dark:bg-gray-800/40 dark:placeholder:text-gray-500 dark:focus:border-primary-400/60 dark:focus:ring-primary-900/40"
+        />
+      </label>
+
+      <label class="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400">
+        <input
+          v-model="form.consent"
+          type="checkbox"
+          required
+          :aria-label="$t('contact.consentLabel')"
+          class="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 text-primary-600 focus:ring-primary-500 dark:border-gray-600"
+        />
+        <span class="leading-relaxed">
+          {{ $t('contact.consentLabel') }}
+          <button
+            type="button"
+            :aria-label="$t('contact.privacyLink')"
+            class="font-medium text-primary-600 underline-offset-2 hover:underline dark:text-primary-400"
+            @click="isConsentOpen = true"
+          >
+            {{ $t('contact.privacyLink') }}
+          </button>
+        </span>
+      </label>
+
+      <button
+        type="submit"
+        :aria-label="isLoading ? $t('contact.sending') : $t('contact.submitButton')"
+        :disabled="isLoading || !form.consent"
+        class="group/cta relative inline-flex items-center justify-center gap-2 self-start rounded-xl bg-primary-600 px-6 py-3 text-base font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-700 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 dark:bg-primary-500 dark:hover:bg-primary-400"
+      >
+        <span>
+          {{ isLoading ? $t('contact.sending') : $t('contact.submitButton') }}
+        </span>
+        <Icon
+          :name="isLoading ? 'lucide:loader-2' : 'lucide:arrow-right'"
+          :class="[
+            'h-4 w-4 transition-transform duration-300',
+            isLoading ? 'animate-spin' : 'group-hover/cta:translate-x-1',
+          ]"
+          aria-hidden="true"
+        />
+      </button>
+    </form>
+
     <TransitionRoot
       :show="isConsentOpen"
       as="template"
     >
       <Consent @close="isConsentOpen = false" />
     </TransitionRoot>
-  </Dialog>
+  </div>
 </template>
 
 <script setup lang="ts">
-import {
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-  TransitionChild,
-  TransitionRoot,
-} from '@headlessui/vue'
+import { TransitionRoot } from '@headlessui/vue'
 import Consent from './Consent.vue'
 
 const { t } = useI18n()
 
 const emit = defineEmits<{
-  (e: 'close'): boolean
   (e: 'result', data: { success: boolean, message?: string }): void
 }>()
 
@@ -176,13 +160,14 @@ const form = ref({
   reason: 'inquiry',
   message: '',
   consent: false,
+  website: '',
 })
 
 const reasons = [
-  { value: 'inquiry', label: 'Dotaz' },
-  { value: 'suggestion', label: 'Návrh' },
-  { value: 'request', label: 'Poptávka' },
-  { value: 'collaboration', label: 'Spolupráce' },
+  { value: 'inquiry' },
+  { value: 'suggestion' },
+  { value: 'request' },
+  { value: 'collaboration' },
 ]
 
 const isLoading = shallowRef(false)
@@ -208,13 +193,13 @@ const submit = async () => {
       return
     }
     emit('result', { success: true, message: t('contact.toastSuccess') })
+    form.value = { name: '', email: '', reason: 'inquiry', message: '', consent: false, website: '' }
   }
   catch {
     emit('result', { success: false, message: t('contact.toastError') })
   }
   finally {
     isLoading.value = false
-    emit('close')
   }
 }
 </script>

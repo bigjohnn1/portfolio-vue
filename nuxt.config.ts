@@ -214,6 +214,15 @@ export default defineNuxtConfig({
             prose: '68ch',
             content: '78rem',
           },
+          keyframes: {
+            'copy-pop': {
+              '0%, 100%': { transform: 'scale(1)' },
+              '50%': { transform: 'scale(1.18)' },
+            },
+          },
+          animation: {
+            'copy-pop': 'copy-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          },
           colors: {
             'primary': {
               50: 'var(--color-primary-50)',
