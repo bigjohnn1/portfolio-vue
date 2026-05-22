@@ -56,7 +56,17 @@ While Next.js is still heavily optimized for Vercel (and can get clunky outside 
 
 Zero config switching. This flexibility has saved me multiple times when clients didn’t want to be locked into Vercel.
 
-## 4. Other Things I Genuinely Enjoy
+## 4. When I Reach for React Instead
+
+To be clear: I'm fully capable of shipping in React — and I do, regularly. A few projects on my own portfolio (Nimblo, FastProject) are React SPAs on Vite. So when does it actually win over Nuxt for me?
+
+- **Client request.** If the team or stakeholder has standardized on React, I'm not going to fight that. Modern AI tooling makes me effectively framework-agnostic at the syntax level, so I deliver in React with no real velocity penalty.
+- **Very specific use cases.** Sometimes the best library for the job lives in the React ecosystem (a niche editor, a specialized chart lib, a Cloudflare Workers template that's already React-first). Reinventing it on the Vue side just to stay on-brand would be silly.
+- **Honest experimentation.** I also used those React projects partly to benchmark how AI agents (Claude Code, Cursor, v0) perform on React vs. Vue codebases. Verdict: agents are noticeably stronger on React purely because of training data volume — but even with that head start, I still lean back toward Vue + Nuxt for my own work. The DX, reactivity model, and Nitro flexibility outweigh the agent advantage for me.
+
+So: React is a tool I respect and use. Nuxt 4 is the one I reach for by default.
+
+## 5. Other Things I Genuinely Enjoy
 
 - **DevTools** in Nuxt are currently the best in the industry.
 - Better TypeScript experience out of the box (especially with Nitro).

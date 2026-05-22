@@ -121,17 +121,20 @@
       "topiqu": {
         "title": "Topiqu",
         "description": "Multi-tenant B2B SaaS blogging tool. Automated article writing, AI author setup, built on Nuxt 4, Nitro and Vue 3.5.",
-        "timeline": "June 2025 - February 2026"
+        "timeline": "June 2025 - February 2026",
+        "status": "Beta · first clients"
       },
       "fastproject": {
         "title": "FastProject",
         "description": "Scalable AI B2B project management tool. React SPA on Vite with a Hono API on Cloudflare Workers (D1/KV/R2). Features Two-way Sync (Asana), smart capacity planning, and RBAC.",
-        "timeline": "November 2025 - March 2026"
+        "timeline": "November 2025 - March 2026",
+        "status": "Internal MVP"
       },
       "nimblo": {
         "title": "Nimblo",
         "description": "Proposal generator built as a React SPA on Vite, backed by a Hono API on Cloudflare Workers. Dynamic variables, AI template analysis and direct Fireflies integration.",
-        "timeline": "January 2026 - March 2026"
+        "timeline": "January 2026 - March 2026",
+        "status": "Production"
       }
     }
   },
@@ -295,7 +298,7 @@
       "role": "Product Engineer & Co-Founder",
       "location": "Czechia",
       "tagline": "Building scalable SaaS & AI workflows.",
-      "shortBio": "Product engineer who loves fantasy, values extreme autonomy, and builds things that make sense — without unnecessary bullshit.",
+      "shortBio": "Product engineer who loves fantasy. Takes full ownership of shipping product and builds things that make sense — without unnecessary bureaucracy.",
       "photoAlt": "Portrait of Big John",
       "signatureLabel": "Signature",
       "flipHint": "Flip card",
@@ -304,7 +307,7 @@
     },
     "story": {
       "title": "My Story",
-      "description": "I am a product engineer from Czechia who loves fantasy, values extreme autonomy, and enjoys building things that make sense, without unnecessary bullshit. I recently co-founded a startup where I built the entire scalable architecture from scratch; from edge technologies like Vue & Nuxt or React & Next on the frontend to the database, infrastructure, and even the business model."
+      "description": "I am a product engineer from Czechia who loves fantasy and enjoys building things that make sense. I take full ownership of shipping — favoring independence and fast iteration over bureaucracy. I recently co-founded a startup where I built the entire scalable architecture from scratch; from edge technologies like Vue & Nuxt or React & Next on the frontend to the database, infrastructure, and even the business model."
     },
     "points": {
       "workflow": {
@@ -313,7 +316,7 @@
       },
       "principles": {
         "title": "Core Principles",
-        "description": "I value freedom and extreme autonomy above all else. Agile iterations take precedence over bureaucracy, with a strict focus on results and real impact."
+        "description": "I take full ownership of what I ship. I value independence and fast iteration, with a strict focus on results and real impact — over unnecessary bureaucracy."
       }
     },
     "facts": {

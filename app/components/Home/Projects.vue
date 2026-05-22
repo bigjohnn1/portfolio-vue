@@ -54,6 +54,19 @@
                 />
               </span>
 
+              <span
+                v-if="te(`projects.items.${project.key}.status`)"
+                class="inline-flex items-center gap-1.5 px-3 py-1 text-sm font-medium rounded-full ring-1 ring-inset"
+                :class="STATUS_STYLES[project.status ?? 'default']"
+              >
+                <span
+                  class="h-1.5 w-1.5 rounded-full"
+                  :class="STATUS_DOT[project.status ?? 'default']"
+                  aria-hidden="true"
+                />
+                {{ $t(`projects.items.${project.key}.status`) }}
+              </span>
+
               <NuxtLink
                 v-if="project.link"
                 :to="project.link"
@@ -133,13 +146,31 @@ const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
 
 type TechCategory = 'frontend' | 'backend' | 'db' | 'misc'
 type ProjectTech = Partial<Record<TechCategory, string[]>>
+type ProjectStatus = 'production' | 'beta' | 'internal'
 
 interface Project {
   key: string
   image: string
   link?: string
   tech?: ProjectTech
+  status?: ProjectStatus
 }
+
+const STATUS_STYLES: Record<ProjectStatus | 'default', string> = {
+  production: 'bg-emerald-50 text-emerald-800 ring-emerald-300/60 dark:bg-emerald-500/10 dark:text-emerald-200 dark:ring-emerald-400/30',
+  beta: 'bg-amber-50 text-amber-800 ring-amber-300/60 dark:bg-amber-500/10 dark:text-amber-200 dark:ring-amber-400/30',
+  internal: 'bg-sky-50 text-sky-800 ring-sky-300/60 dark:bg-sky-500/10 dark:text-sky-200 dark:ring-sky-400/30',
+  default: 'bg-gray-100 text-gray-700 ring-gray-300/60 dark:bg-gray-700/40 dark:text-gray-200 dark:ring-gray-500/40',
+}
+
+const STATUS_DOT: Record<ProjectStatus | 'default', string> = {
+  production: 'bg-emerald-500 dark:bg-emerald-400',
+  beta: 'bg-amber-500 dark:bg-amber-400',
+  internal: 'bg-sky-500 dark:bg-sky-400',
+  default: 'bg-gray-500 dark:bg-gray-400',
+}
+
+const { te } = useI18n()
 
 const TECH_CATEGORIES: TechCategory[] = ['frontend', 'backend', 'db', 'misc']
 
@@ -241,6 +272,7 @@ const projects: Project[] = [
     key: 'nimblo',
     image: 'nimblo.png',
     link: 'https://app.nimblo.io',
+    status: 'production',
     tech: {
       frontend: [
         'React 18.2',
@@ -259,6 +291,7 @@ const projects: Project[] = [
     key: 'fastproject',
     image: 'fastproject.png',
     link: 'https://app.fastproject.io',
+    status: 'internal',
     tech: {
       frontend: [
         'React 18.2',
@@ -277,6 +310,7 @@ const projects: Project[] = [
     key: 'topiqu',
     image: 'topiqu.png',
     link: 'https://reachio.topiqu.com',
+    status: 'beta',
     tech: {
       frontend: ['Nuxt 4.2', 'Vue 3.5', 'Tailwind', 'Pinia', 'TipTap', 'VueUse'],
       backend: ['Nitro', 'Bun', 'Vercel', 'Auth.js', 'AI SDK', 'xAI', 'Stripe', 'AWS S3'],
