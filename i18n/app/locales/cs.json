@@ -121,17 +121,20 @@
       "topiqu": {
         "title": "Topiqu",
         "description": "Multi-tenant B2B SaaS blog nástroj. Automatizované SEO články, AI autor setup, custom branding na Nuxt 4, Nitro a Vue 3.5.",
-        "timeline": "Červen 2025 - Únor 2026"
+        "timeline": "Červen 2025 - Únor 2026",
+        "status": "Beta · první klienti"
       },
       "fastproject": {
         "title": "FastProject",
         "description": "Škálovatelný AI B2B nástroj pro řízení projektů. React SPA na Vite s Hono API běžícím na Cloudflare Workers (D1/KV/R2). Two-way Sync (Asana), chytré plánování kapacit a RBAC.",
-        "timeline": "Listopad 2025 - Březen 2026"
+        "timeline": "Listopad 2025 - Březen 2026",
+        "status": "Interní MVP"
       },
       "nimblo": {
         "title": "Nimblo",
         "description": "Generátor nabídek postavený jako React SPA na Vite s Hono API na Cloudflare Workers. AI analýza šablon, dynamické proměnné a přímá integrace s Fireflies.",
-        "timeline": "Leden 2026 - Březen 2026"
+        "timeline": "Leden 2026 - Březen 2026",
+        "status": "Production"
       }
     }
   },
@@ -295,7 +298,7 @@
       "role": "Product Engineer & Co-Founder",
       "location": "Česko",
       "tagline": "Stavím škálovatelný SaaS a AI workflow.",
-      "shortBio": "Product engineer, který miluje fantasy, zakládá si na extrémní autonomii a staví věci, co dávají smysl — bez zbytečného bullshitu.",
+      "shortBio": "Product engineer, který miluje fantasy. Beru si plnou odpovědnost nad doručením produktu a stavím věci, co dávají smysl — bez zbytečné byrokracie.",
       "photoAlt": "Portrét Big John",
       "signatureLabel": "Podpis",
       "flipHint": "Otoč kartu",
@@ -304,7 +307,7 @@
     },
     "story": {
       "title": "Můj příběh",
-      "description": "Jsem product engineer z Česka, který miluje fantasy, zakládá si na extrémní autonomii a rád staví věci, které dávají smysl, bez zbytečného bullshitu. Nedávno jsem spoluzaložil startup, kde jsem od nuly postavil celou škálovatelnou architekturu; od edge technologií jako Vue & Nuxt nebo React & Next na frontendu až po databázi, infrastrukturu a dokonce i byznys model."
+      "description": "Jsem product engineer z Česka, který miluje fantasy a rád staví věci, které dávají smysl. Beru si plnou odpovědnost nad doručením produktu — zakládám si na samostatnosti a rychlých iteracích s minimem byrokracie. Nedávno jsem spoluzaložil startup, kde jsem od nuly postavil celou škálovatelnou architekturu; od edge technologií jako Vue & Nuxt nebo React & Next na frontendu až po databázi, infrastrukturu a dokonce i byznys model."
     },
     "points": {
       "workflow": {
@@ -313,7 +316,7 @@
       },
       "principles": {
         "title": "Základní principy",
-        "description": "Cením si svobody a extrémní autonomie nade vše. Agilní iterace mají přednost před byrokracií, s tvrdou orientací na výsledek a skutečný dopad."
+        "description": "Beru si plnou odpovědnost nad tím, co doručuji. Zakládám si na samostatnosti a rychlých iteracích, s tvrdou orientací na výsledek a skutečný dopad — místo zbytečné byrokracie."
       }
     },
     "facts": {
