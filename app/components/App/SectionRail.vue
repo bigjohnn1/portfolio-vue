@@ -154,14 +154,10 @@ import {
   useScroll,
   useIdle,
   useMagicKeys,
-  useIntersectionObserver,
   usePreferredReducedMotion,
 } from '@vueuse/core'
 
-interface SectionDef {
-  id: string
-  labelKey: string
-}
+import type { SectionDef } from '~/composables/useActiveSection'
 
 interface LocaleOption {
   code: string
@@ -205,7 +201,7 @@ const sections: SectionDef[] = [
 const pinned = shallowRef(false)
 const idleHidden = shallowRef(false)
 const hideY = shallowRef(0)
-const activeId = shallowRef<string>(sections[0]!.id)
+const { activeId } = useActiveSection(sections)
 const reducedMotion = usePreferredReducedMotion()
 
 const IDLE_TIMEOUT = 6000
@@ -264,26 +260,6 @@ watch(y, (cur) => {
   if (Math.abs(cur - hideY.value) / max >= REOPEN_SCROLL_RATIO) {
     idleHidden.value = false
   }
-})
-
-const observeSections = () => {
-  if (!import.meta.client) return
-  sections.forEach((s) => {
-    const el = document.getElementById(s.id)
-    if (el) {
-      useIntersectionObserver(
-        el,
-        ([entry]) => {
-          if (entry?.isIntersecting) activeId.value = s.id
-        },
-        { threshold: 0, rootMargin: '-45% 0px -50% 0px' },
-      )
-    }
-  })
-}
-
-onMounted(() => {
-  nextTick(observeSections)
 })
 
 const scrollTo = (id: string) => {

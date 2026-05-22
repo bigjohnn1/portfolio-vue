@@ -6,6 +6,7 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
 
 - **Framework:** Nuxt 4 + Vue 3 + TypeScript
 - **Styling:** Tailwind CSS + SCSS (`assets/scss/base.scss`)
+- **Typography:** `@nuxt/fonts` self-hosts **Geist** (display + body sans, full weight range) and **Geist Mono** (code). Global type scale lives in `nuxt.config.ts` under `tailwindcss.config.theme.extend.fontSize` as fluid `clamp()` tuples with `lineHeight` + `letterSpacing`. Display sizes use the `text-d-*` utilities (`d-xs`…`d-2xl`). Body defaults to `font-sans`; headings auto-apply `font-display font-semibold tracking-tight` + `text-wrap: balance` via `@layer base` in `base.scss` (H1 is `font-bold`). Section rhythm tokens: `p-section-y`, `p-section-x`, `gap-gutter`; content widths: `max-w-prose`, `max-w-content`. Title + subtitle pairs use a `<header>` wrapper (single external `mb-*`, internal `mt-3` between H2 and `<p>`) — applied in `TechStack.vue` and `Contact.vue`.
 - **State:** Pinia (`stores/theme.ts`)
 - **i18n:** `@nuxtjs/i18n` (`assets/locales/cs.json`, `en.json`)
 - **Backend:** Nuxt API routes + Prisma (`prisma/schema.prisma`)
@@ -31,11 +32,11 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
 ### `/components`
 
 - **`App/`**
-  - `Header.vue`: Main navigation header.
+  - `Header.vue`: Main navigation header. Desktop nav uses a **text-first** pattern — Fraunces/Inter-friendly labels with `text-base font-medium tracking-tight`; the icon (Lucide stroke) slides in from the left only on `:hover` or `[data-active]` (scroll-spy active section). Underline is a separate scale-x layer in `primary-500` (light) / `primary-300` (dark), independent of text colour for crisp transitions. Active section is shared with `SectionRail` via [[active-section-composable]] (`useActiveSection`). Search / theme / locale buttons re-skinned as 40×40 pill controls with primary-tinted hover. Icon set is **Lucide** across the whole header for stroke consistency.
   - `Footer.vue`: Site footer.
   - `LocaleSwitcher.vue`: Component to switch between languages (en/cs).
   - `LocalClock.vue`: Analog/digital Prague-time clock with tz-diff tooltip; uses `<NuxtTime>` for SSR-safe digital rendering.
-  - `SectionRail.vue`: Fixed vertical anchor rail (lg+ only, home route only). Tracks the active section with `useIntersectionObserver`, page progress with `useScroll`, idle auto-hide with `useIdle`, and `Alt+↑/↓` jump via `useMagicKeys`. Lazy-mounted in `app.vue` and gated to `/`. Hosts a compact **locale quick-action button** above the section dots — opens a small popover with `onClickOutside` (VueUse) and ESC-to-close; shares visibility with the rail so it only appears once the user scrolls past the intro.
+  - `SectionRail.vue`: Fixed vertical anchor rail. Uses the shared `useActiveSection` composable (see `app/composables/useActiveSection.ts`) for scroll-spy — same source of truth as `Header.vue`. (lg+ only, home route only). Tracks the active section with `useIntersectionObserver`, page progress with `useScroll`, idle auto-hide with `useIdle`, and `Alt+↑/↓` jump via `useMagicKeys`. Lazy-mounted in `app.vue` and gated to `/`. Hosts a compact **locale quick-action button** above the section dots — opens a small popover with `onClickOutside` (VueUse) and ESC-to-close; shares visibility with the rail so it only appears once the user scrolls past the intro.
 - **`Home/`**
   - `Intro.vue`: Hero/intro section.
   - `About.vue`: About me section — orchestrates `HomeAboutCard` + 3× `HomeAboutFactCard` with per-fact accent (indigo / amber / violet).

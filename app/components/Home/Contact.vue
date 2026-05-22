@@ -8,14 +8,14 @@
       class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row gap-12 relative min-h-[inherit]"
     >
       <div class="lg:w-1/2 flex flex-col gap-8">
-        <h2
-          class="text-5xl font-bold text-primary-700 dark:text-primary-300 tracking-tight"
-        >
-          {{ $t('contact.heading') }}
-        </h2>
-        <p class="text-xl text-fantasy-text leading-relaxed">
-          {{ $t('contact.description') }}
-        </p>
+        <header>
+          <h2 class="text-5xl font-bold text-primary-700 dark:text-primary-300 tracking-tight">
+            {{ $t('contact.heading') }}
+          </h2>
+          <p class="text-xl text-fantasy-text leading-relaxed mt-3">
+            {{ $t('contact.description') }}
+          </p>
+        </header>
 
         <div class="flex flex-col gap-5 text-lg">
           <p>

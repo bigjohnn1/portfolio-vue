@@ -29,68 +29,81 @@
     </button>
 
     <nav
-      class="hidden lg:flex flex-wrap items-center justify-center space-x-16 xl:space-x-32 flex-1"
+      class="hidden lg:flex items-center justify-center gap-14 xl:gap-24 flex-1"
       aria-label="Main Navigation"
     >
       <NuxtLink
         v-for="link in leftLinks"
         :key="link.to"
         :to="link.to"
-        class="flex items-center text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent px-2 py-1 relative before:content-[''] before:absolute before:w-0 before:h-[2px] before:-bottom-1 before:left-0 before:bg-current before:transition-all before:duration-300 hover:before:w-full"
+        :data-active="activeId === link.section || undefined"
+        :aria-current="activeId === link.section ? 'true' : undefined"
+        class="group/nav relative flex items-center gap-2 py-1 text-base font-medium tracking-tight text-gray-700 transition-colors duration-200 hover:text-primary-600 dark:text-gray-200 dark:hover:text-primary-300 data-[active]:text-primary-600 dark:data-[active]:text-primary-300"
         @click="closeMenu"
       >
         <Icon
           :name="link.icon"
-          class="w-6 h-6"
+          class="h-4 w-4 shrink-0 opacity-60 transition-opacity duration-200 group-hover/nav:opacity-100 group-data-[active]/nav:opacity-100"
           aria-hidden="true"
         />
-        <span class="ml-3">{{ $t(link.label) }}</span>
+        <span>{{ $t(link.label) }}</span>
+        <span
+          class="pointer-events-none absolute -bottom-1 left-0 right-0 h-[2px] origin-left scale-x-0 rounded-full bg-primary-500 transition-transform duration-300 ease-out group-hover/nav:scale-x-100 group-data-[active]/nav:scale-x-100 dark:bg-primary-300"
+          aria-hidden="true"
+        />
       </NuxtLink>
       <NuxtLink
         to="#intro"
         :aria-label="$t('nav.home')"
+        class="shrink-0"
         @click="closeMenu"
       >
         <NuxtImg
           src="/bj.png"
           :alt="$t('nav.logoAlt')"
-          class="h-12 w-auto transform hover:scale-110 transition-transform duration-300 ml-4"
+          class="h-12 w-auto transform hover:scale-110 transition-transform duration-300"
           format="webp"
         />
       </NuxtLink>
       <NuxtLink
         v-for="link in rightLinks"
         :key="link.to"
-        :href="link.to"
-        class="flex items-center text-lg hover:text-fantasy-accent transition-colors dark:hover:text-dark-accent px-2 py-1 relative before:content-[''] before:absolute before:w-0 before:h-[2px] before:-bottom-1 before:left-0 before:bg-current before:transition-all before:duration-300 hover:before:w-full"
+        :to="link.to"
+        :data-active="activeId === link.section || undefined"
+        :aria-current="activeId === link.section ? 'true' : undefined"
+        class="group/nav relative flex items-center gap-2 py-1 text-base font-medium tracking-tight text-gray-700 transition-colors duration-200 hover:text-primary-600 dark:text-gray-200 dark:hover:text-primary-300 data-[active]:text-primary-600 dark:data-[active]:text-primary-300"
         @click="closeMenu"
       >
         <Icon
           :name="link.icon"
-          class="w-6 h-6"
+          class="h-4 w-4 shrink-0 opacity-60 transition-opacity duration-200 group-hover/nav:opacity-100 group-data-[active]/nav:opacity-100"
           aria-hidden="true"
         />
-        <span class="ml-3">{{ $t(link.label) }}</span>
+        <span>{{ $t(link.label) }}</span>
+        <span
+          class="pointer-events-none absolute -bottom-1 left-0 right-0 h-[2px] origin-left scale-x-0 rounded-full bg-primary-500 transition-transform duration-300 ease-out group-hover/nav:scale-x-100 group-data-[active]/nav:scale-x-100 dark:bg-primary-300"
+          aria-hidden="true"
+        />
       </NuxtLink>
     </nav>
     <button
       type="button"
-      class="cmdk-hint hidden md:inline-flex absolute right-20 top-1/2 -translate-y-1/2 items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+      class="cmdk-hint hidden md:inline-flex absolute right-20 top-1/2 -translate-y-1/2 items-center gap-2 px-3 py-1.5 rounded-lg border border-black/5 bg-black/[0.03] text-gray-700 transition-colors duration-200 hover:border-primary-200 hover:bg-primary-50 hover:text-primary-700 dark:border-white/5 dark:bg-white/[0.04] dark:text-gray-200 dark:hover:border-primary-400/30 dark:hover:bg-primary-900/30 dark:hover:text-primary-200"
       :aria-label="$t('cmdk.openHint')"
       @click="openCommandPalette"
     >
       <Icon
-        name="mdi:magnify"
+        name="lucide:search"
         size="16"
         aria-hidden="true"
       />
-      <span class="text-sm opacity-70">{{ $t('cmdk.search') }}</span>
-      <kbd class="font-mono text-[0.7rem] py-[0.15rem] px-[0.45rem] rounded-[0.3rem] bg-[rgba(0,0,0,0.07)] border border-[rgba(0,0,0,0.1)] leading-none dark:bg-[rgba(255,255,255,0.08)] dark:border-[rgba(255,255,255,0.14)]">{{ modKey }} K</kbd>
+      <span class="text-sm opacity-80">{{ $t('cmdk.search') }}</span>
+      <kbd class="font-mono text-[0.7rem] py-[0.15rem] px-[0.45rem] rounded-[0.3rem] bg-black/[0.06] border border-black/10 leading-none dark:bg-white/[0.08] dark:border-white/[0.14]">{{ modKey }} K</kbd>
     </button>
     <button
       ref="themeButton"
       :aria-label="$t('nav.toggleTheme')"
-      class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
+      class="grid h-10 w-10 place-items-center rounded-full border border-black/5 bg-black/[0.03] text-gray-700 transition-colors duration-300 hover:border-primary-200 hover:bg-primary-50 hover:text-primary-700 dark:border-white/5 dark:bg-white/[0.04] dark:text-gray-200 dark:hover:border-primary-400/30 dark:hover:bg-primary-900/30 dark:hover:text-primary-200"
       @click="toggleTheme"
     >
       <span
@@ -100,10 +113,10 @@
         <Icon
           :name="
             colorMode.value === 'light'
-              ? 'mingcute:sun-fill'
-              : 'mingcute:moon-fill'
+              ? 'lucide:sun'
+              : 'lucide:moon'
           "
-          size="24"
+          size="20"
           class="text-current"
           aria-hidden="true"
         />
@@ -144,21 +157,23 @@
           v-for="link in links"
           :key="link.to"
           :href="link.to"
-          class="mobile-link opacity-0 will-change-[transform,opacity] group w-full py-3 px-3 rounded-xl flex items-center gap-3 hover:bg-primary-50 dark:hover:bg-white/5 transition-colors duration-200"
+          :data-active="activeId === link.section || undefined"
+          :aria-current="activeId === link.section ? 'true' : undefined"
+          class="mobile-link opacity-0 will-change-[transform,opacity] group w-full py-3 px-3 rounded-xl flex items-center gap-3 transition-colors duration-200 hover:bg-primary-50 dark:hover:bg-white/5 data-[active]:bg-primary-50 dark:data-[active]:bg-primary-900/30"
           @click="closeMenu"
         >
-          <span class="w-9 h-9 grid place-items-center rounded-lg bg-primary-50 dark:bg-primary-900 text-primary-700 dark:text-primary-300 group-hover:scale-110 transition-transform duration-300 shrink-0">
+          <span class="w-9 h-9 grid place-items-center rounded-lg bg-primary-50 text-primary-700 transition-transform duration-300 shrink-0 group-hover:scale-110 group-data-[active]:scale-110 group-data-[active]:bg-primary-100 dark:bg-primary-900/40 dark:text-primary-300 dark:group-data-[active]:bg-primary-900/60">
             <Icon
               :name="link.icon"
-              size="20"
+              size="18"
               aria-hidden="true"
             />
           </span>
-          <span class="font-medium text-base truncate">{{ $t(link.label) }}</span>
+          <span class="font-medium text-base truncate text-gray-800 group-data-[active]:text-primary-700 dark:text-gray-100 dark:group-data-[active]:text-primary-200">{{ $t(link.label) }}</span>
           <Icon
-            name="mdi:arrow-right"
+            name="lucide:arrow-right"
             size="16"
-            class="ml-auto shrink-0 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary-600 dark:text-primary-300"
+            class="ml-auto shrink-0 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-data-[active]:opacity-100 group-data-[active]:translate-x-0 transition-all duration-300 text-primary-600 dark:text-primary-300"
             aria-hidden="true"
           />
         </a>
@@ -284,14 +299,25 @@ const triggerEasterEgg = () => {
 
 onClickOutside(mobileMenu, () => closeMenu(), { ignore: [themeButton, hamburgerBtn] })
 
-const links = [
-  { to: '#references', label: 'nav.references', icon: 'mdi:book-open-variant' },
-  { to: '#stack', label: 'nav.stack', icon: 'mdi:stack-overflow' },
-  { to: '#contact', label: 'nav.contact', icon: 'mdi:email-outline' },
-  { to: '#about', label: 'nav.about', icon: 'mdi:information-outline' },
+interface NavLink {
+  to: string
+  section: string
+  label: string
+  icon: string
+}
+
+const links: NavLink[] = [
+  { to: '#references', section: 'references', label: 'nav.references', icon: 'lucide:message-square-quote' },
+  { to: '#stack', section: 'stack', label: 'nav.stack', icon: 'lucide:layers' },
+  { to: '#contact', section: 'contact', label: 'nav.contact', icon: 'lucide:mail' },
+  { to: '#about', section: 'about', label: 'nav.about', icon: 'lucide:circle-user-round' },
 ]
 
 const midIndex = Math.floor(links.length / 2)
 const leftLinks = links.slice(0, midIndex)
 const rightLinks = links.slice(midIndex)
+
+const { activeId } = useActiveSection(
+  links.map(l => ({ id: l.section, labelKey: l.label })),
+)
 </script>

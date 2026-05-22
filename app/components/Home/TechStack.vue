@@ -4,14 +4,14 @@
     class="tech-stack relative w-full py-16 bg-base-bg text-base-text overflow-hidden"
   >
     <div class="max-w-5xl mx-auto px-4">
-      <h2
-        class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 text-center mb-12"
-      >
-        {{ $t("techStack.title") }}
-      </h2>
-      <p class="text-lg text-gray-600 dark:text-gray-400 text-center mb-8">
-        {{ $t("techStack.description") }}
-      </p>
+      <header class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-100">
+          {{ $t("techStack.title") }}
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400 mt-3">
+          {{ $t("techStack.description") }}
+        </p>
+      </header>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
         <div
           v-for="(tech) in techStack"

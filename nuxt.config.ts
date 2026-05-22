@@ -4,6 +4,7 @@ import typography from '@tailwindcss/typography'
 export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
+    '@nuxt/fonts',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
@@ -60,6 +61,20 @@ export default defineNuxtConfig({
   eslint: {
     config: {
       stylistic: true,
+    },
+  },
+  fonts: {
+    families: [
+      { name: 'Geist', provider: 'google', weights: [400, 500, 600, 700, 800] },
+      { name: 'Geist Mono', provider: 'google', weights: [400, 500, 600] },
+    ],
+    defaults: {
+      weights: [400, 500, 600, 700],
+      styles: ['normal'],
+      subsets: ['latin', 'latin-ext'],
+    },
+    experimental: {
+      processCSSVariables: true,
     },
   },
   gsap: {
@@ -163,6 +178,42 @@ export default defineNuxtConfig({
           xl: '1280px',
         },
         extend: {
+          fontFamily: {
+            display: ['Geist', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+            sans: ['Geist', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+          },
+          fontSize: {
+            'xs': ['0.75rem', { lineHeight: '1rem', letterSpacing: '0.01em' }],
+            'sm': ['0.875rem', { lineHeight: '1.375rem', letterSpacing: '0.005em' }],
+            'base': ['1rem', { lineHeight: '1.625rem', letterSpacing: '0' }],
+            'lg': ['1.125rem', { lineHeight: '1.75rem', letterSpacing: '-0.005em' }],
+            'xl': ['1.25rem', { lineHeight: '1.875rem', letterSpacing: '-0.01em' }],
+            'd-xs': ['clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem)', { lineHeight: '1.25', letterSpacing: '-0.015em' }],
+            'd-sm': ['clamp(1.5rem, 1.3rem + 1vw, 1.875rem)', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
+            'd-md': ['clamp(1.875rem, 1.5rem + 1.875vw, 2.5rem)', { lineHeight: '1.15', letterSpacing: '-0.025em' }],
+            'd-lg': ['clamp(2.25rem, 1.7rem + 2.75vw, 3.25rem)', { lineHeight: '1.1', letterSpacing: '-0.03em' }],
+            'd-xl': ['clamp(2.75rem, 2rem + 3.75vw, 4.25rem)', { lineHeight: '1.05', letterSpacing: '-0.035em' }],
+            'd-2xl': ['clamp(3.25rem, 2.25rem + 5vw, 5.5rem)', { lineHeight: '1', letterSpacing: '-0.04em' }],
+          },
+          letterSpacing: {
+            tightest: '-0.04em',
+            tighter: '-0.025em',
+            tight: '-0.015em',
+            normal: '0',
+            wide: '0.01em',
+            wider: '0.04em',
+            widest: '0.12em',
+          },
+          spacing: {
+            'section-y': 'clamp(4rem, 8vw, 7rem)',
+            'section-x': 'clamp(1.25rem, 4vw, 2.5rem)',
+            'gutter': 'clamp(1rem, 3vw, 2rem)',
+          },
+          maxWidth: {
+            prose: '68ch',
+            content: '78rem',
+          },
           colors: {
             'primary': {
               50: 'var(--color-primary-50)',
