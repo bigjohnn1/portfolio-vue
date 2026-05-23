@@ -236,6 +236,14 @@ const postItems = computed<CommandItem[]>(() =>
   })),
 )
 
+const localeLabelKey: Record<string, string> = {
+  cs: 'cmdk.switchToCzech',
+  en: 'cmdk.switchToEnglish',
+  de: 'cmdk.switchToGerman',
+  fr: 'cmdk.switchToFrench',
+  es: 'cmdk.switchToSpanish',
+}
+
 const actionItems = computed<CommandItem[]>(() => {
   const items: CommandItem[] = [
     {
@@ -246,12 +254,14 @@ const actionItems = computed<CommandItem[]>(() => {
         colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
       },
     },
-    {
-      id: 'action-switch-lang',
-      label: locale.value === 'cs' ? t('cmdk.switchToEnglish') : t('cmdk.switchToCzech'),
-      icon: 'mdi:translate',
-      action: () => setLocale(locale.value === 'cs' ? 'en' : 'cs'),
-    },
+    ...Object.keys(localeLabelKey)
+      .filter(code => code !== locale.value)
+      .map<CommandItem>(code => ({
+        id: `action-switch-lang-${code}`,
+        label: t(localeLabelKey[code]!),
+        icon: 'mdi:translate',
+        action: () => setLocale(code as 'en' | 'cs' | 'de' | 'fr' | 'es'),
+      })),
     {
       id: 'action-copy-email',
       label: t('cmdk.copyEmail'),

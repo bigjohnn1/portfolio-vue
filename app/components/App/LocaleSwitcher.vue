@@ -80,7 +80,7 @@ const toggleDropdown = () => {
 }
 
 const switchLocale = (code: string) => {
-  setLocale(code as 'en' | 'cs')
+  setLocale(code as 'en' | 'cs' | 'de' | 'fr' | 'es')
   isOpen.value = false
 }
 

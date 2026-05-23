@@ -16,30 +16,67 @@
         >
           <div
             v-if="entry.type === 'header'"
-            class="relative z-10 mb-12 md:mb-16 md:mx-auto md:max-w-2xl md:text-center px-0 md:px-8"
+            class="relative z-20 my-16 md:my-20 md:mx-auto md:max-w-2xl md:text-center px-0 md:px-8"
           >
             <div
-              class="hidden md:flex items-center justify-center gap-3 mb-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400"
+              class="hidden md:flex items-center gap-5 mb-10"
               aria-hidden="true"
             >
-              <span class="h-px w-12 bg-gray-300 dark:bg-gray-700" />
-              <Icon
-                name="game-icons:test-tubes"
-                class="h-4 w-4 text-primary-500 dark:text-primary-400"
-              />
-              <span>{{ $t('projects.experiments.kicker') }}</span>
-              <span class="h-px w-12 bg-gray-300 dark:bg-gray-700" />
+              <span class="relative h-px flex-1 overflow-hidden">
+                <span
+                  class="absolute inset-0 animate-marching-dashes-reverse bg-[length:14px_1px] bg-repeat-x bg-[linear-gradient(to_right,rgba(167,139,250,0.7)_50%,transparent_50%)] dark:bg-[linear-gradient(to_right,rgba(167,139,250,0.5)_50%,transparent_50%)] motion-reduce:animate-none"
+                />
+              </span>
+
+              <span class="inline-flex items-center gap-2.5 text-[10px] font-mono font-semibold uppercase leading-none tracking-[0.32em]">
+                <span class="relative inline-flex h-2 w-2">
+                  <span class="absolute inset-0 rounded-full bg-violet-500 dark:bg-violet-400 animate-lab-pulse motion-reduce:animate-none" />
+                  <span class="absolute inset-[-3px] rounded-full bg-violet-400/40 dark:bg-fuchsia-400/30 animate-ping motion-reduce:animate-none" />
+                </span>
+
+                <span class="animate-lab-text-shimmer bg-[length:200%_100%] bg-clip-text text-transparent bg-gradient-to-r from-violet-600 via-fuchsia-500 to-violet-600 dark:from-violet-300 dark:via-fuchsia-300 dark:to-violet-300 motion-reduce:animate-none [text-shadow:0_0_18px_rgba(167,139,250,0.15)]">
+                  Experimental · Zone
+                </span>
+
+                <span class="relative inline-flex h-2 w-2">
+                  <span
+                    class="absolute inset-0 rounded-full bg-violet-500 dark:bg-violet-400 animate-lab-pulse motion-reduce:animate-none"
+                    style="animation-delay: -0.8s"
+                  />
+                </span>
+              </span>
+
+              <span class="relative h-px flex-1 overflow-hidden">
+                <span
+                  class="absolute inset-0 animate-marching-dashes bg-[length:14px_1px] bg-repeat-x bg-[linear-gradient(to_right,rgba(167,139,250,0.7)_50%,transparent_50%)] dark:bg-[linear-gradient(to_right,rgba(167,139,250,0.5)_50%,transparent_50%)] motion-reduce:animate-none"
+                />
+              </span>
             </div>
-            <h3
-              class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100"
+
+            <div
+              class="relative rounded-2xl border border-violet-200/60 dark:border-violet-400/20 bg-base-bg/95 backdrop-blur-sm px-6 py-7 md:px-10 md:py-9 shadow-[0_6px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_6px_24px_rgba(0,0,0,0.4)]"
             >
-              {{ $t('projects.experiments.title') }}
-            </h3>
-            <p
-              class="text-sm md:text-base text-gray-600 dark:text-gray-300 mt-3 max-w-prose md:mx-auto"
-            >
-              {{ $t('projects.experiments.description') }}
-            </p>
+              <div
+                class="flex items-center justify-center gap-2.5 mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-violet-700 dark:text-violet-300"
+                aria-hidden="true"
+              >
+                <Icon
+                  name="game-icons:test-tubes"
+                  class="h-4 w-4"
+                />
+                <span>{{ $t('projects.experiments.kicker') }}</span>
+              </div>
+              <h3
+                class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100"
+              >
+                {{ $t('projects.experiments.title') }}
+              </h3>
+              <p
+                class="text-sm md:text-base text-gray-600 dark:text-gray-300 mt-3 max-w-prose md:mx-auto"
+              >
+                {{ $t('projects.experiments.description') }}
+              </p>
+            </div>
           </div>
 
           <div

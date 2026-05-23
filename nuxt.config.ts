@@ -122,6 +122,27 @@ export default defineNuxtConfig({
         name: 'CZ',
         files: ['cs.json'],
       },
+      {
+        icon: 'twemoji:flag-germany',
+        code: 'de',
+        language: 'de',
+        name: 'DE',
+        files: ['de.json'],
+      },
+      {
+        icon: 'twemoji:flag-france',
+        code: 'fr',
+        language: 'fr',
+        name: 'FR',
+        files: ['fr.json'],
+      },
+      {
+        icon: 'twemoji:flag-spain',
+        code: 'es',
+        language: 'es',
+        name: 'ES',
+        files: ['es.json'],
+      },
     ],
     defaultLocale: 'en',
     detectBrowserLanguage: {
@@ -270,6 +291,22 @@ export default defineNuxtConfig({
               '0%, 100%': { filter: 'drop-shadow(0 0 4px rgba(0,220,130,0.35))' },
               '50%': { filter: 'drop-shadow(0 0 10px rgba(0,220,130,0.75))' },
             },
+            'marching-dashes': {
+              '0%': { backgroundPosition: '0 0' },
+              '100%': { backgroundPosition: '14px 0' },
+            },
+            'marching-dashes-reverse': {
+              '0%': { backgroundPosition: '14px 0' },
+              '100%': { backgroundPosition: '0 0' },
+            },
+            'lab-pulse': {
+              '0%, 100%': { transform: 'scale(1)', opacity: '1', filter: 'drop-shadow(0 0 5px rgba(167,139,250,0.55))' },
+              '50%': { transform: 'scale(0.72)', opacity: '0.65', filter: 'drop-shadow(0 0 11px rgba(217,70,239,0.95))' },
+            },
+            'lab-text-shimmer': {
+              '0%, 100%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+            },
           },
           animation: {
             'copy-pop': 'copy-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
@@ -281,6 +318,10 @@ export default defineNuxtConfig({
             'chevron-drift': 'chevron-drift 2.2s ease-in-out infinite',
             'cartouche-shimmer': 'cartouche-shimmer 6s ease-in-out infinite',
             'rune-glow': 'rune-glow 3.2s ease-in-out infinite',
+            'marching-dashes': 'marching-dashes 1.4s linear infinite',
+            'marching-dashes-reverse': 'marching-dashes-reverse 1.4s linear infinite',
+            'lab-pulse': 'lab-pulse 1.6s ease-in-out infinite',
+            'lab-text-shimmer': 'lab-text-shimmer 5s ease-in-out infinite',
           },
           colors: {
             'primary': {

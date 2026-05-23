@@ -96,7 +96,7 @@ useSchemaOrg([
     'name': 'Big John — Benjamin Tomanik',
     'description': 'Portfolio of Benjamin Tomanik, Product Engineer & Technical Co-Founder.',
     'url': 'https://benjamintomanik.me',
-    'inLanguage': ['en', 'cs'],
+    'inLanguage': ['en', 'cs', 'de', 'fr', 'es'],
     'publisher': { '@id': 'https://benjamintomanik.me/#person' },
   }),
   defineWebPage({

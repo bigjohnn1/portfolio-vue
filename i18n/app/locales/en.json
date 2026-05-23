@@ -44,13 +44,16 @@
     "switchToLight": "Switch to light mode",
     "switchToCzech": "Switch language to Czech",
     "switchToEnglish": "Switch language to English",
+    "switchToGerman": "Switch language to German",
+    "switchToFrench": "Switch language to French",
+    "switchToSpanish": "Switch language to Spanish",
     "copyEmail": "Copy email",
     "openSocial": "Open {platform}"
   },
   "intro": {
     "role": "Builder · SaaS & AI",
-    "availability": "Open for new quests",
-    "subtitle": "Crafting modern SaaS and AI products with Nuxt, TypeScript, and a stubborn obsession with the details that matter.",
+    "tagline": "Fast, clean, no bloat.",
+    "subtitle": "I build web products that are fast, well-optimized, and clean under the hood.",
     "cta": "Begin the quest",
     "ctaLabel": "Contact me",
     "ctaSub": "Reply within a day · From Prague, GMT+1",

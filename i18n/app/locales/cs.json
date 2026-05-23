@@ -44,13 +44,16 @@
     "switchToLight": "Přepnout na světlý režim",
     "switchToCzech": "Přepnout jazyk na češtinu",
     "switchToEnglish": "Přepnout jazyk na angličtinu",
+    "switchToGerman": "Přepnout jazyk na němčinu",
+    "switchToFrench": "Přepnout jazyk na francouzštinu",
+    "switchToSpanish": "Přepnout jazyk na španělštinu",
     "copyEmail": "Zkopírovat email",
     "openSocial": "Otevřít {platform}"
   },
   "intro": {
     "role": "Builder · SaaS & AI",
-    "availability": "Volné kapacity na nové výpravy",
-    "subtitle": "Tvořím moderní SaaS a AI produkty v Nuxtu a TypeScriptu — s posedlostí pro detaily, které dělají rozdíl.",
+    "tagline": "Rychle, čistě, bez balastu.",
+    "subtitle": "Stavím webové produkty, které jsou rychlé, dobře optimalizované a čisté pod kapotou.",
     "cta": "Zahaj výpravu",
     "ctaLabel": "Kontaktovat",
     "ctaSub": "Odpovím do 24 h · Praha, GMT+1",

@@ -8,7 +8,7 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
 - **Styling:** Tailwind CSS + SCSS (`assets/scss/base.scss`)
 - **Typography:** `@nuxt/fonts` self-hosts **Geist** (display + body sans, full weight range) and **Geist Mono** (code). Global type scale lives in `nuxt.config.ts` under `tailwindcss.config.theme.extend.fontSize` as fluid `clamp()` tuples with `lineHeight` + `letterSpacing`. Display sizes use the `text-d-*` utilities (`d-xs`…`d-2xl`). Body defaults to `font-sans`; headings auto-apply `font-display font-semibold tracking-tight` + `text-wrap: balance` via `@layer base` in `base.scss` (H1 is `font-bold`). Section rhythm tokens: `p-section-y`, `p-section-x`, `gap-gutter`; content widths: `max-w-prose`, `max-w-content`. Title + subtitle pairs use a `<header>` wrapper (single external `mb-*`, internal `mt-3` between H2 and `<p>`) — applied in `TechStack.vue` and `Contact.vue`.
 - **State:** Pinia (`stores/theme.ts`)
-- **i18n:** `@nuxtjs/i18n` (`assets/locales/cs.json`, `en.json`)
+- **i18n:** `@nuxtjs/i18n` — locales in `i18n/app/locales/`: `en.json`, `cs.json`, `de.json`, `fr.json`, `es.json`. Default `en`, no-prefix strategy. Locale-aware `Intl` formatting centralised via the `INTL_LOCALE_MAP` in `App/LocalClock.vue`. Command palette exposes one "switch to <lang>" action per non-active locale.
 - **Backend:** Nuxt API routes + Prisma (`prisma/schema.prisma`)
 - **Runtime config:** Public contact email lives in `runtimeConfig.public.contactEmail` (nuxt.config.ts), overridable via `NUXT_PUBLIC_CONTACT_EMAIL`. Read it via `useRuntimeConfig().public.contactEmail` — single source of truth used by `app/app.vue` (JSON-LD `email`), `Home/Contact.vue`, `App/Footer.vue`, and `App/CommandPalette.vue`. Never hardcode the address in components.
 
@@ -80,9 +80,12 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
 
 ### `/assets`
 
-- **`locales/`**
-  - `en.json`: English translation dictionary.
+- **`locales/`** (actual path: `i18n/app/locales/`)
+  - `en.json`: English translation dictionary (default locale).
   - `cs.json`: Czech translation dictionary.
+  - `de.json`: German translation dictionary.
+  - `fr.json`: French translation dictionary.
+  - `es.json`: Spanish translation dictionary.
 - **`scss/`**
   - `base.scss`: Main stylesheet including Tailwind directives.
   - `_variables.scss`: SCSS variables.

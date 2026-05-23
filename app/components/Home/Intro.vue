@@ -76,7 +76,7 @@
               aria-hidden="true"
               class="h-3 w-[3px] border-y border-r border-primary-500/55 dark:border-primary-400/45"
             />
-            <span>{{ $t('intro.availability') }}</span>
+            <span>{{ $t('intro.tagline') }}</span>
           </span>
 
           <span

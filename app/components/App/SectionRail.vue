@@ -185,7 +185,7 @@ const toggleLang = () => {
 }
 
 const pickLocale = (code: string) => {
-  setLocale(code as 'en' | 'cs')
+  setLocale(code as 'en' | 'cs' | 'de' | 'fr' | 'es')
   langOpen.value = false
 }
 

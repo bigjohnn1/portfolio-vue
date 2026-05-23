@@ -92,7 +92,7 @@
       <NuxtTime
         class="text-[0.82rem] font-semibold tabular-nums"
         :datetime="now"
-        :locale="locale === 'cs' ? 'cs-CZ' : 'en-US'"
+        :locale="intlLocale"
         hour="2-digit"
         minute="2-digit"
         time-zone="Europe/Prague"
@@ -124,6 +124,16 @@
 import { useElementBounding, useNow } from '@vueuse/core'
 
 const { t, locale } = useI18n()
+
+const INTL_LOCALE_MAP: Record<string, string> = {
+  en: 'en-US',
+  cs: 'cs-CZ',
+  de: 'de-DE',
+  fr: 'fr-FR',
+  es: 'es-ES',
+}
+
+const intlLocale = computed(() => INTL_LOCALE_MAP[locale.value] ?? 'en-US')
 
 const TARGET_TZ = 'Europe/Prague'
 const tooltipId = useId()
@@ -163,7 +173,7 @@ const minuteAngle = computed(() => {
 })
 
 const digital = computed(() => {
-  return new Intl.DateTimeFormat(locale.value === 'cs' ? 'cs-CZ' : 'en-US', {
+  return new Intl.DateTimeFormat(intlLocale.value, {
     hour: '2-digit',
     minute: '2-digit',
     timeZone: TARGET_TZ,
