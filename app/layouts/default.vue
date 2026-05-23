@@ -1,6 +1,6 @@
 <template>
   <div class="relative min-h-screen">
-    <div class="fixed inset-0 z-0 pointer-events-none">
+    <div class="fixed inset-0 z-0 pointer-events-none dark:hidden">
       <div
         class="sq top-1/4 left-1/3 bg-gray-600 opacity-50 blur-2xl w-24 h-32 transform anim-float"
       />

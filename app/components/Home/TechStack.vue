@@ -1,7 +1,7 @@
 <template>
   <section
     id="stack"
-    class="tech-stack relative w-full py-16 bg-base-bg text-base-text overflow-hidden"
+    class="tech-stack relative w-full py-16 bg-base-bg text-base-text overflow-hidden dark:bg-transparent"
   >
     <div class="max-w-5xl mx-auto px-4">
       <header class="text-center mb-12">

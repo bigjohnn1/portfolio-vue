@@ -1,7 +1,7 @@
 <template>
   <section
     id="contact"
-    class="relative w-full overflow-hidden bg-base-bg py-28"
+    class="relative w-full overflow-hidden bg-base-bg py-28 dark:bg-transparent"
   >
     <div
       class="pointer-events-none absolute inset-0 -z-0"

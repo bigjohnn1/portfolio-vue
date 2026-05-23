@@ -5,24 +5,6 @@
   >
     <div
       aria-hidden="true"
-      class="pointer-events-none absolute inset-0"
-    >
-      <span
-        v-for="(star, i) in stars"
-        :key="i"
-        class="absolute rounded-full bg-gray-400 transition-colors duration-500 dark:bg-gray-300"
-        :style="{
-          left: `${star.left}%`,
-          top: `${star.top}%`,
-          width: `${star.size}px`,
-          height: `${star.size}px`,
-          opacity: star.opacity,
-        }"
-      />
-    </div>
-
-    <div
-      aria-hidden="true"
       class="relative z-10 mx-auto flex max-w-content items-center gap-4 px-section-x pt-12 sm:gap-6"
     >
       <span class="h-px flex-1 bg-gradient-to-r from-transparent via-primary-500/35 to-primary-500/40 dark:via-primary-400/30 dark:to-primary-400/35" />
@@ -238,13 +220,4 @@ const sections: SectionDef[] = [
   { id: 'contact', labelKey: 'nav.contact' },
 ]
 const { activeId } = useActiveSection(sections)
-
-const STAR_COUNT = 64
-const GOLDEN = 0.6180339887498949
-const stars = Array.from({ length: STAR_COUNT }, (_, i) => ({
-  left: ((i * GOLDEN * 7.3) % 1) * 100,
-  top: ((i * GOLDEN * 11.7 + 0.31) % 1) * 100,
-  size: 0.8 + ((i * GOLDEN * 17.1 + 0.13) % 1) * 1.5,
-  opacity: 0.15 + ((i * GOLDEN * 23.5 + 0.47) % 1) * 0.4,
-}))
 </script>

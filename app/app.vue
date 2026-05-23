@@ -5,6 +5,7 @@
       class="z-[9999]"
     />
     <NuxtRouteAnnouncer />
+    <LazyAppStarfield v-if="isDark" />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -32,6 +33,7 @@ const colorMode = useColorMode()
 const loaderColor = computed(() => {
   return colorMode.value === 'light' ? '#3B82F6' : '#60A5FA'
 })
+const isDark = computed(() => colorMode.value === 'dark')
 
 const { isOpen: paletteIsOpen } = useCommandPalette()
 const { isOpen: sceneIsOpen } = useScene()

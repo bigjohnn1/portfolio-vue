@@ -1,7 +1,7 @@
 <template>
   <section
     id="about"
-    class="relative w-full overflow-hidden bg-base-bg py-24 text-base-text md:py-32"
+    class="relative w-full overflow-hidden bg-base-bg py-24 text-base-text dark:bg-transparent md:py-32"
   >
     <div class="relative mx-auto max-w-6xl px-4">
       <h2 class="mb-14 text-center text-4xl font-bold tracking-tight text-primary-700 md:mb-20 md:text-5xl dark:text-primary-300">
