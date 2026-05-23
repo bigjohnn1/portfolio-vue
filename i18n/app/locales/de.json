@@ -1,0 +1,383 @@
+{
+  "seo": {
+    "homeTitle": "Benjamin Tomanik - Product Engineer",
+    "homeDescription": "Portfolio von Benjamin Tomanik, Product Engineer & Technical Co-Founder."
+  },
+  "global": {
+    "name": "Benjamin Tomanik"
+  },
+  "nav": {
+    "intro": "Intro",
+    "references": "Projekte",
+    "about": "Über mich",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "stack": "Mein Stack",
+    "sectionsLabel": "Seitenbereiche",
+    "toggleMenu": "Menü umschalten",
+    "home": "Startseite",
+    "logoAlt": "Logo der Website",
+    "toggleTheme": "Design umschalten",
+    "switchLanguage": "Sprache wechseln",
+    "backToTop": "Nach oben"
+  },
+  "scene": {
+    "title": "3D-Szene",
+    "description": "Eine interaktive 3D-Szene mit schwebenden Tech-Labels und einem dezenten Code-Rain-Hintergrund. Drücke Escape zum Schließen.",
+    "openHint": "3D-Szene öffnen",
+    "close": "3D-Szene schließen",
+    "escHint": "zum Schließen"
+  },
+  "cmdk": {
+    "title": "Befehlspalette",
+    "search": "Suche",
+    "openHint": "Befehlspalette öffnen",
+    "placeholder": "Befehl eingeben oder suchen...",
+    "empty": "Keine Ergebnisse.",
+    "navigate": "navigieren",
+    "select": "auswählen",
+    "close": "schließen",
+    "sections": "Bereiche",
+    "posts": "Beiträge",
+    "actions": "Aktionen",
+    "switchToDark": "Zum dunklen Modus wechseln",
+    "switchToLight": "Zum hellen Modus wechseln",
+    "switchToCzech": "Sprache zu Tschechisch wechseln",
+    "switchToEnglish": "Sprache zu Englisch wechseln",
+    "switchToGerman": "Sprache zu Deutsch wechseln",
+    "switchToFrench": "Sprache zu Französisch wechseln",
+    "switchToSpanish": "Sprache zu Spanisch wechseln",
+    "copyEmail": "E-Mail kopieren",
+    "openSocial": "{platform} öffnen"
+  },
+  "intro": {
+    "role": "Builder · SaaS & AI",
+    "tagline": "Schnell, sauber, ohne Ballast.",
+    "subtitle": "Ich baue Web-Produkte, die schnell, sauber optimiert und unter der Haube aufgeräumt sind.",
+    "cta": "Abenteuer starten",
+    "ctaLabel": "Kontakt aufnehmen",
+    "ctaSub": "Antwort innerhalb eines Tages · Aus Prag, GMT+1",
+    "scrollHint": "Scrollen und entdecken"
+  },
+  "homeBlog": {
+    "title": "Neueste Artikel",
+    "readMore": "Artikel lesen",
+    "viewAll": "Alle Artikel anzeigen",
+    "noPosts": "Noch keine Artikel veröffentlicht.",
+    "recent": "Aktuell",
+    "loading": "Lädt..."
+  },
+  "blog": {
+    "loadingPosts": "Beiträge werden geladen...",
+    "noDescription": "Keine Beschreibung verfügbar.",
+    "backToHome": "Zurück zur Startseite",
+    "tableOfContents": "Inhaltsverzeichnis",
+    "readMore": "Weiterlesen &rarr;",
+    "searchPosts": "Beiträge durchsuchen",
+    "allTags": "Alle Tags",
+    "noPostsFound": "Keine Beiträge gefunden.",
+    "noResultsDesc": "Keine Beiträge gefunden. Passe deine Suche oder Filter an, um zu finden, was du suchst.",
+    "loadingPost": "Beitrag wird geladen...",
+    "clearFilters": "Filter zurücksetzen",
+    "backToBlog": "&larr; Zurück zum Blog",
+    "notFoundTitle": "Beitrag nicht gefunden",
+    "notFoundDesc": "Der gesuchte Artikel existiert nicht oder wurde verschoben.",
+    "returnToBlog": "Zurück zum Blog"
+  },
+  "projects": {
+    "title": "Meine Projekte",
+    "liveDemo": "Live-Demo",
+    "techStack": "Tech-Stack",
+    "tech": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "db": "Datenbank",
+      "misc": "Sonstiges"
+    },
+    "experiments": {
+      "kicker": "R&D / Hackathons / KI-Experimente",
+      "title": "KI-gestützte Prototypen",
+      "description": "Stresstest der Grenzen KI-gestützter Entwicklung, um Business-Logik blitzschnell für Konzepte ohne Traction auszuliefern. Kein Produktionscode — Exploration.",
+      "badge": "Experiment"
+    },
+    "items": {
+      "skola-zivota": {
+        "title": "School of Life – Web-Relaunch",
+        "description": "Erste Website mit PHP-Backend für eine gemeinnützige, karitative Organisation",
+        "timeline": "Mai 2024 (2 Wochen)"
+      },
+      "milk-world": {
+        "title": "Milk World",
+        "description": "Funktionaler E-Shop in PHP, Nette Explorer",
+        "timeline": "Juni 2024 (1 Monat)"
+      },
+      "tint-shadow": {
+        "title": "TINT s.r.o – Shadow-Projekt",
+        "description": "Shadow-Design für ein IT-Unternehmen, maßgeschneidert gebaut",
+        "timeline": "September 2024 (2 Wochen)"
+      },
+      "hexcodium": {
+        "title": "HexCodium",
+        "description": "Kursplattform, kompletter Umstieg auf Nette, eigene Währung, RBAC...",
+        "timeline": "September 2024 (3 Monate)"
+      },
+      "matchmaker": {
+        "title": "Matchmaker (unvollendet)",
+        "description": "Liveservice-App, komplettes Nette + pgSQL, Redis-Caching und weitere Features",
+        "timeline": "Dezember 2024 (1 Monat)"
+      },
+      "v-okamihu": {
+        "title": "V Okamihu",
+        "description": "Erstes kommerzielles Team-Projekt, Vue + Tailwind FE, Nitro + Nuxt/Prisma/Zenstack BE",
+        "timeline": "März 2025 (1 Monat)"
+      },
+      "topiqu": {
+        "title": "Topiqu",
+        "description": "Multi-Tenant-B2B-SaaS-Blogging-Tool. Automatisiertes Verfassen von Artikeln, KI-Autoren-Setup, gebaut auf Nuxt 4, Nitro und Vue 3.5.",
+        "timeline": "Juni 2025 – Februar 2026",
+        "status": "Beta · erste Kunden"
+      },
+      "fastproject": {
+        "title": "FastProject",
+        "description": "Skalierbares KI-B2B-Tool für Projektmanagement. React-SPA auf Vite mit Hono-API auf Cloudflare Workers (D1/KV/R2). Two-Way-Sync (Asana), intelligente Kapazitätsplanung und RBAC.",
+        "timeline": "November 2025 – März 2026",
+        "status": "Internes MVP"
+      },
+      "nimblo": {
+        "title": "Nimblo",
+        "description": "Angebotsgenerator als React-SPA auf Vite, mit Hono-API auf Cloudflare Workers. Dynamische Variablen, KI-Vorlagenanalyse und direkte Fireflies-Integration.",
+        "timeline": "Januar 2026 – März 2026",
+        "status": "Produktion"
+      }
+    }
+  },
+  "techStack": {
+    "title": "Mein Tech-Stack",
+    "description": "Werkzeuge, mit denen ich schnell liefere und skaliere.",
+    "items": {
+      "vue": {
+        "name": "Vue.js",
+        "description": "Reaktives UI-Framework mit Composition API"
+      },
+      "nuxt": {
+        "name": "Nuxt 4",
+        "description": "Full-Stack-Vue-Meta-Framework (SSR, SSG, Hybrid Rendering)"
+      },
+      "react": {
+        "name": "React",
+        "description": "Komponenten-UI-Bibliothek für Web und Native"
+      },
+      "nextjs": {
+        "name": "Next.js",
+        "description": "React-Meta-Framework (SSR, SSG, RSC, App Router)"
+      },
+      "tailwind": {
+        "name": "Tailwind CSS",
+        "description": "Utility-first CSS-Framework mit JIT-Engine"
+      },
+      "unocss": {
+        "name": "UnoCSS",
+        "description": "Atomic-CSS-Engine, on-demand und voll anpassbar"
+      },
+      "typescript": {
+        "name": "TypeScript",
+        "description": "Statische Typisierung über JavaScript"
+      },
+      "javascript": {
+        "name": "JavaScript",
+        "description": "Die Sprache des Webs, ES2024+"
+      },
+      "php": {
+        "name": "PHP",
+        "description": "Server-side Scripting (Nette, Laravel)"
+      },
+      "postgresql": {
+        "name": "PostgreSQL",
+        "description": "Open-Source-Relationale-DB mit fortgeschrittenem SQL und JSONB"
+      },
+      "mysql": {
+        "name": "MySQL",
+        "description": "Open-Source-Relationale-DB"
+      },
+      "html": {
+        "name": "HTML",
+        "description": "Semantisches Markup für das Web"
+      },
+      "scss": {
+        "name": "SCSS",
+        "description": "CSS-Präprozessor — Variablen, Mixins, Nesting"
+      },
+      "git": {
+        "name": "Git",
+        "description": "Verteiltes Versionskontrollsystem"
+      },
+      "docker": {
+        "name": "Docker",
+        "description": "Containerisierung, isolierte Dev-/Prod-Umgebungen"
+      },
+      "powershell": {
+        "name": "PowerShell",
+        "description": "Plattformübergreifende Shell und Scripting (Windows-nativ)"
+      },
+      "prisma": {
+        "name": "Prisma",
+        "description": "Type-safe ORM für Node.js und TypeScript"
+      },
+      "redis": {
+        "name": "Redis",
+        "description": "In-Memory-Key-Value-Store — Cache, Queue, Pub/Sub"
+      },
+      "zenstack": {
+        "name": "ZenStack v3",
+        "description": "Type-safe ORM mit RBAC und auto-generierter API (basiert auf Kysely)"
+      },
+      "nitro": {
+        "name": "Nitro",
+        "description": "Universal Server Engine, die Nuxt 4 antreibt"
+      },
+      "bun": {
+        "name": "Bun",
+        "description": "All-in-one JS-Runtime, Bundler und Package Manager"
+      },
+      "cloudflare": {
+        "name": "Cloudflare",
+        "description": "Edge-Netzwerk — CDN, Workers, R2, D1"
+      },
+      "vercel": {
+        "name": "Vercel",
+        "description": "Serverless-Deploy-Plattform — Edge Functions, ISR, Previews"
+      },
+      "nodejs": {
+        "name": "Node.js",
+        "description": "JavaScript-Runtime auf V8-Basis"
+      },
+      "linux": {
+        "name": "Linux / WSL",
+        "description": "Dev-OS-Umgebung (Ubuntu auf WSL2)"
+      }
+    }
+  },
+  "contact": {
+    "heading": "Kontakt",
+    "description": "Fragen, Vorschläge, Zusammenarbeit – kein Problem! Schreib mir direkt oder melde dich über Social Media.",
+    "availability": "Antwort meistens innerhalb eines Tages",
+    "name": "Dein vollständiger Name",
+    "hours": "Arbeitszeit (MEZ)",
+    "formHeading": "Schreib mir hier und ich melde mich so schnell wie möglich",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "callLabel": "Benjamin Tomanik anrufen",
+    "emailLabel": "Benjamin Tomanik per E-Mail kontaktieren",
+    "copyEmail": "E-Mail in die Zwischenablage kopieren",
+    "emailCopied": "E-Mail in die Zwischenablage kopiert",
+    "copyUnsupported": "Zwischenablage wird in diesem Browser nicht unterstützt",
+    "localTime": "Lokale Zeit:",
+    "sameTimezone": "Gleiche Zeitzone wie du",
+    "behindMe": "Du bist {diff} hinter mir",
+    "aheadOfMe": "Du bist {diff} vor mir",
+    "button": "Schreib mir",
+    "message": "Hier kannst du mir schreiben",
+    "dialogTitle": "Kontakt aufnehmen",
+    "namePlaceholder": "Vor- und Nachname",
+    "emailPlaceholder": "E-Mail",
+    "messagePlaceholder": "Was liegt dir auf dem Herzen?",
+    "cancelButton": "Abbrechen",
+    "submitButton": "Senden",
+    "toastSuccess": "Nachricht erfolgreich gesendet!",
+    "toastError": "Die Nachricht konnte nicht gesendet werden. Bitte versuche es erneut.",
+    "errors": {
+      "name_min_length": "Sag mir deinen Namen — mindestens 2 Zeichen.",
+      "name_max_length": "Etwas kürzer bitte (max. 50 Zeichen).",
+      "invalid_email": "Diese E-Mail sieht nicht richtig aus — bitte Format prüfen.",
+      "email_max_length": "E-Mail ist zu lang (max. 254 Zeichen).",
+      "invalid_reason": "Bitte wähle einen Kontaktgrund.",
+      "message_min_length": "Erzähl mir etwas mehr — mindestens 10 Zeichen.",
+      "message_max_length": "Etwas kürzer bitte (max. 1000 Zeichen).",
+      "consent_required": "Ich brauche deine Zustimmung, um antworten zu können.",
+      "email_failed": "Senden fehlgeschlagen. Bitte versuche es gleich noch einmal.",
+      "server_error": "Auf unserer Seite ist etwas schiefgelaufen. Versuch's später erneut.",
+      "formInvalid": "Einige Felder brauchen noch Feinschliff."
+    },
+    "reason": "Kontaktgrund",
+    "reasonPlaceholder": "Grund wählen",
+    "consentLabel": "Ich stimme der Verarbeitung personenbezogener Daten gemäß der ",
+    "privacyLink": "Datenschutzerklärung",
+    "reasons": {
+      "inquiry": "Anfrage",
+      "suggestion": "Vorschlag",
+      "request": "Auftrag",
+      "collaboration": "Zusammenarbeit"
+    },
+    "invalid_reason": "Bitte wähle einen gültigen Grund.",
+    "sending": "Senden..."
+  },
+  "about": {
+    "title": "Wer ich bin",
+    "card": {
+      "idLabel": "PROFIL · 2026",
+      "name": "Benjamin Tomanik",
+      "role": "Product Engineer & Co-Founder",
+      "location": "Tschechien",
+      "tagline": "Ich baue skalierbares SaaS & KI-Workflows.",
+      "shortBio": "Product Engineer mit einer Schwäche für Fantasy. Übernimmt volle Verantwortung für den Produkt-Release und baut Dinge, die Sinn ergeben — ohne überflüssige Bürokratie.",
+      "photoAlt": "Porträt von Big John",
+      "signatureLabel": "Signatur",
+      "flipHint": "Karte umdrehen",
+      "flipBack": "Zurückdrehen",
+      "backTitle": "So arbeite ich"
+    },
+    "story": {
+      "title": "Meine Geschichte",
+      "description": "Ich bin Product Engineer aus Tschechien, liebe Fantasy und baue gerne Dinge, die Sinn ergeben. Ich übernehme volle Verantwortung für den Release — mit Fokus auf Eigenständigkeit und schnelle Iterationen statt Bürokratie. Vor Kurzem habe ich ein Startup mitgegründet, in dem ich die gesamte skalierbare Architektur von Grund auf gebaut habe; von Edge-Technologien wie Vue & Nuxt oder React & Next im Frontend bis zur Datenbank, Infrastruktur und sogar dem Geschäftsmodell."
+    },
+    "points": {
+      "workflow": {
+        "title": "Workflow & Architektur",
+        "description": "Mein Workflow ist stark KI-gestützt. Ich setze gerne Worktrees mit KI-Agenten auf (Claude Code, Gemini CLI, v0) und delegiere syntax-nahe Arbeit an sie. So liefere ich Ergebnisse deutlich schneller, während meine Pipeline dafür sorgt, dass das Ergebnis direkt nach dem Deploy produktionssicher ist. Wichtige Commits validiere ich natürlich weiterhin manuell."
+      },
+      "principles": {
+        "title": "Grundprinzipien",
+        "description": "Ich übernehme volle Verantwortung für das, was ich ausliefere. Ich setze auf Eigenständigkeit und schnelle Iterationen, mit kompromisslosem Fokus auf Ergebnis und echte Wirkung — statt auf überflüssige Bürokratie."
+      }
+    },
+    "facts": {
+      "title": "Wissenswertes über mich",
+      "items": {
+        "learning": {
+          "title": "Ständige Verbesserung",
+          "description": "Ob Coding, Business oder Lifestyle — kontinuierliche Selbstverbesserung und das Verschieben eigener Grenzen ist meine tägliche Routine."
+        },
+        "lifestyle": {
+          "title": "Gesunder Lebensstil",
+          "description": "Laufen, Gym und gesundes Essen halten mich im Tempo für meine Projekte."
+        },
+        "rpg": {
+          "title": "Fantasy-Fan",
+          "description": "Ich liebe Fantasy-Welten wie D&D, The Witcher oder Der Herr der Ringe."
+        }
+      },
+      "criticalSuccess": "Kritischer Erfolg",
+      "criticalFailure": "Kritischer Patzer"
+    }
+  },
+  "consent": {
+    "title": "Datenschutzerklärung",
+    "description1": "Deine personenbezogenen Daten (Name, E-Mail, Nachricht) werden ausschließlich zur Beantwortung deiner Anfrage oder Nachricht verwendet.",
+    "description2": "Ich teile keine Daten mit Dritten und speichere sie nur für die notwendige Dauer der Kommunikation.",
+    "closeButton": "Schließen"
+  },
+  "footer": {
+    "tagline": "Builder · SaaS & AI",
+    "location": "Prag",
+    "headingSections": "Bereiche",
+    "headingConnect": "Verbinden",
+    "emailLabel": "E-Mail senden",
+    "ariaSocial": "{platform} öffnen",
+    "constellation": "Versteckte hexagonale Konstellation",
+    "attribution": "Icons",
+    "buildLabel": "Build",
+    "buildAria": "Build {commit} vom {date}",
+    "copyright": "© {year} {name}",
+    "rights": "Alle Rechte vorbehalten"
+  }
+}
