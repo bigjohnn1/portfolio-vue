@@ -75,7 +75,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      NODE_ENV: production
+      # NODE_ENV intentionally NOT set at job level — pnpm install would skip
+      # devDependencies (Tailwind plugins, vue-tsc, etc.) and `nuxt prepare`
+      # in the postinstall hook would crash. `nuxt build` sets NODE_ENV
+      # internally during the build step itself.
       NUXT_PUBLIC_CONTACT_EMAIL: ${{ vars.NUXT_PUBLIC_CONTACT_EMAIL || 'benjamin.tomanik@gmail.com' }}
       NUXT_MAIL_USER: ${{ secrets.NUXT_MAIL_USER || 'ci@example.com' }}
       NUXT_MAIL_PASS: ${{ secrets.NUXT_MAIL_PASS || 'ci-placeholder' }}
