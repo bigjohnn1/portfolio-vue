@@ -111,6 +111,10 @@ jobs:
           path: |
             .output/**
             !.output/**/*.map
+          # Required because `.output` is a dot-prefixed (hidden) directory.
+          # upload-artifact@v4 filters those out by default and the glob
+          # match yields zero files without this flag.
+          include-hidden-files: true
           if-no-files-found: error
           retention-days: 7
           compression-level: 9
