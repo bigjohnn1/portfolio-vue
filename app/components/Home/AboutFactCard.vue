@@ -186,7 +186,7 @@
         aria-live="polite"
       >
         <span
-          class="grid h-4 w-4 place-items-center rounded-full text-[0.6rem] font-black tabular-nums"
+          class="grid h-4 w-4 place-items-center rounded-full text-[0.6rem] font-black tabular-nums leading-none"
           :class="criticalResult === 'success'
             ? 'bg-amber-950/20 text-amber-950'
             : 'bg-white/25 text-white'"

@@ -28,21 +28,9 @@
                 />
               </span>
 
-              <span class="inline-flex items-center gap-2.5 text-[10px] font-mono font-semibold uppercase leading-none tracking-[0.32em]">
-                <span class="relative inline-flex h-2 w-2">
-                  <span class="absolute inset-0 rounded-full bg-violet-500 dark:bg-violet-400 animate-lab-pulse motion-reduce:animate-none" />
-                  <span class="absolute inset-[-3px] rounded-full bg-violet-400/40 dark:bg-fuchsia-400/30 animate-ping motion-reduce:animate-none" />
-                </span>
-
-                <span class="animate-lab-text-shimmer bg-[length:200%_100%] bg-clip-text text-transparent bg-gradient-to-r from-violet-600 via-fuchsia-500 to-violet-600 dark:from-violet-300 dark:via-fuchsia-300 dark:to-violet-300 motion-reduce:animate-none [text-shadow:0_0_18px_rgba(167,139,250,0.15)]">
+              <span class="relative inline-flex items-center gap-2.5 rounded-full bg-base-bg px-5 py-2 text-[15px] font-mono font-semibold uppercase leading-none tracking-[0.28em] ring-1 ring-violet-200/60 dark:ring-violet-400/20">
+                <span class="animate-lab-text-shimmer bg-[length:200%_100%] bg-clip-text text-transparent bg-gradient-to-r from-violet-700 via-fuchsia-600 to-violet-700 dark:from-violet-200 dark:via-fuchsia-200 dark:to-violet-200 motion-reduce:animate-none [text-shadow:0_0_18px_rgba(167,139,250,0.15)]">
                   Experimental · Zone
-                </span>
-
-                <span class="relative inline-flex h-2 w-2">
-                  <span
-                    class="absolute inset-0 rounded-full bg-violet-500 dark:bg-violet-400 animate-lab-pulse motion-reduce:animate-none"
-                    style="animation-delay: -0.8s"
-                  />
                 </span>
               </span>
 

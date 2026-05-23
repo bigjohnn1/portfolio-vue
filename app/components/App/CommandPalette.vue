@@ -137,6 +137,7 @@ import {
 } from 'reka-ui'
 import { toast } from 'vue-sonner'
 import { socialLinks } from '~/consts/socials'
+import type { LocaleCode } from '~/types/i18n'
 
 interface CommandItem {
   id: string
@@ -260,7 +261,7 @@ const actionItems = computed<CommandItem[]>(() => {
         id: `action-switch-lang-${code}`,
         label: t(localeLabelKey[code]!),
         icon: 'mdi:translate',
-        action: () => setLocale(code as 'en' | 'cs' | 'de' | 'fr' | 'es'),
+        action: () => setLocale(code as LocaleCode),
       })),
     {
       id: 'action-copy-email',

@@ -90,58 +90,32 @@
         </ul>
 
         <div class="absolute top-[calc(100%+2rem)] flex w-full justify-center">
-          <button
-            ref="langBtnRef"
-            type="button"
-            class="group/lang relative grid h-[28px] w-[28px] cursor-pointer place-items-center rounded-full border border-gray-900/10 bg-white/70 text-gray-900/80 shadow-sm backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-110 hover:text-gray-900 focus-visible:scale-110 focus-visible:text-gray-900 focus-visible:outline-none dark:border-white/10 dark:bg-gray-900/70 dark:text-gray-200/80 dark:hover:text-gray-100 motion-reduce:transition-none"
-            :aria-haspopup="true"
-            :aria-expanded="langOpen"
-            :aria-label="t('nav.switchLanguage')"
-            @click="toggleLang"
+          <AppLocaleSwitcher
+            ref="localeSwitcherRef"
+            :panel-class="railPanelClass"
+            :item-class="railItemClass"
+            :active-item-class="railActiveItemClass"
+            icon-class="h-[16px] w-[16px] shrink-0"
+            :transition="railTransition"
           >
-            <Icon
-              :name="currentLocale.icon ?? 'mdi:translate'"
-              class="h-[16px] w-[16px]"
-              aria-hidden="true"
-            />
-            <span class="sr-only">{{ currentLocale.name }}</span>
-          </button>
-
-          <Transition
-            enter-active-class="transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
-            enter-from-class="opacity-0 -translate-y-2 scale-95"
-            leave-active-class="transition-all duration-200 ease-out"
-            leave-to-class="opacity-0 -translate-y-2 scale-95"
-          >
-            <ul
-              v-if="langOpen"
-              ref="langPopRef"
-              role="listbox"
-              :aria-label="t('nav.switchLanguage')"
-              class="absolute right-0 top-[calc(100%+0.75rem)] z-50 m-0 flex w-[130px] origin-top-right flex-col gap-1 rounded-xl border border-gray-900/10 bg-white/85 p-1.5 text-[0.8rem] text-gray-900/85 shadow-lg backdrop-blur-md will-change-transform dark:border-white/10 dark:bg-gray-900/85 dark:text-gray-100/90"
-            >
-              <li
-                v-for="item in availableLocales"
-                :key="item.code"
-                role="option"
-                :aria-selected="currentLocale.code === item.code"
-                :class="[
-                  'flex cursor-pointer select-none items-center gap-2.5 rounded-lg px-2.5 py-2 transition-colors duration-200',
-                  currentLocale.code === item.code
-                    ? 'bg-primary-50 font-semibold text-primary-900 dark:bg-primary-900/40 dark:text-primary-100'
-                    : 'font-medium hover:bg-gray-900/5 dark:hover:bg-white/5',
-                ]"
-                @click="pickLocale(item.code)"
+            <template #trigger="{ toggle, isOpen, currentLocale }">
+              <button
+                type="button"
+                class="group/lang relative grid h-[28px] w-[28px] cursor-pointer place-items-center rounded-full border border-gray-900/10 bg-white/70 text-gray-900/80 shadow-sm backdrop-blur-md transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-110 hover:text-gray-900 focus-visible:scale-110 focus-visible:text-gray-900 focus-visible:outline-none dark:border-white/10 dark:bg-gray-900/70 dark:text-gray-200/80 dark:hover:text-gray-100 motion-reduce:transition-none"
+                :aria-haspopup="true"
+                :aria-expanded="isOpen"
+                :aria-label="t('nav.switchLanguage')"
+                @click="toggle"
               >
                 <Icon
-                  :name="item.icon!"
-                  class="h-[16px] w-[16px] shrink-0"
+                  :name="currentLocale.icon ?? 'mdi:translate'"
+                  class="h-[16px] w-[16px]"
                   aria-hidden="true"
                 />
-                <span>{{ item.name }}</span>
-              </li>
-            </ul>
-          </Transition>
+                <span class="sr-only">{{ currentLocale.name }}</span>
+              </button>
+            </template>
+          </AppLocaleSwitcher>
         </div>
       </div>
     </nav>
@@ -150,7 +124,6 @@
 
 <script setup lang="ts">
 import {
-  onClickOutside,
   useScroll,
   useIdle,
   useMagicKeys,
@@ -159,34 +132,18 @@ import {
 
 import type { SectionDef } from '~/composables/useActiveSection'
 
-interface LocaleOption {
-  code: string
-  name?: string
-  icon?: string
-}
+const { t } = useI18n()
 
-const { t, locale, locales, setLocale } = useI18n()
+const localeSwitcherRef = useTemplateRef<{ close: () => void }>('localeSwitcherRef')
 
-const availableLocales = computed(() => locales.value as LocaleOption[])
-const currentLocale = computed(
-  () => availableLocales.value.find(l => l.code === locale.value) ?? availableLocales.value[0]!,
-)
-
-const langOpen = shallowRef(false)
-const langBtnRef = useTemplateRef<HTMLElement>('langBtnRef')
-const langPopRef = useTemplateRef<HTMLElement>('langPopRef')
-
-onClickOutside(langPopRef, () => {
-  langOpen.value = false
-}, { ignore: [langBtnRef] })
-
-const toggleLang = () => {
-  langOpen.value = !langOpen.value
-}
-
-const pickLocale = (code: string) => {
-  setLocale(code as 'en' | 'cs' | 'de' | 'fr' | 'es')
-  langOpen.value = false
+const railPanelClass = 'absolute right-0 top-[calc(100%+0.75rem)] z-50 m-0 flex w-[130px] origin-top-right flex-col gap-1 rounded-xl border border-gray-900/10 bg-white/85 p-1.5 text-[0.8rem] text-gray-900/85 shadow-lg backdrop-blur-md will-change-transform dark:border-white/10 dark:bg-gray-900/85 dark:text-gray-100/90'
+const railItemClass = 'flex cursor-pointer select-none items-center gap-2.5 rounded-lg px-2.5 py-2 transition-colors duration-200 font-medium hover:bg-gray-900/5 dark:hover:bg-white/5'
+const railActiveItemClass = '!bg-primary-50 !font-semibold !text-primary-900 dark:!bg-primary-900/40 dark:!text-primary-100 hover:!bg-primary-50 dark:hover:!bg-primary-900/40'
+const railTransition = {
+  enterActive: 'transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]',
+  enterFrom: 'opacity-0 -translate-y-2 scale-95',
+  leaveActive: 'transition-all duration-200 ease-out',
+  leaveTo: 'opacity-0 -translate-y-2 scale-95',
 }
 
 const sections: SectionDef[] = [
@@ -292,13 +249,6 @@ watch(altUp, (v) => {
 })
 
 watch(visible, (v) => {
-  if (!v) langOpen.value = false
+  if (!v) localeSwitcherRef.value?.close()
 })
-
-if (import.meta.client) {
-  const escape = computed(() => !!keys.escape?.value)
-  watch(escape, (v) => {
-    if (v && langOpen.value) langOpen.value = false
-  })
-}
 </script>
