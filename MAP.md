@@ -62,16 +62,20 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
 - **`Blog/`**
   - `TableOfContents.vue`: A sticky table of contents navigation component for blog articles.
 - **`Contact/`**
-  - `Form.vue`: The contact form component.
+  - `Form.vue`: Contact form. **Validation is shared with the server** — single Zod schema imported from `~~/shared/contact-schema.ts` (`contactFormSchema`, `CONTACT_REASONS`, `ContactFormField`). State is held in three flat `shallowReactive` objects (`form`, `errors`, `touched`) — no `.value` indirection, top-level key mutations are exactly what the v-model / lookup pattern needs. `isConsentOpen` uses VueUse's `useToggle` (returns `[ref, setter]`). Per-field state machine: each field tracks `touched` and `errors` independently; `validateField` runs `contactFormSchema.shape[field].safeParse(form[field])` on `@blur` (first touch) and on every `@input` thereafter, so a field never flashes red on first focus but corrects live once the user is engaged. On submit, the full schema is `safeParse`d; on failure all offending fields are forced `touched=true` and the parent toast fires `contact.errors.formInvalid`. Errors render inline below each field with `lucide:alert-triangle` + rose-tinted border and a `<Transition>` (opacity + -translate-y-1, 200/150ms), `aria-invalid` + `aria-describedby` wired per field. Native `required` attributes were removed — Zod is the single source of validation truth. Error messages live under `contact.errors.*` (CS/EN) in a warm conversational first-person voice ("Pověz mi své jméno — alespoň 2 znaky.", "I'll need your consent to reply.", …) — friendlier than generic SaaS strings, but tonedown from full RPG metaphor. The hidden honeypot `website` field remains, checked server-side before schema parsing. Reset uses `Object.assign(form, emptyForm())` + a `clearKeys` helper (assigns `undefined`, never `delete` — keeps `@typescript-eslint/no-dynamic-delete` happy).
   - `Consent.vue`: Privacy/consent checkbox component.
 - **`Canvas/`**
   - `AboutScene.vue`: Three.js scene used in the About section.
 - `VueFrag.vue`: Utility component (possibly for fragment wrapping).
 
+### `/shared`
+
+- `contact-schema.ts`: Single Zod schema (`contactFormSchema`) + `CONTACT_REASONS` tuple + `ContactFormInput` / `ContactFormField` types. Imported by both `app/components/Contact/Form.vue` (client-side per-field validation) and `server/api/contact.ts` (server-side payload check) via the `~~/shared/...` alias — there is no duplicated validation logic between client and server.
+
 ### `/server`
 
 - **`api/`**
-  - `contact.ts`: Endpoint for handling contact form submissions (utilizes `nuxt-nodemailer` and Prisma).
+  - `contact.ts`: Endpoint for handling contact form submissions. Imports `contactFormSchema` from `~~/shared/contact-schema.ts` — same schema the client uses. Checks the `website` honeypot first, then `safeParse`s the body; on failure returns `{ status: 400, error: <code> }` (codes match keys under `contact.errors.*` in the i18n dictionaries). Sanitises the parsed payload with `validator.escape` + `normalizeEmail`, persists via ZenStack v3 (`contactSubmission.create`), then dispatches via `nuxt-nodemailer`. Server-only errors (`email_failed`, `server_error`) also live under `contact.errors.*`.
 
 ### `/assets`
 

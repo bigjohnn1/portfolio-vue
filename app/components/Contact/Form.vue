@@ -33,11 +33,29 @@
           <input
             v-model="form.name"
             type="text"
-            required
             :placeholder="$t('contact.namePlaceholder')"
             :aria-label="$t('contact.name')"
-            class="w-full rounded-xl border border-black/[0.06] bg-white/80 px-4 py-3 text-base shadow-sm transition-all duration-200 placeholder:text-gray-400 focus:border-primary-400 focus:outline-none focus:ring-4 focus:ring-primary-100 dark:border-white/[0.08] dark:bg-gray-800/40 dark:placeholder:text-gray-500 dark:focus:border-primary-400/60 dark:focus:ring-primary-900/40"
+            :aria-invalid="!!errors.name"
+            :aria-describedby="errors.name ? 'contact-name-error' : undefined"
+            :class="[baseInput, errors.name && errorInputBorder]"
+            @blur="onBlur('name')"
+            @input="onInput('name')"
           />
+          <Transition v-bind="errorTransition">
+            <p
+              v-if="errors.name"
+              id="contact-name-error"
+              role="alert"
+              :class="errorText"
+            >
+              <Icon
+                name="lucide:alert-triangle"
+                :class="errorIcon"
+                aria-hidden="true"
+              />
+              <span>{{ $t(`contact.errors.${errors.name}`) }}</span>
+            </p>
+          </Transition>
         </label>
 
         <label class="flex flex-col gap-2">
@@ -47,11 +65,29 @@
           <input
             v-model="form.email"
             type="email"
-            required
             :placeholder="$t('contact.emailPlaceholder')"
             :aria-label="$t('contact.email')"
-            class="w-full rounded-xl border border-black/[0.06] bg-white/80 px-4 py-3 text-base shadow-sm transition-all duration-200 placeholder:text-gray-400 focus:border-primary-400 focus:outline-none focus:ring-4 focus:ring-primary-100 dark:border-white/[0.08] dark:bg-gray-800/40 dark:placeholder:text-gray-500 dark:focus:border-primary-400/60 dark:focus:ring-primary-900/40"
+            :aria-invalid="!!errors.email"
+            :aria-describedby="errors.email ? 'contact-email-error' : undefined"
+            :class="[baseInput, errors.email && errorInputBorder]"
+            @blur="onBlur('email')"
+            @input="onInput('email')"
           />
+          <Transition v-bind="errorTransition">
+            <p
+              v-if="errors.email"
+              id="contact-email-error"
+              role="alert"
+              :class="errorText"
+            >
+              <Icon
+                name="lucide:alert-triangle"
+                :class="errorIcon"
+                aria-hidden="true"
+              />
+              <span>{{ $t(`contact.errors.${errors.email}`) }}</span>
+            </p>
+          </Transition>
         </label>
       </div>
 
@@ -62,7 +98,7 @@
         <select
           v-model="form.reason"
           :aria-label="$t('contact.reason')"
-          class="w-full rounded-xl border border-black/[0.06] bg-white/80 px-4 py-3 text-base shadow-sm transition-all duration-200 focus:border-primary-400 focus:outline-none focus:ring-4 focus:ring-primary-100 dark:border-white/[0.08] dark:bg-gray-800/40 dark:focus:border-primary-400/60 dark:focus:ring-primary-900/40"
+          :class="baseInput"
         >
           <option
             disabled
@@ -72,10 +108,10 @@
           </option>
           <option
             v-for="r in reasons"
-            :key="r.value"
-            :value="r.value"
+            :key="r"
+            :value="r"
           >
-            {{ $t(`contact.reasons.${r.value}`) }}
+            {{ $t(`contact.reasons.${r}`) }}
           </option>
         </select>
       </label>
@@ -87,38 +123,75 @@
         <textarea
           v-model="form.message"
           rows="5"
-          required
           :placeholder="$t('contact.messagePlaceholder')"
           :aria-label="$t('contact.message')"
-          class="w-full resize-none rounded-xl border border-black/[0.06] bg-white/80 px-4 py-3 text-base shadow-sm transition-all duration-200 placeholder:text-gray-400 focus:border-primary-400 focus:outline-none focus:ring-4 focus:ring-primary-100 dark:border-white/[0.08] dark:bg-gray-800/40 dark:placeholder:text-gray-500 dark:focus:border-primary-400/60 dark:focus:ring-primary-900/40"
+          :aria-invalid="!!errors.message"
+          :aria-describedby="errors.message ? 'contact-message-error' : undefined"
+          :class="[baseInput, 'resize-none', errors.message && errorInputBorder]"
+          @blur="onBlur('message')"
+          @input="onInput('message')"
         />
+        <Transition v-bind="errorTransition">
+          <p
+            v-if="errors.message"
+            id="contact-message-error"
+            role="alert"
+            :class="errorText"
+          >
+            <Icon
+              name="lucide:alert-triangle"
+              :class="errorIcon"
+              aria-hidden="true"
+            />
+            <span>{{ $t(`contact.errors.${errors.message}`) }}</span>
+          </p>
+        </Transition>
       </label>
 
-      <label class="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400">
-        <input
-          v-model="form.consent"
-          type="checkbox"
-          required
-          :aria-label="$t('contact.consentLabel')"
-          class="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 text-primary-600 focus:ring-primary-500 dark:border-gray-600"
-        />
-        <span class="leading-relaxed">
-          {{ $t('contact.consentLabel') }}
-          <button
-            type="button"
-            :aria-label="$t('contact.privacyLink')"
-            class="font-medium text-primary-600 underline-offset-2 hover:underline dark:text-primary-400"
-            @click="isConsentOpen = true"
+      <div class="flex flex-col gap-1.5">
+        <label class="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400">
+          <input
+            v-model="form.consent"
+            type="checkbox"
+            :aria-label="$t('contact.consentLabel')"
+            :aria-invalid="!!errors.consent"
+            :aria-describedby="errors.consent ? 'contact-consent-error' : undefined"
+            class="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 text-primary-600 focus:ring-primary-500 dark:border-gray-600"
+            @change="onBlur('consent')"
+          />
+          <span class="leading-relaxed">
+            {{ $t('contact.consentLabel') }}
+            <button
+              type="button"
+              :aria-label="$t('contact.privacyLink')"
+              class="font-medium text-primary-600 underline-offset-2 hover:underline dark:text-primary-400"
+              @click="toggleConsent(true)"
+            >
+              {{ $t('contact.privacyLink') }}
+            </button>
+          </span>
+        </label>
+        <Transition v-bind="errorTransition">
+          <p
+            v-if="errors.consent"
+            id="contact-consent-error"
+            role="alert"
+            :class="[errorText, 'pl-7']"
           >
-            {{ $t('contact.privacyLink') }}
-          </button>
-        </span>
-      </label>
+            <Icon
+              name="lucide:alert-triangle"
+              :class="errorIcon"
+              aria-hidden="true"
+            />
+            <span>{{ $t(`contact.errors.${errors.consent}`) }}</span>
+          </p>
+        </Transition>
+      </div>
 
       <button
         type="submit"
         :aria-label="isLoading ? $t('contact.sending') : $t('contact.submitButton')"
-        :disabled="isLoading || !form.consent"
+        :disabled="isLoading"
         class="group/cta relative inline-flex items-center justify-center gap-2 self-start rounded-xl bg-primary-600 px-6 py-3 text-base font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-700 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 dark:bg-primary-500 dark:hover:bg-primary-400"
       >
         <span>
@@ -139,14 +212,21 @@
       :show="isConsentOpen"
       as="template"
     >
-      <Consent @close="isConsentOpen = false" />
+      <Consent @close="toggleConsent(false)" />
     </TransitionRoot>
   </div>
 </template>
 
 <script setup lang="ts">
 import { TransitionRoot } from '@headlessui/vue'
+import { useToggle } from '@vueuse/core'
 import Consent from './Consent.vue'
+import {
+  CONTACT_REASONS,
+  contactFormSchema,
+  type ContactFormField,
+  type ContactFormInput,
+} from '~~/shared/contact-schema'
 
 const { t } = useI18n()
 
@@ -154,7 +234,23 @@ const emit = defineEmits<{
   (e: 'result', data: { success: boolean, message?: string }): void
 }>()
 
-const form = ref({
+const baseInput = 'w-full rounded-xl border border-black/[0.06] bg-white/80 px-4 py-3 text-base shadow-sm transition-all duration-200 placeholder:text-gray-400 focus:border-primary-400 focus:outline-none focus:ring-4 focus:ring-primary-100 dark:border-white/[0.08] dark:bg-gray-800/40 dark:placeholder:text-gray-500 dark:focus:border-primary-400/60 dark:focus:ring-primary-900/40'
+const errorInputBorder = '!border-rose-400 focus:!border-rose-400 focus:!ring-rose-100 dark:!border-rose-500/60 dark:focus:!ring-rose-950/40'
+const errorText = 'flex items-start gap-1.5 text-xs leading-snug text-rose-600 dark:text-rose-400'
+const errorIcon = 'mt-0.5 h-3.5 w-3.5 shrink-0'
+
+const errorTransition = {
+  enterActiveClass: 'transition duration-200 ease-out',
+  enterFromClass: 'opacity-0 -translate-y-1',
+  enterToClass: 'opacity-100 translate-y-0',
+  leaveActiveClass: 'transition duration-150 ease-in',
+  leaveFromClass: 'opacity-100 translate-y-0',
+  leaveToClass: 'opacity-0 -translate-y-1',
+}
+
+const reasons = CONTACT_REASONS
+
+const emptyForm = (): ContactFormInput & { website: string } => ({
   name: '',
   email: '',
   reason: 'inquiry',
@@ -163,18 +259,50 @@ const form = ref({
   website: '',
 })
 
-const reasons = [
-  { value: 'inquiry' },
-  { value: 'suggestion' },
-  { value: 'request' },
-  { value: 'collaboration' },
-]
+const form = shallowReactive<ContactFormInput & { website: string }>(emptyForm())
+const errors = shallowReactive<Partial<Record<ContactFormField, string>>>({})
+const touched = shallowReactive<Partial<Record<ContactFormField, boolean>>>({})
 
 const isLoading = shallowRef(false)
-const isConsentOpen = shallowRef(false)
+const [isConsentOpen, toggleConsent] = useToggle(false)
+
+const validateField = (field: ContactFormField) => {
+  const result = contactFormSchema.shape[field].safeParse(form[field])
+  errors[field] = result.success ? undefined : result.error.issues[0]?.message
+}
+
+const onBlur = (field: ContactFormField) => {
+  touched[field] = true
+  validateField(field)
+}
+
+const onInput = (field: ContactFormField) => {
+  if (touched[field]) validateField(field)
+}
+
+const clearKeys = <K extends string>(target: Partial<Record<K, unknown>>) => {
+  for (const key of Object.keys(target) as K[]) target[key] = undefined
+}
+
+const resetForm = () => {
+  Object.assign(form, emptyForm())
+  clearKeys(errors)
+  clearKeys(touched)
+}
 
 const submit = async () => {
-  if (!form.value.consent) return
+  const parsed = contactFormSchema.safeParse(form)
+  if (!parsed.success) {
+    clearKeys(errors)
+    for (const issue of parsed.error.issues) {
+      const field = issue.path[0] as ContactFormField
+      if (!errors[field]) errors[field] = issue.message
+      touched[field] = true
+    }
+    emit('result', { success: false, message: t('contact.errors.formInvalid') })
+    return
+  }
+
   isLoading.value = true
   try {
     const res = await $fetch<{
@@ -183,17 +311,17 @@ const submit = async () => {
       error?: string
     }>('/api/contact', {
       method: 'POST',
-      body: form.value,
+      body: { ...form },
     })
     if (res.error) {
       emit('result', {
         success: false,
-        message: t(`contact.${res.error}`),
+        message: t(`contact.errors.${res.error}`),
       })
       return
     }
     emit('result', { success: true, message: t('contact.toastSuccess') })
-    form.value = { name: '', email: '', reason: 'inquiry', message: '', consent: false, website: '' }
+    resetForm()
   }
   catch {
     emit('result', { success: false, message: t('contact.toastError') })

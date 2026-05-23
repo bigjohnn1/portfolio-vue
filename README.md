@@ -30,6 +30,7 @@ A Nuxt 4 single-page experience with a D&D-flavoured hero composition, GSAP-orch
 - **Internationalised.** Czech and English via `@nuxtjs/i18n`; locale switching from the header, the section rail popover, and a dedicated control.
 - **Markdown blog.** `@nuxt/content` v3 with a sticky table of contents on `/blog/[...slug]`.
 - **Production chrome.** `@nuxtjs/seo` (sitemap, OG image, `useSchemaOrg` Person / WebSite / WebPage), `nuxt-security` CSP, reCAPTCHA v3 on the contact form, `nuxt-nodemailer` for delivery.
+- **One schema, both sides.** Contact form validation is a single Zod schema in `shared/contact-schema.ts` — imported by both `Form.vue` (per-field live validation) and the Nitro route (server-side parse). Field errors render inline in a warm, first-person voice ("Tell me your name — at least 2 letters.") that matches the site's tone without sliding into generic SaaS strings.
 - **Self-hosted typography.** Geist + Geist Mono via `@nuxt/fonts`. Global fluid `clamp()` type scale + section rhythm tokens (`p-section-y`, `p-section-x`, `gap-gutter`).
 - **A11y by default.** Reduced-motion shortcircuits, semantic landmarks, `aria-label` on every icon-only control, keyboard-reachable section rail with `Alt+↑/↓`.
 
@@ -50,7 +51,7 @@ A Nuxt 4 single-page experience with a D&D-flavoured hero composition, GSAP-orch
 | Mail         | `nuxt-nodemailer` |
 | Security     | `nuxt-security` (CSP) · `@nuxtjs/recaptcha` v3 |
 | SEO          | `@nuxtjs/seo`, `nuxt-og-image`, structured data |
-| Validation   | Zod (server-side, contact payload) |
+| Validation   | Zod — single schema in `shared/contact-schema.ts`, consumed by both client and server |
 
 ## Local development
 
@@ -105,7 +106,7 @@ The exhaustive component map — every animation phase, every accent colour, eve
 - All decorative motion is gated by `motion-reduce:animate-none` or branches on `usePreferredReducedMotion`. The intro timeline and the IntroHero composition both short-circuit to `$gsap.set` final state when reduced motion is requested.
 - Icon-only controls carry `aria-label`; purely decorative SVG uses `aria-hidden="true"`.
 - The section rail accepts `Alt+↑/↓` for keyboard jumping between sections.
-- Forms rely on native HTML constraint attributes (`required`, `type="email"`) on the client; the submitted payload is then schema-validated server-side with Zod in `server/api/contact.ts`.
+- Forms validate against a single Zod schema (`shared/contact-schema.ts`) on both sides. Client errors surface inline on blur (after first touch) and live thereafter, with `aria-invalid` + `aria-describedby` wired per field and a polite `role="alert"` for the message itself.
 
 ## Deployment
 
