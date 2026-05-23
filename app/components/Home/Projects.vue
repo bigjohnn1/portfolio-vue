@@ -10,130 +10,177 @@
           aria-hidden="true"
         ></div>
 
-        <div
-          v-for="(project, index) in projects"
-          :key="project.key"
-          class="flex flex-col md:flex-row items-center mb-16 md:mb-20 relative"
-          :class="{ 'md:flex-row-reverse': index % 2 === 0 }"
+        <template
+          v-for="entry in timelineEntries"
+          :key="entry.key"
         >
           <div
-            ref="projectElements"
-            class="w-full md:w-1/2 px-0 md:px-8 z-10"
+            v-if="entry.type === 'header'"
+            class="relative z-10 mb-12 md:mb-16 md:mx-auto md:max-w-2xl md:text-center px-0 md:px-8"
           >
-            <NuxtImg
-              :src="project.image"
-              :alt="$t(`projects.items.${project.key}.title`)"
-              sizes="sm:100vw md:50vw lg:400px"
-              class="w-full h-56 md:h-48 object-cover rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_12px_rgba(255,255,255,0.1)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.25)] dark:hover:shadow-[0_6px_16px_rgba(255,255,255,0.15)] transition-shadow duration-300"
-              loading="lazy"
-              decoding="async"
-              format="webp"
-            />
-
-            <h3
-              class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 mt-6"
+            <div
+              class="hidden md:flex items-center justify-center gap-3 mb-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-500 dark:text-gray-400"
+              aria-hidden="true"
             >
-              {{ $t(`projects.items.${project.key}.title`) }}
-            </h3>
-
-            <p
-              class="text-base text-gray-600 dark:text-gray-300 mt-2 line-clamp-3"
-            >
-              {{ $t(`projects.items.${project.key}.description`) }}
-            </p>
-
-            <div class="flex flex-wrap gap-3 mt-4 items-center">
-              <span
-                class="inline-flex items-center px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-full"
-              >
-                {{ $t(`projects.items.${project.key}.timeline`) }}
-                <Icon
-                  name="carbon:calendar"
-                  class="ml-2 h-5 w-5 text-gray-700 dark:text-gray-200"
-                  aria-hidden="true"
-                />
-              </span>
-
-              <span
-                v-if="te(`projects.items.${project.key}.status`)"
-                class="inline-flex items-center gap-1.5 px-3 py-1 text-sm font-medium rounded-full ring-1 ring-inset"
-                :class="STATUS_STYLES[project.status ?? 'default']"
-              >
-                <span
-                  class="h-1.5 w-1.5 rounded-full"
-                  :class="STATUS_DOT[project.status ?? 'default']"
-                  aria-hidden="true"
-                />
-                {{ $t(`projects.items.${project.key}.status`) }}
-              </span>
-
-              <NuxtLink
-                v-if="project.link"
-                :to="project.link"
-                target="_blank"
-                class="inline-flex items-center px-3 py-1 bg-primary-600 dark:bg-primary-500 text-sm font-medium text-white rounded-full hover:bg-primary-700 dark:hover:bg-primary-400 transition-colors shadow-sm hover:shadow-md"
-              >
-                {{ $t("projects.liveDemo") }}
-                <Icon
-                  name="carbon:launch"
-                  class="ml-2 h-4 w-4"
-                  aria-hidden="true"
-                />
-              </NuxtLink>
+              <span class="h-px w-12 bg-gray-300 dark:bg-gray-700" />
+              <Icon
+                name="game-icons:test-tubes"
+                class="h-4 w-4 text-primary-500 dark:text-primary-400"
+              />
+              <span>{{ $t('projects.experiments.kicker') }}</span>
+              <span class="h-px w-12 bg-gray-300 dark:bg-gray-700" />
             </div>
-
-            <dl
-              v-if="projectTechGroups(project.tech).length"
-              class="mt-5 space-y-2.5"
-              :aria-label="$t('projects.techStack')"
+            <h3
+              class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100"
             >
-              <div
-                v-for="group in projectTechGroups(project.tech)"
-                :key="group.category"
-                class="flex flex-wrap items-center gap-x-3 gap-y-1.5"
+              {{ $t('projects.experiments.title') }}
+            </h3>
+            <p
+              class="text-sm md:text-base text-gray-600 dark:text-gray-300 mt-3 max-w-prose md:mx-auto"
+            >
+              {{ $t('projects.experiments.description') }}
+            </p>
+          </div>
+
+          <div
+            v-else
+            class="flex flex-col md:flex-row items-center mb-16 md:mb-20 relative"
+            :class="[
+              { 'md:flex-row-reverse': entry.index % 2 === 0 },
+              { 'opacity-90': entry.project.kind === 'experiment' },
+            ]"
+          >
+            <div
+              ref="projectElements"
+              class="w-full md:w-1/2 px-0 md:px-8 z-10"
+            >
+              <NuxtImg
+                :src="entry.project.image"
+                :alt="$t(`projects.items.${entry.project.key}.title`)"
+                sizes="sm:100vw md:50vw lg:400px"
+                class="w-full h-56 md:h-48 object-cover rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_12px_rgba(255,255,255,0.1)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.25)] dark:hover:shadow-[0_6px_16px_rgba(255,255,255,0.15)] transition-shadow duration-300"
+                loading="lazy"
+                decoding="async"
+                format="webp"
+              />
+
+              <h3
+                class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 mt-6 inline-flex items-center gap-2 flex-wrap"
               >
-                <dt
-                  class="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-gray-500 dark:text-gray-400 min-w-[5.25rem]"
+                {{ $t(`projects.items.${entry.project.key}.title`) }}
+                <span
+                  v-if="entry.project.kind === 'experiment'"
+                  class="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] rounded-full ring-1 ring-inset bg-violet-50 text-violet-800 ring-violet-300/60 dark:bg-violet-500/10 dark:text-violet-200 dark:ring-violet-400/30"
+                >
+                  <Icon
+                    name="game-icons:test-tubes"
+                    class="h-3 w-3"
+                    aria-hidden="true"
+                  />
+                  {{ $t('projects.experiments.badge') }}
+                </span>
+              </h3>
+
+              <p
+                class="text-base text-gray-600 dark:text-gray-300 mt-2 line-clamp-3"
+              >
+                {{ $t(`projects.items.${entry.project.key}.description`) }}
+              </p>
+
+              <div class="flex flex-wrap gap-3 mt-4 items-center">
+                <span
+                  class="inline-flex items-center px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-full"
+                >
+                  {{ $t(`projects.items.${entry.project.key}.timeline`) }}
+                  <Icon
+                    name="carbon:calendar"
+                    class="ml-2 h-5 w-5 text-gray-700 dark:text-gray-200"
+                    aria-hidden="true"
+                  />
+                </span>
+
+                <span
+                  v-if="te(`projects.items.${entry.project.key}.status`)"
+                  class="inline-flex items-center gap-1.5 px-3 py-1 text-sm font-medium rounded-full ring-1 ring-inset"
+                  :class="STATUS_STYLES[entry.project.status ?? 'default']"
                 >
                   <span
                     class="h-1.5 w-1.5 rounded-full"
-                    :class="CATEGORY_STYLES[group.category].dot"
+                    :class="STATUS_DOT[entry.project.status ?? 'default']"
                     aria-hidden="true"
                   />
-                  {{ $t(`projects.tech.${group.category}`) }}
-                </dt>
-                <dd class="flex flex-wrap gap-1.5">
-                  <span
-                    v-for="item in group.items"
-                    :key="item"
-                    class="group/pill inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium rounded-md ring-1 ring-inset shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-                    :class="CATEGORY_STYLES[group.category].pill"
+                  {{ $t(`projects.items.${entry.project.key}.status`) }}
+                </span>
+
+                <NuxtLink
+                  v-if="entry.project.link"
+                  :to="entry.project.link"
+                  target="_blank"
+                  class="inline-flex items-center px-3 py-1 bg-primary-600 dark:bg-primary-500 text-sm font-medium text-white rounded-full hover:bg-primary-700 dark:hover:bg-primary-400 transition-colors shadow-sm hover:shadow-md"
+                >
+                  {{ $t("projects.liveDemo") }}
+                  <Icon
+                    name="carbon:launch"
+                    class="ml-2 h-4 w-4"
+                    aria-hidden="true"
+                  />
+                </NuxtLink>
+              </div>
+
+              <dl
+                v-if="projectTechGroups(entry.project.tech).length"
+                class="mt-5 space-y-2.5"
+                :aria-label="$t('projects.techStack')"
+              >
+                <div
+                  v-for="group in projectTechGroups(entry.project.tech)"
+                  :key="group.category"
+                  class="flex flex-wrap items-center gap-x-3 gap-y-1.5"
+                >
+                  <dt
+                    class="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-gray-500 dark:text-gray-400 min-w-[5.25rem]"
                   >
-                    <Icon
-                      v-if="techIcon(item)"
-                      :name="techIcon(item)!"
-                      class="h-3.5 w-3.5 opacity-90 transition-transform duration-200 group-hover/pill:scale-110"
+                    <span
+                      class="h-1.5 w-1.5 rounded-full"
+                      :class="CATEGORY_STYLES[group.category].dot"
                       aria-hidden="true"
                     />
-                    {{ item }}
-                  </span>
-                </dd>
-              </div>
-            </dl>
-          </div>
+                    {{ $t(`projects.tech.${group.category}`) }}
+                  </dt>
+                  <dd class="flex flex-wrap gap-1.5">
+                    <span
+                      v-for="item in group.items"
+                      :key="item"
+                      class="group/pill inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium rounded-md ring-1 ring-inset shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                      :class="CATEGORY_STYLES[group.category].pill"
+                    >
+                      <Icon
+                        v-if="techIcon(item)"
+                        :name="techIcon(item)!"
+                        class="h-3.5 w-3.5 opacity-90 transition-transform duration-200 group-hover/pill:scale-110"
+                        aria-hidden="true"
+                      />
+                      {{ item }}
+                    </span>
+                  </dd>
+                </div>
+              </dl>
+            </div>
 
-          <div
-            class="hidden md:flex w-1/2 justify-center relative"
-            aria-hidden="true"
-          >
             <div
-              class="absolute top-1/2 transform -translate-y-1/2 w-8 h-px bg-gray-500 dark:bg-gray-400"
-            ></div>
-            <div
-              class="w-5 h-5 bg-gray-800 dark:bg-gray-200 rounded-full z-10 border-2 border-gray-400 dark:border-gray-500 shadow-md"
-            ></div>
+              class="hidden md:flex w-1/2 justify-center relative"
+              aria-hidden="true"
+            >
+              <div
+                class="absolute top-1/2 transform -translate-y-1/2 w-8 h-px bg-gray-500 dark:bg-gray-400"
+              ></div>
+              <div
+                class="w-5 h-5 bg-gray-800 dark:bg-gray-200 rounded-full z-10 border-2 border-gray-400 dark:border-gray-500 shadow-md"
+                :class="{ '!bg-violet-500 dark:!bg-violet-400 !border-violet-300 dark:!border-violet-600': entry.project.kind === 'experiment' }"
+              ></div>
+            </div>
           </div>
-        </div>
+        </template>
       </div>
     </div>
   </section>
@@ -148,13 +195,20 @@ type TechCategory = 'frontend' | 'backend' | 'db' | 'misc'
 type ProjectTech = Partial<Record<TechCategory, string[]>>
 type ProjectStatus = 'production' | 'beta' | 'internal'
 
+type ProjectKind = 'production' | 'experiment'
+
 interface Project {
   key: string
   image: string
   link?: string
   tech?: ProjectTech
   status?: ProjectStatus
+  kind?: ProjectKind
 }
+
+type TimelineEntry
+  = | { type: 'header', key: string }
+    | { type: 'project', key: string, index: number, project: Project }
 
 const STATUS_STYLES: Record<ProjectStatus | 'default', string> = {
   production: 'bg-emerald-50 text-emerald-800 ring-emerald-300/60 dark:bg-emerald-500/10 dark:text-emerald-200 dark:ring-emerald-400/30',
@@ -267,45 +321,7 @@ const stripVersion = (name: string) =>
 
 const techIcon = (name: string) => TECH_ICONS[stripVersion(name)]
 
-const projects: Project[] = [
-  {
-    key: 'nimblo',
-    image: 'nimblo.png',
-    link: 'https://app.nimblo.io',
-    status: 'production',
-    tech: {
-      frontend: [
-        'React 18.2',
-        'Vite',
-        'Tailwind 3.4',
-        'Radix UI',
-        'TipTap',
-        'Framer Motion',
-      ],
-      backend: ['Hono', 'Cloudflare Workers'],
-      db: ['Cloudflare D1', 'KV', 'R2'],
-      misc: ['TypeScript', 'Zod', 'TanStack Query', 'Stripe'],
-    },
-  },
-  {
-    key: 'fastproject',
-    image: 'fastproject.png',
-    link: 'https://app.fastproject.io',
-    status: 'internal',
-    tech: {
-      frontend: [
-        'React 18.2',
-        'Vite',
-        'Tailwind 3.4',
-        'Radix UI',
-        'TipTap',
-        'Framer Motion',
-      ],
-      backend: ['Hono', 'Cloudflare Workers'],
-      db: ['Cloudflare D1', 'KV', 'R2'],
-      misc: ['TypeScript', 'Zod', 'TanStack Query', 'Stripe'],
-    },
-  },
+const productionProjects: Project[] = [
   {
     key: 'topiqu',
     image: 'topiqu.png',
@@ -349,6 +365,64 @@ const projects: Project[] = [
     },
   },
 ]
+
+const experimentProjects: Project[] = [
+  {
+    key: 'nimblo',
+    image: 'nimblo.png',
+    link: 'https://app.nimblo.io',
+    status: 'production',
+    kind: 'experiment',
+    tech: {
+      frontend: [
+        'React 18.2',
+        'Vite',
+        'Tailwind 3.4',
+        'Radix UI',
+        'TipTap',
+        'Framer Motion',
+      ],
+      backend: ['Hono', 'Cloudflare Workers'],
+      db: ['Cloudflare D1', 'KV', 'R2'],
+      misc: ['TypeScript', 'Zod', 'TanStack Query', 'Stripe'],
+    },
+  },
+  {
+    key: 'fastproject',
+    image: 'fastproject.png',
+    link: 'https://app.fastproject.io',
+    status: 'internal',
+    kind: 'experiment',
+    tech: {
+      frontend: [
+        'React 18.2',
+        'Vite',
+        'Tailwind 3.4',
+        'Radix UI',
+        'TipTap',
+        'Framer Motion',
+      ],
+      backend: ['Hono', 'Cloudflare Workers'],
+      db: ['Cloudflare D1', 'KV', 'R2'],
+      misc: ['TypeScript', 'Zod', 'TanStack Query', 'Stripe'],
+    },
+  },
+]
+
+const timelineEntries = computed<TimelineEntry[]>(() => {
+  const entries: TimelineEntry[] = []
+  let index = 0
+  for (const project of productionProjects) {
+    entries.push({ type: 'project', key: project.key, index: index++, project })
+  }
+  if (experimentProjects.length > 0) {
+    entries.push({ type: 'header', key: '__experiments-header' })
+    for (const project of experimentProjects) {
+      entries.push({ type: 'project', key: project.key, index: index++, project })
+    }
+  }
+  return entries
+})
 
 const projectTechGroups = (tech?: ProjectTech) =>
   TECH_CATEGORIES.flatMap((category) => {

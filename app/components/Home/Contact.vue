@@ -125,7 +125,7 @@ import { toast } from 'vue-sonner'
 
 const { t } = useI18n()
 
-const email = 'benjamin.tomanik@gmail.com'
+const { contactEmail: email } = useRuntimeConfig().public
 
 const mailtoHref = computed(() =>
   `mailto:${email}?subject=${encodeURIComponent('Project inquiry from your portfolio')}`,

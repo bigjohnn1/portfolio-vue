@@ -69,7 +69,7 @@ useSchemaOrg([
     'description': 'Product engineer from Czechia building scalable full-stack architectures with Vue, Nuxt, React and Next.',
     'image': 'https://benjamintomanik.me/bj.png',
     'url': 'https://benjamintomanik.me',
-    'email': 'mailto:benjamin.tomanik@gmail.com',
+    'email': `mailto:${useRuntimeConfig().public.contactEmail}`,
     'telephone': '+420705206985',
     'address': {
       '@type': 'PostalAddress',

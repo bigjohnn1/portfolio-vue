@@ -168,7 +168,7 @@ const focusInput = () => {
   nextTick(() => inputWrapRef.value?.querySelector('input')?.focus())
 }
 
-const email = 'benjamin.tomanik@gmail.com'
+const { contactEmail: email } = useRuntimeConfig().public
 const { copy: copyToClipboard, isSupported: clipboardSupported } = useClipboard({ source: email })
 
 const { data: posts } = await useContentData(

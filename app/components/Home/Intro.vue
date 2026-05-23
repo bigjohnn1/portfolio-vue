@@ -93,12 +93,21 @@
           class="font-display font-bold tracking-tight text-gray-900 leading-[0.95] dark:text-gray-50 text-[clamp(48px,9vw,108px)]"
         >
           <span
-            v-for="(char, i) in titleChars"
-            :key="i"
-            :ref="(el) => { if (el) titleCharRefs[i] = el as HTMLElement }"
-            class="inline-block opacity-0 will-change-transform"
-            v-html="char === ' ' ? '&nbsp;' : char"
-          />
+            v-for="(word, wi) in titleWords"
+            :key="wi"
+            class="inline-block whitespace-nowrap"
+          >
+            <span
+              v-for="(char, ci) in word.chars"
+              :key="ci"
+              :ref="(el) => { if (el) titleCharRefs[word.offset + ci] = el as HTMLElement }"
+              class="inline-block opacity-0 will-change-transform"
+            >{{ char }}</span>
+            <span
+              v-if="wi < titleWords.length - 1"
+              aria-hidden="true"
+            >&nbsp;</span>
+          </span>
         </h1>
 
         <p
@@ -189,7 +198,14 @@ const ctaWrap = useTemplateRef<HTMLElement>('ctaWrap')
 const titleCharRefs = ref<HTMLElement[]>([])
 const subtitleWordRefs = ref<HTMLElement[]>([])
 
-const titleChars = computed(() => t('global.name').split(''))
+const titleWords = computed(() => {
+  let offset = 0
+  return t('global.name').split(' ').map((word) => {
+    const entry = { chars: word.split(''), offset }
+    offset += entry.chars.length
+    return entry
+  })
+})
 const subtitleWords = computed(() => t('intro.subtitle').split(' '))
 
 const { y: scrollY } = useWindowScroll()
