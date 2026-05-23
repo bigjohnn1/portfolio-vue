@@ -319,14 +319,6 @@ export default defineNuxtConfig({
               from: { transform: 'rotate(0deg)' },
               to: { transform: 'rotate(360deg)' },
             },
-            'collapsible-down': {
-              from: { height: '0', opacity: '0' },
-              to: { height: 'var(--reka-collapsible-content-height)', opacity: '1' },
-            },
-            'collapsible-up': {
-              from: { height: 'var(--reka-collapsible-content-height)', opacity: '1' },
-              to: { height: '0', opacity: '0' },
-            },
           },
           animation: {
             'copy-pop': 'copy-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
@@ -345,8 +337,6 @@ export default defineNuxtConfig({
             'twinkle-a': 'twinkle-a 4s ease-in-out infinite',
             'twinkle-b': 'twinkle-b 7s ease-in-out infinite',
             'hex-drift': 'hex-drift 90s linear infinite',
-            'collapsible-down': 'collapsible-down 0.3s ease-out',
-            'collapsible-up': 'collapsible-up 0.3s ease-out',
           },
           colors: {
             'primary': {
