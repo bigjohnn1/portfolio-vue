@@ -48,9 +48,13 @@
     "openSocial": "Open {platform}"
   },
   "intro": {
-    "subtitle": "Building scalable SaaS & AI workflows.",
-    "cta": "Get started",
-    "ctaLabel": "Contact me"
+    "role": "Builder · SaaS & AI",
+    "availability": "Open for new quests",
+    "subtitle": "Crafting modern SaaS and AI products with Nuxt, TypeScript, and a stubborn obsession with the details that matter.",
+    "cta": "Begin the quest",
+    "ctaLabel": "Contact me",
+    "ctaSub": "Reply within a day · From Prague, GMT+1",
+    "scrollHint": "Scroll to explore"
   },
   "homeBlog": {
     "title": "Latest Articles",

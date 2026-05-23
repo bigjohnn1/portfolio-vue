@@ -219,9 +219,49 @@ export default defineNuxtConfig({
               '0%, 100%': { transform: 'scale(1)' },
               '50%': { transform: 'scale(1.18)' },
             },
+            'spin-slow': {
+              to: { transform: 'rotate(360deg)' },
+            },
+            'spin-slow-reverse': {
+              to: { transform: 'rotate(-360deg)' },
+            },
+            'rune-float': {
+              '0%, 100%': { transform: 'translate(-50%, -50%) translateY(0)', opacity: '0.85' },
+              '50%': { transform: 'translate(-50%, -50%) translateY(-4px)', opacity: '1' },
+            },
+            'aura-pulse': {
+              '0%, 100%': { opacity: '0.5', transform: 'scale(1)' },
+              '50%': { opacity: '0.85', transform: 'scale(1.05)' },
+            },
+            'scroll-dot': {
+              '0%': { transform: 'translateY(0)', opacity: '0' },
+              '20%': { opacity: '1' },
+              '80%': { opacity: '1' },
+              '100%': { transform: 'translateY(10px)', opacity: '0' },
+            },
+            'chevron-drift': {
+              '0%, 100%': { transform: 'translateY(-2px)', opacity: '0.45' },
+              '50%': { transform: 'translateY(3px)', opacity: '1' },
+            },
+            'cartouche-shimmer': {
+              '0%': { backgroundPosition: '-150% 0' },
+              '100%': { backgroundPosition: '250% 0' },
+            },
+            'rune-glow': {
+              '0%, 100%': { filter: 'drop-shadow(0 0 4px rgba(0,220,130,0.35))' },
+              '50%': { filter: 'drop-shadow(0 0 10px rgba(0,220,130,0.75))' },
+            },
           },
           animation: {
             'copy-pop': 'copy-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+            'spin-slow': 'spin-slow 60s linear infinite',
+            'spin-slow-reverse': 'spin-slow-reverse 90s linear infinite',
+            'rune-float': 'rune-float 4s ease-in-out infinite',
+            'aura-pulse': 'aura-pulse 5s ease-in-out infinite',
+            'scroll-dot': 'scroll-dot 1.6s ease-in-out infinite',
+            'chevron-drift': 'chevron-drift 2.2s ease-in-out infinite',
+            'cartouche-shimmer': 'cartouche-shimmer 6s ease-in-out infinite',
+            'rune-glow': 'rune-glow 3.2s ease-in-out infinite',
           },
           colors: {
             'primary': {

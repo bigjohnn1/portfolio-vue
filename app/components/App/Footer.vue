@@ -38,6 +38,22 @@
       <p class="text-white">
         © {{ year }} Big John
       </p>
+      <p class="mt-2 text-xs text-gray-400">
+        Hero iconography by
+        <a
+          href="https://game-icons.net/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline-offset-2 hover:underline"
+        >game-icons.net</a>
+        ·
+        <a
+          href="https://creativecommons.org/licenses/by/3.0/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline-offset-2 hover:underline"
+        >CC BY 3.0</a>
+      </p>
     </div>
   </footer>
 </template>

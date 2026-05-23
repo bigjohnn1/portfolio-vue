@@ -46,6 +46,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@iconify-json/game-icons": "^1.2.4",
     "@nuxt/content": "^3.13.0",
     "@nuxt/eslint": "^1.1.0",
     "@nuxt/fonts": "^0.14.0",

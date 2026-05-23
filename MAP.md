@@ -33,12 +33,26 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
 
 - **`App/`**
   - `Header.vue`: Main navigation header. Desktop nav uses a **text-first** pattern — Fraunces/Inter-friendly labels with `text-base font-medium tracking-tight`; the icon (Lucide stroke) slides in from the left only on `:hover` or `[data-active]` (scroll-spy active section). Underline is a separate scale-x layer in `primary-500` (light) / `primary-300` (dark), independent of text colour for crisp transitions. Active section is shared with `SectionRail` via [[active-section-composable]] (`useActiveSection`). Search / theme / locale buttons re-skinned as 40×40 pill controls with primary-tinted hover. Icon set is **Lucide** across the whole header for stroke consistency.
-  - `Footer.vue`: Site footer.
+  - `Footer.vue`: Site footer. Star-field background + social links + copyright + CC BY 3.0 attribution to game-icons.net (used by `HomeIntroHero`).
   - `LocaleSwitcher.vue`: Component to switch between languages (en/cs).
   - `LocalClock.vue`: Analog/digital Prague-time clock with tz-diff tooltip; uses `<NuxtTime>` for SSR-safe digital rendering.
   - `SectionRail.vue`: Fixed vertical anchor rail. Uses the shared `useActiveSection` composable (see `app/composables/useActiveSection.ts`) for scroll-spy — same source of truth as `Header.vue`. (lg+ only, home route only). Tracks the active section with `useIntersectionObserver`, page progress with `useScroll`, idle auto-hide with `useIdle`, and `Alt+↑/↓` jump via `useMagicKeys`. Lazy-mounted in `app.vue` and gated to `/`. Hosts a compact **locale quick-action button** above the section dots — opens a small popover with `onClickOutside` (VueUse) and ESC-to-close; shares visibility with the rail so it only appears once the user scrolls past the intro.
 - **`Home/`**
-  - `Intro.vue`: Hero/intro section.
+  - `Intro.vue`: Hero/intro section. Two-column layout with **layered compose-style entrance**: status chip (RPG-style cartouche — bracketed `game-icons:rune-stone` glyph framing the availability label with `animate-rune-glow`, corner accents + double top/bottom lines with traveling `animate-cartouche-shimmer` gradient, role accent in `font-serif italic` separated by a diamond glyph) blur-drops in, H1 reveals **character-by-character** (each glyph y-drop + rotateX + blur-clear via GSAP stagger), subtitle reveals **word-by-word** (y-shift + blur-clear, 35ms stagger), CTA pops with scale-bounce, scroll hint fades in last. CTA is a primary-filled button bracketed by `game-icons:scroll-quill` (rotates -12° on hover) and `lucide:arrow-right` (slides right). Microcopy below CTA shows `intro.ctaSub`. Radial backdrop blobs `-z-0` plus a vignette gradient overlay. Bottom scroll hint uses `lucide:chevrons-down` with `animate-chevron-drift` keyframe; opacity + Y-translate are continuously driven by `useWindowScroll` progress (0 → 1 over first 160px), revealed via a `tl.call` flag after intro timeline. Honors `usePreferredReducedMotion` — entire timeline short-circuits to `gsap.set` final state.
+  - `IntroHero.vue`: D&D-themed hero composition (replaces old `CanvasGlobe`). Pure SVG + Iconify, no Three.js. **Compose-style assembly** orchestrated by a GSAP timeline:
+    1. Halo blooms in (scale 0.4 → 1)
+    2. Outer ring **stroke-draws** via `strokeDashoffset` (1.4s `power2.inOut`), then its dashed companion fills in
+    3. **24 tick marks** appear one-by-one in rotation around the dial (40ms stagger)
+    4. **6 hex edges** inscribe **sequentially** via per-edge `strokeDashoffset` draw (120ms stagger) with `feGaussianBlur` soft-glow filter
+    5. Inner dashed hex zooms in from 1.4x
+    6. Inner counter-rotating ring stroke-draws
+    7. **6 energy lines** from center to each rune vertex draw + settle to low ambient opacity
+    8. Each rune position gets a **radial flash burst** (expanding `<circle>` with radial gradient) just before the rune appears
+    9. **Runes materialize** with back-out scale (90ms stagger)
+    10. **D20 summons** with rotateZ -540° → 0 + scale 0.2 → 1 (back-out), and a **shockwave ring** expands outward (radius 18 → 95)
+    11. 18 ambient particles orbiting the perimeter twinkle in with random delays and continue yo-yo opacity loop indefinitely
+
+    Hover on hero brightens the energy lines (0.12 → 0.4 opacity). Hovering or clicking the d20 triggers a **two-phase roll** (fast 720° in 0.55s `power2.in`, then settle with back-out + 1.1 → 1 scale) and a fresh shockwave. The entire composition has subtle **3D cursor parallax** (rotateX/rotateY based on `useMouseInElement`, max ±4-5°, `[transform-style:preserve-3d]` + `[perspective:1200px]`). Mount waits on `useElementVisibility` so the timeline only fires when the section is on screen. All colors are `text-primary-*`. Honors `usePreferredReducedMotion` — when reduced, `composeScene` short-circuits to `gsap.set` final state (no timeline, no tilt, no roll). Idle keyframes (`spin-slow`, `spin-slow-reverse`, `rune-float`, `aura-pulse`, `scroll-dot`, `chevron-drift`, `cartouche-shimmer`, `rune-glow`) live in `nuxt.config.ts` tailwind theme.
   - `About.vue`: About me section — orchestrates `HomeAboutCard` + 3× `HomeAboutFactCard` with per-fact accent (indigo / amber / violet).
   - `AboutFactCard.vue`: Polished fact card with shared chrome (mouse-tracked spotlight, accent rail, colored hover shadow) and per-fact micro-details: **learning** → animated sparkline (`stroke-dashoffset` on hover) + SMIL-pulsing end-dot; **lifestyle** → dumbbell with hover micro-rotation; **rpg** → inline SVG d20 with rolling face on hover (settles on natural 20) + rune watermark.
   - `Projects.vue`: Project showcase. Each card renders grouped tech-stack pills (`frontend` / `backend` / `db` / `misc`) sourced from a per-project `tech` object; group labels are i18n'd via `projects.tech.*`, technology names stay untranslated.
@@ -51,7 +65,7 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
   - `Form.vue`: The contact form component.
   - `Consent.vue`: Privacy/consent checkbox component.
 - **`Canvas/`**
-  - `Globe.vue`: 3D/Canvas element (likely Three.js).
+  - `AboutScene.vue`: Three.js scene used in the About section.
 - `VueFrag.vue`: Utility component (possibly for fragment wrapping).
 
 ### `/server`

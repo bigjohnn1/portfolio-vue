@@ -48,9 +48,13 @@
     "openSocial": "Otevřít {platform}"
   },
   "intro": {
-    "subtitle": "Pojďme tvořit škálovatelné SaaS a AI produkty.",
-    "cta": "Začněte svou cestu",
-    "ctaLabel": "Kontaktovat"
+    "role": "Builder · SaaS & AI",
+    "availability": "Volné kapacity na nové výpravy",
+    "subtitle": "Tvořím moderní SaaS a AI produkty v Nuxtu a TypeScriptu — s posedlostí pro detaily, které dělají rozdíl.",
+    "cta": "Zahaj výpravu",
+    "ctaLabel": "Kontaktovat",
+    "ctaSub": "Odpovím do 24 h · Praha, GMT+1",
+    "scrollHint": "Skroluj a prozkoumej"
   },
   "homeBlog": {
     "title": "Nejnovější články",
