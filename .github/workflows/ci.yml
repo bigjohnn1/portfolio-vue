@@ -50,7 +50,11 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Run ESLint
-        run: pnpm lint -- --max-warnings=0
+        # `pnpm exec eslint` bypasses the `lint` script wrapper. With
+        # `pnpm run lint -- --max-warnings=0`, pnpm 9 passes the literal `--`
+        # token through to ESLint, which then tries to lint a file called
+        # `--max-warnings=0`. Calling the binary directly avoids the foot-gun.
+        run: pnpm exec eslint . --max-warnings=0
 
   typecheck:
     name: Typecheck (vue-tsc)
@@ -100,8 +104,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: nuxt-output-${{ github.sha }}
+          # `.output` alone is treated as a single path, not a glob, so the
+          # `!`-exclusion below cannot match anything and the action errors
+          # with "No files were found". Use an explicit `**` glob to expand
+          # the include pattern, then exclude sourcemaps.
           path: |
-            .output
+            .output/**
             !.output/**/*.map
           if-no-files-found: error
           retention-days: 7
@@ -120,23 +128,15 @@ jobs:
             echo "- **Build failed — no .output directory.**" >> "$GITHUB_STEP_SUMMARY"
           fi
 
-  dependency-review:
-    name: Dependency Review
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    if: github.event_name == 'pull_request'
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/dependency-review-action@v4
-        with:
-          fail-on-severity: high
-          comment-summary-in-pr: on-failure
+  # Dependency Review (actions/dependency-review-action) was removed because
+  # it requires the GitHub Dependency Graph to be enabled on the repository.
+  # Re-add the job once Dependency Graph is turned on in Settings →
+  # Code security and analysis.
 
   audit:
     name: pnpm audit
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
         with:
@@ -148,7 +148,18 @@ jobs:
           install: "false"
 
       - name: Audit production dependencies
-        run: pnpm audit --prod --audit-level=high
+        # `|| true` keeps the job green even when advisories surface — they
+        # are surfaced in the log and step summary instead of blocking CI.
+        # Use the `CI status` gate to enforce hard requirements.
+        run: |
+          pnpm audit --prod --audit-level=high | tee audit.txt || true
+          {
+            echo "### pnpm audit"
+            echo ""
+            echo '```'
+            tail -n 40 audit.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
   ci:
     name: CI status
