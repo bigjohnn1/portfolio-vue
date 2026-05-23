@@ -87,7 +87,11 @@
   "projects": {
     "title": "My Projects",
     "liveDemo": "Live Demo",
+    "opensNewTab": "opens in new tab",
     "techStack": "Tech stack",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "moreTech": "+{count} more",
     "tech": {
       "frontend": "Frontend",
       "backend": "Backend",

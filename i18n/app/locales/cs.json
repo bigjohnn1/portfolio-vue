@@ -87,7 +87,11 @@
   "projects": {
     "title": "Moje projekty",
     "liveDemo": "Živá ukázka",
+    "opensNewTab": "otevře se v novém panelu",
     "techStack": "Použité technologie",
+    "showMore": "Zobrazit více",
+    "showLess": "Zobrazit méně",
+    "moreTech": "+{count} dalších",
     "tech": {
       "frontend": "Frontend",
       "backend": "Backend",

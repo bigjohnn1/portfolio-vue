@@ -3,7 +3,7 @@
     id="references"
     class="relative w-full min-h-screen bg-base-bg text-base-text py-16 overflow-hidden dark:bg-transparent"
   >
-    <div class="max-w-4xl mx-auto px-4">
+    <div class="max-w-6xl mx-auto px-4">
       <div class="relative">
         <div
           class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-gray-400 to-gray-600 dark:from-gray-500 dark:to-gray-700"
@@ -70,126 +70,13 @@
           <div
             v-else
             class="flex flex-col md:flex-row items-center mb-16 md:mb-20 relative"
-            :class="[
-              { 'md:flex-row-reverse': entry.index % 2 === 0 },
-              { 'opacity-90': entry.project.kind === 'experiment' },
-            ]"
+            :class="{ 'md:flex-row-reverse': entry.index % 2 === 0 }"
           >
             <div
               ref="projectElements"
               class="w-full md:w-1/2 px-0 md:px-8 z-10"
             >
-              <NuxtImg
-                :src="entry.project.image"
-                :alt="$t(`projects.items.${entry.project.key}.title`)"
-                sizes="sm:100vw md:50vw lg:400px"
-                class="w-full h-56 md:h-48 object-cover rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_12px_rgba(255,255,255,0.1)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.25)] dark:hover:shadow-[0_6px_16px_rgba(255,255,255,0.15)] transition-shadow duration-300"
-                loading="lazy"
-                decoding="async"
-                format="webp"
-              />
-
-              <h3
-                class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 mt-6 inline-flex items-center gap-2 flex-wrap"
-              >
-                {{ $t(`projects.items.${entry.project.key}.title`) }}
-                <span
-                  v-if="entry.project.kind === 'experiment'"
-                  class="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] rounded-full ring-1 ring-inset bg-violet-50 text-violet-800 ring-violet-300/60 dark:bg-violet-500/10 dark:text-violet-200 dark:ring-violet-400/30"
-                >
-                  <Icon
-                    name="game-icons:test-tubes"
-                    class="h-3 w-3"
-                    aria-hidden="true"
-                  />
-                  {{ $t('projects.experiments.badge') }}
-                </span>
-              </h3>
-
-              <p
-                class="text-base text-gray-600 dark:text-gray-300 mt-2 line-clamp-3"
-              >
-                {{ $t(`projects.items.${entry.project.key}.description`) }}
-              </p>
-
-              <div class="flex flex-wrap gap-3 mt-4 items-center">
-                <span
-                  class="inline-flex items-center px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-full"
-                >
-                  {{ $t(`projects.items.${entry.project.key}.timeline`) }}
-                  <Icon
-                    name="carbon:calendar"
-                    class="ml-2 h-5 w-5 text-gray-700 dark:text-gray-200"
-                    aria-hidden="true"
-                  />
-                </span>
-
-                <span
-                  v-if="te(`projects.items.${entry.project.key}.status`)"
-                  class="inline-flex items-center gap-1.5 px-3 py-1 text-sm font-medium rounded-full ring-1 ring-inset"
-                  :class="STATUS_STYLES[entry.project.status ?? 'default']"
-                >
-                  <span
-                    class="h-1.5 w-1.5 rounded-full"
-                    :class="STATUS_DOT[entry.project.status ?? 'default']"
-                    aria-hidden="true"
-                  />
-                  {{ $t(`projects.items.${entry.project.key}.status`) }}
-                </span>
-
-                <NuxtLink
-                  v-if="entry.project.link"
-                  :to="entry.project.link"
-                  target="_blank"
-                  class="inline-flex items-center px-3 py-1 bg-primary-600 dark:bg-primary-500 text-sm font-medium text-white rounded-full hover:bg-primary-700 dark:hover:bg-primary-400 transition-colors shadow-sm hover:shadow-md"
-                >
-                  {{ $t("projects.liveDemo") }}
-                  <Icon
-                    name="carbon:launch"
-                    class="ml-2 h-4 w-4"
-                    aria-hidden="true"
-                  />
-                </NuxtLink>
-              </div>
-
-              <dl
-                v-if="projectTechGroups(entry.project.tech).length"
-                class="mt-5 space-y-2.5"
-                :aria-label="$t('projects.techStack')"
-              >
-                <div
-                  v-for="group in projectTechGroups(entry.project.tech)"
-                  :key="group.category"
-                  class="flex flex-wrap items-center gap-x-3 gap-y-1.5"
-                >
-                  <dt
-                    class="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-gray-500 dark:text-gray-400 min-w-[5.25rem]"
-                  >
-                    <span
-                      class="h-1.5 w-1.5 rounded-full"
-                      :class="CATEGORY_STYLES[group.category].dot"
-                      aria-hidden="true"
-                    />
-                    {{ $t(`projects.tech.${group.category}`) }}
-                  </dt>
-                  <dd class="flex flex-wrap gap-1.5">
-                    <span
-                      v-for="item in group.items"
-                      :key="item"
-                      class="group/pill inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium rounded-md ring-1 ring-inset shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
-                      :class="CATEGORY_STYLES[group.category].pill"
-                    >
-                      <Icon
-                        v-if="techIcon(item)"
-                        :name="techIcon(item)!"
-                        class="h-3.5 w-3.5 opacity-90 transition-transform duration-200 group-hover/pill:scale-110"
-                        aria-hidden="true"
-                      />
-                      {{ item }}
-                    </span>
-                  </dd>
-                </div>
-              </dl>
+              <HomeProjectCard :project="entry.project" />
             </div>
 
             <div
@@ -198,11 +85,11 @@
             >
               <div
                 class="absolute top-1/2 transform -translate-y-1/2 w-8 h-px bg-gray-500 dark:bg-gray-400"
-              ></div>
+              />
               <div
                 class="w-5 h-5 bg-gray-800 dark:bg-gray-200 rounded-full z-10 border-2 border-gray-400 dark:border-gray-500 shadow-md"
                 :class="{ '!bg-violet-500 dark:!bg-violet-400 !border-violet-300 dark:!border-violet-600': entry.project.kind === 'experiment' }"
-              ></div>
+              />
             </div>
           </div>
         </template>
@@ -213,138 +100,13 @@
 
 <script setup lang="ts">
 import type { gsap } from 'gsap'
+import type { Project } from '~/types/project'
 
-const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
-
-type TechCategory = 'frontend' | 'backend' | 'db' | 'misc'
-type ProjectTech = Partial<Record<TechCategory, string[]>>
-type ProjectStatus = 'production' | 'beta' | 'internal'
-
-type ProjectKind = 'production' | 'experiment'
-
-interface Project {
-  key: string
-  image: string
-  link?: string
-  tech?: ProjectTech
-  status?: ProjectStatus
-  kind?: ProjectKind
-}
+const { $gsap } = useNuxtApp()
 
 type TimelineEntry
   = | { type: 'header', key: string }
     | { type: 'project', key: string, index: number, project: Project }
-
-const STATUS_STYLES: Record<ProjectStatus | 'default', string> = {
-  production: 'bg-emerald-50 text-emerald-800 ring-emerald-300/60 dark:bg-emerald-500/10 dark:text-emerald-200 dark:ring-emerald-400/30',
-  beta: 'bg-amber-50 text-amber-800 ring-amber-300/60 dark:bg-amber-500/10 dark:text-amber-200 dark:ring-amber-400/30',
-  internal: 'bg-sky-50 text-sky-800 ring-sky-300/60 dark:bg-sky-500/10 dark:text-sky-200 dark:ring-sky-400/30',
-  default: 'bg-gray-100 text-gray-700 ring-gray-300/60 dark:bg-gray-700/40 dark:text-gray-200 dark:ring-gray-500/40',
-}
-
-const STATUS_DOT: Record<ProjectStatus | 'default', string> = {
-  production: 'bg-emerald-500 dark:bg-emerald-400',
-  beta: 'bg-amber-500 dark:bg-amber-400',
-  internal: 'bg-sky-500 dark:bg-sky-400',
-  default: 'bg-gray-500 dark:bg-gray-400',
-}
-
-const { te } = useI18n()
-
-const TECH_CATEGORIES: TechCategory[] = ['frontend', 'backend', 'db', 'misc']
-
-const CATEGORY_STYLES: Record<TechCategory, { pill: string, dot: string }> = {
-  frontend: {
-    pill: 'bg-gradient-to-b from-sky-50 to-sky-100/60 text-sky-800 ring-sky-300/60 hover:ring-sky-400 hover:shadow-sky-200/50 dark:from-sky-500/10 dark:to-sky-500/5 dark:text-sky-100 dark:ring-sky-400/30 dark:hover:ring-sky-300/60 dark:hover:shadow-sky-500/20',
-    dot: 'bg-sky-500 dark:bg-sky-400',
-  },
-  backend: {
-    pill: 'bg-gradient-to-b from-emerald-50 to-emerald-100/60 text-emerald-800 ring-emerald-300/60 hover:ring-emerald-400 hover:shadow-emerald-200/50 dark:from-emerald-500/10 dark:to-emerald-500/5 dark:text-emerald-100 dark:ring-emerald-400/30 dark:hover:ring-emerald-300/60 dark:hover:shadow-emerald-500/20',
-    dot: 'bg-emerald-500 dark:bg-emerald-400',
-  },
-  db: {
-    pill: 'bg-gradient-to-b from-amber-50 to-amber-100/60 text-amber-800 ring-amber-300/60 hover:ring-amber-400 hover:shadow-amber-200/50 dark:from-amber-500/10 dark:to-amber-500/5 dark:text-amber-100 dark:ring-amber-400/30 dark:hover:ring-amber-300/60 dark:hover:shadow-amber-500/20',
-    dot: 'bg-amber-500 dark:bg-amber-400',
-  },
-  misc: {
-    pill: 'bg-gradient-to-b from-violet-50 to-violet-100/60 text-violet-800 ring-violet-300/60 hover:ring-violet-400 hover:shadow-violet-200/50 dark:from-violet-500/10 dark:to-violet-500/5 dark:text-violet-100 dark:ring-violet-400/30 dark:hover:ring-violet-300/60 dark:hover:shadow-violet-500/20',
-    dot: 'bg-violet-500 dark:bg-violet-400',
-  },
-}
-
-const TECH_ICONS: Record<string, string> = {
-  'react': 'simple-icons:react',
-  'vue': 'simple-icons:vuedotjs',
-  'nuxt': 'simple-icons:nuxtdotjs',
-  'nitro': 'simple-icons:nuxtdotjs',
-  'vite': 'simple-icons:vite',
-  'tailwind': 'simple-icons:tailwindcss',
-  'tailwindcss': 'simple-icons:tailwindcss',
-  'unocss': 'simple-icons:unocss',
-  'sass': 'simple-icons:sass',
-  'scss': 'simple-icons:sass',
-  'latte': 'carbon:code',
-  'typescript': 'simple-icons:typescript',
-  'javascript': 'simple-icons:javascript',
-  'php': 'simple-icons:php',
-  'nette': 'carbon:cube',
-  'hono': 'simple-icons:hono',
-  'bun': 'simple-icons:bun',
-  'vercel': 'simple-icons:vercel',
-  'cloudflare workers': 'simple-icons:cloudflare',
-  'cloudflare': 'simple-icons:cloudflare',
-  'cloudflare d1': 'simple-icons:cloudflare',
-  'kv': 'simple-icons:cloudflare',
-  'r2': 'simple-icons:cloudflare',
-  'mysql': 'simple-icons:mysql',
-  'postgresql': 'simple-icons:postgresql',
-  'neondb': 'simple-icons:neon',
-  'prisma': 'simple-icons:prisma',
-  'zenstack': 'carbon:layers',
-  'nette database': 'carbon:data-base',
-  'zod': 'simple-icons:zod',
-  'tracy': 'carbon:debug',
-  'mpdf': 'carbon:document-pdf',
-  'datagrid': 'carbon:data-table',
-  'tinymce': 'carbon:edit',
-  'html': 'simple-icons:html5',
-  'pinia': 'simple-icons:pinia',
-  'tiptap': 'carbon:text-creation',
-  'vueuse': 'simple-icons:vueuse',
-  'radix ui': 'simple-icons:radixui',
-  'radix': 'simple-icons:radixui',
-  'framer motion': 'simple-icons:framer',
-  'framer': 'simple-icons:framer',
-  'three.js': 'simple-icons:threedotjs',
-  'threejs': 'simple-icons:threedotjs',
-  'tanstack query': 'simple-icons:reactquery',
-  'tanstack table': 'simple-icons:reactquery',
-  'stripe': 'simple-icons:stripe',
-  'auth.js': 'carbon:user-multiple',
-  'ai sdk': 'carbon:machine-learning-model',
-  'xai': 'simple-icons:x',
-  'aws s3': 'simple-icons:amazons3',
-  's3': 'simple-icons:amazons3',
-  'aws ses': 'simple-icons:amazonsimpleemailservice',
-  'ses': 'simple-icons:amazonsimpleemailservice',
-  'sharp': 'carbon:image',
-  'playwright': 'simple-icons:playwright',
-  'vitest': 'simple-icons:vitest',
-  'mjml': 'carbon:email',
-  'react query': 'simple-icons:reactquery',
-  'react hook form': 'simple-icons:reacthookform',
-  'recharts': 'carbon:chart-line',
-  'chart.js': 'simple-icons:chartdotjs',
-  'chartjs': 'simple-icons:chartdotjs',
-}
-
-const stripVersion = (name: string) =>
-  name
-    .toLowerCase()
-    .replace(/\s*v?\d+(\.\d+)*\s*$/i, '')
-    .trim()
-
-const techIcon = (name: string) => TECH_ICONS[stripVersion(name)]
 
 const productionProjects: Project[] = [
   {
@@ -448,12 +210,6 @@ const timelineEntries = computed<TimelineEntry[]>(() => {
   }
   return entries
 })
-
-const projectTechGroups = (tech?: ProjectTech) =>
-  TECH_CATEGORIES.flatMap((category) => {
-    const items = tech?.[category]
-    return items && items.length > 0 ? [{ category, items }] : []
-  })
 
 const projectElements = useTemplateRef<HTMLElement[]>('projectElements')
 
