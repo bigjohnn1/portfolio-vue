@@ -3,82 +3,165 @@ name: CI
 on:
   push:
     branches: [master]
+    paths-ignore:
+      - "**/*.md"
+      - "MAP.md"
+      - "LICENSE"
+      - ".gitignore"
+      - ".editorconfig"
+      - ".vscode/**"
   pull_request:
     branches: [master]
+    paths-ignore:
+      - "**/*.md"
+      - "MAP.md"
+      - "LICENSE"
+      - ".gitignore"
+      - ".editorconfig"
+      - ".vscode/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
 
 env:
-  HUSKY: 0
+  HUSKY: "0"
+  NODE_OPTIONS: --max-old-space-size=4096
+  NUXT_TELEMETRY_DISABLED: "1"
+  DO_NOT_TRACK: "1"
+  CI: "true"
+  DATABASE_URL: postgres://ci:ci@localhost:5432/ci
 
 jobs:
   lint:
-    name: Lint
+    name: Lint (ESLint)
     runs-on: ubuntu-latest
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v4
         with:
-          version: 9.15.0
+          fetch-depth: 1
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
+      - name: Setup
+        uses: ./.github/actions/setup
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: ESLint
-        run: pnpm lint
+      - name: Run ESLint
+        run: pnpm lint -- --max-warnings=0
 
   typecheck:
-    name: Typecheck
+    name: Typecheck (vue-tsc)
     runs-on: ubuntu-latest
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v4
         with:
-          version: 9.15.0
+          fetch-depth: 1
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
+      - name: Setup
+        uses: ./.github/actions/setup
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Prepare Nuxt (types)
+      - name: Prepare Nuxt (.nuxt/types)
         run: pnpm exec nuxt prepare
 
-      - name: Vue / TS typecheck
+      - name: Typecheck
         run: pnpm exec nuxt typecheck
 
   build:
-    name: Build
+    name: Build (ZenStack + Nuxt)
     runs-on: ubuntu-latest
-    needs: [lint, typecheck]
+    timeout-minutes: 15
+    env:
+      NODE_ENV: production
+      NUXT_PUBLIC_CONTACT_EMAIL: ${{ vars.NUXT_PUBLIC_CONTACT_EMAIL || 'benjamin.tomanik@gmail.com' }}
+      NUXT_MAIL_USER: ${{ secrets.NUXT_MAIL_USER || 'ci@example.com' }}
+      NUXT_MAIL_PASS: ${{ secrets.NUXT_MAIL_PASS || 'ci-placeholder' }}
+      NUXT_CONTACT_MAIL: ${{ secrets.NUXT_CONTACT_MAIL || 'ci@example.com' }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL || 'postgres://user:pass@localhost:5432/db' }}
     steps:
       - uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v4
         with:
-          version: 9.15.0
+          fetch-depth: 1
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
+      - name: Setup
+        uses: ./.github/actions/setup
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build (ZenStack generate + Nuxt build)
+      - name: Build
         run: pnpm build
-        env:
-          NODE_ENV: production
+
+      - name: Upload build output
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuxt-output-${{ github.sha }}
+          path: |
+            .output
+            !.output/**/*.map
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 9
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Build summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          if [ -d .output ]; then
+            echo "- **Output size:** $(du -sh .output | cut -f1)" >> "$GITHUB_STEP_SUMMARY"
+            echo "- **Server bundle:** $(du -sh .output/server 2>/dev/null | cut -f1 || echo 'n/a')" >> "$GITHUB_STEP_SUMMARY"
+            echo "- **Public assets:** $(du -sh .output/public 2>/dev/null | cut -f1 || echo 'n/a')" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- **Build failed — no .output directory.**" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high
+          comment-summary-in-pr: on-failure
+
+  audit:
+    name: pnpm audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup (no install)
+        uses: ./.github/actions/setup
+        with:
+          install: "false"
+
+      - name: Audit production dependencies
+        run: pnpm audit --prod --audit-level=high
+
+  ci:
+    name: CI status
+    runs-on: ubuntu-latest
+    needs: [lint, typecheck, build]
+    if: always()
+    steps:
+      - name: Verify required jobs
+        run: |
+          if [ "${{ needs.lint.result }}" != "success" ] \
+            || [ "${{ needs.typecheck.result }}" != "success" ] \
+            || [ "${{ needs.build.result }}" != "success" ]; then
+            echo "::error::One or more required jobs failed."
+            echo "lint=${{ needs.lint.result }}"
+            echo "typecheck=${{ needs.typecheck.result }}"
+            echo "build=${{ needs.build.result }}"
+            exit 1
+          fi
+          echo "All required jobs passed."
