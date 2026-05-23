@@ -91,6 +91,12 @@
       "db": "Databáze",
       "misc": "Ostatní"
     },
+    "experiments": {
+      "kicker": "R&D / Hackathony / AI Experimenty",
+      "title": "Prototypy s AI-augmented vývojem",
+      "description": "Testování limitů AI-augmented vývoje pro bleskové doručení byznys logiky u konceptů s nulovou trakcí. Není to produkční kód — je to průzkum.",
+      "badge": "Experiment"
+    },
     "items": {
       "skola-zivota": {
         "title": "Škola života - web revamp",
@@ -356,5 +362,19 @@
     "description1": "Vaše osobní údaje (jméno, e-mail, zpráva) jsou použity pouze pro účely odpovědi na váš dotaz nebo zprávu.",
     "description2": "Nesdílím žádné údaje s třetími stranami a uchovávám je pouze po nezbytnou dobu komunikace.",
     "closeButton": "Zavřít"
+  },
+  "footer": {
+    "tagline": "Builder · SaaS & AI",
+    "location": "Praha",
+    "headingSections": "Sekce",
+    "headingConnect": "Spojení",
+    "emailLabel": "Napsat email",
+    "ariaSocial": "Otevřít {platform}",
+    "constellation": "Skrytá hexagonální konstelace",
+    "attribution": "Ikonografie",
+    "buildLabel": "Build",
+    "buildAria": "Sestavení {commit} z {date}",
+    "copyright": "© {year} {name}",
+    "rights": "Všechna práva vyhrazena"
   }
 }

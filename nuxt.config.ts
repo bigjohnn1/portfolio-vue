@@ -1,5 +1,16 @@
+import { execSync } from 'node:child_process'
 import { defineNuxtConfig } from 'nuxt/config'
 import typography from '@tailwindcss/typography'
+
+const buildCommit = (() => {
+  try {
+    return execSync('git rev-parse --short HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim()
+  }
+  catch {
+    return 'dev'
+  }
+})()
+const buildDate = new Date().toISOString().slice(0, 10)
 
 export default defineNuxtConfig({
   modules: [
@@ -56,6 +67,14 @@ export default defineNuxtConfig({
     smtpUser: process.env.NUXT_MAIL_USER,
     smtpPass: process.env.NUXT_MAIL_PASS,
     contactMail: process.env.NUXT_CONTACT_MAIL,
+    public: {
+      contactEmail: process.env.NUXT_PUBLIC_CONTACT_EMAIL || 'benjamin.tomanik@gmail.com',
+      build: {
+        commit: buildCommit,
+        date: buildDate,
+        repoUrl: 'https://github.com/bigjohnn1/portfolio-vue',
+      },
+    },
   },
   compatibilityDate: '2026-05-07',
   eslint: {

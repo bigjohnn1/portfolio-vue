@@ -15,7 +15,6 @@
     "@headlessui/vue": "^1.7.23",
     "@hypernym/nuxt-gsap": "^2.4.3",
     "@nuxtjs/recaptcha": "^1.1.2",
-    "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "@pinia/nuxt": "^0.11.3",
     "@supabase/supabase-js": "^2.49.1",
     "@takumi-rs/core": "^1.1.2",
@@ -32,7 +31,6 @@
     "nuxt-security": "^2.2.0",
     "pg": "^8.20.0",
     "pinia": "^3.0.1",
-    "pinia-plugin-persistedstate": "^4.2.0",
     "playwright-core": "^1.59.1",
     "reka-ui": "^2.0.0",
     "three": "^0.174.0",
@@ -73,6 +71,7 @@
     "prettier": "^3.5.3",
     "sass": "^1.85.1",
     "unplugin-tailwindcss": "^0.0.4",
+    "vue-tsc": "^3.3.1",
     "yup": "^1.6.1"
   },
   "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c",

@@ -40,6 +40,13 @@
 - The platform supports `en` and `cs`.
 - All hardcoded strings in templates **MUST** use translation keys (`$t('key')` or `t('key')`). Never leave raw text.
 
+## AI Workflow Boundaries
+
+- **All validation is delegated to CI** (`.github/workflows/ci.yml`). The AI does **NOT** run `nuxt typecheck`, `vue-tsc`, `nuxt build`, `eslint`, `vitest`, or any other validation / build command locally — push and let CI report.
+- **Why:** Local runs are slow, frequently break on environment / tooling mismatches (e.g. `vue-router/volar` resolution), and waste turns. CI is the single source of truth for green/red.
+- **What the AI *does* do at edit time:** write correct code based on Nuxt 4 / Vue 3.5 / TS strict conventions in the surrounding files. If something is genuinely ambiguous, ask — don't shell out to a checker to find out.
+- **Allowed local commands** are limited to: `git` (read-only inspection unless commit/push was explicitly requested), `Read`/`Edit`/`Write` on files, and quick `grep`/`find`/`ls` for discovery. Anything that compiles, type-checks, lints, tests, or builds is **off-limits** locally.
+
 ## Code Style
 
 - Follow ESLint + Prettier configuration strictly.

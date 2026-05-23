@@ -91,6 +91,12 @@
       "db": "Database",
       "misc": "Misc"
     },
+    "experiments": {
+      "kicker": "R&D / Hackathons / AI Experiments",
+      "title": "AI-augmented prototypes",
+      "description": "Stress-testing the limits of AI-augmented development to ship business logic at lightning speed for zero-traction concepts. Not production code — exploration.",
+      "badge": "Experiment"
+    },
     "items": {
       "skola-zivota": {
         "title": "School of Life - Web Revamp",
@@ -356,5 +362,19 @@
     "description1": "Your personal information (name, email, message) is used solely for the purpose of responding to your inquiry or message.",
     "description2": "I do not share any data with third parties and retain it only for the necessary duration of communication.",
     "closeButton": "Close"
+  },
+  "footer": {
+    "tagline": "Builder · SaaS & AI",
+    "location": "Prague",
+    "headingSections": "Sections",
+    "headingConnect": "Connect",
+    "emailLabel": "Send email",
+    "ariaSocial": "Open {platform}",
+    "constellation": "Hidden hexagonal constellation",
+    "attribution": "Iconography",
+    "buildLabel": "Build",
+    "buildAria": "Build {commit} from {date}",
+    "copyright": "© {year} {name}",
+    "rights": "All rights reserved"
   }
 }
