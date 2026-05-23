@@ -19,14 +19,17 @@
         :cy="s.y"
         :r="s.r"
         :fill="s.tint"
-        :class="['star', `star--${s.bucket}`]"
-        :style="`--base-opacity: ${s.opacity}; animation-delay: ${s.delay}s`"
+        :class="[
+          s.bucket === 'a' ? 'animate-twinkle-a' : 'animate-twinkle-b',
+          'motion-reduce:animate-none',
+        ]"
+        :style="`--base-opacity: ${s.opacity}; opacity: ${s.opacity}; animation-delay: ${s.delay}s`"
       />
     </svg>
 
     <svg
       viewBox="0 0 100 100"
-      class="absolute right-10 top-16 hidden h-32 w-32 text-violet-300/[0.05] sm:block hex-drift"
+      class="absolute right-10 top-16 hidden h-32 w-32 origin-center animate-hex-drift text-violet-300/[0.05] motion-reduce:animate-none sm:block"
       fill="none"
       stroke="currentColor"
       stroke-width="0.4"
@@ -80,6 +83,8 @@ const TINTS = ['#e8edf5', '#e8edf5', '#e8edf5', '#9eb8d4', '#e8c890']
 const MIN_STARS = 40
 const MAX_STARS = 140
 const AREA_PER_STAR = 18000
+const DPR_CAP = 1.5
+const FALLBACK_FRAME_MS = 16
 
 const { width, height } = useWindowSize()
 const reducedMotion = usePreferredReducedMotion()
@@ -90,27 +95,25 @@ const stars = shallowRef<Star[]>([])
 const canvasRef = useTemplateRef<HTMLCanvasElement>('canvasRef')
 
 const isMobile = computed(() => width.value < 640)
-
-const pickTint = () => TINTS[Math.floor(Math.random() * TINTS.length)]!
+const motionAllowed = computed(() => reducedMotion.value !== 'reduce')
 
 const generateStars = () => {
   const area = width.value * height.value
   const count = Math.max(MIN_STARS, Math.min(MAX_STARS, Math.round(area / AREA_PER_STAR)))
-  const list: Star[] = []
+  const next: Star[] = []
   for (let i = 0; i < count; i++) {
     const small = Math.random() < 0.8
-    const r = small ? 0.4 + Math.random() * 0.6 : 0.9 + Math.random() * 0.9
-    list.push({
+    next.push({
       x: Math.random() * width.value,
       y: Math.random() * height.value,
-      r,
-      tint: pickTint(),
+      r: small ? 0.4 + Math.random() * 0.6 : 0.9 + Math.random() * 0.9,
+      tint: TINTS[Math.floor(Math.random() * TINTS.length)]!,
       opacity: 0.2 + Math.random() * 0.65,
       delay: -Math.random() * 7,
       bucket: Math.random() < 0.6 ? 'a' : 'b',
     })
   }
-  stars.value = list
+  stars.value = next
 }
 
 const shootingStars: Shooting[] = []
@@ -135,22 +138,24 @@ const spawnShooting = () => {
   })
 }
 
+const getDpr = () => Math.min(window.devicePixelRatio || 1, DPR_CAP)
+
 const drawCanvas = () => {
   const canvas = canvasRef.value
   if (!canvas) return
   const ctx = canvas.getContext('2d')
   if (!ctx) return
-  const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+  const dpr = getDpr()
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
   for (const s of shootingStars) {
     const t = s.life / s.maxLife
     const alpha = t < 0.15 ? t / 0.15 : Math.max(0, 1 - (t - 0.15) / 0.85)
     const tailLen = isMobile.value ? 55 : 80
-    const tailX = (s.x - (s.vx / 0.9) * tailLen) * dpr
-    const tailY = (s.y - (s.vy / 0.9) * tailLen) * dpr
     const headX = s.x * dpr
     const headY = s.y * dpr
+    const tailX = (s.x - (s.vx / 0.9) * tailLen) * dpr
+    const tailY = (s.y - (s.vy / 0.9) * tailLen) * dpr
 
     const gradient = ctx.createLinearGradient(headX, headY, tailX, tailY)
     gradient.addColorStop(0, `rgba(232, 237, 245, ${alpha})`)
@@ -171,7 +176,7 @@ const drawCanvas = () => {
 }
 
 const tick = (now: number) => {
-  const dt = lastTime ? now - lastTime : 16
+  const dt = lastTime ? now - lastTime : FALLBACK_FRAME_MS
   lastTime = now
 
   for (let i = shootingStars.length - 1; i >= 0; i--) {
@@ -179,42 +184,44 @@ const tick = (now: number) => {
     s.x += s.vx * dt
     s.y += s.vy * dt
     s.life += dt
-    const off = s.life >= s.maxLife
+    const offscreen = s.life >= s.maxLife
       || s.y > height.value + 100
       || s.x < -150
       || s.x > width.value + 150
-    if (off) shootingStars.splice(i, 1)
+    if (offscreen) shootingStars.splice(i, 1)
   }
 
   drawCanvas()
 
   if (shootingStars.length > 0) {
     rafId = requestAnimationFrame(tick)
-  } else {
+  }
+  else {
     rafId = null
     lastTime = 0
-    const canvas = canvasRef.value
-    if (canvas) {
-      const ctx = canvas.getContext('2d')
-      ctx?.clearRect(0, 0, canvas.width, canvas.height)
-    }
+    canvasRef.value?.getContext('2d')?.clearRect(0, 0, canvasRef.value.width, canvasRef.value.height)
   }
 }
 
 const startTick = () => {
-  if (rafId === null) {
-    lastTime = 0
-    rafId = requestAnimationFrame(tick)
-  }
+  if (rafId !== null) return
+  lastTime = 0
+  rafId = requestAnimationFrame(tick)
+}
+
+const clearSpawnTimer = () => {
+  if (!spawnTimer) return
+  clearTimeout(spawnTimer)
+  spawnTimer = null
 }
 
 const scheduleSpawn = () => {
-  if (spawnTimer) clearTimeout(spawnTimer)
+  clearSpawnTimer()
   const base = 6000 + Math.random() * 6000
   const delay = isMobile.value ? base * 2.5 : base
   spawnTimer = setTimeout(() => {
     spawnTimer = null
-    if (visibility.value === 'visible' && reducedMotion.value !== 'reduce') {
+    if (visibility.value === 'visible' && motionAllowed.value) {
       spawnShooting()
       startTick()
     }
@@ -225,7 +232,7 @@ const scheduleSpawn = () => {
 const resizeCanvas = () => {
   const canvas = canvasRef.value
   if (!canvas) return
-  const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+  const dpr = getDpr()
   canvas.width = Math.round(width.value * dpr)
   canvas.height = Math.round(height.value * dpr)
   canvas.style.width = `${width.value}px`
@@ -241,26 +248,20 @@ watch([width, height], onResize)
 
 watch(visibility, (v) => {
   if (v !== 'visible') {
-    if (spawnTimer) {
-      clearTimeout(spawnTimer)
-      spawnTimer = null
-    }
+    clearSpawnTimer()
     if (rafId !== null) {
       cancelAnimationFrame(rafId)
       rafId = null
     }
-  } else if (!spawnTimer && reducedMotion.value !== 'reduce') {
+  }
+  else if (!spawnTimer && motionAllowed.value) {
     scheduleSpawn()
   }
 })
 
-watch(reducedMotion, (v) => {
-  if (v === 'reduce' && spawnTimer) {
-    clearTimeout(spawnTimer)
-    spawnTimer = null
-  } else if (v !== 'reduce' && !spawnTimer) {
-    scheduleSpawn()
-  }
+watch(motionAllowed, (allowed) => {
+  if (!allowed) clearSpawnTimer()
+  else if (!spawnTimer) scheduleSpawn()
 })
 
 onMounted(() => {
@@ -269,49 +270,11 @@ onMounted(() => {
   requestAnimationFrame(() => {
     mounted.value = true
   })
-  if (reducedMotion.value !== 'reduce') {
-    scheduleSpawn()
-  }
+  if (motionAllowed.value) scheduleSpawn()
 })
 
 onBeforeUnmount(() => {
   if (rafId !== null) cancelAnimationFrame(rafId)
-  if (spawnTimer) clearTimeout(spawnTimer)
+  clearSpawnTimer()
 })
 </script>
-
-<style scoped>
-.star {
-  opacity: var(--base-opacity, 0.5);
-  animation-fill-mode: both;
-}
-.star--a {
-  animation: twinkle-a 4s ease-in-out infinite;
-}
-.star--b {
-  animation: twinkle-b 7s ease-in-out infinite;
-}
-.hex-drift {
-  animation: hex-drift 90s linear infinite;
-  transform-origin: 50% 50%;
-}
-@keyframes twinkle-a {
-  0%, 100% { opacity: var(--base-opacity, 0.5); }
-  50% { opacity: calc(var(--base-opacity, 0.5) * 0.35); }
-}
-@keyframes twinkle-b {
-  0%, 100% { opacity: var(--base-opacity, 0.5); }
-  60% { opacity: calc(var(--base-opacity, 0.5) * 1.35); }
-}
-@keyframes hex-drift {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .star--a,
-  .star--b,
-  .hex-drift {
-    animation: none;
-  }
-}
-</style>

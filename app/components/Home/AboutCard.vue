@@ -83,7 +83,7 @@
             <span
               v-for="tag in tags"
               :key="tag.label"
-              class="group inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full bg-primary-50 dark:bg-primary-900/60 border border-primary-200/70 dark:border-primary-700/50 text-primary-700 dark:text-primary-200 hover:scale-105 hover:shadow-sm hover:bg-primary-100 dark:hover:bg-primary-800/70 transition-all duration-200 motion-reduce:transition-none motion-reduce:hover:scale-100"
+              class="group inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full bg-primary-50 dark:bg-primary-900 border border-primary-200/70 dark:border-primary-600/60 text-primary-700 dark:text-primary-100 hover:scale-105 hover:shadow-sm hover:bg-primary-100 dark:hover:bg-primary-800 transition-all duration-200 motion-reduce:transition-none motion-reduce:hover:scale-100"
             >
               <Icon
                 :name="tag.icon"

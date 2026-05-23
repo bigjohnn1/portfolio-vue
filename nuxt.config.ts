@@ -307,6 +307,18 @@ export default defineNuxtConfig({
               '0%, 100%': { backgroundPosition: '0% 50%' },
               '50%': { backgroundPosition: '100% 50%' },
             },
+            'twinkle-a': {
+              '0%, 100%': { opacity: 'var(--base-opacity, 0.5)' },
+              '50%': { opacity: 'calc(var(--base-opacity, 0.5) * 0.35)' },
+            },
+            'twinkle-b': {
+              '0%, 100%': { opacity: 'var(--base-opacity, 0.5)' },
+              '60%': { opacity: 'calc(var(--base-opacity, 0.5) * 1.35)' },
+            },
+            'hex-drift': {
+              from: { transform: 'rotate(0deg)' },
+              to: { transform: 'rotate(360deg)' },
+            },
           },
           animation: {
             'copy-pop': 'copy-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
@@ -322,6 +334,9 @@ export default defineNuxtConfig({
             'marching-dashes-reverse': 'marching-dashes-reverse 1.4s linear infinite',
             'lab-pulse': 'lab-pulse 1.6s ease-in-out infinite',
             'lab-text-shimmer': 'lab-text-shimmer 5s ease-in-out infinite',
+            'twinkle-a': 'twinkle-a 4s ease-in-out infinite',
+            'twinkle-b': 'twinkle-b 7s ease-in-out infinite',
+            'hex-drift': 'hex-drift 90s linear infinite',
           },
           colors: {
             'primary': {
