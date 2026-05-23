@@ -6,10 +6,6 @@ inputs:
     description: Node.js version
     required: false
     default: "22"
-  pnpm-version:
-    description: pnpm version
-    required: false
-    default: "9.15.0"
   install:
     description: Run pnpm install (set to "false" to skip)
     required: false
@@ -19,9 +15,10 @@ runs:
   using: composite
   steps:
     - name: Setup pnpm
+      # pnpm version is read from `packageManager` in package.json — do NOT
+      # set `version:` here, the action errors on multiple sources.
       uses: pnpm/action-setup@v4
       with:
-        version: ${{ inputs.pnpm-version }}
         run_install: false
 
     - name: Setup Node.js
