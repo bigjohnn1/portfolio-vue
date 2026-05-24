@@ -71,7 +71,7 @@
             ref="descEl"
             :class="[
               'overflow-hidden text-sm text-gray-600 transition-[max-height] duration-300 ease-out dark:text-gray-300 sm:text-base motion-reduce:transition-none',
-              descOpen ? 'max-h-[40rem]' : 'max-h-[4.5rem] sm:max-h-[5rem] lg:max-h-[6.5rem]',
+              descOpen ? 'max-h-[40rem]' : 'max-h-[4.5rem] min-h-[4.5rem] sm:max-h-[5rem] sm:min-h-[5rem] lg:max-h-[6.5rem] lg:min-h-[6.5rem]',
               !descOpen && descClamped ? '[mask-image:linear-gradient(to_bottom,black_55%,transparent)]' : '',
             ]"
           >
@@ -142,87 +142,61 @@
           :aria-label="t('projects.techStack')"
         >
           <div
-            v-for="category in previewCategories"
-            :key="category"
-            class="flex flex-wrap items-baseline gap-x-3 gap-y-1.5"
+            :id="techId"
+            ref="techEl"
+            :class="[
+              'flex flex-col gap-2 overflow-hidden transition-[max-height] duration-300 ease-out lg:gap-3 motion-reduce:transition-none',
+              techOpen ? 'max-h-[40rem]' : 'max-h-[6rem] min-h-[6rem] lg:max-h-[7.5rem] lg:min-h-[7.5rem]',
+              !techOpen && techClamped ? '[mask-image:linear-gradient(to_bottom,black_60%,transparent)]' : '',
+            ]"
           >
-            <dt class="inline-flex min-w-[5.25rem] items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-gray-500 dark:text-gray-400">
-              <span
-                class="h-1.5 w-1.5 rounded-full"
-                :class="CATEGORY_STYLES[category].dot"
-                aria-hidden="true"
-              />
-              {{ t(`projects.tech.${category}`) }}
-            </dt>
-            <dd class="flex flex-wrap gap-1.5">
-              <span
-                v-for="item in project.tech![category]"
-                :key="item"
-                class="group/pill inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[11px] font-medium shadow-sm ring-1 ring-inset transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-                :class="CATEGORY_STYLES[category].pill"
-              >
-                <Icon
-                  v-if="techIcon(item)"
-                  :name="techIcon(item)!"
-                  class="h-3.5 w-3.5 opacity-90 transition-transform duration-200 group-hover/pill:scale-110 motion-reduce:transition-none motion-reduce:group-hover/pill:scale-100"
+            <div
+              v-for="category in presentCategories"
+              :key="category"
+              class="flex flex-wrap items-baseline gap-x-3 gap-y-1.5"
+            >
+              <dt class="inline-flex min-w-[5.25rem] items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-gray-500 dark:text-gray-400">
+                <span
+                  class="h-1.5 w-1.5 rounded-full"
+                  :class="CATEGORY_STYLES[category].dot"
                   aria-hidden="true"
                 />
-                {{ item }}
-              </span>
-            </dd>
+                {{ t(`projects.tech.${category}`) }}
+              </dt>
+              <dd class="flex flex-wrap gap-1.5">
+                <span
+                  v-for="item in project.tech![category]"
+                  :key="item"
+                  class="group/pill inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[11px] font-medium shadow-sm ring-1 ring-inset transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+                  :class="CATEGORY_STYLES[category].pill"
+                >
+                  <Icon
+                    v-if="techIcon(item)"
+                    :name="techIcon(item)!"
+                    class="h-3.5 w-3.5 opacity-90 transition-transform duration-200 group-hover/pill:scale-110 motion-reduce:transition-none motion-reduce:group-hover/pill:scale-100"
+                    aria-hidden="true"
+                  />
+                  {{ item }}
+                </span>
+              </dd>
+            </div>
           </div>
 
-          <CollapsibleRoot
-            v-if="restCategories.length"
-            v-model:open="techOpen"
-            class="flex flex-col gap-2 lg:gap-3"
+          <button
+            v-if="techClamped || techOpen"
+            type="button"
+            :aria-expanded="techOpen"
+            :aria-controls="techId"
+            class="inline-flex w-fit items-center gap-1 rounded text-xs font-semibold text-primary-600 transition-colors hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:text-primary-400 dark:hover:text-primary-300 dark:focus-visible:ring-offset-gray-900"
+            @click="toggleTech()"
           >
-            <CollapsibleContent class="reka-collapsible overflow-hidden">
-              <div class="flex flex-col gap-2 pt-2 lg:gap-3">
-                <div
-                  v-for="category in restCategories"
-                  :key="category"
-                  class="flex flex-wrap items-baseline gap-x-3 gap-y-1.5"
-                >
-                  <dt class="inline-flex min-w-[5.25rem] items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-gray-500 dark:text-gray-400">
-                    <span
-                      class="h-1.5 w-1.5 rounded-full"
-                      :class="CATEGORY_STYLES[category].dot"
-                      aria-hidden="true"
-                    />
-                    {{ t(`projects.tech.${category}`) }}
-                  </dt>
-                  <dd class="flex flex-wrap gap-1.5">
-                    <span
-                      v-for="item in project.tech![category]"
-                      :key="item"
-                      class="group/pill inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[11px] font-medium shadow-sm ring-1 ring-inset transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-                      :class="CATEGORY_STYLES[category].pill"
-                    >
-                      <Icon
-                        v-if="techIcon(item)"
-                        :name="techIcon(item)!"
-                        class="h-3.5 w-3.5 opacity-90 transition-transform duration-200 group-hover/pill:scale-110 motion-reduce:transition-none motion-reduce:group-hover/pill:scale-100"
-                        aria-hidden="true"
-                      />
-                      {{ item }}
-                    </span>
-                  </dd>
-                </div>
-              </div>
-            </CollapsibleContent>
-
-            <CollapsibleTrigger
-              class="inline-flex w-fit items-center gap-1 rounded text-xs font-semibold text-primary-600 transition-colors hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:text-primary-400 dark:hover:text-primary-300 dark:focus-visible:ring-offset-gray-900"
-            >
-              {{ techOpen ? t('projects.showLess') : t('projects.moreTech', { count: restCount }) }}
-              <Icon
-                name="carbon:chevron-down"
-                :class="['h-3.5 w-3.5 transition-transform duration-200', techOpen && 'rotate-180']"
-                aria-hidden="true"
-              />
-            </CollapsibleTrigger>
-          </CollapsibleRoot>
+            {{ techOpen ? t('projects.showLess') : t('projects.moreTech', { count: restCount }) }}
+            <Icon
+              name="carbon:chevron-down"
+              :class="['h-3.5 w-3.5 transition-transform duration-200', techOpen && 'rotate-180']"
+              aria-hidden="true"
+            />
+          </button>
         </dl>
       </div>
     </div>
@@ -231,7 +205,6 @@
 
 <script setup lang="ts">
 import { useMouseInElement, useResizeObserver, useToggle } from '@vueuse/core'
-import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger } from 'reka-ui'
 import type { Project, TechCategory } from '~/types/project'
 import { TECH_CATEGORIES } from '~/types/project'
 
@@ -241,6 +214,7 @@ const { t, te } = useI18n()
 
 const titleId = useId()
 const descId = useId()
+const techId = useId()
 
 const cardEl = useTemplateRef<HTMLElement>('cardEl')
 const { elementX, elementY } = useMouseInElement(cardEl)
@@ -261,12 +235,20 @@ useResizeObserver(descEl, () => {
 const presentCategories = computed(() =>
   TECH_CATEGORIES.filter(c => (project.tech?.[c]?.length ?? 0) > 0),
 )
-const previewCategories = computed(() => presentCategories.value.slice(0, 2))
-const restCategories = computed(() => presentCategories.value.slice(2))
 const restCount = computed(() =>
-  restCategories.value.reduce((sum, c) => sum + (project.tech?.[c]?.length ?? 0), 0),
+  presentCategories.value
+    .slice(2)
+    .reduce((sum, c) => sum + (project.tech?.[c]?.length ?? 0), 0),
 )
-const [techOpen] = useToggle(false)
+
+const techEl = useTemplateRef<HTMLElement>('techEl')
+const [techOpen, toggleTech] = useToggle(false)
+const techClamped = shallowRef(false)
+useResizeObserver(techEl, () => {
+  const el = techEl.value
+  if (!el || techOpen.value) return
+  techClamped.value = el.scrollHeight - el.clientHeight > 1
+})
 
 const STATUS_STYLES: Record<NonNullable<Project['status']> | 'default', string> = {
   production: 'bg-emerald-50 text-emerald-800 ring-emerald-300/60 dark:bg-emerald-500/15 dark:text-emerald-100 dark:ring-emerald-400/40',
@@ -375,37 +357,3 @@ const stripVersion = (name: string) =>
 
 const techIcon = (name: string) => TECH_ICONS[stripVersion(name)]
 </script>
-
-<style>
-.reka-collapsible[data-state='open'] {
-  animation: reka-collapsible-down 300ms ease-out;
-}
-.reka-collapsible[data-state='closed'] {
-  animation: reka-collapsible-up 300ms ease-out;
-}
-
-@keyframes reka-collapsible-down {
-  from {
-    height: 0;
-  }
-  to {
-    height: var(--reka-collapsible-content-height);
-  }
-}
-
-@keyframes reka-collapsible-up {
-  from {
-    height: var(--reka-collapsible-content-height);
-  }
-  to {
-    height: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reka-collapsible[data-state='open'],
-  .reka-collapsible[data-state='closed'] {
-    animation: none;
-  }
-}
-</style>
