@@ -57,7 +57,12 @@
     "cta": "Abenteuer starten",
     "ctaLabel": "Kontakt aufnehmen",
     "ctaSub": "Antwort innerhalb eines Tages · Aus Prag, GMT+1",
-    "scrollHint": "Scrollen und entdecken"
+    "scrollHint": "Scrollen und entdecken",
+    "roll": {
+      "aria": "Wirf den d20, um einen zufälligen Abschnitt zu erkunden",
+      "lead": "Das Schicksal weist nach",
+      "crit": "Kritischer Treffer — sprechen wir!"
+    }
   },
   "homeBlog": {
     "title": "Neueste Artikel",

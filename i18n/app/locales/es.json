@@ -57,7 +57,12 @@
     "cta": "Comienza la aventura",
     "ctaLabel": "Contáctame",
     "ctaSub": "Respondo en un día · Desde Praga, GMT+1",
-    "scrollHint": "Desplázate para explorar"
+    "scrollHint": "Desplázate para explorar",
+    "roll": {
+      "aria": "Lanza el d20 para explorar una sección al azar",
+      "lead": "El destino te lleva a",
+      "crit": "¡Golpe crítico — hablemos!"
+    }
   },
   "homeBlog": {
     "title": "Últimos artículos",

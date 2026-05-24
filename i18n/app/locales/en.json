@@ -57,7 +57,12 @@
     "cta": "Begin the quest",
     "ctaLabel": "Contact me",
     "ctaSub": "Reply within a day · From Prague, GMT+1",
-    "scrollHint": "Scroll to explore"
+    "scrollHint": "Scroll to explore",
+    "roll": {
+      "aria": "Roll the d20 to explore a random section",
+      "lead": "Fate points to",
+      "crit": "Critical hit — let's talk!"
+    }
   },
   "homeBlog": {
     "title": "Latest Articles",

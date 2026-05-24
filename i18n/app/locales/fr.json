@@ -57,7 +57,12 @@
     "cta": "Commencer l'aventure",
     "ctaLabel": "Me contacter",
     "ctaSub": "Réponse sous un jour · Depuis Prague, GMT+1",
-    "scrollHint": "Fais défiler pour explorer"
+    "scrollHint": "Fais défiler pour explorer",
+    "roll": {
+      "aria": "Lance le d20 pour explorer une section au hasard",
+      "lead": "Le destin t'envoie vers",
+      "crit": "Coup critique — discutons !"
+    }
   },
   "homeBlog": {
     "title": "Derniers articles",

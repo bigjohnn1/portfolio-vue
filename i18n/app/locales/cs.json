@@ -57,7 +57,12 @@
     "cta": "Zahaj výpravu",
     "ctaLabel": "Kontaktovat",
     "ctaSub": "Odpovím do 24 h · Praha, GMT+1",
-    "scrollHint": "Skroluj a prozkoumej"
+    "scrollHint": "Skroluj a prozkoumej",
+    "roll": {
+      "aria": "Hoď d20 a prozkoumej náhodnou sekci",
+      "lead": "Osud tě posílá do",
+      "crit": "Kritický zásah — pojďme se spojit!"
+    }
   },
   "homeBlog": {
     "title": "Nejnovější články",

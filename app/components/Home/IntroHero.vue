@@ -2,7 +2,6 @@
   <div
     ref="hero"
     class="relative grid aspect-square w-full max-w-[320px] place-items-center [perspective:1200px] sm:max-w-[420px] lg:max-w-[540px]"
-    aria-hidden="true"
     @mouseenter="onEnter"
     @mouseleave="onLeave"
   >
@@ -13,11 +12,13 @@
     >
       <div
         data-anim="halo"
+        aria-hidden="true"
         class="absolute inset-[12%] rounded-full bg-primary-500/30 blur-3xl animate-aura-pulse dark:bg-primary-400/25"
       />
 
       <svg
         class="absolute inset-0 h-full w-full overflow-visible"
+        aria-hidden="true"
         viewBox="0 0 200 200"
         fill="none"
         stroke="currentColor"
@@ -184,6 +185,7 @@
         v-for="(pos, i) in runeCssPositions"
         :key="i"
         data-anim="rune"
+        aria-hidden="true"
         :style="{
           left: `${pos.x}%`,
           top: `${pos.y}%`,
@@ -198,16 +200,48 @@
       </div>
 
       <div
+        ref="critFlash"
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-[10%] z-[15] rounded-full bg-[radial-gradient(circle,rgba(250,204,21,0.55),transparent_68%)] opacity-0"
+      />
+
+      <button
         ref="d20Wrap"
-        class="group/d20 relative z-10 grid h-[42%] w-[42%] cursor-pointer place-items-center opacity-0"
-        @mouseenter="roll"
+        type="button"
+        :aria-label="t('intro.roll.aria')"
+        :disabled="rolling"
+        class="group/d20 relative z-10 grid h-[42%] w-[42%] cursor-pointer place-items-center rounded-full border-0 bg-transparent p-0 opacity-0 appearance-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:cursor-default"
         @click="roll"
       >
-        <div class="absolute inset-[8%] rounded-full bg-primary-400/35 blur-2xl transition-opacity duration-300 group-hover/d20:opacity-100 dark:bg-primary-400/30" />
+        <span class="pointer-events-none absolute inset-[8%] rounded-full bg-primary-400/35 blur-2xl opacity-0 transition-opacity duration-300 group-hover/d20:opacity-100 group-focus-visible/d20:opacity-100" />
         <Icon
           name="game-icons:dice-twenty-faces-twenty"
-          class="relative h-full w-full text-primary-600 drop-shadow-[0_0_22px_rgba(0,220,130,0.7)] dark:text-primary-300"
+          aria-hidden="true"
+          class="relative h-full w-full text-primary-600 drop-shadow-[0_0_22px_rgba(0,220,130,0.7)] transition-transform duration-300 group-hover/d20:scale-105 dark:text-primary-300"
         />
+      </button>
+
+      <div
+        ref="resultBadge"
+        aria-hidden="true"
+        class="pointer-events-none absolute bottom-[78%] left-1/2 z-20 flex w-max flex-col items-center gap-1 text-center opacity-0"
+      >
+        <span
+          v-if="!result.crit"
+          class="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary-600/75 dark:text-primary-300/75"
+        >{{ t('intro.roll.lead') }}</span>
+        <span
+          class="font-display text-5xl font-bold leading-none sm:text-6xl"
+          :class="result.crit
+            ? 'text-amber-400 drop-shadow-[0_0_20px_rgba(250,204,21,0.75)]'
+            : 'text-primary-700 drop-shadow-[0_0_18px_rgba(0,220,130,0.6)] dark:text-primary-200'"
+        >{{ result.crit ? '20' : result.value }}</span>
+        <span
+          class="max-w-[9rem] text-xs font-medium uppercase tracking-[0.12em]"
+          :class="result.crit
+            ? 'text-amber-500 dark:text-amber-300'
+            : 'text-gray-600 dark:text-gray-300'"
+        >{{ result.crit ? t('intro.roll.crit') : (result.labelKey ? t(result.labelKey) : '') }}</span>
       </div>
     </div>
   </div>
@@ -217,10 +251,13 @@
 import { useMouseInElement, useElementVisibility, usePreferredReducedMotion } from '@vueuse/core'
 
 const { $gsap } = useNuxtApp()
+const { t } = useI18n()
 
 const hero = useTemplateRef<HTMLElement>('hero')
 const stage = useTemplateRef<HTMLElement>('stage')
-const d20Wrap = useTemplateRef<HTMLElement>('d20Wrap')
+const d20Wrap = useTemplateRef<HTMLButtonElement>('d20Wrap')
+const critFlash = useTemplateRef<HTMLElement>('critFlash')
+const resultBadge = useTemplateRef<HTMLElement>('resultBadge')
 
 const reducedMotion = usePreferredReducedMotion()
 const prefersReducedMotion = computed(() => reducedMotion.value === 'reduce')
@@ -257,7 +294,26 @@ const particles = Array.from({ length: 18 }, () => {
   }
 })
 
+type RollDestination = { id: string, labelKey: string }
+
+const fateDestinations: RollDestination[] = [
+  { id: 'references', labelKey: 'nav.references' },
+  { id: 'stack', labelKey: 'nav.stack' },
+  { id: 'about', labelKey: 'nav.about' },
+  { id: 'blog-preview', labelKey: 'nav.blog' },
+]
+const critDestination: RollDestination = { id: 'contact', labelKey: 'nav.contact' }
+
 const rolling = shallowRef(false)
+const result = shallowRef({ value: 0, labelKey: '', crit: false })
+
+const scrollToSection = (id: string) => {
+  if (!import.meta.client) return
+  document.getElementById(id)?.scrollIntoView({
+    behavior: prefersReducedMotion.value ? 'auto' : 'smooth',
+    block: 'start',
+  })
+}
 
 const { elementX, elementY, elementWidth, elementHeight, isOutside } = useMouseInElement(hero)
 const visible = useElementVisibility(hero)
@@ -285,8 +341,23 @@ const flashAt = (idx: number) => {
 }
 
 const roll = () => {
-  if (rolling.value || !d20Wrap.value || prefersReducedMotion.value) return
+  if (rolling.value || !d20Wrap.value) return
   rolling.value = true
+
+  const value = Math.floor(Math.random() * 20) + 1
+  const crit = value === 20
+  const dest = crit ? critDestination : fateDestinations[value % fateDestinations.length]!
+  result.value = { value, labelKey: dest.labelKey, crit }
+
+  if (prefersReducedMotion.value) {
+    $gsap.set(resultBadge.value, { opacity: 1, xPercent: -50 })
+    scrollToSection(dest.id)
+    window.setTimeout(() => {
+      $gsap.to(resultBadge.value, { opacity: 0, duration: 0.3 })
+      rolling.value = false
+    }, 1400)
+    return
+  }
 
   $gsap.fromTo(
     queryOne('shockwave'),
@@ -294,27 +365,43 @@ const roll = () => {
     { opacity: 0, attr: { r: 70 }, duration: 0.9, ease: 'power2.out' },
   )
 
-  $gsap.fromTo(
+  const tl = $gsap.timeline({ onComplete: () => { rolling.value = false } })
+
+  tl.fromTo(
     d20Wrap.value,
     { rotateZ: 0, scale: 1 },
+    { rotateZ: 720, scale: 1.12, duration: 0.55, ease: 'power2.in' },
+  )
+    .to(d20Wrap.value, {
+      scale: 1,
+      duration: 0.4,
+      ease: 'back.out(1.8)',
+      onComplete: () => $gsap.set(d20Wrap.value, { rotateZ: 0 }),
+    })
+    .fromTo(
+      resultBadge.value,
+      { opacity: 0, scale: 0.6, y: 8, xPercent: -50 },
+      { opacity: 1, scale: 1, y: 0, xPercent: -50, duration: 0.4, ease: 'back.out(2)' },
+      '-=0.2',
+    )
+
+  if (crit) {
+    tl.fromTo(
+      critFlash.value,
+      { opacity: 0, scale: 0.7 },
+      { opacity: 1, scale: 1.12, duration: 0.28, ease: 'power2.out', yoyo: true, repeat: 1 },
+      '-=0.4',
+    )
+  }
+
+  tl.to(
+    resultBadge.value,
     {
-      rotateZ: 720,
-      scale: 1.1,
-      duration: 0.55,
-      ease: 'power2.in',
-      onComplete: () => {
-        $gsap.to(d20Wrap.value, {
-          rotateZ: 720,
-          scale: 1,
-          duration: 0.45,
-          ease: 'back.out(1.8)',
-          onComplete: () => {
-            $gsap.set(d20Wrap.value, { rotateZ: 0 })
-            rolling.value = false
-          },
-        })
-      },
+      opacity: 0,
+      duration: 0.45,
+      onStart: () => scrollToSection(dest.id),
     },
+    `+=${crit ? 1.1 : 0.7}`,
   )
 }
 
