@@ -158,7 +158,7 @@ const sections: SectionDef[] = [
 const pinned = shallowRef(false)
 const idleHidden = shallowRef(false)
 const hideY = shallowRef(0)
-const { activeId } = useActiveSection(sections)
+const { activeId, progress } = useActiveSection(sections)
 const reducedMotion = usePreferredReducedMotion()
 
 const IDLE_TIMEOUT = 6000
@@ -175,15 +175,6 @@ const pin = () => {
 
 const { y, arrivedState } = useScroll(import.meta.client ? window : null, {
   throttle: 80,
-})
-
-const progress = computed(() => {
-  if (!import.meta.client) return 0
-  const max = Math.max(
-    document.documentElement.scrollHeight - window.innerHeight,
-    1,
-  )
-  return Math.min(1, Math.max(0, y.value / max))
 })
 
 const pastIntro = computed(() => y.value > 240)
