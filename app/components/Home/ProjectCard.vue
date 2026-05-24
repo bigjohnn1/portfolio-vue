@@ -71,7 +71,7 @@
             ref="descEl"
             :class="[
               'overflow-hidden text-sm text-gray-600 transition-[max-height] duration-300 ease-out dark:text-gray-300 sm:text-base motion-reduce:transition-none',
-              descOpen ? 'max-h-[40rem]' : 'max-h-[4.5rem] min-h-[4.5rem] sm:max-h-[5rem] sm:min-h-[5rem] lg:max-h-[6.5rem] lg:min-h-[6.5rem]',
+              descOpen ? 'max-h-[40rem]' : 'max-h-[4.5rem] sm:max-h-[5rem] lg:max-h-[6.5rem]',
               !descOpen && descClamped ? '[mask-image:linear-gradient(to_bottom,black_55%,transparent)]' : '',
             ]"
           >
@@ -96,8 +96,8 @@
       </header>
 
       <div class="mt-auto flex flex-col gap-4 lg:gap-5">
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-200">
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-gray-200/70 pt-4 text-xs font-medium text-gray-500 dark:border-white/10 dark:text-gray-400 lg:pt-5">
+          <span class="inline-flex items-center gap-1.5">
             <Icon
               name="carbon:calendar"
               class="h-3.5 w-3.5"
@@ -108,8 +108,8 @@
 
           <span
             v-if="te(`projects.items.${project.key}.status`)"
-            class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ring-1 ring-inset"
-            :class="STATUS_STYLES[project.status ?? 'default']"
+            class="inline-flex items-center gap-1.5"
+            :class="STATUS_TEXT[project.status ?? 'default']"
           >
             <span
               class="h-1.5 w-1.5 rounded-full"
@@ -118,23 +118,23 @@
             />
             {{ t(`projects.items.${project.key}.status`) }}
           </span>
-
-          <NuxtLink
-            v-if="project.link"
-            :to="project.link"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="ml-auto inline-flex items-center gap-1.5 rounded-full bg-primary-600 px-3 py-1 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:bg-primary-500 dark:hover:bg-primary-400 dark:focus-visible:ring-offset-gray-900 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-            :aria-label="`${t('projects.liveDemo')} — ${t(`projects.items.${project.key}.title`)} (${t('projects.opensNewTab')})`"
-          >
-            {{ t('projects.liveDemo') }}
-            <Icon
-              name="carbon:launch"
-              class="h-3.5 w-3.5"
-              aria-hidden="true"
-            />
-          </NuxtLink>
         </div>
+
+        <NuxtLink
+          v-if="project.link"
+          :to="project.link"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-primary-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:bg-primary-500 dark:hover:bg-primary-400 dark:focus-visible:ring-offset-gray-900 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto sm:self-start"
+          :aria-label="`${t('projects.liveDemo')} — ${t(`projects.items.${project.key}.title`)} (${t('projects.opensNewTab')})`"
+        >
+          {{ t('projects.liveDemo') }}
+          <Icon
+            name="carbon:launch"
+            class="h-4 w-4"
+            aria-hidden="true"
+          />
+        </NuxtLink>
 
         <dl
           v-if="presentCategories.length"
@@ -250,11 +250,11 @@ useResizeObserver(techEl, () => {
   techClamped.value = el.scrollHeight - el.clientHeight > 1
 })
 
-const STATUS_STYLES: Record<NonNullable<Project['status']> | 'default', string> = {
-  production: 'bg-emerald-50 text-emerald-800 ring-emerald-300/60 dark:bg-emerald-500/15 dark:text-emerald-100 dark:ring-emerald-400/40',
-  beta: 'bg-amber-50 text-amber-800 ring-amber-300/60 dark:bg-amber-500/15 dark:text-amber-100 dark:ring-amber-400/40',
-  internal: 'bg-sky-50 text-sky-800 ring-sky-300/60 dark:bg-sky-500/15 dark:text-sky-100 dark:ring-sky-400/40',
-  default: 'bg-gray-100 text-gray-700 ring-gray-300/60 dark:bg-gray-700/50 dark:text-gray-200 dark:ring-gray-500/50',
+const STATUS_TEXT: Record<NonNullable<Project['status']> | 'default', string> = {
+  production: 'text-emerald-700 dark:text-emerald-300',
+  beta: 'text-amber-700 dark:text-amber-300',
+  internal: 'text-sky-700 dark:text-sky-300',
+  default: 'text-gray-600 dark:text-gray-300',
 }
 
 const STATUS_DOT: Record<NonNullable<Project['status']> | 'default', string> = {
