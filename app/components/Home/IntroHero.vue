@@ -13,11 +13,11 @@
       <div
         data-anim="halo"
         aria-hidden="true"
-        class="absolute inset-[12%] rounded-full bg-primary-500/30 blur-3xl animate-aura-pulse dark:bg-primary-400/25"
+        class="pointer-events-none absolute inset-[12%] rounded-full bg-primary-500/30 blur-3xl animate-aura-pulse dark:bg-primary-400/25"
       />
 
       <svg
-        class="absolute inset-0 h-full w-full overflow-visible"
+        class="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
         aria-hidden="true"
         viewBox="0 0 200 200"
         fill="none"
@@ -191,14 +191,16 @@
           top: `${pos.y}%`,
           animationDelay: `${i * 0.4}s`,
         }"
-        class="absolute h-7 w-7 -translate-x-1/2 -translate-y-1/2 text-primary-500 opacity-0 animate-rune-float sm:h-9 sm:w-9 lg:h-11 lg:w-11 dark:text-primary-300"
+        class="pointer-events-none absolute h-7 w-7 -translate-x-1/2 -translate-y-1/2 text-primary-500 opacity-0 animate-rune-float sm:h-9 sm:w-9 lg:h-11 lg:w-11 dark:text-primary-300"
       >
         <Icon
           name="game-icons:rune-stone"
           class="h-full w-full drop-shadow-[0_0_10px_rgba(0,220,130,0.65)]"
         />
       </div>
+    </div>
 
+    <div class="pointer-events-none absolute inset-0 grid place-items-center">
       <div
         ref="critFlash"
         aria-hidden="true"
@@ -210,7 +212,7 @@
         type="button"
         :aria-label="t('intro.roll.aria')"
         :disabled="rolling"
-        class="group/d20 relative z-10 grid h-[42%] w-[42%] cursor-pointer place-items-center rounded-full border-0 bg-transparent p-0 opacity-0 appearance-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:cursor-default"
+        class="group/d20 pointer-events-auto relative z-10 grid h-[42%] w-[42%] cursor-pointer place-items-center rounded-full border-0 bg-transparent p-0 opacity-0 appearance-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:cursor-default"
         @click="roll"
       >
         <span class="pointer-events-none absolute inset-[8%] rounded-full bg-primary-400/35 blur-2xl opacity-0 transition-opacity duration-300 group-hover/d20:opacity-100 group-focus-visible/d20:opacity-100" />
@@ -319,15 +321,15 @@ const { elementX, elementY, elementWidth, elementHeight, isOutside } = useMouseI
 const visible = useElementVisibility(hero)
 
 const tiltStyle = computed(() => {
-  if (prefersReducedMotion.value || isOutside.value || !elementWidth.value) {
+  if (prefersReducedMotion.value || !elementWidth.value) {
     return { transform: 'rotateX(0deg) rotateY(0deg)' }
+  }
+  if (isOutside.value) {
+    return { transform: 'rotateX(0deg) rotateY(0deg)', transition: 'transform 0.45s ease-out' }
   }
   const nx = (elementX.value / elementWidth.value) * 2 - 1
   const ny = (elementY.value / elementHeight.value) * 2 - 1
-  return {
-    transform: `rotateX(${-ny * 4}deg) rotateY(${nx * 5}deg)`,
-    transition: 'transform 0.4s ease-out',
-  }
+  return { transform: `rotateX(${-ny * 4}deg) rotateY(${nx * 5}deg)` }
 })
 
 const flashAt = (idx: number) => {
@@ -365,7 +367,11 @@ const roll = () => {
     { opacity: 0, attr: { r: 70 }, duration: 0.9, ease: 'power2.out' },
   )
 
-  const tl = $gsap.timeline({ onComplete: () => { rolling.value = false } })
+  const tl = $gsap.timeline({
+    onComplete: () => {
+      rolling.value = false
+    },
+  })
 
   tl.fromTo(
     d20Wrap.value,
