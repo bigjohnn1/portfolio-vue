@@ -50,11 +50,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Run ESLint
-        # `pnpm exec eslint` bypasses the `lint` script wrapper. With
-        # `pnpm run lint -- --max-warnings=0`, pnpm 9 passes the literal `--`
-        # token through to ESLint, which then tries to lint a file called
-        # `--max-warnings=0`. Calling the binary directly avoids the foot-gun.
-        run: pnpm exec eslint . --max-warnings=0
+        run: bunx eslint . --max-warnings=0
 
   typecheck:
     name: Typecheck (vue-tsc)
@@ -69,17 +65,17 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Prepare Nuxt (.nuxt/types)
-        run: pnpm exec nuxt prepare
+        run: bunx nuxt prepare
 
       - name: Typecheck
-        run: pnpm exec nuxt typecheck
+        run: bunx nuxt typecheck
 
   build:
     name: Build (ZenStack + Nuxt)
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      # NODE_ENV intentionally NOT set at job level — pnpm install would skip
+      # NODE_ENV intentionally NOT set at job level — bun install would skip
       # devDependencies (Tailwind plugins, vue-tsc, etc.) and `nuxt prepare`
       # in the postinstall hook would crash. `nuxt build` sets NODE_ENV
       # internally during the build step itself.
@@ -97,7 +93,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Build
-        run: pnpm build
+        run: bun run build
 
       - name: Upload build output
         if: success()
@@ -138,7 +134,7 @@ jobs:
   # Code security and analysis.
 
   audit:
-    name: pnpm audit
+    name: bun audit
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -156,9 +152,9 @@ jobs:
         # are surfaced in the log and step summary instead of blocking CI.
         # Use the `CI status` gate to enforce hard requirements.
         run: |
-          pnpm audit --prod --audit-level=high | tee audit.txt || true
+          bun audit --prod --audit-level=high | tee audit.txt || true
           {
-            echo "### pnpm audit"
+            echo "### bun audit"
             echo ""
             echo '```'
             tail -n 40 audit.txt

@@ -14,7 +14,7 @@ A Nuxt 4 single-page experience with a D&D-flavoured hero composition, GSAP-orch
 &nbsp;
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 &nbsp;
-[![pnpm](https://img.shields.io/badge/pnpm-9.15-F69220?logo=pnpm&logoColor=white)](https://pnpm.io)
+[![Bun](https://img.shields.io/badge/Bun-runtime-FBF0DF?logo=bun&logoColor=black)](https://bun.sh)
 
 </div>
 
@@ -58,11 +58,11 @@ A Nuxt 4 single-page experience with a D&D-flavoured hero composition, GSAP-orch
 How I work on the site day-to-day:
 
 ```bash
-pnpm install
-pnpm dev
+bun install
+bun run dev
 ```
 
-Builds run `zenstack generate` before `nuxt build` so the generated ORM types stay in sync with `zenstack/schema.zmodel`. `pnpm generate` produces a static `.output/public`, but the live deployment ships as a Node target — the contact-form route needs Nitro at runtime.
+Builds run `zenstack generate` before `nuxt build` so the generated ORM types stay in sync with `zenstack/schema.zmodel`. `bun run generate` produces a static `.output/public`, but the live deployment ships to Vercel with the contact-form route running as a Nitro serverless function (on the Bun runtime).
 
 Runtime config is read from `.env` (see [`.env.example`](./.env.example) for the canonical list):
 
@@ -79,12 +79,12 @@ reCAPTCHA v3 site / secret keys come from runtime config in `nuxt.config.ts`.
 
 | Command          | What it does |
 | ---------------- | ------------ |
-| `pnpm dev`       | Nuxt dev server with HMR (port 3000) |
-| `pnpm build`     | Runs `zenstack generate`, then `nuxt build` |
-| `pnpm preview`   | Preview the production bundle locally |
-| `pnpm generate`  | Pre-render the site to static HTML (`.output/public`) |
-| `pnpm lint`      | ESLint across the project |
-| `pnpm lint:fix`  | ESLint with auto-fix |
+| `bun run dev`      | Nuxt dev server with HMR (port 3000) |
+| `bun run build`    | Runs `zenstack generate`, then `nuxt build` |
+| `bun run preview`  | Preview the production bundle locally |
+| `bun run generate` | Pre-render the site to static HTML (`.output/public`) |
+| `bun run lint`     | ESLint across the project |
+| `bun run lint:fix` | ESLint with auto-fix |
 
 ## Architecture
 
@@ -110,7 +110,7 @@ The exhaustive component map — every animation phase, every accent colour, eve
 
 ## Deployment
 
-The site is Nitro-portable. The reference deployment runs on a Node host with a managed PostgreSQL store for contact persistence. For static-export use cases (no DB, no form persistence) `pnpm generate` emits a deployable `.output/public`.
+The site deploys to **Vercel** — Nitro auto-detects the `vercel` preset, and serverless functions run on the **Bun runtime** (`nitro.vercel.functions.runtime` in `nuxt.config.ts`). Contact persistence and `@nuxt/content` both use a managed PostgreSQL store. For static-export use cases (no DB, no form persistence) `bun run generate` emits a deployable `.output/public`.
 
 ## Credits
 

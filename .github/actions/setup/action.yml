@@ -1,31 +1,23 @@
 name: Setup project
-description: Install pnpm + Node, restore caches, install dependencies, and generate ZenStack/Prisma client. Checkout is the caller's responsibility.
+description: Install Bun, restore caches, install dependencies, and generate the ZenStack client. Checkout is the caller's responsibility.
 
 inputs:
-  node-version:
-    description: Node.js version
+  bun-version:
+    description: Bun version
     required: false
-    default: "22"
+    default: "latest"
   install:
-    description: Run pnpm install (set to "false" to skip)
+    description: Run bun install (set to "false" to skip)
     required: false
     default: "true"
 
 runs:
   using: composite
   steps:
-    - name: Setup pnpm
-      # pnpm version is read from `packageManager` in package.json — do NOT
-      # set `version:` here, the action errors on multiple sources.
-      uses: pnpm/action-setup@v4
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
       with:
-        run_install: false
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ inputs.node-version }}
-        cache: pnpm
+        bun-version: ${{ inputs.bun-version }}
 
     - name: Restore Nuxt build cache
       uses: actions/cache@v4
@@ -33,18 +25,18 @@ runs:
         path: |
           .nuxt
           node_modules/.cache
-        key: nuxt-${{ runner.os }}-${{ inputs.node-version }}-${{ hashFiles('pnpm-lock.yaml', 'nuxt.config.ts') }}
+        key: nuxt-${{ runner.os }}-bun-${{ hashFiles('bun.lock', 'nuxt.config.ts') }}
         restore-keys: |
-          nuxt-${{ runner.os }}-${{ inputs.node-version }}-
+          nuxt-${{ runner.os }}-bun-
 
     - name: Install dependencies
       if: inputs.install == 'true'
       shell: bash
-      run: pnpm install --frozen-lockfile
+      run: bun install --frozen-lockfile
       env:
         HUSKY: "0"
 
-    - name: Generate ZenStack / Prisma client
+    - name: Generate ZenStack client
       if: inputs.install == 'true'
       shell: bash
-      run: pnpm exec zenstack generate
+      run: bunx zenstack generate

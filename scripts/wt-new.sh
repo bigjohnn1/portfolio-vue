@@ -12,8 +12,8 @@
 #   1. Creates a worktree at ../<repo>-<branch> on a new branch <branch-name>.
 #   2. Copies .env and GEMINI.md (if they exist) into the worktree.
 #   3. Picks a free PORT (3001+) and writes it into <worktree>/.env.local
-#      so `pnpm dev` doesn't collide with the main session.
-#   4. Runs `pnpm install` in the new worktree (shares pnpm store, fast).
+#      so `bun run dev` doesn't collide with the main session.
+#   4. Runs `bun install` in the new worktree (shares global cache, fast).
 #   5. Prints next-step commands.
 
 set -euo pipefail
@@ -86,11 +86,11 @@ EOF
 echo "→ wrote .env.local with PORT=$PORT"
 
 # --- install deps --------------------------------------------------------
-if command -v pnpm >/dev/null 2>&1; then
-  echo "→ pnpm install (shared store, should be fast)"
-  (cd "$WT_PATH" && pnpm install --prefer-offline --silent)
+if command -v bun >/dev/null 2>&1; then
+  echo "→ bun install (global cache, should be fast)"
+  (cd "$WT_PATH" && bun install --silent)
 else
-  echo "warn: pnpm not found, skipping install" >&2
+  echo "warn: bun not found, skipping install" >&2
 fi
 
 # --- summary -------------------------------------------------------------
@@ -104,7 +104,7 @@ cat <<EOF
 
 next steps:
   cd $WT_PATH
-  pnpm dev          # runs on http://localhost:$PORT
+  bun run dev       # runs on http://localhost:$PORT
   claude            # start a separate Claude session here
 
 cleanup when done:

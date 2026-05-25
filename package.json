@@ -62,7 +62,6 @@
     "@vee-validate/yup": "^4.15.0",
     "@zenstackhq/cli": "^3.6.4",
     "autoprefixer": "^10.4.20",
-    "better-sqlite3": "^12.9.0",
     "eslint": "^9.39.4",
     "lodash-es": "^4.17.21",
     "nodemailer": "^6.10.1",
@@ -74,18 +73,22 @@
     "vue-tsc": "^3.3.1",
     "yup": "^1.6.1"
   },
-  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c",
-  "pnpm": {
-    "overrides": {
-      "vue": "^3.5.13",
-      "@vue/runtime-core": "^3.5.13",
-      "@vue/runtime-dom": "^3.5.13",
-      "@vue/shared": "^3.5.13",
-      "@vue/reactivity": "^3.5.13",
-      "@vue/compiler-core": "^3.5.13",
-      "@vue/compiler-dom": "^3.5.13",
-      "@vue/compiler-sfc": "^3.5.13",
-      "@vue/server-renderer": "^3.5.13"
-    }
-  }
+  "overrides": {
+    "vue": "^3.5.13",
+    "@vue/runtime-core": "^3.5.13",
+    "@vue/runtime-dom": "^3.5.13",
+    "@vue/shared": "^3.5.13",
+    "@vue/reactivity": "^3.5.13",
+    "@vue/compiler-core": "^3.5.13",
+    "@vue/compiler-dom": "^3.5.13",
+    "@vue/compiler-sfc": "^3.5.13",
+    "@vue/server-renderer": "^3.5.13"
+  },
+  "trustedDependencies": [
+    "@takumi-rs/core",
+    "esbuild",
+    "sharp",
+    "@parcel/watcher",
+    "vue-demi"
+  ]
 }

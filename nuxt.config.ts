@@ -29,6 +29,11 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
   ],
   pages: true,
+  nitro: {
+    vercel: {
+      functions: { runtime: 'bun1.x' },
+    },
+  },
   imports: { dirs: ['~/consts'] },
   devtools: { enabled: true },
   app: {
@@ -54,10 +59,8 @@ export default defineNuxtConfig({
   },
   content: {
     database: {
-      type: 'sqlite',
-      filename: process.env.NODE_ENV === 'production'
-        ? '.data/content/db.sqlite'
-        : 'content-db.sqlite',
+      type: 'postgresql',
+      url: process.env.DATABASE_URL,
     },
     experimental: {
       sqliteConnector: 'native',
