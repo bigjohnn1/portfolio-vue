@@ -99,8 +99,22 @@
             {{ $t('about.card.shortBio') }}
           </p>
 
-          <div class="mt-auto pt-5 flex items-end justify-between text-xs text-gray-500 dark:text-gray-400">
-            <p class="font-mono">
+          <div class="mt-auto pt-5">
+            <dl class="grid grid-cols-4 gap-2 border-t border-gray-200/80 pt-4 dark:border-white/10">
+              <div
+                v-for="stat in stats"
+                :key="stat.key"
+                class="flex flex-col"
+              >
+                <dt class="text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-gray-400 dark:text-gray-500">
+                  {{ $t(`about.stats.${stat.key}.label`) }}
+                </dt>
+                <dd class="mt-1 text-[0.8rem] font-bold leading-tight tabular-nums text-gray-900 dark:text-gray-50">
+                  {{ $t(`about.stats.${stat.key}.value`) }}
+                </dd>
+              </div>
+            </dl>
+            <p class="mt-4 font-mono text-[0.7rem] text-gray-400 dark:text-gray-500">
               SIG · {{ signature }}
             </p>
           </div>
@@ -256,6 +270,13 @@ const tags: SkillTag[] = [
   { label: 'AI Workflows', icon: 'mdi:robot-happy-outline' },
   { label: 'Architecture', icon: 'mdi:graph-outline' },
 ]
+
+const stats = [
+  { key: 'xp' },
+  { key: 'quests' },
+  { key: 'stack' },
+  { key: 'feats' },
+] as const
 
 const flip = (next: boolean) => {
   flipped.value = next

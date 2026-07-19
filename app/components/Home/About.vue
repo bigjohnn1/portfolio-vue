@@ -23,6 +23,8 @@
           />
         </div>
       </div>
+
+      <HomeAboutAchievements />
     </div>
   </section>
 </template>
