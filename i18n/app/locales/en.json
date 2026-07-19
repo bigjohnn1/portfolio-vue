@@ -367,6 +367,24 @@
       },
       "criticalSuccess": "Critical Success",
       "criticalFailure": "Critical Failure"
+    },
+    "stats": {
+      "xp": { "label": "XP", "value": "2.5 yrs" },
+      "quests": { "label": "Quests", "value": "9 shipped" },
+      "stack": { "label": "Stack", "value": "Full-stack" },
+      "feats": { "label": "Feats", "value": "4 certs" }
+    },
+    "achievements": {
+      "kicker": "Anthropic Certified",
+      "title": "Achievements Unlocked",
+      "unlocked": "Unlocked",
+      "issuer": "Anthropic",
+      "items": {
+        "api": { "name": "Building with the Claude API" },
+        "skills": { "name": "Agent Skills" },
+        "claudeCode": { "name": "Claude Code in Action" },
+        "mcp": { "name": "MCP: Advanced Topics" }
+      }
     }
   },
   "consent": {

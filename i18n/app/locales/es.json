@@ -367,6 +367,24 @@
       },
       "criticalSuccess": "Éxito crítico",
       "criticalFailure": "Fallo crítico"
+    },
+    "stats": {
+      "xp": { "label": "XP", "value": "2,5 años" },
+      "quests": { "label": "Misiones", "value": "9 entregados" },
+      "stack": { "label": "Stack", "value": "Full-stack" },
+      "feats": { "label": "Hazañas", "value": "4 certif." }
+    },
+    "achievements": {
+      "kicker": "Certificado por Anthropic",
+      "title": "Logros desbloqueados",
+      "unlocked": "Desbloqueado",
+      "issuer": "Anthropic",
+      "items": {
+        "api": { "name": "Building with the Claude API" },
+        "skills": { "name": "Agent Skills" },
+        "claudeCode": { "name": "Claude Code in Action" },
+        "mcp": { "name": "MCP: Advanced Topics" }
+      }
     }
   },
   "consent": {

@@ -367,6 +367,24 @@
       },
       "criticalSuccess": "Kritický úspěch",
       "criticalFailure": "Kritické selhání"
+    },
+    "stats": {
+      "xp": { "label": "XP", "value": "2,5 roku" },
+      "quests": { "label": "Questy", "value": "9 hotových" },
+      "stack": { "label": "Stack", "value": "Full-stack" },
+      "feats": { "label": "Činy", "value": "4 certy" }
+    },
+    "achievements": {
+      "kicker": "Certifikováno Anthropic",
+      "title": "Odemčené achievementy",
+      "unlocked": "Odemčeno",
+      "issuer": "Anthropic",
+      "items": {
+        "api": { "name": "Building with the Claude API" },
+        "skills": { "name": "Agent Skills" },
+        "claudeCode": { "name": "Claude Code in Action" },
+        "mcp": { "name": "MCP: Advanced Topics" }
+      }
     }
   },
   "consent": {
