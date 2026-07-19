@@ -27,7 +27,7 @@
     "@zenstackhq/schema": "^3.6.4",
     "gsap": "^3.12.7",
     "kysely": "^0.28.17",
-    "nuxt": "^4.4.4",
+    "nuxt": "^4.5.0",
     "nuxt-security": "^2.2.0",
     "pg": "^8.20.0",
     "pinia": "^3.0.1",
