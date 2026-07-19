@@ -14,20 +14,19 @@
         :aria-expanded="isOpen"
         aria-haspopup="listbox"
         :aria-label="$t('nav.switchLanguage')"
-        class="w-32 py-2 pl-3 pr-8 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-600 flex items-center justify-between transition-all duration-300"
+        class="flex w-36 items-center gap-2.5 rounded-full border border-gray-300 bg-gray-200 py-2 pl-4 pr-3.5 text-gray-800 transition-colors duration-300 hover:bg-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
         @click="toggleDropdown"
       >
-        <span class="flex items-center">
-          <Icon
-            :name="currentLocale.icon!"
-            class="h-5 w-5 mr-2"
-            aria-hidden="true"
-          />
-          {{ currentLocale.name }}
-        </span>
         <Icon
-          :name="isOpen ? 'mingcute:up-fill' : 'mingcute:down-fill'"
-          class="h-4 w-4 text-gray-700 dark:text-gray-300 transition-transform duration-200"
+          :name="currentLocale.icon!"
+          class="h-5 w-5 shrink-0"
+          aria-hidden="true"
+        />
+        <span class="flex-1 truncate text-left">{{ currentLocale.name }}</span>
+        <Icon
+          name="mingcute:down-fill"
+          class="h-4 w-4 shrink-0 text-gray-500 transition-transform duration-300 dark:text-gray-400"
+          :class="{ 'rotate-180': isOpen }"
           aria-hidden="true"
         />
       </button>
@@ -59,6 +58,12 @@
             aria-hidden="true"
           />
           <span>{{ item.name }}</span>
+          <Icon
+            v-if="currentLocale.code === item.code"
+            name="mingcute:check-fill"
+            class="ml-auto h-4 w-4 shrink-0"
+            aria-hidden="true"
+          />
         </li>
       </ul>
     </Transition>
@@ -77,7 +82,7 @@ interface TransitionClasses {
 }
 
 const {
-  panelClass = 'absolute w-32 mt-1 rounded-lg bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 shadow-lg z-[9999] origin-top',
+  panelClass = 'absolute w-36 mt-1 rounded-lg bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 shadow-lg z-[9999] origin-top',
   itemClass = 'px-3 py-2 flex items-center gap-2 hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg',
   activeItemClass = 'font-semibold',
   iconClass = 'h-5 w-5 shrink-0',
