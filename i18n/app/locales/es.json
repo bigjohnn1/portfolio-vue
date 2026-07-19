@@ -369,10 +369,10 @@
       "criticalFailure": "Fallo crítico"
     },
     "stats": {
-      "xp": { "label": "XP", "value": "2,5 años" },
-      "quests": { "label": "Misiones", "value": "9 entregados" },
-      "stack": { "label": "Stack", "value": "Full-stack" },
-      "feats": { "label": "Hazañas", "value": "4 certif." }
+      "xp": { "label": "Experiencia", "value": "2,5 años" },
+      "quests": { "label": "Proyectos", "value": "9" },
+      "stack": { "label": "Enfoque", "value": "Full-stack" },
+      "feats": { "label": "Certificados", "value": "4" }
     },
     "achievements": {
       "kicker": "Certificado por Anthropic",

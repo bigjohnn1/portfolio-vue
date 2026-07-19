@@ -369,10 +369,10 @@
       "criticalFailure": "Kritické selhání"
     },
     "stats": {
-      "xp": { "label": "XP", "value": "2,5 roku" },
-      "quests": { "label": "Questy", "value": "9 hotových" },
-      "stack": { "label": "Stack", "value": "Full-stack" },
-      "feats": { "label": "Činy", "value": "4 certy" }
+      "xp": { "label": "Praxe", "value": "2,5 roku" },
+      "quests": { "label": "Projekty", "value": "9" },
+      "stack": { "label": "Zaměření", "value": "Full-stack" },
+      "feats": { "label": "Certifikáty", "value": "4" }
     },
     "achievements": {
       "kicker": "Certifikováno Anthropic",

@@ -369,10 +369,10 @@
       "criticalFailure": "Échec critique"
     },
     "stats": {
-      "xp": { "label": "XP", "value": "2,5 ans" },
-      "quests": { "label": "Quêtes", "value": "9 livrés" },
-      "stack": { "label": "Stack", "value": "Full-stack" },
-      "feats": { "label": "Exploits", "value": "4 certifs" }
+      "xp": { "label": "Expérience", "value": "2,5 ans" },
+      "quests": { "label": "Projets", "value": "9" },
+      "stack": { "label": "Focus", "value": "Full-stack" },
+      "feats": { "label": "Certificats", "value": "4" }
     },
     "achievements": {
       "kicker": "Certifié Anthropic",

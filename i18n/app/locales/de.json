@@ -369,10 +369,10 @@
       "criticalFailure": "Kritischer Patzer"
     },
     "stats": {
-      "xp": { "label": "XP", "value": "2,5 Jahre" },
-      "quests": { "label": "Quests", "value": "9 geliefert" },
-      "stack": { "label": "Stack", "value": "Full-Stack" },
-      "feats": { "label": "Taten", "value": "4 Zertifikate" }
+      "xp": { "label": "Erfahrung", "value": "2,5 Jahre" },
+      "quests": { "label": "Projekte", "value": "9" },
+      "stack": { "label": "Fokus", "value": "Full-Stack" },
+      "feats": { "label": "Zertifikate", "value": "4" }
     },
     "achievements": {
       "kicker": "Anthropic-zertifiziert",

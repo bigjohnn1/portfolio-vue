@@ -100,7 +100,7 @@
           </p>
 
           <div class="mt-auto pt-5">
-            <dl class="grid grid-cols-4 gap-2 border-t border-gray-200/80 pt-4 dark:border-white/10">
+            <dl class="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-gray-200/80 pt-4 dark:border-white/10">
               <div
                 v-for="stat in stats"
                 :key="stat.key"

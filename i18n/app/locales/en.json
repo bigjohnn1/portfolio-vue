@@ -369,10 +369,10 @@
       "criticalFailure": "Critical Failure"
     },
     "stats": {
-      "xp": { "label": "XP", "value": "2.5 yrs" },
-      "quests": { "label": "Quests", "value": "9 shipped" },
-      "stack": { "label": "Stack", "value": "Full-stack" },
-      "feats": { "label": "Feats", "value": "4 certs" }
+      "xp": { "label": "Experience", "value": "2.5 yrs" },
+      "quests": { "label": "Projects", "value": "9" },
+      "stack": { "label": "Focus", "value": "Full-stack" },
+      "feats": { "label": "Certificates", "value": "4" }
     },
     "achievements": {
       "kicker": "Anthropic Certified",
