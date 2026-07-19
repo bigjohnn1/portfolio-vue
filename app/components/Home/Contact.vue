@@ -7,8 +7,8 @@
       class="pointer-events-none absolute inset-0 -z-0"
       aria-hidden="true"
     >
-      <div class="absolute inset-0 bg-[radial-gradient(35rem_28rem_at_100%_0%,rgb(var(--color-primary-200)_/_0.35),transparent_70%)] dark:bg-[radial-gradient(35rem_28rem_at_100%_0%,rgb(var(--color-primary-900)_/_0.3),transparent_70%)]" />
-      <div class="absolute inset-0 bg-[radial-gradient(33rem_26rem_at_0%_100%,rgb(var(--color-primary-100)_/_0.35),transparent_70%)] dark:bg-[radial-gradient(33rem_26rem_at_0%_100%,rgb(var(--color-primary-950)_/_0.45),transparent_70%)]" />
+      <div class="absolute inset-0 bg-[radial-gradient(50%_45%_at_58%_42%,rgb(var(--color-primary-200)_/_0.3),transparent_70%)] dark:bg-[radial-gradient(50%_45%_at_58%_42%,rgb(var(--color-primary-900)_/_0.28),transparent_70%)]" />
+      <div class="absolute inset-0 bg-[radial-gradient(48%_45%_at_42%_60%,rgb(var(--color-primary-100)_/_0.3),transparent_70%)] dark:bg-[radial-gradient(48%_45%_at_42%_60%,rgb(var(--color-primary-950)_/_0.4),transparent_70%)]" />
     </div>
 
     <div class="relative mx-auto grid max-w-6xl gap-12 px-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-16">
