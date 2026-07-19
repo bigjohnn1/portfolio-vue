@@ -7,8 +7,8 @@
       class="pointer-events-none absolute inset-0 -z-0"
       aria-hidden="true"
     >
-      <div class="absolute -right-32 -top-32 h-[520px] w-[520px] rounded-full bg-primary-200/40 blur-3xl dark:bg-primary-900/30" />
-      <div class="absolute -bottom-40 -left-40 h-[480px] w-[480px] rounded-full bg-primary-100/40 blur-3xl dark:bg-primary-950/40" />
+      <div class="absolute inset-0 bg-[radial-gradient(35rem_28rem_at_100%_0%,rgb(var(--color-primary-200)_/_0.35),transparent_70%)] dark:bg-[radial-gradient(35rem_28rem_at_100%_0%,rgb(var(--color-primary-900)_/_0.3),transparent_70%)]" />
+      <div class="absolute inset-0 bg-[radial-gradient(33rem_26rem_at_0%_100%,rgb(var(--color-primary-100)_/_0.35),transparent_70%)] dark:bg-[radial-gradient(33rem_26rem_at_0%_100%,rgb(var(--color-primary-950)_/_0.45),transparent_70%)]" />
     </div>
 
     <div class="relative mx-auto grid max-w-6xl gap-12 px-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-16">
