@@ -78,8 +78,8 @@
 
   // Selection
   ::selection {
-    background-color: var(--color-primary-200);
-    color: var(--color-primary-700);
+    background-color: rgb(var(--color-primary-200));
+    color: rgb(var(--color-primary-700));
   }
 }
 

@@ -28,7 +28,7 @@
 
         <div
           class="absolute left-0 top-0 w-[2px] bg-primary-600 dark:bg-primary-400 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] -ml-[1px]"
-          :class="activeId === link.id ? 'h-full shadow-[0_0_12px_rgba(var(--color-primary-500),0.4)]' : 'h-0 top-1/2'"
+          :class="activeId === link.id ? 'h-full shadow-[0_0_12px_rgb(var(--color-primary-500)_/_0.4)]' : 'h-0 top-1/2'"
           aria-hidden="true"
         ></div>
 

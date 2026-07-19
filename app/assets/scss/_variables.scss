@@ -13,17 +13,17 @@ html.light {
   --option-bg: #f8fafc;
   --color-md: light;
 
-  --color-primary-50: #ecfef5;
-  --color-primary-100: #d1fde5;
-  --color-primary-200: #a7f8cc;
-  --color-primary-300: #6feead;
-  --color-primary-400: #33e292;
-  --color-primary-500: #00dc82;
-  --color-primary-600: #00b86d;
-  --color-primary-700: #009858;
-  --color-primary-800: #007746;
-  --color-primary-900: #005a35;
-  --color-primary-950: #003620;
+  --color-primary-50: 236 254 245;
+  --color-primary-100: 209 253 229;
+  --color-primary-200: 167 248 204;
+  --color-primary-300: 111 238 173;
+  --color-primary-400: 51 226 146;
+  --color-primary-500: 0 220 130;
+  --color-primary-600: 0 184 109;
+  --color-primary-700: 0 152 88;
+  --color-primary-800: 0 119 70;
+  --color-primary-900: 0 90 53;
+  --color-primary-950: 0 54 32;
 }
 
 html.dark {
@@ -37,17 +37,17 @@ html.dark {
   --option-bg: rgba(255, 255, 255, 0.06);
   --color-md: dark;
 
-  --color-primary-50: #ecfef5;
-  --color-primary-100: #d1fde5;
-  --color-primary-200: #a7f8cc;
-  --color-primary-300: #6feead;
-  --color-primary-400: #33e292;
-  --color-primary-500: #00dc82;
-  --color-primary-600: #00b86d;
-  --color-primary-700: #009858;
-  --color-primary-800: #007746;
-  --color-primary-900: #005a35;
-  --color-primary-950: #003620;
+  --color-primary-50: 236 254 245;
+  --color-primary-100: 209 253 229;
+  --color-primary-200: 167 248 204;
+  --color-primary-300: 111 238 173;
+  --color-primary-400: 51 226 146;
+  --color-primary-500: 0 220 130;
+  --color-primary-600: 0 184 109;
+  --color-primary-700: 0 152 88;
+  --color-primary-800: 0 119 70;
+  --color-primary-900: 0 90 53;
+  --color-primary-950: 0 54 32;
 }
 
 $base-bg: var(--base-bg);
