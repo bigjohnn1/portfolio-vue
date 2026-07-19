@@ -36,9 +36,13 @@
 <script setup lang="ts">
 import tippy from 'tippy.js'
 import type { Instance } from 'tippy.js'
+import { usePreferredReducedMotion } from '@vueuse/core'
 import 'tippy.js/dist/tippy.css'
+import 'tippy.js/themes/light.css'
 
 const { t, locale } = useI18n()
+const colorMode = useColorMode()
+const reducedMotion = usePreferredReducedMotion()
 const techStack = [
   { key: 'vue', icon: 'logos:vue' },
   { key: 'nuxt', icon: 'logos:nuxt-icon' },
@@ -63,33 +67,38 @@ const techStack = [
 const techItems = ref<HTMLElement[]>([])
 const tippyInstances = ref<Instance[]>([])
 
+const activeTheme = computed(() => (colorMode.value === 'dark' ? '' : 'light'))
+const activeDuration = computed(() => (reducedMotion.value === 'reduce' ? 0 : 200))
+
 onMounted(() => {
-  if (techItems.value) {
-    techItems.value.forEach((item, i) => {
-      const tech = techStack[i]
-      if (tech) {
-        const instance = tippy(item, {
-          content: t(`techStack.items.${tech.key}.description`),
-          placement: 'top',
-          theme: 'light',
-        })
-        tippyInstances.value[i] = instance
-      }
+  techItems.value.forEach((item, i) => {
+    const tech = techStack[i]
+    if (!tech) return
+    tippyInstances.value[i] = tippy(item, {
+      content: t(`techStack.items.${tech.key}.description`),
+      placement: 'top',
+      theme: activeTheme.value,
+      duration: activeDuration.value,
     })
-  }
+  })
 
   watch(locale, () => {
-    if (techItems.value) {
-      techItems.value.forEach((item, i) => {
-        const tech = techStack[i]
-        const instance = tippyInstances.value[i]
-        if (tech && instance) {
-          instance.setContent(
-            t(`techStack.items.${tech.key}.description`),
-          )
-        }
-      })
-    }
+    techItems.value.forEach((item, i) => {
+      const tech = techStack[i]
+      tippyInstances.value[i]?.setContent(
+        tech ? t(`techStack.items.${tech.key}.description`) : '',
+      )
+    })
   })
+
+  watch([activeTheme, activeDuration], ([theme, duration]) => {
+    tippyInstances.value.forEach(instance =>
+      instance?.setProps({ theme, duration }),
+    )
+  })
+})
+
+onBeforeUnmount(() => {
+  tippyInstances.value.forEach(instance => instance?.destroy())
 })
 </script>
