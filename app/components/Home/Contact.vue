@@ -38,7 +38,7 @@
 
         <div class="flex flex-col gap-3 text-lg">
           <p class="flex items-center gap-3">
-            <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-700 dark:bg-primary-500/10 dark:text-primary-300">
+            <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-700 dark:bg-primary-950 dark:text-primary-300">
               <Icon
                 name="lucide:phone"
                 size="18"
@@ -53,7 +53,7 @@
           </p>
 
           <p class="flex flex-wrap items-center gap-3">
-            <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-700 dark:bg-primary-500/10 dark:text-primary-300">
+            <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-700 dark:bg-primary-950 dark:text-primary-300">
               <Icon
                 name="lucide:mail"
                 size="18"
