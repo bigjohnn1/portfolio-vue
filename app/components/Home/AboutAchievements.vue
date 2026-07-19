@@ -29,7 +29,6 @@
       <li
         v-for="cert in achievements"
         :key="cert.key"
-        ref="cardEls"
         class="group relative isolate flex flex-col overflow-hidden rounded-2xl border border-amber-300/50 bg-gradient-to-b from-amber-50/80 to-white p-5 shadow-[0_1px_3px_rgba(120,53,15,0.05),0_10px_30px_-16px_rgba(180,120,10,0.25)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-amber-400/80 hover:shadow-[0_1px_3px_rgba(120,53,15,0.05),0_18px_40px_-16px_rgba(217,150,20,0.4)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-amber-400/20 dark:from-amber-500/[0.07] dark:to-gray-900/70 dark:hover:border-amber-300/40"
       >
         <span
@@ -104,16 +103,14 @@ const achievements: Achievement[] = [
 ]
 
 const rootEl = useTemplateRef<HTMLElement>('rootEl')
-const cardEls = useTemplateRef<HTMLElement[]>('cardEls')
 
 onMounted(() => {
-  if (!cardEls.value?.length) return
-  $gsap.from(cardEls.value, {
+  if (!rootEl.value) return
+  $gsap.from(rootEl.value, {
     y: 24,
     opacity: 0,
-    duration: 0.7,
+    duration: 0.8,
     ease: 'power3.out',
-    stagger: 0.09,
     scrollTrigger: { trigger: rootEl.value, start: 'top 85%' },
   })
 })
