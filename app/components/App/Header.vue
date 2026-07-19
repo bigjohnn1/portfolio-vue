@@ -184,7 +184,6 @@
 
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
-import type { gsap } from 'gsap'
 
 const colorMode = useColorMode()
 const { open: openCommandPalette } = useCommandPalette()
@@ -196,7 +195,7 @@ const themeButton = useTemplateRef('themeButton')
 const hamburgerBtn = useTemplateRef<HTMLElement>('hamburgerBtn')
 const isMenuOpen = shallowRef(false)
 
-const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
+const { $gsap } = useNuxtApp()
 
 const toggleTheme = () => {
   $gsap.to(iconWrapper.value, {

@@ -239,9 +239,7 @@
 </template>
 
 <script setup lang="ts">
-import type { gsap } from 'gsap'
-
-const { $gsap } = useNuxtApp() as unknown as { $gsap: typeof gsap }
+const { $gsap } = useNuxtApp()
 
 const flipped = shallowRef(false)
 const rootEl = useTemplateRef<HTMLElement>('rootEl')
