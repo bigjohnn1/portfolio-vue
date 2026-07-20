@@ -234,7 +234,7 @@ const postItems = computed<CommandItem[]>(() =>
     icon: 'mdi:file-document-outline',
     keywords: post.description ?? '',
     action: () => {
-      router.push(localePath(post.path.replace(/^\/content/, '')))
+      router.push(localePath(post.path))
     },
   })),
 )
