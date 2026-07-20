@@ -106,7 +106,7 @@
     "experiments": {
       "kicker": "I+D / Hackathons / Experimentos con IA",
       "title": "Prototipos con desarrollo asistido por IA",
-      "description": "Llevando al límite el desarrollo asistido por IA para entregar lógica de negocio a la velocidad del rayo en conceptos sin tracción. No es código de producción — es exploración.",
+      "description": "Estos proyectos nacieron como mis primeros experimentos para ver hasta dónde se puede llegar construyendo con IA. MVPs reales, en producción, construidos en una fracción del tiempo habitual — con compromisos deliberados en el pulido del código, no en lo que hacen.",
       "badge": "Experimento"
     },
     "items": {

@@ -106,7 +106,7 @@
     "experiments": {
       "kicker": "R&D / Hackathons / KI-Experimente",
       "title": "KI-gestützte Prototypen",
-      "description": "Stresstest der Grenzen KI-gestützter Entwicklung, um Business-Logik blitzschnell für Konzepte ohne Traction auszuliefern. Kein Produktionscode — Exploration.",
+      "description": "Diese Projekte sind als meine ersten Experimente entstanden, um herauszufinden, wie weit man mit KI-gestütztem Bauen kommt. Echte, ausgelieferte MVPs in einem Bruchteil der üblichen Zeit — mit bewussten Kompromissen beim Code-Feinschliff, nicht bei der Funktionalität.",
       "badge": "Experiment"
     },
     "items": {

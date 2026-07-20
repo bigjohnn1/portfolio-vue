@@ -106,7 +106,7 @@
     "experiments": {
       "kicker": "R&D / Hackathons / Expériences IA",
       "title": "Prototypes augmentés par l'IA",
-      "description": "Pousser à fond les limites du développement assisté par IA pour livrer la logique métier à la vitesse de l'éclair sur des concepts sans traction. Pas du code de production — de l'exploration.",
+      "description": "Ces projets sont nés de mes premières expériences pour voir jusqu'où on peut aller en développant avec l'IA. De vrais MVP mis en production en une fraction du temps habituel — avec des compromis assumés sur le raffinement du code, pas sur ce qu'ils font.",
       "badge": "Expérience"
     },
     "items": {

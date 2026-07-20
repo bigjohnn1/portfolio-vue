@@ -106,7 +106,7 @@
     "experiments": {
       "kicker": "R&D / Hackathony / AI Experimenty",
       "title": "Prototypy s AI-augmented vývojem",
-      "description": "Testování limitů AI-augmented vývoje pro bleskové doručení byznys logiky u konceptů s nulovou trakcí. Není to produkční kód — je to průzkum.",
+      "description": "Tyhle projekty vznikly jako moje první experimenty s tím, kam až se dá s AI buildingem dojít. Reálně nasazená MVP postavená za zlomek běžného času — s vědomými kompromisy v čistotě kódu, ne ve funkčnosti.",
       "badge": "Experiment"
     },
     "items": {

@@ -106,7 +106,7 @@
     "experiments": {
       "kicker": "R&D / Hackathons / AI Experiments",
       "title": "AI-augmented prototypes",
-      "description": "Stress-testing the limits of AI-augmented development to ship business logic at lightning speed for zero-traction concepts. Not production code — exploration.",
+      "description": "These started as my first experiments in finding out how far AI-assisted building can go. Real, shipped MVPs built in a fraction of the usual time — with deliberate trade-offs in code polish, not in what they do.",
       "badge": "Experiment"
     },
     "items": {
