@@ -64,7 +64,7 @@ useSeoMeta({
 
 useSchemaOrg([
   definePerson({
-    '@id': 'https://benjamintomanik.me/#about',
+    '@id': 'https://benjamintomanik.me/#person',
     'name': 'Benjamin Tomanik',
     'alternateName': 'Big John',
     'jobTitle': 'Product Engineer & Technical Co-Founder',
@@ -94,7 +94,7 @@ useSchemaOrg([
     'sameAs': socialLinks.map(s => s.url),
   }),
   defineWebSite({
-    '@id': 'https://benjamintomanik.me/#about',
+    '@id': 'https://benjamintomanik.me/#website',
     'name': 'Big John — Benjamin Tomanik',
     'description': 'Portfolio of Benjamin Tomanik, Product Engineer & Technical Co-Founder.',
     'url': 'https://benjamintomanik.me',
@@ -103,7 +103,7 @@ useSchemaOrg([
   }),
   defineWebPage({
     '@type': 'WebPage',
-    'isPartOf': { '@id': 'https://benjamintomanik.me/#about' },
+    'isPartOf': { '@id': 'https://benjamintomanik.me/#website' },
     'about': { '@id': 'https://benjamintomanik.me/#person' },
     'primaryImageOfPage': 'https://benjamintomanik.me/bj.png',
   }),

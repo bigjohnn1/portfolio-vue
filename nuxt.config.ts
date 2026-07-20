@@ -39,15 +39,11 @@ export default defineNuxtConfig({
   app: {
     head: {
       link: [{ rel: 'icon', type: 'image/ico', href: '/img/favicon.ico' }],
-      meta: [
-        { name: 'description', content: '' },
-        { name: 'keywords', content: '' },
-      ],
     },
   },
   css: ['~/assets/scss/base.scss', 'vue-sonner/style.css'],
   site: {
-    url: 'https://benjamin-tomanik.cz',
+    url: 'https://benjamintomanik.me',
     name: 'Big John',
     description: 'Portfolio of Benjamin Tomanik',
     defaultLocale: 'en',
