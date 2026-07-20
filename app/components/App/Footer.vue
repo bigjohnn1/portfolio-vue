@@ -93,7 +93,7 @@
             v-for="section in sections"
             :key="section.id"
           >
-            <NuxtLink
+            <NuxtLinkLocale
               :to="`/#${section.id}`"
               :class="[
                 'group/sec inline-flex items-center gap-1.5 transition-colors',
@@ -110,7 +110,7 @@
                 ]"
               />
               {{ $t(section.labelKey) }}
-            </NuxtLink>
+            </NuxtLinkLocale>
           </li>
         </ul>
       </nav>

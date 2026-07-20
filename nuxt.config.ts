@@ -105,7 +105,8 @@ export default defineNuxtConfig({
   },
   i18n: {
     langDir: 'app/locales/',
-    strategy: 'no_prefix',
+    strategy: 'prefix_except_default',
+    baseUrl: 'https://benjamintomanik.me',
     locales: [
       {
         icon: 'twemoji:flag-united-kingdom',

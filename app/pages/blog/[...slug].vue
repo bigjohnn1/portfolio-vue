@@ -20,12 +20,12 @@
         ref="articleEl"
         class="prose dark:prose-invert prose-primary lg:prose-lg max-w-none min-w-0"
       >
-        <NuxtLink
+        <NuxtLinkLocale
           to="/blog"
           class="text-primary-600 hover:text-primary-700 dark:text-primary-400 no-underline mb-8 inline-block"
         >
           <span v-html="$t('blog.backToBlog')" />
-        </NuxtLink>
+        </NuxtLinkLocale>
 
         <div
           v-if="post.meta?.cover"
@@ -68,12 +68,12 @@
       <p class="text-gray-500 mb-8">
         {{ $t('blog.notFoundDesc') }}
       </p>
-      <NuxtLink
+      <NuxtLinkLocale
         to="/blog"
         class="bg-primary-600 text-white px-6 py-3 rounded-full font-medium hover:bg-primary-700 transition-colors no-underline"
       >
         {{ $t('blog.returnToBlog') }}
-      </NuxtLink>
+      </NuxtLinkLocale>
     </div>
   </div>
 </template>

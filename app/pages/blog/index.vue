@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-5xl mx-auto py-20 px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col">
     <header class="mb-16 border-b border-gray-200 dark:border-gray-800 pb-8">
-      <NuxtLink
+      <NuxtLinkLocale
         to="/"
         class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors mb-8"
       >
@@ -11,7 +11,7 @@
           aria-hidden="true"
         />
         {{ $t('blog.backToHome') }}
-      </NuxtLink>
+      </NuxtLinkLocale>
 
       <h1 class="text-5xl sm:text-6xl font-serif text-gray-900 dark:text-white tracking-tight">
         {{ $t('nav.blog') }}
@@ -73,7 +73,7 @@
         v-if="paginatedPosts.length"
         class="grid gap-12 md:grid-cols-2 flex-grow"
       >
-        <NuxtLink
+        <NuxtLinkLocale
           v-for="post in paginatedPosts"
           :key="post.path"
           :to="post.path"
@@ -129,7 +129,7 @@
               />
             </div>
           </div>
-        </NuxtLink>
+        </NuxtLinkLocale>
       </div>
 
       <div

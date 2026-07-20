@@ -21,7 +21,7 @@
         v-else-if="posts?.length"
         class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
       >
-        <NuxtLink
+        <NuxtLinkLocale
           v-for="post in posts"
           :key="post.path"
           :to="post.path.replace(/^\/content/, '')"
@@ -63,7 +63,7 @@
               />
             </div>
           </div>
-        </NuxtLink>
+        </NuxtLinkLocale>
       </div>
 
       <div
@@ -74,7 +74,7 @@
       </div>
 
       <div class="mt-12 text-center">
-        <NuxtLink
+        <NuxtLinkLocale
           to="/blog"
           class="inline-flex items-center px-6 py-3 bg-primary-600 dark:bg-primary-500 text-base font-medium text-white rounded-full hover:bg-primary-700 dark:hover:bg-primary-400 transition-colors shadow-sm hover:shadow-md"
         >
@@ -84,7 +84,7 @@
             class="ml-2 w-5 h-5"
             aria-hidden="true"
           />
-        </NuxtLink>
+        </NuxtLinkLocale>
       </div>
     </div>
   </section>

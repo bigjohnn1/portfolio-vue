@@ -158,6 +158,7 @@ interface CommandGroup {
 const { t, locale, setLocale } = useI18n()
 const colorMode = useColorMode()
 const router = useRouter()
+const localePath = useLocalePath()
 const { isOpen, close } = useCommandPalette()
 
 const query = shallowRef('')
@@ -179,15 +180,16 @@ const { data: posts } = await useContentData(
 
 const navigateTo = (target: string) => {
   if (target.startsWith('#')) {
-    if (router.currentRoute.value.path !== '/') {
-      router.push({ path: '/', hash: target })
+    const home = localePath('/')
+    if (router.currentRoute.value.path !== home) {
+      router.push({ path: home, hash: target })
     }
     else {
       document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' })
     }
   }
   else {
-    router.push(target)
+    router.push(localePath(target))
   }
 }
 
@@ -232,7 +234,7 @@ const postItems = computed<CommandItem[]>(() =>
     icon: 'mdi:file-document-outline',
     keywords: post.description ?? '',
     action: () => {
-      router.push(post.path.replace(/^\/content/, ''))
+      router.push(localePath(post.path.replace(/^\/content/, '')))
     },
   })),
 )
