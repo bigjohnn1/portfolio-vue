@@ -322,9 +322,8 @@
     "sending": "Envoi en cours..."
   },
   "github": {
-    "kicker": "En direct de GitHub",
     "title": "Activité récente",
-    "description": "Les données proviennent directement de l'API GitHub et sont actualisées toutes les 15 minutes.",
+    "description": "Les chiffres incluent le travail dans des dépôts d'entreprise privés. La liste des commits ne couvre que les dépôts publics.",
     "stats": {
       "contributions": {
         "label": "Contributions",

@@ -322,9 +322,8 @@
     "sending": "Senden..."
   },
   "github": {
-    "kicker": "Live von GitHub",
     "title": "Letzte Aktivität",
-    "description": "Die Daten kommen direkt aus der GitHub-API und werden alle 15 Minuten aktualisiert.",
+    "description": "Die Zahlen enthalten auch Arbeit in privaten Firmen-Repositories. Die Commit-Liste zeigt nur öffentliche.",
     "stats": {
       "contributions": {
         "label": "Beiträge",

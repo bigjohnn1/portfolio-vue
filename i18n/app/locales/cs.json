@@ -322,9 +322,8 @@
     "sending": "Odesílám..."
   },
   "github": {
-    "kicker": "Živě z GitHubu",
     "title": "Poslední aktivita",
-    "description": "Data jdou přímo z GitHub API a obnovují se každých 15 minut.",
+    "description": "Čísla zahrnují i práci v privátních firemních repozitářích. Seznam commitů je jen z těch veřejných.",
     "stats": {
       "contributions": {
         "label": "Příspěvky",

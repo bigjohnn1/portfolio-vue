@@ -8,18 +8,7 @@
       class="relative z-10 mx-auto max-w-6xl px-section-x"
     >
       <header class="flex flex-col items-center text-center">
-        <span class="inline-flex items-center gap-2 rounded-full border border-primary-500/25 bg-primary-500/5 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-primary-700 dark:border-primary-300/25 dark:bg-primary-300/5 dark:text-primary-300">
-          <span
-            aria-hidden="true"
-            class="relative flex h-2 w-2"
-          >
-            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/70 motion-reduce:hidden" />
-            <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-          </span>
-          {{ $t('github.kicker') }}
-        </span>
-
-        <h2 class="mt-4 flex items-center gap-3 text-d-md font-bold text-gray-900 dark:text-gray-50">
+        <h2 class="flex items-center gap-3 text-d-md font-bold text-gray-900 dark:text-gray-50">
           <Icon
             name="simple-icons:github"
             size="28"
