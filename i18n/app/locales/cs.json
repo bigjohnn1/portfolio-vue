@@ -339,8 +339,8 @@
         "hint": "Nejdelší série: {count} dní"
       },
       "repositories": {
-        "label": "Veřejné repozitáře",
-        "hint": "vlastní, bez forků"
+        "label": "Repozitářů, kde commituji",
+        "hint": "za posledních 12 měsíců"
       }
     },
     "calendar": {

@@ -339,8 +339,8 @@
         "hint": "Longest run: {count} days"
       },
       "repositories": {
-        "label": "Public repos",
-        "hint": "owned, forks excluded"
+        "label": "Repos contributed to",
+        "hint": "last 12 months"
       }
     },
     "calendar": {

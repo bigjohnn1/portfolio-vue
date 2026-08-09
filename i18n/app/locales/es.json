@@ -339,8 +339,8 @@
         "hint": "Racha máxima: {count} días"
       },
       "repositories": {
-        "label": "Repos públicos",
-        "hint": "propios, sin forks"
+        "label": "Repos con aportes",
+        "hint": "últimos 12 meses"
       }
     },
     "calendar": {

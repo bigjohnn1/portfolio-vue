@@ -339,8 +339,8 @@
         "hint": "Record : {count} jours"
       },
       "repositories": {
-        "label": "Dépôts publics",
-        "hint": "personnels, hors forks"
+        "label": "Dépôts contribués",
+        "hint": "12 derniers mois"
       }
     },
     "calendar": {

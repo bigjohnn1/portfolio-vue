@@ -339,8 +339,8 @@
         "hint": "Längste Serie: {count} Tage"
       },
       "repositories": {
-        "label": "Öffentliche Repos",
-        "hint": "eigene, ohne Forks"
+        "label": "Repos mit Beiträgen",
+        "hint": "letzte 12 Monate"
       }
     },
     "calendar": {
