@@ -323,8 +323,8 @@
   },
   "github": {
     "kicker": "Live from GitHub",
-    "title": "What I've Been Writing",
-    "description": "The numbers and the commits come straight from the GitHub API. Refreshed every 15 minutes, so this is where I actually am right now.",
+    "title": "Recent Activity",
+    "description": "The data comes straight from the GitHub API and refreshes every 15 minutes.",
     "stats": {
       "contributions": {
         "label": "Contributions",
@@ -335,36 +335,36 @@
         "hint": "past year"
       },
       "streak": {
-        "label": "Streak",
-        "hint": "best so far: {count} days"
+        "label": "Current streak",
+        "hint": "Longest: {count} days"
       },
       "repositories": {
         "label": "Repositories",
-        "hint": "I've committed to in the past year"
+        "hint": "with my commits in the past year"
       }
     },
     "calendar": {
-      "title": "A year in commits",
+      "title": "Contribution calendar",
       "total": "{count} contributions",
       "aria": "Contribution calendar, {count} contributions over the past year",
       "tooltip": "{date} — {count} contributions",
-      "tooltipNone": "{date} — nothing",
+      "tooltipNone": "{date} — no contributions",
       "less": "Less",
       "more": "More"
     },
     "languages": {
-      "title": "What I write it in"
+      "title": "Most used languages"
     },
     "commits": {
       "title": "Latest commits",
-      "empty": "Nothing public in the last few days."
+      "empty": "No public commits in the last few days."
     },
     "state": {
-      "error": "GitHub isn't answering right now.",
+      "error": "The GitHub API is currently unavailable.",
       "retry": "Try again",
-      "updated": "Loaded"
+      "updated": "Updated"
     },
-    "profileCta": "Full profile"
+    "profileCta": "View profile"
   },
   "about": {
     "title": "Who I Am",

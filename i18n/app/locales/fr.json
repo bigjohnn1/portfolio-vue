@@ -323,8 +323,8 @@
   },
   "github": {
     "kicker": "En direct de GitHub",
-    "title": "Ce que j'ai écrit dernièrement",
-    "description": "Les chiffres et les commits viennent directement de l'API GitHub. Actualisés toutes les 15 minutes — c'est donc vraiment où j'en suis.",
+    "title": "Activité récente",
+    "description": "Les données proviennent directement de l'API GitHub et sont actualisées toutes les 15 minutes.",
     "stats": {
       "contributions": {
         "label": "Contributions",
@@ -335,36 +335,36 @@
         "hint": "sur un an"
       },
       "streak": {
-        "label": "Série",
-        "hint": "record : {count} jours"
+        "label": "Série en cours",
+        "hint": "La plus longue : {count} jours"
       },
       "repositories": {
         "label": "Dépôts",
-        "hint": "où j'ai commité sur un an"
+        "hint": "avec mes commits sur un an"
       }
     },
     "calendar": {
-      "title": "Un an de commits",
+      "title": "Calendrier de contributions",
       "total": "{count} contributions",
       "aria": "Calendrier de contributions, {count} contributions sur la dernière année",
       "tooltip": "{date} — {count} contributions",
-      "tooltipNone": "{date} — rien",
+      "tooltipNone": "{date} — aucune contribution",
       "less": "Moins",
       "more": "Plus"
     },
     "languages": {
-      "title": "Ce dans quoi j'écris"
+      "title": "Langages les plus utilisés"
     },
     "commits": {
       "title": "Derniers commits",
-      "empty": "Rien de public ces derniers jours."
+      "empty": "Aucun commit public ces derniers jours."
     },
     "state": {
-      "error": "GitHub ne répond pas pour le moment.",
+      "error": "L'API GitHub est actuellement indisponible.",
       "retry": "Réessayer",
-      "updated": "Chargé"
+      "updated": "Mis à jour"
     },
-    "profileCta": "Profil complet"
+    "profileCta": "Voir le profil"
   },
   "about": {
     "title": "Qui je suis",

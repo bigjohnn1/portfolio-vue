@@ -323,8 +323,8 @@
   },
   "github": {
     "kicker": "Živě z GitHubu",
-    "title": "Co jsem naposled psal",
-    "description": "Čísla i commity tahám přímo z GitHub API. Obnovuje se každých 15 minut, takže tohle je fakt to, na čem teď jsem.",
+    "title": "Poslední aktivita",
+    "description": "Data jdou přímo z GitHub API a obnovují se každých 15 minut.",
     "stats": {
       "contributions": {
         "label": "Příspěvky",
@@ -335,36 +335,36 @@
         "hint": "za poslední rok"
       },
       "streak": {
-        "label": "Série",
-        "hint": "rekord je {count} dní"
+        "label": "Aktuální série",
+        "hint": "Nejdelší: {count} dní"
       },
       "repositories": {
         "label": "Repozitáře",
-        "hint": "kam jsem za rok commitnul"
+        "hint": "s mými commity za poslední rok"
       }
     },
     "calendar": {
-      "title": "Rok v commitech",
+      "title": "Kalendář příspěvků",
       "total": "{count} příspěvků",
       "aria": "Kalendář příspěvků, {count} příspěvků za poslední rok",
       "tooltip": "{date} — {count} příspěvků",
-      "tooltipNone": "{date} — nic",
-      "less": "Míň",
-      "more": "Víc"
+      "tooltipNone": "{date} — žádné příspěvky",
+      "less": "Méně",
+      "more": "Více"
     },
     "languages": {
-      "title": "V čem to píšu"
+      "title": "Nejčastější jazyky"
     },
     "commits": {
       "title": "Poslední commity",
-      "empty": "Poslední dny nic veřejného."
+      "empty": "Za poslední dny žádné veřejné commity."
     },
     "state": {
-      "error": "GitHub se teď neozývá.",
+      "error": "GitHub API je momentálně nedostupné.",
       "retry": "Zkusit znovu",
-      "updated": "Načteno"
+      "updated": "Aktualizováno"
     },
-    "profileCta": "Celý profil"
+    "profileCta": "Zobrazit profil"
   },
   "about": {
     "title": "Kdo jsem",
