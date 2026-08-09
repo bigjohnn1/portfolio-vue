@@ -7,6 +7,7 @@
     "name": "Benjamin Tomanik"
   },
   "nav": {
+    "activity": "Activity",
     "intro": "Intro",
     "references": "Projects",
     "about": "About",
@@ -320,6 +321,51 @@
     "invalid_reason": "Please select a valid reason.",
     "sending": "Sending..."
   },
+  "github": {
+    "kicker": "Live from GitHub",
+    "title": "What I'm Shipping Right Now",
+    "description": "Pulled live from the GitHub API — contributions, streaks and my latest commits, refreshed every 15 minutes.",
+    "stats": {
+      "contributions": {
+        "label": "Contributions",
+        "hint": "last 12 months"
+      },
+      "commits": {
+        "label": "Commits",
+        "hint": "last 12 months"
+      },
+      "streak": {
+        "label": "Current streak",
+        "hint": "Longest run: {count} days"
+      },
+      "repositories": {
+        "label": "Public repos",
+        "hint": "owned, forks excluded"
+      }
+    },
+    "calendar": {
+      "title": "Contribution graph",
+      "total": "{count} contributions",
+      "aria": "Contribution calendar with {count} contributions over the last year",
+      "tooltip": "{count} contributions on {date}",
+      "tooltipNone": "No contributions on {date}",
+      "less": "Less",
+      "more": "More"
+    },
+    "languages": {
+      "title": "Languages I ship in"
+    },
+    "commits": {
+      "title": "Latest commits",
+      "empty": "No public commits in the last few days."
+    },
+    "state": {
+      "error": "The GitHub API can't be reached right now.",
+      "retry": "Try again",
+      "updated": "Updated"
+    },
+    "profileCta": "View profile"
+  },
   "about": {
     "title": "Who I Am",
     "card": {
@@ -342,7 +388,7 @@
     "points": {
       "workflow": {
         "title": "Workflow & Architecture",
-        "description": "My workflow is heavily AI-assisted. I like setting up worktrees with AI agents (Claude Code, Gemini CLI, v0) and delegating syntax-level work to them. This allows me to deliver results much faster, while my pipeline ensures that the output is safe for production right after deployment. Of course, I still validate important commits manually."
+        "description": "My workflow is heavily AI-assisted. I like setting up worktrees with AI agents (Claude Code, Codex CLI) and delegating syntax-level work to them. This allows me to deliver results much faster, while my pipeline ensures that the output is safe for production right after deployment. Of course, I still validate important commits manually."
       },
       "principles": {
         "title": "Core Principles",

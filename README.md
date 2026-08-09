@@ -72,6 +72,8 @@ Runtime config is read from `.env` (see [`.env.example`](./.env.example) for the
 | `NUXT_MAIL_USER`     | SMTP user for `nuxt-nodemailer` |
 | `NUXT_MAIL_PASS`     | SMTP password |
 | `NUXT_CONTACT_MAIL`  | Inbox that contact-form submissions land in |
+| `NUXT_GITHUB_TOKEN`  | GitHub PAT (classic, scope `read:user` only — everything else the section reads is public) for the live activity section — without it `/api/github/stats` returns `503` and the section renders its offline state |
+| `NUXT_PUBLIC_GITHUB_USERNAME` | GitHub handle the activity section reads (defaults to `bigjohnn1`) |
 
 reCAPTCHA v3 site / secret keys come from runtime config in `nuxt.config.ts`.
 

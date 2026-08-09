@@ -216,6 +216,7 @@ const sections: SectionDef[] = [
   { id: 'about', labelKey: 'nav.about' },
   { id: 'references', labelKey: 'nav.references' },
   { id: 'stack', labelKey: 'nav.stack' },
+  { id: 'activity', labelKey: 'nav.activity' },
   { id: 'blog-preview', labelKey: 'nav.blog' },
   { id: 'contact', labelKey: 'nav.contact' },
 ]

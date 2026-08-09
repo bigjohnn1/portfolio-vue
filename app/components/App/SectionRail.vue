@@ -150,6 +150,7 @@ const sections: SectionDef[] = [
   { id: 'intro', labelKey: 'nav.intro' },
   { id: 'references', labelKey: 'nav.references' },
   { id: 'stack', labelKey: 'nav.stack' },
+  { id: 'activity', labelKey: 'nav.activity' },
   { id: 'contact', labelKey: 'nav.contact' },
   { id: 'about', labelKey: 'nav.about' },
   { id: 'blog-preview', labelKey: 'nav.blog' },

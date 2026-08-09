@@ -7,6 +7,7 @@
     "name": "Benjamin Tomaník"
   },
   "nav": {
+    "activity": "Aktivita",
     "intro": "Úvod",
     "references": "Projekty",
     "about": "Kdo jsem",
@@ -320,6 +321,51 @@
     "invalid_reason": "Vyberte platný důvod.",
     "sending": "Odesílám..."
   },
+  "github": {
+    "kicker": "Živě z GitHubu",
+    "title": "Na čem právě pracuji",
+    "description": "Taženo živě z GitHub API — příspěvky, série a moje poslední commity, obnovováno každých 15 minut.",
+    "stats": {
+      "contributions": {
+        "label": "Příspěvky",
+        "hint": "za posledních 12 měsíců"
+      },
+      "commits": {
+        "label": "Commity",
+        "hint": "za posledních 12 měsíců"
+      },
+      "streak": {
+        "label": "Aktuální série",
+        "hint": "Nejdelší série: {count} dní"
+      },
+      "repositories": {
+        "label": "Veřejné repozitáře",
+        "hint": "vlastní, bez forků"
+      }
+    },
+    "calendar": {
+      "title": "Graf příspěvků",
+      "total": "{count} příspěvků",
+      "aria": "Kalendář příspěvků s {count} příspěvky za poslední rok",
+      "tooltip": "{count} příspěvků dne {date}",
+      "tooltipNone": "Žádné příspěvky dne {date}",
+      "less": "Méně",
+      "more": "Více"
+    },
+    "languages": {
+      "title": "Jazyky, ve kterých dodávám"
+    },
+    "commits": {
+      "title": "Poslední commity",
+      "empty": "V posledních dnech žádné veřejné commity."
+    },
+    "state": {
+      "error": "GitHub API teď není dostupné.",
+      "retry": "Zkusit znovu",
+      "updated": "Aktualizováno"
+    },
+    "profileCta": "Zobrazit profil"
+  },
   "about": {
     "title": "Kdo jsem",
     "card": {
@@ -342,7 +388,7 @@
     "points": {
       "workflow": {
         "title": "Workflow & Architektura",
-        "description": "Moje workflow je silně podpořené umělou inteligencí. Rád si nastavuji worktrees s AI agenty (Claude Code, Gemini CLI, v0) a deleguji na ně práci na úrovni syntaxe. Díky tomu dodávám výsledky mnohem rychleji, přičemž moje pipeline zajišťuje, že výsledek je bezpečný pro produkci hned po nasazení. Důležité commity samozřejmě stále validuji manuálně."
+        "description": "Moje workflow je silně podpořené umělou inteligencí. Rád si nastavuji worktrees s AI agenty (Claude Code, Codex CLI) a deleguji na ně práci na úrovni syntaxe. Díky tomu dodávám výsledky mnohem rychleji, přičemž moje pipeline zajišťuje, že výsledek je bezpečný pro produkci hned po nasazení. Důležité commity samozřejmě stále validuji manuálně."
       },
       "principles": {
         "title": "Základní principy",

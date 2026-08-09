@@ -66,8 +66,12 @@ export default defineNuxtConfig({
     smtpUser: process.env.NUXT_MAIL_USER,
     smtpPass: process.env.NUXT_MAIL_PASS,
     contactMail: process.env.NUXT_CONTACT_MAIL,
+    githubToken: process.env.NUXT_GITHUB_TOKEN,
     public: {
       contactEmail: process.env.NUXT_PUBLIC_CONTACT_EMAIL || 'benjamin.tomanik@gmail.com',
+      github: {
+        username: process.env.NUXT_PUBLIC_GITHUB_USERNAME || 'bigjohnn1',
+      },
       build: {
         commit: buildCommit,
         date: buildDate,

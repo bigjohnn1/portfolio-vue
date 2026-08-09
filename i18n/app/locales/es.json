@@ -7,6 +7,7 @@
     "name": "Benjamin Tomanik"
   },
   "nav": {
+    "activity": "Actividad",
     "intro": "Intro",
     "references": "Proyectos",
     "about": "Sobre mí",
@@ -320,6 +321,51 @@
     "invalid_reason": "Selecciona una razón válida, por favor.",
     "sending": "Enviando..."
   },
+  "github": {
+    "kicker": "En directo desde GitHub",
+    "title": "En qué estoy trabajando",
+    "description": "En directo desde la API de GitHub: contribuciones, rachas y mis últimos commits, actualizados cada 15 minutos.",
+    "stats": {
+      "contributions": {
+        "label": "Contribuciones",
+        "hint": "últimos 12 meses"
+      },
+      "commits": {
+        "label": "Commits",
+        "hint": "últimos 12 meses"
+      },
+      "streak": {
+        "label": "Racha actual",
+        "hint": "Racha máxima: {count} días"
+      },
+      "repositories": {
+        "label": "Repos públicos",
+        "hint": "propios, sin forks"
+      }
+    },
+    "calendar": {
+      "title": "Gráfico de contribuciones",
+      "total": "{count} contribuciones",
+      "aria": "Calendario de contribuciones con {count} contribuciones en el último año",
+      "tooltip": "{count} contribuciones el {date}",
+      "tooltipNone": "Sin contribuciones el {date}",
+      "less": "Menos",
+      "more": "Más"
+    },
+    "languages": {
+      "title": "Lenguajes que uso"
+    },
+    "commits": {
+      "title": "Últimos commits",
+      "empty": "Sin commits públicos en los últimos días."
+    },
+    "state": {
+      "error": "Ahora mismo no se puede conectar con la API de GitHub.",
+      "retry": "Reintentar",
+      "updated": "Actualizado"
+    },
+    "profileCta": "Ver perfil"
+  },
   "about": {
     "title": "Quién soy",
     "card": {
@@ -342,7 +388,7 @@
     "points": {
       "workflow": {
         "title": "Workflow y Arquitectura",
-        "description": "Mi workflow está fuertemente asistido por IA. Me gusta configurar worktrees con agentes de IA (Claude Code, Gemini CLI, v0) y delegarles el trabajo a nivel de sintaxis. Esto me permite entregar resultados mucho más rápido, mientras mi pipeline asegura que el resultado está listo para producción justo después del deploy. Los commits importantes, por supuesto, los sigo validando manualmente."
+        "description": "Mi workflow está fuertemente asistido por IA. Me gusta configurar worktrees con agentes de IA (Claude Code, Codex CLI) y delegarles el trabajo a nivel de sintaxis. Esto me permite entregar resultados mucho más rápido, mientras mi pipeline asegura que el resultado está listo para producción justo después del deploy. Los commits importantes, por supuesto, los sigo validando manualmente."
       },
       "principles": {
         "title": "Principios fundamentales",

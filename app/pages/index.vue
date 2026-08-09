@@ -5,6 +5,7 @@
     <AppHeader />
     <LazyHomeProjects />
     <LazyHomeTechStack />
+    <LazyHomeGithubActivity />
     <LazyHomeContact />
     <LazyHomeAbout />
     <LazyHomeBlog />

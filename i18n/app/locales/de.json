@@ -7,6 +7,7 @@
     "name": "Benjamin Tomanik"
   },
   "nav": {
+    "activity": "Aktivität",
     "intro": "Intro",
     "references": "Projekte",
     "about": "Über mich",
@@ -320,6 +321,51 @@
     "invalid_reason": "Bitte wähle einen gültigen Grund.",
     "sending": "Senden..."
   },
+  "github": {
+    "kicker": "Live von GitHub",
+    "title": "Woran ich gerade arbeite",
+    "description": "Live aus der GitHub-API — Beiträge, Serien und meine neuesten Commits, alle 15 Minuten aktualisiert.",
+    "stats": {
+      "contributions": {
+        "label": "Beiträge",
+        "hint": "letzte 12 Monate"
+      },
+      "commits": {
+        "label": "Commits",
+        "hint": "letzte 12 Monate"
+      },
+      "streak": {
+        "label": "Aktuelle Serie",
+        "hint": "Längste Serie: {count} Tage"
+      },
+      "repositories": {
+        "label": "Öffentliche Repos",
+        "hint": "eigene, ohne Forks"
+      }
+    },
+    "calendar": {
+      "title": "Beitragsdiagramm",
+      "total": "{count} Beiträge",
+      "aria": "Beitragskalender mit {count} Beiträgen im letzten Jahr",
+      "tooltip": "{count} Beiträge am {date}",
+      "tooltipNone": "Keine Beiträge am {date}",
+      "less": "Weniger",
+      "more": "Mehr"
+    },
+    "languages": {
+      "title": "Sprachen, in denen ich liefere"
+    },
+    "commits": {
+      "title": "Neueste Commits",
+      "empty": "In den letzten Tagen keine öffentlichen Commits."
+    },
+    "state": {
+      "error": "Die GitHub-API ist gerade nicht erreichbar.",
+      "retry": "Erneut versuchen",
+      "updated": "Aktualisiert"
+    },
+    "profileCta": "Profil ansehen"
+  },
   "about": {
     "title": "Wer ich bin",
     "card": {
@@ -342,7 +388,7 @@
     "points": {
       "workflow": {
         "title": "Workflow & Architektur",
-        "description": "Mein Workflow ist stark KI-gestützt. Ich setze gerne Worktrees mit KI-Agenten auf (Claude Code, Gemini CLI, v0) und delegiere syntax-nahe Arbeit an sie. So liefere ich Ergebnisse deutlich schneller, während meine Pipeline dafür sorgt, dass das Ergebnis direkt nach dem Deploy produktionssicher ist. Wichtige Commits validiere ich natürlich weiterhin manuell."
+        "description": "Mein Workflow ist stark KI-gestützt. Ich setze gerne Worktrees mit KI-Agenten auf (Claude Code, Codex CLI) und delegiere syntax-nahe Arbeit an sie. So liefere ich Ergebnisse deutlich schneller, während meine Pipeline dafür sorgt, dass das Ergebnis direkt nach dem Deploy produktionssicher ist. Wichtige Commits validiere ich natürlich weiterhin manuell."
       },
       "principles": {
         "title": "Grundprinzipien",

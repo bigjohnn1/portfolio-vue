@@ -219,6 +219,12 @@ const sectionItems = computed<CommandItem[]>(() => [
     action: () => navigateTo('#stack'),
   },
   {
+    id: 'section-activity',
+    label: t('nav.activity'),
+    icon: 'mdi:github',
+    action: () => navigateTo('#activity'),
+  },
+  {
     id: 'section-contact',
     label: t('nav.contact'),
     icon: 'mdi:email-outline',

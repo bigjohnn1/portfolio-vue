@@ -125,15 +125,7 @@ import { useElementBounding, useNow } from '@vueuse/core'
 
 const { t, locale } = useI18n()
 
-const INTL_LOCALE_MAP: Record<string, string> = {
-  en: 'en-US',
-  cs: 'cs-CZ',
-  de: 'de-DE',
-  fr: 'fr-FR',
-  es: 'es-ES',
-}
-
-const intlLocale = computed(() => INTL_LOCALE_MAP[locale.value] ?? 'en-US')
+const intlLocale = computed(() => toIntlLocale(locale.value))
 
 const TARGET_TZ = 'Europe/Prague'
 const tooltipId = useId()
