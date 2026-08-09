@@ -124,8 +124,9 @@ query ($login: String!) {
 }`
 
 const FALLBACK_LANGUAGE_COLOR = '#8b949e'
-const MAX_COMMITS = 6
+const MAX_COMMITS = 3
 const MAX_LANGUAGES = 6
+const MIN_LANGUAGE_PERCENT = 1
 const MAX_MESSAGE_LENGTH = 120
 
 const toLanguages = (contributed: GraphqlContributedRepository[]): GithubLanguage[] => {
@@ -152,12 +153,13 @@ const toLanguages = (contributed: GraphqlContributedRepository[]): GithubLanguag
 
   return [...weights.entries()]
     .sort((a, b) => b[1].weight - a[1].weight)
-    .slice(0, MAX_LANGUAGES)
     .map(([name, entry]) => ({
       name,
       color: entry.color,
       percent: Math.round((entry.weight / total) * 1000) / 10,
     }))
+    .filter(language => language.percent >= MIN_LANGUAGE_PERCENT)
+    .slice(0, MAX_LANGUAGES)
 }
 
 const toCommits = (contributed: GraphqlContributedRepository[], login: string): GithubCommit[] =>

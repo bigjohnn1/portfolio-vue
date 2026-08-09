@@ -323,48 +323,48 @@
   },
   "github": {
     "kicker": "Živě z GitHubu",
-    "title": "Na čem právě pracuji",
-    "description": "Taženo živě z GitHub API — příspěvky, série a moje poslední commity, obnovováno každých 15 minut.",
+    "title": "Co jsem naposled psal",
+    "description": "Čísla i commity tahám přímo z GitHub API. Obnovuje se každých 15 minut, takže tohle je fakt to, na čem teď jsem.",
     "stats": {
       "contributions": {
         "label": "Příspěvky",
-        "hint": "za posledních 12 měsíců"
+        "hint": "za poslední rok"
       },
       "commits": {
         "label": "Commity",
-        "hint": "za posledních 12 měsíců"
+        "hint": "za poslední rok"
       },
       "streak": {
-        "label": "Aktuální série",
-        "hint": "Nejdelší série: {count} dní"
+        "label": "Série",
+        "hint": "rekord je {count} dní"
       },
       "repositories": {
-        "label": "Repozitářů, kde commituji",
-        "hint": "za posledních 12 měsíců"
+        "label": "Repozitáře",
+        "hint": "kam jsem za rok commitnul"
       }
     },
     "calendar": {
-      "title": "Graf příspěvků",
+      "title": "Rok v commitech",
       "total": "{count} příspěvků",
-      "aria": "Kalendář příspěvků s {count} příspěvky za poslední rok",
-      "tooltip": "{count} příspěvků dne {date}",
-      "tooltipNone": "Žádné příspěvky dne {date}",
-      "less": "Méně",
-      "more": "Více"
+      "aria": "Kalendář příspěvků, {count} příspěvků za poslední rok",
+      "tooltip": "{date} — {count} příspěvků",
+      "tooltipNone": "{date} — nic",
+      "less": "Míň",
+      "more": "Víc"
     },
     "languages": {
-      "title": "Jazyky, ve kterých dodávám"
+      "title": "V čem to píšu"
     },
     "commits": {
       "title": "Poslední commity",
-      "empty": "V posledních dnech žádné veřejné commity."
+      "empty": "Poslední dny nic veřejného."
     },
     "state": {
-      "error": "GitHub API teď není dostupné.",
+      "error": "GitHub se teď neozývá.",
       "retry": "Zkusit znovu",
-      "updated": "Aktualizováno"
+      "updated": "Načteno"
     },
-    "profileCta": "Zobrazit profil"
+    "profileCta": "Celý profil"
   },
   "about": {
     "title": "Kdo jsem",

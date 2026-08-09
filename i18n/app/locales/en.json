@@ -323,48 +323,48 @@
   },
   "github": {
     "kicker": "Live from GitHub",
-    "title": "What I'm Shipping Right Now",
-    "description": "Pulled live from the GitHub API — contributions, streaks and my latest commits, refreshed every 15 minutes.",
+    "title": "What I've Been Writing",
+    "description": "The numbers and the commits come straight from the GitHub API. Refreshed every 15 minutes, so this is where I actually am right now.",
     "stats": {
       "contributions": {
         "label": "Contributions",
-        "hint": "last 12 months"
+        "hint": "past year"
       },
       "commits": {
         "label": "Commits",
-        "hint": "last 12 months"
+        "hint": "past year"
       },
       "streak": {
-        "label": "Current streak",
-        "hint": "Longest run: {count} days"
+        "label": "Streak",
+        "hint": "best so far: {count} days"
       },
       "repositories": {
-        "label": "Repos contributed to",
-        "hint": "last 12 months"
+        "label": "Repositories",
+        "hint": "I've committed to in the past year"
       }
     },
     "calendar": {
-      "title": "Contribution graph",
+      "title": "A year in commits",
       "total": "{count} contributions",
-      "aria": "Contribution calendar with {count} contributions over the last year",
-      "tooltip": "{count} contributions on {date}",
-      "tooltipNone": "No contributions on {date}",
+      "aria": "Contribution calendar, {count} contributions over the past year",
+      "tooltip": "{date} — {count} contributions",
+      "tooltipNone": "{date} — nothing",
       "less": "Less",
       "more": "More"
     },
     "languages": {
-      "title": "Languages I ship in"
+      "title": "What I write it in"
     },
     "commits": {
       "title": "Latest commits",
-      "empty": "No public commits in the last few days."
+      "empty": "Nothing public in the last few days."
     },
     "state": {
-      "error": "The GitHub API can't be reached right now.",
+      "error": "GitHub isn't answering right now.",
       "retry": "Try again",
-      "updated": "Updated"
+      "updated": "Loaded"
     },
-    "profileCta": "View profile"
+    "profileCta": "Full profile"
   },
   "about": {
     "title": "Who I Am",

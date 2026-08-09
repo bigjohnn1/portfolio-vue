@@ -323,48 +323,48 @@
   },
   "github": {
     "kicker": "En direct de GitHub",
-    "title": "Ce sur quoi je travaille",
-    "description": "Directement depuis l'API GitHub — contributions, séries et mes derniers commits, actualisés toutes les 15 minutes.",
+    "title": "Ce que j'ai écrit dernièrement",
+    "description": "Les chiffres et les commits viennent directement de l'API GitHub. Actualisés toutes les 15 minutes — c'est donc vraiment où j'en suis.",
     "stats": {
       "contributions": {
         "label": "Contributions",
-        "hint": "12 derniers mois"
+        "hint": "sur un an"
       },
       "commits": {
         "label": "Commits",
-        "hint": "12 derniers mois"
+        "hint": "sur un an"
       },
       "streak": {
-        "label": "Série en cours",
-        "hint": "Record : {count} jours"
+        "label": "Série",
+        "hint": "record : {count} jours"
       },
       "repositories": {
-        "label": "Dépôts contribués",
-        "hint": "12 derniers mois"
+        "label": "Dépôts",
+        "hint": "où j'ai commité sur un an"
       }
     },
     "calendar": {
-      "title": "Graphique de contributions",
+      "title": "Un an de commits",
       "total": "{count} contributions",
-      "aria": "Calendrier de contributions avec {count} contributions sur la dernière année",
-      "tooltip": "{count} contributions le {date}",
-      "tooltipNone": "Aucune contribution le {date}",
+      "aria": "Calendrier de contributions, {count} contributions sur la dernière année",
+      "tooltip": "{date} — {count} contributions",
+      "tooltipNone": "{date} — rien",
       "less": "Moins",
       "more": "Plus"
     },
     "languages": {
-      "title": "Langages que j'utilise"
+      "title": "Ce dans quoi j'écris"
     },
     "commits": {
       "title": "Derniers commits",
-      "empty": "Aucun commit public ces derniers jours."
+      "empty": "Rien de public ces derniers jours."
     },
     "state": {
-      "error": "L'API GitHub est injoignable pour le moment.",
+      "error": "GitHub ne répond pas pour le moment.",
       "retry": "Réessayer",
-      "updated": "Mis à jour"
+      "updated": "Chargé"
     },
-    "profileCta": "Voir le profil"
+    "profileCta": "Profil complet"
   },
   "about": {
     "title": "Qui je suis",
