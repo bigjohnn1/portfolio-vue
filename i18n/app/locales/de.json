@@ -164,6 +164,12 @@
   "techStack": {
     "title": "Mein Tech-Stack",
     "description": "Werkzeuge, mit denen ich schnell liefere und skaliere.",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "data": "Datenschicht",
+      "platform": "Plattform & Tooling"
+    },
     "items": {
       "vue": {
         "name": "Vue.js",

@@ -164,6 +164,12 @@
   "techStack": {
     "title": "Ma stack technique",
     "description": "Les outils avec lesquels je livre vite et passe à l'échelle.",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "data": "Couche de données",
+      "platform": "Plateforme et outils"
+    },
     "items": {
       "vue": {
         "name": "Vue.js",

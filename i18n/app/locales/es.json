@@ -164,6 +164,12 @@
   "techStack": {
     "title": "Mi stack",
     "description": "Herramientas con las que entrego rápido y escalo.",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "data": "Capa de datos",
+      "platform": "Plataforma y herramientas"
+    },
     "items": {
       "vue": {
         "name": "Vue.js",

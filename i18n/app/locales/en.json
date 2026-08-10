@@ -164,6 +164,12 @@
   "techStack": {
     "title": "My Tech Stack",
     "description": "Tools I use to ship fast and scale.",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "data": "Data layer",
+      "platform": "Platform & tooling"
+    },
     "items": {
       "vue": {
         "name": "Vue.js",

@@ -164,6 +164,12 @@
   "techStack": {
     "title": "Můj stack",
     "description": "Nástroje, díky kterým doručuji a škáluji.",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "data": "Datová vrstva",
+      "platform": "Platforma a nástroje"
+    },
     "items": {
       "vue": {
         "name": "Vue.js",
