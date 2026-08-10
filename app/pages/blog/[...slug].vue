@@ -18,7 +18,9 @@
     >
       <article
         ref="articleEl"
-        class="prose dark:prose-invert prose-primary lg:prose-lg max-w-none min-w-0"
+        class="prose dark:prose-invert prose-primary lg:prose-lg max-w-none min-w-0
+               [&_pre]:bg-gray-50 [&_pre]:text-gray-800 [&_pre]:border [&_pre]:border-gray-200
+               dark:[&_pre]:bg-gray-950 dark:[&_pre]:text-gray-200 dark:[&_pre]:border-gray-800"
       >
         <NuxtLinkLocale
           to="/blog"

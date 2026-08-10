@@ -231,6 +231,10 @@
         "name": "Docker",
         "description": "Contenedorización, entornos dev/prod aislados"
       },
+      "dokploy": {
+        "name": "Dokploy",
+        "description": "PaaS autoalojado — despliegues Docker en mi propio VPS"
+      },
       "powershell": {
         "name": "PowerShell",
         "description": "Shell y scripting multiplataforma (nativo en Windows)"

@@ -231,6 +231,10 @@
         "name": "Docker",
         "description": "Kontejnerizace, izolovaná dev/prod prostředí"
       },
+      "dokploy": {
+        "name": "Dokploy",
+        "description": "Self-hosted PaaS — Docker deploye na vlastním VPS"
+      },
       "powershell": {
         "name": "PowerShell",
         "description": "Cross-platform shell a scripting (Windows-native)"

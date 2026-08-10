@@ -22,11 +22,6 @@
           :key="category"
         >
           <header class="flex items-center gap-3">
-            <span
-              aria-hidden="true"
-              class="h-1.5 w-1.5 shrink-0 rounded-full"
-              :class="CATEGORY_DOT[category]"
-            />
             <h3 class="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-gray-500 dark:text-gray-400">
               {{ $t(`techStack.categories.${category}`) }}
             </h3>
@@ -34,9 +29,6 @@
               aria-hidden="true"
               class="h-px flex-1 bg-gradient-to-r from-gray-200 via-gray-200/40 to-transparent dark:from-white/10 dark:via-white/5"
             />
-            <span class="text-[0.68rem] font-medium tabular-nums text-gray-400 dark:text-gray-600">
-              {{ STACK[category].length }}
-            </span>
           </header>
 
           <ul class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
@@ -108,19 +100,14 @@ const STACK: Record<StackCategory, StackItem[]> = {
   platform: [
     { key: 'cloudflare', icon: 'logos:cloudflare-icon', accent: '243 128 32' },
     { key: 'vercel', icon: 'logos:vercel-icon', accent: '148 163 184' },
+    { key: 'dokploy', icon: 'selfhst:dokploy', accent: '148 163 184' },
+    { key: 'docker', icon: 'logos:docker-icon', accent: '36 150 237' },
     { key: 'linux', icon: 'logos:linux-tux', accent: '250 204 21' },
     { key: 'git', icon: 'logos:git-icon', accent: '240 80 51' },
   ],
 }
 
 const STACK_CATEGORIES = Object.keys(STACK) as StackCategory[]
-
-const CATEGORY_DOT: Record<StackCategory, string> = {
-  frontend: 'bg-sky-500 dark:bg-sky-300',
-  backend: 'bg-emerald-500 dark:bg-emerald-300',
-  data: 'bg-amber-500 dark:bg-amber-300',
-  platform: 'bg-violet-500 dark:bg-violet-300',
-}
 
 const { t, locale } = useI18n()
 const { $gsap } = useNuxtApp()
