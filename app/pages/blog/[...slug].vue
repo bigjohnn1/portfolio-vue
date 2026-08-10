@@ -28,11 +28,11 @@
         </NuxtLinkLocale>
 
         <div
-          v-if="post.meta?.cover"
+          v-if="post.cover"
           class="mb-8 rounded-2xl overflow-hidden shadow-lg not-prose"
         >
           <NuxtImg
-            :src="(post.meta.cover as string)"
+            :src="post.cover"
             :alt="post.title"
             class="w-full max-h-[500px] object-cover"
             format="webp"
@@ -82,15 +82,19 @@
 const route = useRoute()
 const articleEl = useTemplateRef<HTMLElement>('articleEl')
 
-const cleanPath = computed(() => decodeURI(route.path).replace(/\/$/, '') || '/')
+const contentPath = computed(() => {
+  const slug = route.params.slug
+  const segments = (Array.isArray(slug) ? slug : [slug]).filter(Boolean)
+  return `/blog/${segments.join('/')}`.replace(/\/$/, '')
+})
 
 const { data: post, pending } = await useContentData(
-  `blog-${cleanPath.value}`,
+  `blog-${contentPath.value}`,
   () => {
-    return queryCollection('blog').path(cleanPath.value).first()
+    return queryCollection('blog').path(contentPath.value).first()
   },
   {
-    watch: [cleanPath],
+    watch: [contentPath],
   },
 )
 

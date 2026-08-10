@@ -80,11 +80,11 @@
           class="group flex flex-col outline-none"
         >
           <div
-            v-if="post.meta?.cover"
+            v-if="post.cover"
             class="w-full h-64 overflow-hidden bg-gray-100 dark:bg-gray-900 mb-6 relative border border-gray-200 dark:border-gray-800"
           >
             <NuxtImg
-              :src="(post.meta.cover as string)"
+              :src="post.cover"
               :alt="post.title"
               class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 group-focus-visible:scale-105 filter grayscale-[20%] group-hover:grayscale-0"
               format="webp"
@@ -94,17 +94,17 @@
           <div class="flex flex-col flex-grow">
             <div class="flex items-center gap-3 mb-4">
               <time
-                v-if="post.meta?.date"
+                v-if="post.date"
                 class="text-xs font-mono text-gray-500 dark:text-gray-400 uppercase tracking-widest"
               >
-                {{ formatDate(post.meta.date) }}
+                {{ formatDate(post.date) }}
               </time>
               <div
-                v-if="post.meta?.tags?.length"
+                v-if="post.tags?.length"
                 class="flex gap-2"
               >
                 <span
-                  v-for="tag in post.meta.tags.slice(0, 2)"
+                  v-for="tag in post.tags.slice(0, 2)"
                   :key="tag"
                   class="text-xs font-bold text-primary-600 dark:text-primary-400 uppercase tracking-widest before:content-['/'] before:mr-2 before:text-gray-300 dark:before:text-gray-700"
                 >
@@ -216,11 +216,9 @@ interface BlogPost {
   path: string
   title: string
   description?: string
-  meta?: {
-    cover?: string
-    date?: string
-    tags?: string[]
-  }
+  cover?: string
+  date?: string
+  tags?: string[]
 }
 
 const { data: posts, pending } = await useContentData<BlogPost[]>('blog-list', () =>
@@ -251,8 +249,8 @@ const allTags = computed(() => {
   if (!posts.value) return []
   const tags = new Set<string>()
   posts.value.forEach((post) => {
-    if (post.meta?.tags && Array.isArray(post.meta.tags)) {
-      post.meta.tags.forEach(tag => tags.add(tag))
+    if (Array.isArray(post.tags)) {
+      post.tags.forEach(tag => tags.add(tag))
     }
   })
   return Array.from(tags).sort()
@@ -271,7 +269,7 @@ const filteredPosts = computed(() => {
   let result = posts.value || []
 
   if (selectedTag.value) {
-    result = result.filter(post => post.meta?.tags?.includes(selectedTag.value))
+    result = result.filter(post => post.tags?.includes(selectedTag.value))
   }
 
   if (searchQuery.value) {

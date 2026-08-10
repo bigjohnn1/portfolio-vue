@@ -28,11 +28,11 @@
           class="flex flex-col block group bg-base-bg dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300 border border-gray-100 dark:border-gray-700 h-full"
         >
           <div
-            v-if="post.meta?.cover"
+            v-if="post.cover"
             class="w-full h-48 overflow-hidden bg-gray-100 dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700"
           >
             <NuxtImg
-              :src="(post.meta.cover as string)"
+              :src="post.cover"
               :alt="post.title"
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               format="webp"
@@ -40,7 +40,7 @@
           </div>
           <div class="p-6 flex flex-col flex-grow">
             <div class="mb-4 text-xs font-medium text-gray-500 dark:text-gray-400">
-              <span v-if="post.meta?.date">{{ new Date(post.meta.date as string).toLocaleDateString() }}</span>
+              <span v-if="post.date">{{ new Date(post.date).toLocaleDateString() }}</span>
               <span v-else>{{ $t('homeBlog.recent') }}</span>
             </div>
 

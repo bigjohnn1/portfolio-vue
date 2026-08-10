@@ -17,7 +17,7 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
 
 ### Root
 
-- `content.config.ts`: Configuration for Nuxt Content, parsing markdown files from local `content/` directory.
+- `content.config.ts`: Configuration for Nuxt Content, parsing markdown files from local `content/` directory. The `blog` collection schema declares `cover`, `date`, `tags`. **Gotcha:** any field declared in the schema becomes its own column and is exposed **top-level** on query results (`post.cover`) — `post.meta` is only the catch-all bucket for frontmatter keys *not* in the schema. Reading a declared field off `meta` silently yields `undefined`, so add the field to the schema *and* read it top-level, or leave it out of both.
 - `app/app.vue`: Global SEO + JSON-LD structured data via `useSchemaOrg` (`definePerson` with phone/email/sameAs/address, `defineWebSite`, `defineWebPage`) — emitted on every page through `@nuxtjs/seo` (nuxt-schema-org).
 
 ### `/pages`
@@ -25,7 +25,7 @@ This file documents the structure and key components of the Nuxt 4 portfolio pro
 - `index.vue`: The main entry point and single-page portfolio layout.
 - **`blog/`**
   - `index.vue`: Lists all parsed blog posts from the local content directory.
-  - `[...slug].vue`: Dynamically renders individual markdown posts using `<ContentRenderer>` and includes a sticky `TableOfContents` on desktop layouts.
+  - `[...slug].vue`: Dynamically renders individual markdown posts using `<ContentRenderer>` and includes a sticky `TableOfContents` on desktop layouts. **The content path is rebuilt from `route.params.slug`, never from `route.path`** — under `prefix_except_default` the live URL is `/cs/blog/foo` while the content collection stores `/blog/foo`, so querying by `route.path` 404s on every non-`en` locale.
 
 ### `/layouts`
 
