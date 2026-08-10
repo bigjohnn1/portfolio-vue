@@ -112,7 +112,7 @@ const productionProjects: Project[] = [
   {
     key: 'topiqu',
     image: 'topiqu.png',
-    link: 'https://reachio.topiqu.com',
+    link: 'https://topiqu.com/en',
     status: 'beta',
     tech: {
       frontend: ['Nuxt 4.2', 'Vue 3.5', 'Tailwind', 'Pinia', 'TipTap', 'VueUse'],
