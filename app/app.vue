@@ -39,7 +39,8 @@ const { isOpen: paletteIsOpen } = useCommandPalette()
 const { isOpen: sceneIsOpen } = useScene()
 
 const route = useRoute()
-const isHome = computed(() => route.path === '/')
+const routeBaseName = useRouteBaseName()
+const isHome = computed(() => routeBaseName(route) === 'index')
 
 if (import.meta.client) {
   const keys = useMagicKeys({
