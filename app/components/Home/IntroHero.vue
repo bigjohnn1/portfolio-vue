@@ -250,6 +250,7 @@
 </template>
 
 <script setup lang="ts">
+import type { gsap } from 'gsap'
 import { useMouseInElement, useElementVisibility, usePreferredReducedMotion } from '@vueuse/core'
 
 const { $gsap } = useNuxtApp()
@@ -286,13 +287,26 @@ const hexEdges = hexVertices.map((v, i) => {
 const runeSvgPositions = hexVertices
 const runeCssPositions = hexVertices.map(v => ({ x: (v.x / 200) * 100, y: (v.y / 200) * 100 }))
 
+// Seeded PRNG (mulberry32): the particles are rendered on the server, so Math.random() would give
+// the client different cx / cy / opacity and a hydration mismatch. A fixed seed gives the same
+// scatter on both sides, and it still looks random.
+const seededRandom = (seed: number) => () => {
+  seed = (seed + 0x6D2B79F5) | 0
+  let r = Math.imul(seed ^ (seed >>> 15), 1 | seed)
+  r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r
+  return ((r ^ (r >>> 14)) >>> 0) / 4294967296
+}
+const particleRandom = seededRandom(20)
+// Rounded so the SSR attribute string and the client value match exactly.
+const round2 = (n: number) => Math.round(n * 100) / 100
+
 const particles = Array.from({ length: 18 }, () => {
-  const angle = Math.random() * Math.PI * 2
-  const radius = 78 + Math.random() * 18
+  const angle = particleRandom() * Math.PI * 2
+  const radius = 78 + particleRandom() * 18
   return {
-    x: 100 + Math.cos(angle) * radius,
-    y: 100 + Math.sin(angle) * radius,
-    o: 0.2 + Math.random() * 0.5,
+    x: round2(100 + Math.cos(angle) * radius),
+    y: round2(100 + Math.sin(angle) * radius),
+    o: round2(0.2 + particleRandom() * 0.5),
   }
 })
 
@@ -593,10 +607,15 @@ const fadeEnergyLines = (target: number) => {
 const onEnter = () => fadeEnergyLines(0.4)
 const onLeave = () => fadeEnergyLines(0.12)
 
+// The intro timeline and the endless particle twinkle live in one context, so leaving the page
+// (e.g. to /blog) kills them instead of leaving repeat: -1 tweens running on detached nodes.
+let ctx: gsap.Context | undefined
 let composed = false
 watch(visible, (v) => {
   if (!v || composed) return
   composed = true
-  composeScene()
+  ctx = $gsap.context(composeScene)
 }, { immediate: true })
+
+onUnmounted(() => ctx?.revert())
 </script>

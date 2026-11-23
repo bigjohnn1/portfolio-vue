@@ -110,14 +110,18 @@
         ref="iconWrapper"
         class="flex"
       >
+        <!-- Both icons are rendered and CSS picks one: the server cannot know a stored dark preference,
+             so a :name bound to colorMode.value caused a hydration mismatch for dark-mode visitors. -->
         <Icon
-          :name="
-            colorMode.value === 'light'
-              ? 'lucide:sun'
-              : 'lucide:moon'
-          "
+          name="lucide:sun"
           size="20"
-          class="text-current"
+          class="text-current dark:hidden"
+          aria-hidden="true"
+        />
+        <Icon
+          name="lucide:moon"
+          size="20"
+          class="hidden text-current dark:block"
           aria-hidden="true"
         />
       </span>
