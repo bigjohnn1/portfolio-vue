@@ -84,7 +84,7 @@
     "returnToBlog": "Volver al blog"
   },
   "projects": {
-    "title": "Mis proyectos",
+    "title": "Trabajo seleccionado",
     "liveDemo": "Demo en vivo",
     "opensNewTab": "se abre en una nueva pestaña",
     "techStack": "Stack tecnológico",
@@ -97,61 +97,45 @@
       "db": "Base de datos",
       "misc": "Otros"
     },
-    "experiments": {
-      "kicker": "I+D / Hackathons / Experimentos con IA",
-      "title": "Prototipos con desarrollo asistido por IA",
-      "description": "Estos proyectos nacieron como mis primeros experimentos para ver hasta dónde se puede llegar construyendo con IA. MVPs reales, en producción, construidos en una fracción del tiempo habitual — con compromisos deliberados en el pulido del código, no en lo que hacen.",
-      "badge": "Experimento"
-    },
     "items": {
-      "skola-zivota": {
-        "title": "School of Life – rediseño web",
-        "description": "Primer sitio con backend PHP para una organización benéfica sin ánimo de lucro",
-        "timeline": "Mayo 2024 (2 semanas)"
-      },
-      "milk-world": {
-        "title": "Milk World",
-        "description": "E-shop funcional en PHP, Nette explorer",
-        "timeline": "Junio 2024 (1 mes)"
-      },
-      "tint-shadow": {
-        "title": "TINT s.r.o – proyecto shadow",
-        "description": "Diseño shadow para una empresa de IT, hecho a medida",
-        "timeline": "Septiembre 2024 (2 semanas)"
-      },
-      "hexcodium": {
-        "title": "HexCodium",
-        "description": "Plataforma de cursos, migración completa a Nette, moneda custom, RBAC...",
-        "timeline": "Septiembre 2024 (3 meses)"
-      },
-      "matchmaker": {
-        "title": "Matchmaker (inacabado)",
-        "description": "App liveservice, full Nette + pgSQL, caché Redis y otras funcionalidades",
-        "timeline": "Diciembre 2024 (1 mes)"
-      },
       "v-okamihu": {
         "title": "V Okamihu",
-        "description": "Primer proyecto comercial en equipo, Vue + Tailwind FE, Nitro + Nuxt/Prisma/Zenstack BE",
-        "timeline": "Marzo 2025 (1 mes)"
+        "description": "Plataforma de reservas para un cliente, desarrollada en equipo. Construí el calendario de reservas con capacidad por franja validada en el servidor, filtros sincronizados entre Pinia y la URL, y la API para profesores, servicios y reservas.",
+        "timeline": "Marzo – abril 2025"
       },
       "topiqu": {
         "title": "Topiqu",
-        "description": "Herramienta de blogging SaaS B2B multi-tenant. Redacción automatizada de artículos, setup de autor con IA, construido sobre Nuxt 4, Nitro y Vue 3.5.",
-        "timeline": "Junio 2025 – Actualidad",
+        "role": "Lead Full-Stack Engineer",
+        "description": "SaaS de publicación multi-tenant con un editor asistido por IA. Lidero el desarrollo en un equipo de dos ingenieros: 90 modelos de datos con más de 160 reglas de acceso en ZenStack, generación de artículos que sobrevive a reinicios y despliegues, facturación con Stripe y unos 600 archivos de tests. El repositorio es público.",
+        "timeline": "Junio 2025 – actualidad",
         "status": "Beta · primeros clientes"
       },
       "fastproject": {
         "title": "FastProject",
-        "description": "Herramienta B2B con IA escalable para gestión de proyectos. SPA en React sobre Vite con API Hono en Cloudflare Workers (D1/KV/R2). Sync bidireccional (Asana), planificación inteligente de capacidad y RBAC.",
-        "timeline": "Noviembre 2025 – Marzo 2026",
+        "description": "Herramienta de gestión de proyectos para Neowara: React y Hono en Cloudflare Workers (D1, KV, R2), sincronización bidireccional con Asana, planificación de capacidad y RBAC.",
+        "timeline": "Noviembre 2025 – marzo 2026",
         "status": "MVP interno"
       },
       "nimblo": {
         "title": "Nimblo",
-        "description": "Generador de propuestas construido como SPA React sobre Vite, con API Hono en Cloudflare Workers. Variables dinámicas, análisis de plantillas con IA e integración directa con Fireflies.",
-        "timeline": "Enero 2026 – Marzo 2026",
-        "status": "Producción"
+        "description": "Generador de propuestas para Neowara: SPA en React con Vite y una API Hono en Cloudflare Workers, análisis de plantillas con IA, variables dinámicas e integración con Fireflies.",
+        "timeline": "Enero – marzo 2026",
+        "status": "En producción"
+      },
+      "posthog": {
+        "banner": "PR #58224",
+        "title": "PostHog – PR #58224 fusionado",
+        "description": "Corrección de la pérdida del estado de la interfaz por pestaña en la navegación multipestaña de PostHog (React, Kea). Saqué el estado del ciclo de vida de la escena, corregí la restauración desde la URL en Events y Sessions y añadí la limpieza al cerrar una pestaña. 15 archivos, revisado y fusionado.",
+        "timeline": "Mayo 2026",
+        "status": "Fusionado",
+        "linkLabel": "Ver pull request"
       }
+    },
+    "description": "Productos en producción, una contribución open source fusionada y proyectos para clientes. Del más reciente al más antiguo.",
+    "sourceCode": "Código fuente",
+    "earlier": {
+      "title": "Primeros proyectos · 2024",
+      "description": "Proyectos freelance con PHP y Nette: HexCodium, una plataforma de cursos con roles y generación de PDF, y una web con edición de contenidos para la ONG Škola života."
     }
   },
   "techStack": {

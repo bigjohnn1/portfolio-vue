@@ -84,7 +84,7 @@
     "returnToBlog": "Zpět na blog"
   },
   "projects": {
-    "title": "Moje projekty",
+    "title": "Vybraná práce",
     "liveDemo": "Živá ukázka",
     "opensNewTab": "otevře se v novém panelu",
     "techStack": "Použité technologie",
@@ -97,61 +97,45 @@
       "db": "Databáze",
       "misc": "Ostatní"
     },
-    "experiments": {
-      "kicker": "R&D / Hackathony / AI Experimenty",
-      "title": "Prototypy s AI-augmented vývojem",
-      "description": "Tyhle projekty vznikly jako moje první experimenty s tím, kam až se dá s AI buildingem dojít. Reálně nasazená MVP postavená za zlomek běžného času — s vědomými kompromisy v čistotě kódu, ne ve funkčnosti.",
-      "badge": "Experiment"
-    },
     "items": {
-      "skola-zivota": {
-        "title": "Škola života - web revamp",
-        "description": "První web s PHP backendem pro neziskovou, charitativní organizaci",
-        "timeline": "Květen 2024 (2 týdny)"
-      },
-      "milk-world": {
-        "title": "Milk World",
-        "description": "Funkční e-shop v PHP, Nette explorer",
-        "timeline": "Červen 2024 (1 měsíc)"
-      },
-      "tint-shadow": {
-        "title": "TINT s.r.o - shadow project",
-        "description": "Stínový návrh pro IT společnost, postaveno na míru",
-        "timeline": "Září 2024 (2 týdny)"
-      },
-      "hexcodium": {
-        "title": "HexCodium",
-        "description": "Kurzová platforma, posun do full Nette, custom měna, RBAC...",
-        "timeline": "Září 2024 (3 měsíce)"
-      },
-      "matchmaker": {
-        "title": "Matchmaker (unfinished)",
-        "description": "Liveservice app, full Nette + pgSQL, Redis caching a další funkce",
-        "timeline": "Prosinec 2024 (1 měsíc)"
-      },
       "v-okamihu": {
         "title": "V Okamihu",
-        "description": "První komerční týmový projekt, Vue + Tailwind FE, Nitro + Nuxt/Prisma/Zenstack BE",
-        "timeline": "Březen 2025 (1 měsíc)"
+        "description": "Rezervační platforma pro klienta, týmový projekt. Postavil jsem rezervační kalendář s kapacitami slotů validovanými na serveru, filtry synchronizované mezi Pinia a URL a API pro lektory, služby a rezervace.",
+        "timeline": "Březen – duben 2025"
       },
       "topiqu": {
         "title": "Topiqu",
-        "description": "Multi-tenant B2B SaaS blog nástroj. Automatizované SEO články, AI autor setup, custom branding na Nuxt 4, Nitro a Vue 3.5.",
-        "timeline": "Červen 2025 - Současnost",
+        "role": "Lead Full-Stack Engineer",
+        "description": "Multi-tenant publikační SaaS s AI editorem. Vedu vývoj ve dvoučlenném týmu: 90 datových modelů se 160+ přístupovými pravidly v ZenStacku, generování článků, které přežije restart i deploy, Stripe billing a ~600 testovacích souborů. Repozitář je veřejný.",
+        "timeline": "Červen 2025 – současnost",
         "status": "Beta · první klienti"
       },
       "fastproject": {
         "title": "FastProject",
-        "description": "Škálovatelný AI B2B nástroj pro řízení projektů. React SPA na Vite s Hono API běžícím na Cloudflare Workers (D1/KV/R2). Two-way Sync (Asana), chytré plánování kapacit a RBAC.",
-        "timeline": "Listopad 2025 - Březen 2026",
+        "description": "Nástroj pro řízení projektů pro Neowaru: React a Hono na Cloudflare Workers (D1, KV, R2), obousměrná synchronizace s Asanou, plánování kapacit a RBAC.",
+        "timeline": "Listopad 2025 – březen 2026",
         "status": "Interní MVP"
       },
       "nimblo": {
         "title": "Nimblo",
-        "description": "Generátor nabídek postavený jako React SPA na Vite s Hono API na Cloudflare Workers. AI analýza šablon, dynamické proměnné a přímá integrace s Fireflies.",
-        "timeline": "Leden 2026 - Březen 2026",
-        "status": "Production"
+        "description": "Generátor nabídek pro Neowaru: React SPA na Vite s Hono API na Cloudflare Workers, AI analýza šablon, dynamické proměnné a integrace s Fireflies.",
+        "timeline": "Leden – březen 2026",
+        "status": "V produkci"
+      },
+      "posthog": {
+        "banner": "PR #58224",
+        "title": "PostHog – merged PR #58224",
+        "description": "Oprava ztráty UI stavu při přepínání tabů v PostHogu (React, Kea). Stav jsem přesunul mimo životní cyklus scény, opravil obnovu z URL v Events a Sessions a doplnil úklid po zavření tabu. 15 souborů, prošlo review a je mergnuto.",
+        "timeline": "Květen 2026",
+        "status": "Mergnuto",
+        "linkLabel": "Zobrazit pull request"
       }
+    },
+    "description": "Produkční produkty, mergnutý open-source příspěvek a práce pro klienty. Od nejnovějších.",
+    "sourceCode": "Zdrojový kód",
+    "earlier": {
+      "title": "Začátky · 2024",
+      "description": "Freelance projekty v PHP a Nette: HexCodium, kurzová platforma s rolemi a generováním PDF, a web s editací obsahu pro neziskovou organizaci Škola života."
     }
   },
   "techStack": {

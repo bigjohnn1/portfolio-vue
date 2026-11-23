@@ -84,7 +84,7 @@
     "returnToBlog": "Zurück zum Blog"
   },
   "projects": {
-    "title": "Meine Projekte",
+    "title": "Ausgewählte Arbeiten",
     "liveDemo": "Live-Demo",
     "opensNewTab": "wird in einem neuen Tab geöffnet",
     "techStack": "Tech-Stack",
@@ -97,61 +97,45 @@
       "db": "Datenbank",
       "misc": "Sonstiges"
     },
-    "experiments": {
-      "kicker": "R&D / Hackathons / KI-Experimente",
-      "title": "KI-gestützte Prototypen",
-      "description": "Diese Projekte sind als meine ersten Experimente entstanden, um herauszufinden, wie weit man mit KI-gestütztem Bauen kommt. Echte, ausgelieferte MVPs in einem Bruchteil der üblichen Zeit — mit bewussten Kompromissen beim Code-Feinschliff, nicht bei der Funktionalität.",
-      "badge": "Experiment"
-    },
     "items": {
-      "skola-zivota": {
-        "title": "School of Life – Web-Relaunch",
-        "description": "Erste Website mit PHP-Backend für eine gemeinnützige, karitative Organisation",
-        "timeline": "Mai 2024 (2 Wochen)"
-      },
-      "milk-world": {
-        "title": "Milk World",
-        "description": "Funktionaler E-Shop in PHP, Nette Explorer",
-        "timeline": "Juni 2024 (1 Monat)"
-      },
-      "tint-shadow": {
-        "title": "TINT s.r.o – Shadow-Projekt",
-        "description": "Shadow-Design für ein IT-Unternehmen, maßgeschneidert gebaut",
-        "timeline": "September 2024 (2 Wochen)"
-      },
-      "hexcodium": {
-        "title": "HexCodium",
-        "description": "Kursplattform, kompletter Umstieg auf Nette, eigene Währung, RBAC...",
-        "timeline": "September 2024 (3 Monate)"
-      },
-      "matchmaker": {
-        "title": "Matchmaker (unvollendet)",
-        "description": "Liveservice-App, komplettes Nette + pgSQL, Redis-Caching und weitere Features",
-        "timeline": "Dezember 2024 (1 Monat)"
-      },
       "v-okamihu": {
         "title": "V Okamihu",
-        "description": "Erstes kommerzielles Team-Projekt, Vue + Tailwind FE, Nitro + Nuxt/Prisma/Zenstack BE",
-        "timeline": "März 2025 (1 Monat)"
+        "description": "Buchungsplattform für einen Kunden, im Team umgesetzt. Ich habe den Buchungskalender mit serverseitig validierten Slot-Kapazitäten gebaut, Filter, die zwischen Pinia und der URL synchron bleiben, und die API für Dozenten, Leistungen und Buchungen.",
+        "timeline": "März – April 2025"
       },
       "topiqu": {
         "title": "Topiqu",
-        "description": "Multi-Tenant-B2B-SaaS-Blogging-Tool. Automatisiertes Verfassen von Artikeln, KI-Autoren-Setup, gebaut auf Nuxt 4, Nitro und Vue 3.5.",
-        "timeline": "Juni 2025 – Heute",
+        "role": "Lead Full-Stack Engineer",
+        "description": "Mandantenfähige Publishing-SaaS mit KI-gestütztem Editor. Ich leite die Entwicklung in einem Zwei-Personen-Team: 90 Datenmodelle mit über 160 Zugriffsregeln in ZenStack, eine Artikelgenerierung, die Neustarts und Deployments übersteht, Stripe-Abrechnung und rund 600 Testdateien. Das Repository ist öffentlich.",
+        "timeline": "Juni 2025 – heute",
         "status": "Beta · erste Kunden"
       },
       "fastproject": {
         "title": "FastProject",
-        "description": "Skalierbares KI-B2B-Tool für Projektmanagement. React-SPA auf Vite mit Hono-API auf Cloudflare Workers (D1/KV/R2). Two-Way-Sync (Asana), intelligente Kapazitätsplanung und RBAC.",
+        "description": "Projektmanagement-Tool für Neowara: React und Hono auf Cloudflare Workers (D1, KV, R2), bidirektionale Asana-Synchronisierung, Kapazitätsplanung und RBAC.",
         "timeline": "November 2025 – März 2026",
         "status": "Internes MVP"
       },
       "nimblo": {
         "title": "Nimblo",
-        "description": "Angebotsgenerator als React-SPA auf Vite, mit Hono-API auf Cloudflare Workers. Dynamische Variablen, KI-Vorlagenanalyse und direkte Fireflies-Integration.",
-        "timeline": "Januar 2026 – März 2026",
-        "status": "Produktion"
+        "description": "Angebotsgenerator für Neowara: React-SPA mit Vite und Hono-API auf Cloudflare Workers, KI-Analyse von Vorlagen, dynamische Variablen und Fireflies-Integration.",
+        "timeline": "Januar – März 2026",
+        "status": "In Produktion"
+      },
+      "posthog": {
+        "banner": "PR #58224",
+        "title": "PostHog – gemergter PR #58224",
+        "description": "Behebt den Verlust des UI-Zustands pro Tab in der Tab-Navigation von PostHog (React, Kea). Ich habe den Zustand aus dem Lebenszyklus der Szene gelöst, die Wiederherstellung aus der URL in Events und Sessions korrigiert und das Aufräumen beim Schließen eines Tabs ergänzt. 15 Dateien, nach Review gemergt.",
+        "timeline": "Mai 2026",
+        "status": "Gemergt",
+        "linkLabel": "Pull Request ansehen"
       }
+    },
+    "description": "Produktive Produkte, ein gemergter Open-Source-Beitrag und Kundenprojekte. Neueste zuerst.",
+    "sourceCode": "Quellcode",
+    "earlier": {
+      "title": "Frühere Arbeiten · 2024",
+      "description": "Freelance-Projekte mit PHP und Nette: HexCodium, eine Kursplattform mit Rollen und PDF-Erzeugung, und eine Website mit Inhaltspflege für die gemeinnützige Organisation Škola života."
     }
   },
   "techStack": {

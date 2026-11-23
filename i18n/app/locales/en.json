@@ -84,7 +84,7 @@
     "returnToBlog": "Return to Blog"
   },
   "projects": {
-    "title": "My Projects",
+    "title": "Selected work",
     "liveDemo": "Live Demo",
     "opensNewTab": "opens in new tab",
     "techStack": "Tech stack",
@@ -97,61 +97,45 @@
       "db": "Database",
       "misc": "Misc"
     },
-    "experiments": {
-      "kicker": "R&D / Hackathons / AI Experiments",
-      "title": "AI-augmented prototypes",
-      "description": "These started as my first experiments in finding out how far AI-assisted building can go. Real, shipped MVPs built in a fraction of the usual time — with deliberate trade-offs in code polish, not in what they do.",
-      "badge": "Experiment"
-    },
     "items": {
-      "skola-zivota": {
-        "title": "School of Life - Web Revamp",
-        "description": "First website with PHP backend for a non-profit, charitable organization",
-        "timeline": "May 2024 (2 weeks)"
-      },
-      "milk-world": {
-        "title": "Milk World",
-        "description": "Functional e-shop in PHP, Nette explorer",
-        "timeline": "June 2024 (1 month)"
-      },
-      "tint-shadow": {
-        "title": "TINT s.r.o - shadow project",
-        "description": "Shadow design for an IT company, built custom",
-        "timeline": "September 2024 (2 weeks)"
-      },
-      "hexcodium": {
-        "title": "HexCodium",
-        "description": "Course platform, full Nette shift, custom currency, RBAC...",
-        "timeline": "September 2024 (3 months)"
-      },
-      "matchmaker": {
-        "title": "Matchmaker (Unfinished)",
-        "description": "Liveservice app, full Nette + pgSQL, Redis caching and other features",
-        "timeline": "December 2024 (1 month)"
-      },
       "v-okamihu": {
         "title": "V Okamihu",
-        "description": "First commercial team project, Vue + Tailwind FE, Nitro + Nuxt/Prisma/Zenstack BE",
-        "timeline": "March 2025 (1 month)"
+        "description": "Booking platform for a client, built in a team. I built the reservation calendar with server-validated slot capacities, filters synced between Pinia and the URL, and the API for lecturers, services and reservations.",
+        "timeline": "March – April 2025"
       },
       "topiqu": {
         "title": "Topiqu",
-        "description": "Multi-tenant B2B SaaS blogging tool. Automated article writing, AI author setup, built on Nuxt 4, Nitro and Vue 3.5.",
-        "timeline": "June 2025 - Present",
+        "role": "Lead Full-Stack Engineer",
+        "description": "Multi-tenant publishing SaaS with an AI-assisted editor. I lead development in a two-engineer team: 90 data models with 160+ access policies in ZenStack, article generation that survives restarts and deploys, Stripe billing and ~600 test files. The repository is public.",
+        "timeline": "June 2025 – present",
         "status": "Beta · first clients"
       },
       "fastproject": {
         "title": "FastProject",
-        "description": "Scalable AI B2B project management tool. React SPA on Vite with a Hono API on Cloudflare Workers (D1/KV/R2). Features Two-way Sync (Asana), smart capacity planning, and RBAC.",
-        "timeline": "November 2025 - March 2026",
+        "description": "Project management tool built for Neowara: React and Hono on Cloudflare Workers (D1, KV, R2), two-way Asana sync, capacity planning and RBAC.",
+        "timeline": "November 2025 – March 2026",
         "status": "Internal MVP"
       },
       "nimblo": {
         "title": "Nimblo",
-        "description": "Proposal generator built as a React SPA on Vite, backed by a Hono API on Cloudflare Workers. Dynamic variables, AI template analysis and direct Fireflies integration.",
-        "timeline": "January 2026 - March 2026",
+        "description": "Proposal generator built for Neowara: a React SPA on Vite with a Hono API on Cloudflare Workers, AI template analysis, dynamic variables and a Fireflies integration.",
+        "timeline": "January – March 2026",
         "status": "Production"
+      },
+      "posthog": {
+        "banner": "PR #58224",
+        "title": "PostHog – merged PR #58224",
+        "description": "Fixed lost per-tab UI state in PostHog's multi-tab navigation (React, Kea). I moved the state outside the scene lifecycle, fixed URL restore in Events and Sessions and added cleanup on tab close. 15 files, reviewed and merged.",
+        "timeline": "May 2026",
+        "status": "Merged",
+        "linkLabel": "View pull request"
       }
+    },
+    "description": "Production products, a merged open-source contribution and client work. Newest first.",
+    "sourceCode": "Source code",
+    "earlier": {
+      "title": "Earlier work · 2024",
+      "description": "Freelance projects in PHP and Nette: HexCodium, a course platform with role-based access and PDF generation, and a website with content editing for the Škola života nonprofit."
     }
   },
   "techStack": {
