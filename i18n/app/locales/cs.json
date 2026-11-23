@@ -399,12 +399,11 @@
     "headingConnect": "Spojení",
     "emailLabel": "Napsat email",
     "ariaSocial": "Otevřít {platform}",
-    "constellation": "Skrytá hexagonální konstelace",
-    "attribution": "Ikonografie",
     "buildLabel": "Build",
     "buildAria": "Sestavení {commit} z {date}",
     "copyright": "© {year} {name}",
     "rights": "Všechna práva vyhrazena",
-    "localTime": "Místní čas"
+    "localTime": "Místní čas",
+    "attribution": "Ikonografie"
   }
 }

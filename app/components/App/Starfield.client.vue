@@ -27,24 +27,6 @@
       />
     </svg>
 
-    <svg
-      viewBox="0 0 100 100"
-      class="absolute right-10 top-16 hidden h-32 w-32 origin-center animate-hex-drift text-violet-300/[0.05] motion-reduce:animate-none sm:block"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="0.4"
-      stroke-linejoin="round"
-    >
-      <polygon points="50,6 88,28 88,72 50,94 12,72 12,28" />
-      <polygon points="50,22 74,36 74,64 50,78 26,64 26,36" />
-      <circle
-        cx="50"
-        cy="50"
-        r="2"
-        fill="currentColor"
-      />
-    </svg>
-
     <canvas
       ref="canvasRef"
       class="absolute inset-0 h-full w-full"

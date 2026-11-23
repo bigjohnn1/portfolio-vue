@@ -399,12 +399,11 @@
     "headingConnect": "Connect",
     "emailLabel": "Send email",
     "ariaSocial": "Open {platform}",
-    "constellation": "Hidden hexagonal constellation",
-    "attribution": "Iconography",
     "buildLabel": "Build",
     "buildAria": "Build {commit} from {date}",
     "copyright": "© {year} {name}",
     "rights": "All rights reserved",
-    "localTime": "Local time"
+    "localTime": "Local time",
+    "attribution": "Iconography"
   }
 }
