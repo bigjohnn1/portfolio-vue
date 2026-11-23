@@ -184,6 +184,13 @@ export default defineNuxtConfig({
         ? false
         : {
             'img-src': ['\'self\'', 'data:', 'blob:'],
+            // @nuxt/image server-renders onerror="this.setAttribute('data-error', 1)" on every <NuxtImg>
+            // (it re-emits load errors that happened before hydration). The default 'none' blocked it and
+            // logged one CSP error per image; this allows that exact handler and nothing else.
+            'script-src-attr': [
+              '\'unsafe-hashes\'',
+              '\'sha256-bwK6T5wZVTANitXbrTsel7kl/PyCjCd/Dq5Qoz3imjM=\'',
+            ],
             'script-src': [
               '\'self\'',
               'https:',
