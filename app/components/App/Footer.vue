@@ -213,11 +213,11 @@ const email = config.public.contactEmail
 
 const sections: SectionDef[] = [
   { id: 'intro', labelKey: 'nav.intro' },
-  { id: 'about', labelKey: 'nav.about' },
   { id: 'references', labelKey: 'nav.references' },
-  { id: 'stack', labelKey: 'nav.stack' },
-  { id: 'activity', labelKey: 'nav.activity' },
   { id: 'blog-preview', labelKey: 'nav.blog' },
+  { id: 'stack', labelKey: 'nav.stack' },
+  { id: 'about', labelKey: 'nav.about' },
+  { id: 'activity', labelKey: 'nav.activity' },
   { id: 'contact', labelKey: 'nav.contact' },
 ]
 const { activeId } = useActiveSection(sections)

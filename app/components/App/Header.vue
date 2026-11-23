@@ -308,8 +308,8 @@ interface NavLink {
 const links: NavLink[] = [
   { to: '#references', section: 'references', label: 'nav.references', icon: 'lucide:message-square-quote' },
   { to: '#stack', section: 'stack', label: 'nav.stack', icon: 'lucide:layers' },
-  { to: '#contact', section: 'contact', label: 'nav.contact', icon: 'lucide:mail' },
   { to: '#about', section: 'about', label: 'nav.about', icon: 'lucide:circle-user-round' },
+  { to: '#contact', section: 'contact', label: 'nav.contact', icon: 'lucide:mail' },
 ]
 
 const midIndex = Math.floor(links.length / 2)

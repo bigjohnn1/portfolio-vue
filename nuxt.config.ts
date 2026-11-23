@@ -44,8 +44,8 @@ export default defineNuxtConfig({
   css: ['~/assets/scss/base.scss', 'vue-sonner/style.css'],
   site: {
     url: 'https://benjamintomanik.me',
-    name: 'Big John',
-    description: 'Portfolio of Benjamin Tomanik',
+    name: 'Benjamin Tomanik',
+    description: 'Benjamin Tomanik, Full-Stack TypeScript Engineer (Vue / Nuxt). Remote, B2B or full-time.',
     defaultLocale: 'en',
   },
   colorMode: {

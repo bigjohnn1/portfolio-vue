@@ -149,11 +149,11 @@ const railTransition = {
 const sections: SectionDef[] = [
   { id: 'intro', labelKey: 'nav.intro' },
   { id: 'references', labelKey: 'nav.references' },
+  { id: 'blog-preview', labelKey: 'nav.blog' },
   { id: 'stack', labelKey: 'nav.stack' },
+  { id: 'about', labelKey: 'nav.about' },
   { id: 'activity', labelKey: 'nav.activity' },
   { id: 'contact', labelKey: 'nav.contact' },
-  { id: 'about', labelKey: 'nav.about' },
-  { id: 'blog-preview', labelKey: 'nav.blog' },
 ]
 
 const pinned = shallowRef(false)

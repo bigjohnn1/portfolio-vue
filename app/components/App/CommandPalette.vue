@@ -201,12 +201,6 @@ const sectionItems = computed<CommandItem[]>(() => [
     action: () => navigateTo('#intro'),
   },
   {
-    id: 'section-about',
-    label: t('nav.about'),
-    icon: 'mdi:information-outline',
-    action: () => navigateTo('#about'),
-  },
-  {
     id: 'section-references',
     label: t('nav.references'),
     icon: 'mdi:book-open-variant',
@@ -217,6 +211,12 @@ const sectionItems = computed<CommandItem[]>(() => [
     label: t('nav.stack'),
     icon: 'mdi:stack-overflow',
     action: () => navigateTo('#stack'),
+  },
+  {
+    id: 'section-about',
+    label: t('nav.about'),
+    icon: 'mdi:information-outline',
+    action: () => navigateTo('#about'),
   },
   {
     id: 'section-activity',

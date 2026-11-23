@@ -226,8 +226,8 @@ const { data: posts, pending } = await useContentData<BlogPost[]>('blog-list', (
 )
 
 useSeoMeta({
-  title: 'Blog - Big John',
-  description: 'Read the latest thoughts and updates.',
+  title: 'Blog',
+  description: 'Engineering notes on Vue, Nuxt, Nitro, Bun and TypeScript by Benjamin Tomanik.',
 })
 
 const itemsPerPage = 6

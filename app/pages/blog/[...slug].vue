@@ -101,7 +101,7 @@ const { data: post, pending } = await useContentData(
 )
 
 useSeoMeta({
-  title: () => (post.value?.title ? `${post.value.title} - Big John` : 'Blog - Big John'),
+  title: () => post.value?.title || 'Blog',
   description: () => post.value?.description || '',
 })
 </script>

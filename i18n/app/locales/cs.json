@@ -1,7 +1,7 @@
 {
   "seo": {
-    "homeTitle": "Big John - Portfolio",
-    "homeDescription": "Portfolio tvůrce Big John."
+    "homeTitle": "Benjamin Tomaník – Full-Stack TypeScript Engineer (Vue / Nuxt)",
+    "homeDescription": "Full-stack TypeScript engineer se 3 lety zkušeností s produkčním SaaS na Vue, Nuxtu a PostgreSQL. Hledám remote roli, B2B nebo HPP."
   },
   "global": {
     "name": "Benjamin Tomaník"
@@ -279,7 +279,7 @@
   },
   "contact": {
     "heading": "Kontakt",
-    "description": "Dotaz, návrhy, spolupráce – není problém! Napište mi rovnou nebo mě kontaktujte na sociálních sítích.",
+    "description": "Hledám remote roli jako full-stack TypeScript engineer (Vue / Nuxt). Pracovní nabídka, spolupráce nebo rychlý dotaz – napište mi přímo, nebo přes LinkedIn.",
     "availability": "Obvykle odpovím do 24 hodin",
     "name": "Vaše celé jméno",
     "hours": "Pracovní doba",
@@ -323,6 +323,7 @@
     "consentLabel": "Souhlasím se zpracováním osobních údajů podle ",
     "privacyLink": "zásad ochrany osobních údajů",
     "reasons": {
+      "job": "Pracovní nabídka",
       "inquiry": "Dotaz",
       "suggestion": "Návrh",
       "request": "Poptávka",
@@ -449,8 +450,8 @@
     "closeButton": "Zavřít"
   },
   "footer": {
-    "tagline": "Builder · SaaS & AI",
-    "location": "Praha",
+    "tagline": "Full-Stack TypeScript Engineer · Vue / Nuxt",
+    "location": "Remote · CET",
     "headingSections": "Sekce",
     "headingConnect": "Spojení",
     "emailLabel": "Napsat email",

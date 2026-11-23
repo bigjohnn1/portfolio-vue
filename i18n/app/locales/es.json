@@ -1,7 +1,7 @@
 {
   "seo": {
-    "homeTitle": "Benjamin Tomanik - Product Engineer",
-    "homeDescription": "Portfolio de Benjamin Tomanik, Product Engineer y Co-fundador técnico."
+    "homeTitle": "Benjamin Tomanik – Full-Stack TypeScript Engineer (Vue / Nuxt)",
+    "homeDescription": "Ingeniero full-stack TypeScript con 3 años de experiencia en SaaS en producción con Vue, Nuxt y PostgreSQL. Abierto a puestos en remoto, como B2B o en plantilla."
   },
   "global": {
     "name": "Benjamin Tomanik"
@@ -279,7 +279,7 @@
   },
   "contact": {
     "heading": "Contacto",
-    "description": "Preguntas, sugerencias, colaboración – ¡sin problema! Escríbeme directamente o contáctame en redes sociales.",
+    "description": "Busco un puesto en remoto como ingeniero full-stack TypeScript (Vue / Nuxt). Una oferta de empleo, una colaboración o una pregunta rápida: escríbeme directamente o por LinkedIn. Trabajo en inglés y checo.",
     "availability": "Suelo responder en menos de un día",
     "name": "Tu nombre completo",
     "hours": "Horario laboral (CET)",
@@ -323,6 +323,7 @@
     "consentLabel": "Acepto el tratamiento de mis datos personales conforme a la ",
     "privacyLink": "política de privacidad",
     "reasons": {
+      "job": "Oferta de empleo",
       "inquiry": "Consulta",
       "suggestion": "Sugerencia",
       "request": "Solicitud",
@@ -449,8 +450,8 @@
     "closeButton": "Cerrar"
   },
   "footer": {
-    "tagline": "Builder · SaaS & AI",
-    "location": "Praga",
+    "tagline": "Full-Stack TypeScript Engineer · Vue / Nuxt",
+    "location": "Remoto · CET",
     "headingSections": "Secciones",
     "headingConnect": "Conectar",
     "emailLabel": "Enviar email",
