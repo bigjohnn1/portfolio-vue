@@ -22,13 +22,6 @@
     "switchLanguage": "Switch Language",
     "backToTop": "Back to top"
   },
-  "scene": {
-    "title": "3D scene",
-    "description": "An interactive 3D scene featuring floating tech labels and a subtle code-rain backdrop. Press Escape to close.",
-    "openHint": "Open 3D scene",
-    "close": "Close 3D scene",
-    "escHint": "to close"
-  },
   "cmdk": {
     "title": "Command palette",
     "search": "Search",
@@ -377,70 +370,36 @@
     "profileCta": "View profile"
   },
   "about": {
-    "title": "Who I Am",
-    "card": {
-      "idLabel": "PROFILE · 2026",
-      "name": "Benjamin Tomanik",
-      "role": "Product Engineer & Co-Founder",
-      "location": "Czechia",
-      "tagline": "Building scalable SaaS & AI workflows.",
-      "shortBio": "Product engineer who loves fantasy. Takes full ownership of shipping product and builds things that make sense — without unnecessary bureaucracy.",
-      "photoAlt": "Portrait of Big John",
-      "signatureLabel": "Signature",
-      "flipHint": "Flip card",
-      "flipBack": "Flip back",
-      "backTitle": "How I work"
+    "title": "About",
+    "portrait": {
+      "alt": "Portrait of Benjamin Tomanik drawn as a GitHub contribution graph"
     },
-    "story": {
-      "title": "My Story",
-      "description": "I am a product engineer from Czechia who loves fantasy and enjoys building things that make sense. I take full ownership of shipping — favoring independence and fast iteration over bureaucracy. I recently co-founded a startup where I built the entire scalable architecture from scratch; from edge technologies like Vue & Nuxt or React & Next on the frontend to the database, infrastructure, and even the business model."
-    },
-    "points": {
-      "workflow": {
-        "title": "Workflow & Architecture",
-        "description": "My workflow is heavily AI-assisted. I like setting up worktrees with AI agents (Claude Code, Codex CLI) and delegating syntax-level work to them. This allows me to deliver results much faster, while my pipeline ensures that the output is safe for production right after deployment. Of course, I still validate important commits manually."
-      },
-      "principles": {
-        "title": "Core Principles",
-        "description": "I take full ownership of what I ship. I value independence and fast iteration, with a strict focus on results and real impact — over unnecessary bureaucracy."
-      }
-    },
-    "facts": {
-      "title": "Fun Facts About Me",
-      "items": {
-        "learning": {
-          "title": "Continuous Improvement",
-          "description": "Whether it's coding, business, or lifestyle, constant self-improvement and pushing my own boundaries is my daily routine."
-        },
-        "lifestyle": {
-          "title": "Healthy Living",
-          "description": "Running, hitting the gym, or eating healthy keeps me fueled for my projects."
-        },
-        "rpg": {
-          "title": "Fantasy Fan",
-          "description": "I love fantasy worlds like D&D, The Witcher, or LOTR."
-        }
-      },
-      "criticalSuccess": "Critical Success",
-      "criticalFailure": "Critical Failure"
+    "bio": {
+      "intro": "I'm a full-stack TypeScript engineer from Czechia. I've been building web applications with Vue and Nuxt since 2024, and for the last year and a half mostly Topiqu, a multi-tenant SaaS where I lead development in a two-engineer team, from the data model to production infrastructure.",
+      "work": "I do my best work when I can take a feature from design to production and keep looking after it. I keep authorization in the data layer, contracts typed and changes small enough to review well. I use AI coding agents (Claude Code, Codex) every day, and every change still has to pass types, tests, CI and my own review.",
+      "personal": "Outside of code I run, lift and read fantasy, mostly The Witcher and The Lord of the Rings."
     },
     "stats": {
-      "xp": { "label": "Experience", "value": "2.5 yrs" },
-      "quests": { "label": "Projects", "value": "9" },
-      "stack": { "label": "Focus", "value": "Full-stack" },
-      "feats": { "label": "Certificates", "value": "4" }
-    },
-    "achievements": {
-      "kicker": "Anthropic Certified",
-      "title": "Achievements Unlocked",
-      "unlocked": "Unlocked",
-      "issuer": "Anthropic",
-      "items": {
-        "api": { "name": "Building with the Claude API" },
-        "skills": { "name": "Agent Skills" },
-        "claudeCode": { "name": "Claude Code in Action" },
-        "mcp": { "name": "MCP: Advanced Topics" }
+      "xp": {
+        "label": "Experience",
+        "value": "2024 – present"
+      },
+      "remote": {
+        "label": "Work",
+        "value": "Remote · CET"
+      },
+      "contract": {
+        "label": "Contract",
+        "value": "B2B / full-time"
+      },
+      "languages": {
+        "label": "Languages",
+        "value": "EN (C1) · CZ"
       }
+    },
+    "certifications": {
+      "label": "Certifications",
+      "value": "Anthropic Academy: Building with the Claude API, MCP: Advanced Topics, Agent Skills, Claude Code in Action"
     }
   },
   "consent": {
@@ -461,6 +420,7 @@
     "buildLabel": "Build",
     "buildAria": "Build {commit} from {date}",
     "copyright": "© {year} {name}",
-    "rights": "All rights reserved"
+    "rights": "All rights reserved",
+    "localTime": "Local time"
   }
 }

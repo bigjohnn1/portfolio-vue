@@ -88,7 +88,7 @@
     </svg>
 
     <span class="inline-flex flex-col text-[0.7rem] leading-[1.05] tracking-[0.04em]">
-      <span class="text-[0.62rem] uppercase opacity-60">{{ t('about.card.location') }}</span>
+      <span class="text-[0.62rem] uppercase opacity-60">{{ t('footer.localTime') }}</span>
       <NuxtTime
         class="text-[0.82rem] font-semibold tabular-nums"
         :datetime="now"

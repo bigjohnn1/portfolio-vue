@@ -22,13 +22,6 @@
     "switchLanguage": "Sprache wechseln",
     "backToTop": "Nach oben"
   },
-  "scene": {
-    "title": "3D-Szene",
-    "description": "Eine interaktive 3D-Szene mit schwebenden Tech-Labels und einem dezenten Code-Rain-Hintergrund. Drücke Escape zum Schließen.",
-    "openHint": "3D-Szene öffnen",
-    "close": "3D-Szene schließen",
-    "escHint": "zum Schließen"
-  },
   "cmdk": {
     "title": "Befehlspalette",
     "search": "Suche",
@@ -377,70 +370,36 @@
     "profileCta": "Profil ansehen"
   },
   "about": {
-    "title": "Wer ich bin",
-    "card": {
-      "idLabel": "PROFIL · 2026",
-      "name": "Benjamin Tomanik",
-      "role": "Product Engineer & Co-Founder",
-      "location": "Tschechien",
-      "tagline": "Ich baue skalierbares SaaS & KI-Workflows.",
-      "shortBio": "Product Engineer mit einer Schwäche für Fantasy. Übernimmt volle Verantwortung für den Produkt-Release und baut Dinge, die Sinn ergeben — ohne überflüssige Bürokratie.",
-      "photoAlt": "Porträt von Big John",
-      "signatureLabel": "Signatur",
-      "flipHint": "Karte umdrehen",
-      "flipBack": "Zurückdrehen",
-      "backTitle": "So arbeite ich"
+    "title": "Über mich",
+    "portrait": {
+      "alt": "Porträt von Benjamin Tomanik, gezeichnet als GitHub-Beitragsgrafik"
     },
-    "story": {
-      "title": "Meine Geschichte",
-      "description": "Ich bin Product Engineer aus Tschechien, liebe Fantasy und baue gerne Dinge, die Sinn ergeben. Ich übernehme volle Verantwortung für den Release — mit Fokus auf Eigenständigkeit und schnelle Iterationen statt Bürokratie. Vor Kurzem habe ich ein Startup mitgegründet, in dem ich die gesamte skalierbare Architektur von Grund auf gebaut habe; von Edge-Technologien wie Vue & Nuxt oder React & Next im Frontend bis zur Datenbank, Infrastruktur und sogar dem Geschäftsmodell."
-    },
-    "points": {
-      "workflow": {
-        "title": "Workflow & Architektur",
-        "description": "Mein Workflow ist stark KI-gestützt. Ich setze gerne Worktrees mit KI-Agenten auf (Claude Code, Codex CLI) und delegiere syntax-nahe Arbeit an sie. So liefere ich Ergebnisse deutlich schneller, während meine Pipeline dafür sorgt, dass das Ergebnis direkt nach dem Deploy produktionssicher ist. Wichtige Commits validiere ich natürlich weiterhin manuell."
-      },
-      "principles": {
-        "title": "Grundprinzipien",
-        "description": "Ich übernehme volle Verantwortung für das, was ich ausliefere. Ich setze auf Eigenständigkeit und schnelle Iterationen, mit kompromisslosem Fokus auf Ergebnis und echte Wirkung — statt auf überflüssige Bürokratie."
-      }
-    },
-    "facts": {
-      "title": "Wissenswertes über mich",
-      "items": {
-        "learning": {
-          "title": "Ständige Verbesserung",
-          "description": "Ob Coding, Business oder Lifestyle — kontinuierliche Selbstverbesserung und das Verschieben eigener Grenzen ist meine tägliche Routine."
-        },
-        "lifestyle": {
-          "title": "Gesunder Lebensstil",
-          "description": "Laufen, Gym und gesundes Essen halten mich im Tempo für meine Projekte."
-        },
-        "rpg": {
-          "title": "Fantasy-Fan",
-          "description": "Ich liebe Fantasy-Welten wie D&D, The Witcher oder Der Herr der Ringe."
-        }
-      },
-      "criticalSuccess": "Kritischer Erfolg",
-      "criticalFailure": "Kritischer Patzer"
+    "bio": {
+      "intro": "Ich bin Full-Stack-TypeScript-Engineer aus Tschechien. Seit 2024 baue ich Webanwendungen mit Vue und Nuxt, in den letzten anderthalb Jahren vor allem Topiqu, eine mandantenfähige SaaS, deren Entwicklung ich in einem Zwei-Personen-Team leite, vom Datenmodell bis zur Produktionsinfrastruktur.",
+      "work": "Am besten arbeite ich, wenn ich ein Feature vom Entwurf bis in die Produktion begleiten und mich danach weiter darum kümmern kann. Autorisierung gehört bei mir in die Datenschicht, Schnittstellen sind typisiert und Änderungen klein genug für ein gutes Review. Ich arbeite täglich mit KI-Coding-Agenten (Claude Code, Codex), und jede Änderung muss trotzdem Typen, Tests, CI und mein eigenes Review bestehen.",
+      "personal": "Abseits vom Code laufe ich, trainiere im Fitnessstudio und lese Fantasy, am liebsten The Witcher und Der Herr der Ringe."
     },
     "stats": {
-      "xp": { "label": "Erfahrung", "value": "2,5 Jahre" },
-      "quests": { "label": "Projekte", "value": "9" },
-      "stack": { "label": "Fokus", "value": "Full-Stack" },
-      "feats": { "label": "Zertifikate", "value": "4" }
-    },
-    "achievements": {
-      "kicker": "Anthropic-zertifiziert",
-      "title": "Erfolge freigeschaltet",
-      "unlocked": "Freigeschaltet",
-      "issuer": "Anthropic",
-      "items": {
-        "api": { "name": "Building with the Claude API" },
-        "skills": { "name": "Agent Skills" },
-        "claudeCode": { "name": "Claude Code in Action" },
-        "mcp": { "name": "MCP: Advanced Topics" }
+      "xp": {
+        "label": "Erfahrung",
+        "value": "2024 – heute"
+      },
+      "remote": {
+        "label": "Arbeit",
+        "value": "Remote · CET"
+      },
+      "contract": {
+        "label": "Vertrag",
+        "value": "B2B / Festanstellung"
+      },
+      "languages": {
+        "label": "Sprachen",
+        "value": "EN (C1) · CZ"
       }
+    },
+    "certifications": {
+      "label": "Zertifizierungen",
+      "value": "Anthropic Academy: Building with the Claude API, MCP: Advanced Topics, Agent Skills, Claude Code in Action"
     }
   },
   "consent": {
@@ -461,6 +420,7 @@
     "buildLabel": "Build",
     "buildAria": "Build {commit} vom {date}",
     "copyright": "© {year} {name}",
-    "rights": "Alle Rechte vorbehalten"
+    "rights": "Alle Rechte vorbehalten",
+    "localTime": "Ortszeit"
   }
 }

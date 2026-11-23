@@ -10,7 +10,7 @@
     "activity": "Aktivita",
     "intro": "Úvod",
     "references": "Projekty",
-    "about": "Kdo jsem",
+    "about": "O mně",
     "blog": "Blog",
     "contact": "Kontakty",
     "stack": "S čím pracuji",
@@ -21,13 +21,6 @@
     "toggleTheme": "Přepnout téma",
     "switchLanguage": "Změnit jazyk",
     "backToTop": "Zpět nahoru"
-  },
-  "scene": {
-    "title": "3D scéna",
-    "description": "Interaktivní 3D scéna s plovoucími tech názvy a jemným code-rain pozadím. Stiskni Escape pro zavření.",
-    "openHint": "Otevřít 3D scénu",
-    "close": "Zavřít 3D scénu",
-    "escHint": "pro zavření"
   },
   "cmdk": {
     "title": "Příkazová paleta",
@@ -377,70 +370,36 @@
     "profileCta": "Zobrazit profil"
   },
   "about": {
-    "title": "Kdo jsem",
-    "card": {
-      "idLabel": "PROFIL · 2026",
-      "name": "Benjamin Tomaník",
-      "role": "Product Engineer & Co-Founder",
-      "location": "Česko",
-      "tagline": "Stavím škálovatelný SaaS a AI workflow.",
-      "shortBio": "Product engineer, který miluje fantasy. Beru si plnou odpovědnost nad doručením produktu a stavím věci, co dávají smysl — bez zbytečné byrokracie.",
-      "photoAlt": "Portrét Big John",
-      "signatureLabel": "Podpis",
-      "flipHint": "Otoč kartu",
-      "flipBack": "Otoč zpět",
-      "backTitle": "Jak pracuji"
+    "title": "O mně",
+    "portrait": {
+      "alt": "Portrét Benjamina Tomaníka nakreslený jako graf příspěvků z GitHubu"
     },
-    "story": {
-      "title": "Můj příběh",
-      "description": "Jsem product engineer z Česka, který miluje fantasy a rád staví věci, které dávají smysl. Beru si plnou odpovědnost nad doručením produktu — zakládám si na samostatnosti a rychlých iteracích s minimem byrokracie. Nedávno jsem spoluzaložil startup, kde jsem od nuly postavil celou škálovatelnou architekturu; od edge technologií jako Vue & Nuxt nebo React & Next na frontendu až po databázi, infrastrukturu a dokonce i byznys model."
-    },
-    "points": {
-      "workflow": {
-        "title": "Workflow & Architektura",
-        "description": "Moje workflow je silně podpořené umělou inteligencí. Rád si nastavuji worktrees s AI agenty (Claude Code, Codex CLI) a deleguji na ně práci na úrovni syntaxe. Díky tomu dodávám výsledky mnohem rychleji, přičemž moje pipeline zajišťuje, že výsledek je bezpečný pro produkci hned po nasazení. Důležité commity samozřejmě stále validuji manuálně."
-      },
-      "principles": {
-        "title": "Základní principy",
-        "description": "Beru si plnou odpovědnost nad tím, co doručuji. Zakládám si na samostatnosti a rychlých iteracích, s tvrdou orientací na výsledek a skutečný dopad — místo zbytečné byrokracie."
-      }
-    },
-    "facts": {
-      "title": "Zajímavosti o mně",
-      "items": {
-        "learning": {
-          "title": "Neustálé zlepšování",
-          "description": "Ať už jde o kódování, byznys nebo životní styl, neustálé sebevzdělávání a posouvání vlastních hranic je moje denní rutina."
-        },
-        "lifestyle": {
-          "title": "Zdravý životní styl",
-          "description": "Běhání, posilovna nebo zdravé jídlo mě udržují v tempu pro moje projekty."
-        },
-        "rpg": {
-          "title": "Fantasy fanoušek",
-          "description": "Mám rád fantasy světy, jako je D&D, Zaklínač nebo Pán prstenů."
-        }
-      },
-      "criticalSuccess": "Kritický úspěch",
-      "criticalFailure": "Kritické selhání"
+    "bio": {
+      "intro": "Jsem full-stack TypeScript engineer z Česka. Webové aplikace ve Vue a Nuxtu stavím od roku 2024, poslední rok a půl hlavně Topiqu, multi-tenant SaaS, kde ve dvoučlenném týmu vedu vývoj od datového modelu po produkční infrastrukturu.",
+      "work": "Nejlíp mi je, když můžu vzít feature od návrhu až do produkce a pak se o ni starat. Autorizaci držím v datové vrstvě, kontrakty typované a změny tak malé, aby se daly dobře reviewovat. S AI agenty (Claude Code, Codex) pracuji denně a každá změna i tak musí projít typy, testy, CI a mým review.",
+      "personal": "Mimo kód běhám, chodím do posilovny a čtu fantasy, nejradši Zaklínače a Pána prstenů."
     },
     "stats": {
-      "xp": { "label": "Praxe", "value": "2,5 roku" },
-      "quests": { "label": "Projekty", "value": "9" },
-      "stack": { "label": "Zaměření", "value": "Full-stack" },
-      "feats": { "label": "Certifikáty", "value": "4" }
-    },
-    "achievements": {
-      "kicker": "Certifikováno Anthropic",
-      "title": "Odemčené achievementy",
-      "unlocked": "Odemčeno",
-      "issuer": "Anthropic",
-      "items": {
-        "api": { "name": "Building with the Claude API" },
-        "skills": { "name": "Agent Skills" },
-        "claudeCode": { "name": "Claude Code in Action" },
-        "mcp": { "name": "MCP: Advanced Topics" }
+      "xp": {
+        "label": "Praxe",
+        "value": "2024 – současnost"
+      },
+      "remote": {
+        "label": "Práce",
+        "value": "Remote · CET"
+      },
+      "contract": {
+        "label": "Spolupráce",
+        "value": "B2B / HPP"
+      },
+      "languages": {
+        "label": "Jazyky",
+        "value": "CZ · EN (C1)"
       }
+    },
+    "certifications": {
+      "label": "Certifikace",
+      "value": "Anthropic Academy: Building with the Claude API, MCP: Advanced Topics, Agent Skills, Claude Code in Action"
     }
   },
   "consent": {
@@ -461,6 +420,7 @@
     "buildLabel": "Build",
     "buildAria": "Sestavení {commit} z {date}",
     "copyright": "© {year} {name}",
-    "rights": "Všechna práva vyhrazena"
+    "rights": "Všechna práva vyhrazena",
+    "localTime": "Místní čas"
   }
 }

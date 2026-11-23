@@ -15,7 +15,6 @@
       v-if="isHome"
       hydrate-on-idle
     />
-    <LazyAboutSceneOverlay v-if="sceneIsOpen" />
     <Toaster
       position="bottom-right"
       :theme="colorMode.value === 'dark' ? 'dark' : 'light'"
@@ -36,7 +35,6 @@ const loaderColor = computed(() => {
 const isDark = computed(() => colorMode.value === 'dark')
 
 const { isOpen: paletteIsOpen } = useCommandPalette()
-const { isOpen: sceneIsOpen } = useScene()
 
 const route = useRoute()
 const routeBaseName = useRouteBaseName()
