@@ -52,13 +52,13 @@
     "openSocial": "{platform} öffnen"
   },
   "intro": {
-    "role": "Builder · SaaS & AI",
-    "tagline": "Schnell, sauber, ohne Ballast.",
-    "subtitle": "Ich baue Web-Produkte, die schnell, sauber optimiert und unter der Haube aufgeräumt sind.",
-    "cta": "Abenteuer starten",
-    "ctaLabel": "Kontakt aufnehmen",
-    "ctaSub": "Antwort innerhalb eines Tages · Aus Prag, GMT+1",
-    "scrollHint": "Scrollen und entdecken",
+    "subtitle": "Ich baue und betreibe produktive SaaS-Anwendungen, vom Datenmodell bis zum Deployment. Zuletzt Topiqu, eine mandantenfähige Publishing-Plattform, und einen gemergten Fix in PostHog.",
+    "cta": "Projekte ansehen",
+    "ctaLabel": "Zu den Projekten",
+    "ctaSub": "Remote (CET) · B2B oder Festanstellung · Arbeitssprachen: Englisch, Tschechisch",
+    "headline": "Full-Stack TypeScript Engineer (Vue / Nuxt)",
+    "cv": "Lebenslauf herunterladen",
+    "cvLabel": "Lebenslauf herunterladen (PDF, Englisch)",
     "roll": {
       "aria": "Wirf den d20, um einen zufälligen Abschnitt zu erkunden",
       "lead": "Das Schicksal weist nach",

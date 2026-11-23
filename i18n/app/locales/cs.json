@@ -52,13 +52,13 @@
     "openSocial": "Otevřít {platform}"
   },
   "intro": {
-    "role": "Builder · SaaS & AI",
-    "tagline": "Rychle, čistě, bez balastu.",
-    "subtitle": "Stavím webové produkty, které jsou rychlé, dobře optimalizované a čisté pod kapotou.",
-    "cta": "Zahaj výpravu",
-    "ctaLabel": "Kontaktovat",
-    "ctaSub": "Odpovím do 24 h · Praha, GMT+1",
-    "scrollHint": "Skroluj a prozkoumej",
+    "subtitle": "Stavím a provozuji produkční SaaS, od datového modelu po deploy. Naposledy multi-tenant publikační platformu Topiqu a mergnutý fix v PostHogu.",
+    "cta": "Prohlédnout projekty",
+    "ctaLabel": "Přejít na projekty",
+    "ctaSub": "Remote (CET) · B2B nebo HPP · Pracovní jazyky: čeština, angličtina",
+    "headline": "Full-Stack TypeScript Engineer (Vue / Nuxt)",
+    "cv": "Stáhnout CV",
+    "cvLabel": "Stáhnout CV (PDF, anglicky)",
     "roll": {
       "aria": "Hoď d20 a prozkoumej náhodnou sekci",
       "lead": "Osud tě posílá do",

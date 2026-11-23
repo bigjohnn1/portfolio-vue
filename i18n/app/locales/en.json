@@ -52,13 +52,13 @@
     "openSocial": "Open {platform}"
   },
   "intro": {
-    "role": "Builder · SaaS & AI",
-    "tagline": "Fast, clean, no bloat.",
-    "subtitle": "I build web products that are fast, well-optimized, and clean under the hood.",
-    "cta": "Begin the quest",
-    "ctaLabel": "Contact me",
-    "ctaSub": "Reply within a day · From Prague, GMT+1",
-    "scrollHint": "Scroll to explore",
+    "subtitle": "I build and run production SaaS, from the data model to the deploy. Most recently Topiqu, a multi-tenant publishing platform, and a merged fix in PostHog.",
+    "cta": "See my work",
+    "ctaLabel": "Go to projects",
+    "ctaSub": "Remote (CET) · B2B or full-time · Working languages: English, Czech",
+    "headline": "Full-Stack TypeScript Engineer (Vue / Nuxt)",
+    "cv": "Download CV",
+    "cvLabel": "Download CV (PDF, English)",
     "roll": {
       "aria": "Roll the d20 to explore a random section",
       "lead": "Fate points to",
