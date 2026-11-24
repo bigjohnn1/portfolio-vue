@@ -253,7 +253,7 @@ const reasons = CONTACT_REASONS
 const emptyForm = (): ContactFormInput & { website: string } => ({
   name: '',
   email: '',
-  reason: 'inquiry',
+  reason: 'job',
   message: '',
   consent: false,
   website: '',

@@ -15,7 +15,6 @@
       v-if="isHome"
       hydrate-on-idle
     />
-    <LazyAboutSceneOverlay v-if="sceneIsOpen" />
     <Toaster
       position="bottom-right"
       :theme="colorMode.value === 'dark' ? 'dark' : 'light'"
@@ -36,7 +35,6 @@ const loaderColor = computed(() => {
 const isDark = computed(() => colorMode.value === 'dark')
 
 const { isOpen: paletteIsOpen } = useCommandPalette()
-const { isOpen: sceneIsOpen } = useScene()
 
 const route = useRoute()
 const routeBaseName = useRouteBaseName()
@@ -59,7 +57,7 @@ if (import.meta.client) {
 
 useSeoMeta({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} - Big John` : 'Big John'
+    return titleChunk ? `${titleChunk} - Benjamin Tomanik` : 'Benjamin Tomanik'
   },
 })
 
@@ -68,8 +66,8 @@ useSchemaOrg([
     '@id': 'https://benjamintomanik.me/#person',
     'name': 'Benjamin Tomanik',
     'alternateName': 'Big John',
-    'jobTitle': 'Product Engineer & Technical Co-Founder',
-    'description': 'Product engineer from Czechia building scalable full-stack architectures with Vue, Nuxt, React and Next.',
+    'jobTitle': 'Full-Stack TypeScript Engineer',
+    'description': 'Full-stack TypeScript engineer from Czechia building production SaaS with Vue, Nuxt and PostgreSQL. Open to remote roles.',
     'image': 'https://benjamintomanik.me/bj.png',
     'url': 'https://benjamintomanik.me',
     'email': `mailto:${useRuntimeConfig().public.contactEmail}`,
@@ -84,9 +82,9 @@ useSchemaOrg([
       'React',
       'Next.js',
       'TypeScript',
+      'PostgreSQL',
       'Node.js',
       'Tailwind CSS',
-      'Three.js',
       'GSAP',
       'Pinia',
       'ZenStack',
@@ -96,8 +94,8 @@ useSchemaOrg([
   }),
   defineWebSite({
     '@id': 'https://benjamintomanik.me/#website',
-    'name': 'Big John — Benjamin Tomanik',
-    'description': 'Portfolio of Benjamin Tomanik, Product Engineer & Technical Co-Founder.',
+    'name': 'Benjamin Tomanik',
+    'description': 'Portfolio of Benjamin Tomanik, Full-Stack TypeScript Engineer (Vue / Nuxt).',
     'url': 'https://benjamintomanik.me',
     'inLanguage': ['en', 'cs', 'de', 'fr', 'es'],
     'publisher': { '@id': 'https://benjamintomanik.me/#person' },

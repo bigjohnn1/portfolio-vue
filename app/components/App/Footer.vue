@@ -1,64 +1,9 @@
 <template>
   <footer
     role="contentinfo"
-    class="group/footer relative overflow-hidden bg-gray-50 text-gray-700 transition-colors dark:bg-gray-950 dark:text-gray-300"
+    class="relative overflow-hidden border-t border-gray-200 bg-gray-50 text-gray-700 transition-colors dark:border-white/10 dark:bg-gray-950 dark:text-gray-300"
   >
-    <div
-      aria-hidden="true"
-      class="relative z-10 mx-auto flex max-w-content items-center gap-4 px-section-x pt-12 sm:gap-6"
-    >
-      <span class="h-px flex-1 bg-gradient-to-r from-transparent via-primary-500/35 to-primary-500/40 dark:via-primary-400/30 dark:to-primary-400/35" />
-      <div
-        :aria-label="$t('footer.constellation')"
-        role="img"
-        class="relative grid h-14 w-14 shrink-0 place-items-center sm:h-16 sm:w-16"
-      >
-        <svg
-          viewBox="0 0 64 64"
-          class="absolute inset-0 h-full w-full text-primary-500/40 transition-colors duration-700 group-hover/footer:text-primary-500/80 dark:text-primary-400/35 dark:group-hover/footer:text-primary-400/75"
-          fill="none"
-          stroke="currentColor"
-          aria-hidden="true"
-        >
-          <circle
-            cx="32"
-            cy="32"
-            r="26"
-            stroke-width="0.6"
-            stroke-dasharray="1.5 3"
-          />
-          <circle
-            cx="32"
-            cy="32"
-            r="20"
-            stroke-width="0.5"
-            opacity="0.6"
-          />
-          <g
-            v-for="i in 12"
-            :key="i"
-            :transform="`rotate(${(i - 1) * 30} 32 32)`"
-          >
-            <line
-              x1="32"
-              :y1="i % 3 === 0 ? 2 : 4"
-              x2="32"
-              y2="6"
-              :stroke-width="i % 3 === 0 ? '0.9' : '0.5'"
-              :opacity="i % 3 === 0 ? 1 : 0.55"
-            />
-          </g>
-        </svg>
-        <Icon
-          name="game-icons:rune-stone"
-          class="relative h-5 w-5 text-primary-500/80 transition-all duration-500 group-hover/footer:scale-110 group-hover/footer:text-primary-500 motion-reduce:transition-none sm:h-6 sm:w-6 dark:text-primary-400/80 dark:group-hover/footer:text-primary-400"
-          aria-hidden="true"
-        />
-      </div>
-      <span class="h-px flex-1 bg-gradient-to-l from-transparent via-primary-500/35 to-primary-500/40 dark:via-primary-400/30 dark:to-primary-400/35" />
-    </div>
-
-    <div class="relative z-10 mx-auto grid max-w-content gap-10 px-section-x py-10 sm:py-12 lg:grid-cols-3 lg:gap-16">
+    <div class="relative z-10 mx-auto grid max-w-content gap-10 px-section-x py-12 sm:py-14 lg:grid-cols-3 lg:gap-16">
       <div class="flex flex-col gap-3">
         <p class="font-display text-lg font-semibold tracking-tight text-gray-900 dark:text-gray-50">
           {{ $t('global.name') }}
@@ -213,11 +158,11 @@ const email = config.public.contactEmail
 
 const sections: SectionDef[] = [
   { id: 'intro', labelKey: 'nav.intro' },
-  { id: 'about', labelKey: 'nav.about' },
   { id: 'references', labelKey: 'nav.references' },
-  { id: 'stack', labelKey: 'nav.stack' },
-  { id: 'activity', labelKey: 'nav.activity' },
   { id: 'blog-preview', labelKey: 'nav.blog' },
+  { id: 'stack', labelKey: 'nav.stack' },
+  { id: 'about', labelKey: 'nav.about' },
+  { id: 'activity', labelKey: 'nav.activity' },
   { id: 'contact', labelKey: 'nav.contact' },
 ]
 const { activeId } = useActiveSection(sections)

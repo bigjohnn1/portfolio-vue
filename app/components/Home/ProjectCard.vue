@@ -3,12 +3,11 @@
     ref="cardEl"
     :aria-labelledby="titleId"
     :class="[
-      'group/card relative flex min-h-[33rem] flex-col overflow-hidden rounded-2xl border bg-white/90 shadow-[0_4px_16px_rgba(15,23,42,0.06)] backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300 ease-out lg:min-h-[35rem]',
+      'group/card relative flex flex-col overflow-hidden rounded-2xl border bg-white/90 shadow-[0_4px_16px_rgba(15,23,42,0.06)] backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300 ease-out',
+      !featured && 'min-h-[33rem] lg:min-h-[35rem]',
       'hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(15,23,42,0.12)] focus-within:-translate-y-1 focus-within:shadow-[0_12px_32px_rgba(15,23,42,0.12)]',
       'motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:focus-within:translate-y-0',
-      project.kind === 'experiment'
-        ? '[--card-glow:rgba(167,139,250,0.20)] border-violet-200/70 hover:border-violet-300 dark:border-violet-400/25 dark:bg-violet-950/30 dark:hover:border-violet-300/50'
-        : '[--card-glow:rgba(56,189,248,0.18)] border-gray-200/80 hover:border-gray-300 dark:border-white/[0.08] dark:bg-gray-900/70 dark:hover:border-white/15',
+      '[--card-glow:rgba(56,189,248,0.18)] border-gray-200/80 hover:border-gray-300 dark:border-white/[0.08] dark:bg-gray-900/70 dark:hover:border-white/15',
     ]"
   >
     <div
@@ -22,17 +21,39 @@
     />
 
     <div
-      v-if="project.kind === 'experiment'"
+      v-if="!project.image"
       aria-hidden="true"
-      class="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-violet-400/70 to-transparent dark:via-violet-300/50"
-    />
+      class="relative z-10 flex h-52 items-center justify-center gap-4 overflow-hidden border-b border-gray-200/70 bg-gradient-to-br from-gray-50 via-white to-primary-50/60 lg:h-64 dark:border-white/10 dark:from-gray-900 dark:via-gray-900 dark:to-primary-900/20"
+    >
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(0,220,130,0.12),transparent_55%)]" />
+      <Icon
+        v-if="project.bannerIcon"
+        :name="project.bannerIcon"
+        class="relative h-16 w-16 text-gray-800 transition-transform duration-500 ease-out group-hover/card:scale-110 motion-reduce:transition-none lg:h-20 lg:w-20 dark:text-gray-100"
+      />
+      <span
+        v-if="te(`projects.items.${project.key}.banner`)"
+        class="relative font-mono text-sm font-semibold text-gray-600 lg:text-base dark:text-gray-300"
+      >
+        {{ t(`projects.items.${project.key}.banner`) }}
+      </span>
+    </div>
 
-    <div class="relative z-10 overflow-hidden">
+    <div
+      v-else
+      :class="[
+        'relative z-10 overflow-hidden',
+        featured && 'border-b border-gray-200/70 dark:border-white/10',
+      ]"
+    >
       <NuxtImg
         :src="project.image"
         :alt="t(`projects.items.${project.key}.title`)"
-        sizes="sm:100vw md:50vw lg:480px"
-        class="h-52 w-full object-cover transition-transform duration-500 ease-out group-hover/card:scale-[1.03] group-focus-within/card:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover/card:scale-100 lg:h-64"
+        :sizes="featured ? 'sm:100vw md:100vw lg:1120px' : 'sm:100vw md:50vw lg:480px'"
+        :class="[
+          'w-full object-cover transition-transform duration-500 ease-out group-hover/card:scale-[1.03] group-focus-within/card:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover/card:scale-100',
+          featured ? 'aspect-[16/10] object-top sm:aspect-[2/1]' : 'h-52 lg:h-64',
+        ]"
         loading="lazy"
         decoding="async"
         format="webp"
@@ -43,27 +64,29 @@
       />
     </div>
 
-    <div class="relative z-10 flex flex-1 flex-col gap-4 p-5 sm:p-6 lg:gap-6 lg:p-8">
+    <div
+      :class="[
+        'relative z-10 flex flex-1 flex-col gap-4 p-5 sm:p-6 lg:gap-6',
+        // Featured on lg: text, meta and links on the left, the tech list spanning the right column.
+        featured ? 'lg:grid lg:grid-cols-2 lg:grid-rows-[auto_auto_auto_1fr] lg:gap-x-14 lg:gap-y-5 lg:p-10' : 'lg:p-8',
+      ]"
+    >
       <header class="flex flex-col gap-2 lg:gap-3">
-        <div class="flex flex-wrap items-center gap-2">
-          <h3
-            :id="titleId"
-            class="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-50 md:text-2xl lg:text-[1.75rem]"
-          >
-            {{ t(`projects.items.${project.key}.title`) }}
-          </h3>
-          <span
-            v-if="project.kind === 'experiment'"
-            class="inline-flex items-center gap-1 rounded-full bg-violet-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-violet-800 ring-1 ring-inset ring-violet-300/60 dark:bg-violet-500/15 dark:text-violet-100 dark:ring-violet-400/40"
-          >
-            <Icon
-              name="game-icons:test-tubes"
-              class="h-3 w-3"
-              aria-hidden="true"
-            />
-            {{ t('projects.experiments.badge') }}
-          </span>
-        </div>
+        <p
+          v-if="te(`projects.items.${project.key}.role`)"
+          class="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary-700 dark:text-primary-300"
+        >
+          {{ t(`projects.items.${project.key}.role`) }}
+        </p>
+        <h3
+          :id="titleId"
+          :class="[
+            'text-xl font-bold tracking-tight text-gray-900 dark:text-gray-50 md:text-2xl',
+            featured ? 'lg:text-[2rem]' : 'lg:text-[1.75rem]',
+          ]"
+        >
+          {{ t(`projects.items.${project.key}.title`) }}
+        </h3>
 
         <div>
           <p
@@ -71,14 +94,14 @@
             ref="descEl"
             :class="[
               'overflow-hidden text-sm text-gray-600 transition-[max-height] duration-300 ease-out dark:text-gray-300 sm:text-base motion-reduce:transition-none',
-              descOpen ? 'max-h-[40rem]' : 'max-h-[4.5rem] sm:max-h-[5rem] lg:max-h-[6.5rem]',
-              !descOpen && descClamped ? '[mask-image:linear-gradient(to_bottom,black_55%,transparent)]' : '',
+              descFull ? 'max-h-[40rem]' : 'max-h-[4.5rem] sm:max-h-[5rem] lg:max-h-[6.5rem]',
+              !descFull && descClamped ? '[mask-image:linear-gradient(to_bottom,black_55%,transparent)]' : '',
             ]"
           >
             {{ t(`projects.items.${project.key}.description`) }}
           </p>
           <button
-            v-if="descClamped || descOpen"
+            v-if="!featured && (descClamped || descOpen)"
             type="button"
             :aria-expanded="descOpen"
             :aria-controls="descId"
@@ -95,7 +118,7 @@
         </div>
       </header>
 
-      <div class="mt-auto flex flex-col gap-4 lg:gap-5">
+      <div :class="['mt-auto flex flex-col gap-4 lg:gap-5', featured && 'lg:contents']">
         <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-gray-200/70 pt-4 text-xs font-medium text-gray-500 dark:border-white/10 dark:text-gray-400 lg:pt-5">
           <span class="inline-flex items-center gap-1.5">
             <Icon
@@ -120,25 +143,45 @@
           </span>
         </div>
 
-        <NuxtLink
-          v-if="project.link"
-          :to="project.link"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-primary-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:bg-primary-500 dark:hover:bg-primary-400 dark:focus-visible:ring-offset-gray-900 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto sm:self-start"
-          :aria-label="`${t('projects.liveDemo')} — ${t(`projects.items.${project.key}.title`)} (${t('projects.opensNewTab')})`"
+        <div
+          v-if="project.link || project.repo"
+          class="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center"
         >
-          {{ t('projects.liveDemo') }}
-          <Icon
-            name="carbon:launch"
-            class="h-4 w-4"
-            aria-hidden="true"
-          />
-        </NuxtLink>
+          <NuxtLink
+            v-if="project.link"
+            :to="project.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-primary-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:bg-primary-500 dark:hover:bg-primary-400 dark:focus-visible:ring-offset-gray-900 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto"
+            :aria-label="`${linkLabel} — ${t(`projects.items.${project.key}.title`)} (${t('projects.opensNewTab')})`"
+          >
+            {{ linkLabel }}
+            <Icon
+              name="carbon:launch"
+              class="h-4 w-4"
+              aria-hidden="true"
+            />
+          </NuxtLink>
+          <NuxtLink
+            v-if="project.repo"
+            :to="project.repo"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-gray-400 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 dark:border-white/15 dark:text-gray-100 dark:hover:border-white/30 dark:hover:bg-white/5 dark:focus-visible:ring-offset-gray-900 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto"
+            :aria-label="`${t('projects.sourceCode')} — ${t(`projects.items.${project.key}.title`)} (${t('projects.opensNewTab')})`"
+          >
+            <Icon
+              name="mdi:github"
+              class="h-4 w-4"
+              aria-hidden="true"
+            />
+            {{ t('projects.sourceCode') }}
+          </NuxtLink>
+        </div>
 
         <dl
           v-if="presentCategories.length"
-          class="flex flex-col gap-2 lg:gap-3"
+          :class="['flex flex-col gap-2 lg:gap-3', featured && 'lg:col-start-2 lg:row-span-4 lg:row-start-1']"
           :aria-label="t('projects.techStack')"
         >
           <div
@@ -146,8 +189,8 @@
             ref="techEl"
             :class="[
               'flex flex-col gap-2 overflow-hidden transition-[max-height] duration-300 ease-out lg:gap-3 motion-reduce:transition-none',
-              techOpen ? 'max-h-[40rem]' : 'max-h-[6rem] min-h-[6rem] lg:max-h-[7.5rem] lg:min-h-[7.5rem]',
-              !techOpen && techClamped ? '[mask-image:linear-gradient(to_bottom,black_60%,transparent)]' : '',
+              techFull ? 'max-h-[40rem]' : 'max-h-[6rem] min-h-[6rem] lg:max-h-[7.5rem] lg:min-h-[7.5rem]',
+              !techFull && techClamped ? '[mask-image:linear-gradient(to_bottom,black_60%,transparent)]' : '',
             ]"
           >
             <div
@@ -155,7 +198,13 @@
               :key="category"
               class="flex flex-wrap items-baseline gap-x-3 gap-y-1.5"
             >
-              <dt class="inline-flex min-w-[5.25rem] items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-gray-500 dark:text-gray-400">
+              <dt
+                :class="[
+                  'inline-flex min-w-[5.25rem] items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-gray-500 dark:text-gray-400',
+                  // In the wide featured column a short label let its pills sit inline while the others wrapped below.
+                  featured && 'basis-full',
+                ]"
+              >
                 <span
                   class="h-1.5 w-1.5 rounded-full"
                   :class="CATEGORY_STYLES[category].dot"
@@ -183,7 +232,7 @@
           </div>
 
           <button
-            v-if="techClamped || techOpen"
+            v-if="!featured && (techClamped || techOpen)"
             type="button"
             :aria-expanded="techOpen"
             :aria-controls="techId"
@@ -208,9 +257,19 @@ import { useMouseInElement, useResizeObserver, useToggle } from '@vueuse/core'
 import type { Project, TechCategory } from '~/types/project'
 import { TECH_CATEGORIES } from '~/types/project'
 
-const { project } = defineProps<{ project: Project }>()
+const { project, featured = false } = defineProps<{
+  project: Project
+  /** Lead card above the timeline: full-width screenshot banner, text and tech side by side on lg, nothing clamped. */
+  featured?: boolean
+}>()
 
 const { t, te } = useI18n()
+
+const linkLabel = computed(() =>
+  te(`projects.items.${project.key}.linkLabel`)
+    ? t(`projects.items.${project.key}.linkLabel`)
+    : t('projects.liveDemo'),
+)
 
 const titleId = useId()
 const descId = useId()
@@ -225,10 +284,11 @@ const spotlightStyle = computed(() => ({
 
 const descEl = useTemplateRef<HTMLElement>('descEl')
 const [descOpen, toggleDesc] = useToggle(false)
+const descFull = computed(() => featured || descOpen.value)
 const descClamped = shallowRef(false)
 useResizeObserver(descEl, () => {
   const el = descEl.value
-  if (!el || descOpen.value) return
+  if (!el || descFull.value) return
   descClamped.value = el.scrollHeight - el.clientHeight > 1
 })
 
@@ -243,10 +303,11 @@ const restCount = computed(() =>
 
 const techEl = useTemplateRef<HTMLElement>('techEl')
 const [techOpen, toggleTech] = useToggle(false)
+const techFull = computed(() => featured || techOpen.value)
 const techClamped = shallowRef(false)
 useResizeObserver(techEl, () => {
   const el = techEl.value
-  if (!el || techOpen.value) return
+  if (!el || techFull.value) return
   techClamped.value = el.scrollHeight - el.clientHeight > 1
 })
 
@@ -254,6 +315,7 @@ const STATUS_TEXT: Record<NonNullable<Project['status']> | 'default', string> = 
   production: 'text-emerald-700 dark:text-emerald-300',
   beta: 'text-amber-700 dark:text-amber-300',
   internal: 'text-sky-700 dark:text-sky-300',
+  merged: 'text-violet-700 dark:text-violet-300',
   default: 'text-gray-600 dark:text-gray-300',
 }
 
@@ -261,6 +323,7 @@ const STATUS_DOT: Record<NonNullable<Project['status']> | 'default', string> = {
   production: 'bg-emerald-500 dark:bg-emerald-300',
   beta: 'bg-amber-500 dark:bg-amber-300',
   internal: 'bg-sky-500 dark:bg-sky-300',
+  merged: 'bg-violet-500 dark:bg-violet-300',
   default: 'bg-gray-500 dark:bg-gray-300',
 }
 
@@ -331,9 +394,15 @@ const TECH_ICONS: Record<string, string> = {
   'tanstack query': 'simple-icons:reactquery',
   'tanstack table': 'simple-icons:reactquery',
   'stripe': 'simple-icons:stripe',
-  'auth.js': 'carbon:user-multiple',
+  'better auth': 'carbon:user-multiple',
   'ai sdk': 'carbon:machine-learning-model',
-  'xai': 'simple-icons:x',
+  'nuxt ui': 'simple-icons:nuxtdotjs',
+  'pgvector': 'simple-icons:postgresql',
+  'redis': 'simple-icons:redis',
+  'docker': 'simple-icons:docker',
+  'dokploy': 'selfhst:dokploy',
+  'sentry': 'simple-icons:sentry',
+  'kea': 'carbon:data-structured',
   'aws s3': 'simple-icons:amazons3',
   's3': 'simple-icons:amazons3',
   'aws ses': 'simple-icons:amazonsimpleemailservice',

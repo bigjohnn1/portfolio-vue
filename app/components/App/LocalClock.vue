@@ -88,7 +88,7 @@
     </svg>
 
     <span class="inline-flex flex-col text-[0.7rem] leading-[1.05] tracking-[0.04em]">
-      <span class="text-[0.62rem] uppercase opacity-60">{{ t('about.card.location') }}</span>
+      <span class="text-[0.62rem] uppercase opacity-60">{{ t('footer.localTime') }}</span>
       <NuxtTime
         class="text-[0.82rem] font-semibold tabular-nums"
         :datetime="now"
@@ -121,7 +121,7 @@
 </template>
 
 <script setup lang="ts">
-import { useElementBounding, useNow } from '@vueuse/core'
+import { useElementBounding, useMounted, useNow } from '@vueuse/core'
 
 const { t, locale } = useI18n()
 
@@ -130,7 +130,14 @@ const intlLocale = computed(() => toIntlLocale(locale.value))
 const TARGET_TZ = 'Europe/Prague'
 const tooltipId = useId()
 
-const now = useNow({ interval: 30_000 })
+// The hands and the label depend on the current minute, and the client hydrates a moment (or, with a
+// cached response, much) later than the server rendered. Hydrating with the live time therefore
+// mismatched the SVG transforms whenever a minute boundary fell in between. The server timestamp
+// travels in the payload, the hydration render uses it, and the clock goes live once mounted.
+const ssrNow = useState('local-clock-ssr-now', () => Date.now())
+const liveNow = useNow({ interval: 30_000 })
+const mounted = useMounted()
+const now = computed(() => (mounted.value ? liveNow.value : new Date(ssrNow.value)))
 
 const rootEl = useTemplateRef<HTMLElement>('rootEl')
 const visible = shallowRef(false)

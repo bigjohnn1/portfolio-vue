@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const CONTACT_REASONS = ['inquiry', 'suggestion', 'request', 'collaboration'] as const
+export const CONTACT_REASONS = ['job', 'inquiry', 'suggestion', 'request', 'collaboration'] as const
 
 export const contactFormSchema = z.object({
   name: z

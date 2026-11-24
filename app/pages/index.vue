@@ -1,14 +1,13 @@
 <template>
   <VueFrag>
     <HomeIntro />
-    <TestField />
     <AppHeader />
     <LazyHomeProjects />
+    <LazyHomeBlog />
     <LazyHomeTechStack />
+    <LazyHomeAbout />
     <LazyHomeGithubActivity />
     <LazyHomeContact />
-    <LazyHomeAbout />
-    <LazyHomeBlog />
     <LazyAppFooter />
   </VueFrag>
 </template>
@@ -18,6 +17,7 @@ const { t } = useI18n()
 
 useSeoMeta({
   title: t('seo.homeTitle'),
+  titleTemplate: '%s',
   description: t('seo.homeDescription'),
   ogTitle: t('seo.homeTitle'),
   ogDescription: t('seo.homeDescription'),

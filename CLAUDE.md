@@ -17,7 +17,7 @@
 - **Styling:** Tailwind CSS (configured in `nuxt.config.ts`, `assets/scss/base.scss`)
 - **State Management:** Pinia (`@pinia/nuxt`)
 - **i18n:** `@nuxtjs/i18n`
-- **Animations/3D:** GSAP, Three.js
+- **Animations:** GSAP
 - **Database/ORM:** ZenStack v3
 
 ## Documentation & Learning

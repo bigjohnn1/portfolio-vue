@@ -2,7 +2,7 @@
 
 # Benjamin Tomaník — Portfolio
 
-A Nuxt 4 single-page experience with a D&D-flavoured hero composition, GSAP-orchestrated entrances, internationalised content (CS / EN), a Markdown-driven blog, and a hardened contact pipeline.
+Personal site of a full-stack TypeScript engineer (Vue / Nuxt): a Nuxt 4 single page with selected work, a Markdown blog, live GitHub activity, content in five languages and a hardened contact pipeline.
 
 ### [Visit the live site &nbsp;→&nbsp; benjamintomanik.me](https://benjamintomanik.me)
 
@@ -19,20 +19,21 @@ A Nuxt 4 single-page experience with a D&D-flavoured hero composition, GSAP-orch
 </div>
 
 > [!NOTE]
-> This repository is public to showcase my architectural approach to Nuxt 4, GSAP, ZenStack and motion design — **not as a starter template**. The intro timeline, the IntroHero composition, the section-rail wiring, and the data layer are bespoke to my site. Read for ideas; don't expect a one-command bootstrap.
+> This repository is public to show how I structure a Nuxt 4 app — data layer, i18n, SEO, security and CI — **not as a starter template**. The content, section wiring and data layer are specific to my site. Read it for ideas; don't expect a one-command bootstrap.
 
 ---
 
 ## Highlights
 
-- **Cinematic intro.** A GSAP timeline orchestrates a layered entrance — runic cartouche, character-by-character title reveal, word-by-word subtitle, scale-bouncing CTA, scroll hint. Honours `prefers-reduced-motion` end-to-end.
-- **D&D-flavoured hero.** Pure SVG + Iconify composition: stroke-drawn rings, sequential hex inscription with soft-glow filter, six energy lines, radial rune flashes, a back-out d20 summon and shockwave, plus ambient particles. Hover or click the d20 for a two-phase roll. Full phase-by-phase breakdown lives in [`MAP.md`](./MAP.md).
-- **Internationalised.** Czech and English via `@nuxtjs/i18n`; locale switching from the header, the section rail popover, and a dedicated control.
+- **Recruiter-first home page.** Static hero copy (name, role, one proof sentence, CTA and CV download), then selected work (the flagship product as a featured card with an in-app screenshot, the rest on a timeline), blog, tech stack, about, GitHub activity and contact.
+- **One playful detail.** The hero visual is a d20 built from pure SVG + Iconify and assembled by a GSAP timeline. Click it to roll: the result scrolls to a random section, and a natural 20 sends you to the contact form. Phase-by-phase breakdown in [`MAP.md`](./MAP.md).
+- **Internationalised.** English, Czech, German, French and Spanish via `@nuxtjs/i18n` (`prefix_except_default`); locale switching from the hero, the header and the section rail.
 - **Markdown blog.** `@nuxt/content` v3 with a sticky table of contents on `/blog/[...slug]`.
+- **Live GitHub activity.** Contribution heatmap, streaks, language share and latest commits from a server route, fetched only when the section scrolls into view.
 - **Production chrome.** `@nuxtjs/seo` (sitemap, OG image, `useSchemaOrg` Person / WebSite / WebPage), `nuxt-security` CSP, reCAPTCHA v3 on the contact form, `nuxt-nodemailer` for delivery.
-- **One schema, both sides.** Contact form validation is a single Zod schema in `shared/contact-schema.ts` — imported by both `Form.vue` (per-field live validation) and the Nitro route (server-side parse). Field errors render inline in a warm, first-person voice ("Tell me your name — at least 2 letters.") that matches the site's tone without sliding into generic SaaS strings.
+- **One schema, both sides.** Contact form validation is a single Zod schema in `shared/contact-schema.ts`, imported by both `Form.vue` (per-field live validation) and the Nitro route (server-side parse).
 - **Self-hosted typography.** Geist + Geist Mono via `@nuxt/fonts`. Global fluid `clamp()` type scale + section rhythm tokens (`p-section-y`, `p-section-x`, `gap-gutter`).
-- **A11y by default.** Reduced-motion shortcircuits, semantic landmarks, `aria-label` on every icon-only control, keyboard-reachable section rail with `Alt+↑/↓`.
+- **A11y by default.** Reduced-motion support, semantic landmarks, `aria-label` on every icon-only control, keyboard-reachable section rail with `Alt+↑/↓`.
 
 ## Stack
 
@@ -43,10 +44,9 @@ A Nuxt 4 single-page experience with a D&D-flavoured hero composition, GSAP-orch
 | Styling      | Tailwind CSS · SCSS · `@nuxt/fonts` (Geist) |
 | Motion       | GSAP via `@hypernym/nuxt-gsap` · VueUse |
 | State        | Pinia (`@pinia/nuxt`) + persisted-state |
-| i18n         | `@nuxtjs/i18n` (cs, en) |
+| i18n         | `@nuxtjs/i18n` (en, cs, de, fr, es) |
 | Content      | `@nuxt/content` v3 (Markdown) |
-| 3D           | Three.js + TresJS (`AboutScene.vue`) |
-| Icons        | `@nuxt/icon` (Iconify) — Lucide + game-icons |
+| Icons        | `@nuxt/icon` (Iconify) — Lucide, brand logos, game-icons |
 | Server / ORM | Nitro routes · ZenStack v3 · Kysely · PostgreSQL |
 | Mail         | `nuxt-nodemailer` |
 | Security     | `nuxt-security` (CSP) · `@nuxtjs/recaptcha` v3 |
@@ -90,22 +90,21 @@ reCAPTCHA v3 site / secret keys come from runtime config in `nuxt.config.ts`.
 
 ## Architecture
 
-A single-page portfolio at `/` composed of independently-mounted sections — Intro, About, Projects, TechStack, Blog preview, Contact. The blog index and posts live at `/blog` and `/blog/[...slug]`.
+A single-page portfolio at `/` composed of independently mounted sections — Intro, Projects, Blog preview, Tech stack, About, GitHub activity, Contact. The blog index and posts live at `/blog` and `/blog/[...slug]`.
 
 - **App dir.** Nuxt 4's `app/` convention (`components/`, `composables/`, `layouts/`, `pages/`, `stores/`).
-- **Scroll-spy single source of truth.** `useActiveSection` is consumed by both `AppHeader` and `SectionRail` — no duplicated `IntersectionObserver` wiring.
+- **Scroll-spy single source of truth.** `useActiveSection` is consumed by `AppHeader`, `SectionRail` and the footer — no duplicated `IntersectionObserver` wiring.
 - **Data layer.** ZenStack v3 schema (`zenstack/schema.zmodel`) generates types + helpers consumed by Kysely-driven Nitro routes.
 - **Global SEO + JSON-LD.** Person / WebSite / WebPage schema is emitted from `app/app.vue` via `useSchemaOrg`.
-- **Motion philosophy.** Big-arc storytelling lives in GSAP timelines (intro, hero composition, contact reveal); idle ambience lives in Tailwind keyframes (`spin-slow`, `rune-float`, `aura-pulse`, `chevron-drift`, `cartouche-shimmer`, `rune-glow`, …) defined in `nuxt.config.ts`.
+- **Hydration-safe SSR.** Markup that depends on the clock, randomness or the stored colour mode renders the same on server and client: the local-time clock hydrates from the server timestamp in the payload, the hero particles use a seeded PRNG, and the theme toggle renders both icons and lets the `dark` class pick one.
+- **Motion.** The d20 composition in the hero is a GSAP timeline that starts once it is on screen; everything else is short, scroll-triggered entrances on content (project timeline, tech stack, GitHub activity). The hero text never animates, so it is readable on first paint.
 
-The exhaustive component map — every animation phase, every accent colour, every micro-interaction — is maintained in [`MAP.md`](./MAP.md). Treat it as the source of truth and update it on every structural change.
-
-> [!TIP]
-> Curious how a specific section is wired? [`MAP.md`](./MAP.md) walks through every GSAP timeline, every accent colour, and every composable in play — it's the fastest way to understand the codebase without reading it linearly.
+The component map is maintained in [`MAP.md`](./MAP.md). Treat it as the source of truth and update it on every structural change.
 
 ## Accessibility
 
-- All decorative motion is gated by `motion-reduce:animate-none` or branches on `usePreferredReducedMotion`. The intro timeline and the IntroHero composition both short-circuit to `$gsap.set` final state when reduced motion is requested.
+- All decorative motion is gated by `motion-reduce:animate-none` or branches on `usePreferredReducedMotion`. The d20 composition short-circuits to its final state, and a roll scrolls instantly, when reduced motion is requested.
+- The d20 is a real `<button>` with an `aria-label`; the surrounding SVG is `aria-hidden`.
 - Icon-only controls carry `aria-label`; purely decorative SVG uses `aria-hidden="true"`.
 - The section rail accepts `Alt+↑/↓` for keyboard jumping between sections.
 - Forms validate against a single Zod schema (`shared/contact-schema.ts`) on both sides. Client errors surface inline on blur (after first touch) and live thereafter, with `aria-invalid` + `aria-describedby` wired per field and a polite `role="alert"` for the message itself.
@@ -116,11 +115,11 @@ The site deploys to **Vercel** — Nitro auto-detects the `vercel` preset, and s
 
 ## Credits
 
-- **Iconography:** [Lucide](https://lucide.dev) for UI strokes; [game-icons.net](https://game-icons.net) (CC BY 3.0) for the runes, dice, and scroll-quill — attribution is rendered in the site footer.
+- **Iconography:** [Lucide](https://lucide.dev) for UI strokes, brand marks via Iconify logo sets, and [game-icons.net](https://game-icons.net) (CC BY 3.0) for the d20 and runes — attribution is rendered in the site footer.
 - **Typography:** [Geist](https://vercel.com/font), self-hosted via `@nuxt/fonts`.
 
 ---
 
 <div align="center">
-<sub>Crafted in Czechia · © Benjamin Tomaník · All rights reserved.</sub>
+<sub>© Benjamin Tomaník · All rights reserved.</sub>
 </div>

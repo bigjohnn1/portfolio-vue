@@ -1,7 +1,7 @@
 {
   "seo": {
-    "homeTitle": "Benjamin Tomanik - Product Engineer",
-    "homeDescription": "Portfolio de Benjamin Tomanik, Product Engineer y Co-fundador técnico."
+    "homeTitle": "Benjamin Tomanik – Full-Stack TypeScript Engineer (Vue / Nuxt)",
+    "homeDescription": "Ingeniero full-stack TypeScript con 3 años de experiencia en SaaS en producción con Vue, Nuxt y PostgreSQL. Abierto a puestos en remoto, como B2B o en plantilla."
   },
   "global": {
     "name": "Benjamin Tomanik"
@@ -21,13 +21,6 @@
     "toggleTheme": "Alternar tema",
     "switchLanguage": "Cambiar idioma",
     "backToTop": "Volver arriba"
-  },
-  "scene": {
-    "title": "Escena 3D",
-    "description": "Una escena 3D interactiva con etiquetas tech flotantes y un sutil fondo code-rain. Pulsa Escape para cerrar.",
-    "openHint": "Abrir escena 3D",
-    "close": "Cerrar escena 3D",
-    "escHint": "para cerrar"
   },
   "cmdk": {
     "title": "Paleta de comandos",
@@ -52,13 +45,13 @@
     "openSocial": "Abrir {platform}"
   },
   "intro": {
-    "role": "Builder · SaaS & AI",
-    "tagline": "Rápido, limpio, sin relleno.",
-    "subtitle": "Construyo productos web rápidos, bien optimizados y limpios por dentro.",
-    "cta": "Comienza la aventura",
-    "ctaLabel": "Contáctame",
-    "ctaSub": "Respondo en un día · Desde Praga, GMT+1",
-    "scrollHint": "Desplázate para explorar",
+    "subtitle": "Construyo y mantengo SaaS en producción, desde el modelo de datos hasta el despliegue. Lo último: Topiqu, una plataforma de publicación multi-tenant, y una corrección fusionada en PostHog.",
+    "cta": "Ver proyectos",
+    "ctaLabel": "Ir a los proyectos",
+    "ctaSub": "Remoto (CET) · B2B o en plantilla · Idiomas de trabajo: inglés, checo",
+    "headline": "Full-Stack TypeScript Engineer (Vue / Nuxt)",
+    "cv": "Descargar CV",
+    "cvLabel": "Descargar CV (PDF, en inglés)",
     "roll": {
       "aria": "Lanza el d20 para explorar una sección al azar",
       "lead": "El destino te lleva a",
@@ -91,7 +84,7 @@
     "returnToBlog": "Volver al blog"
   },
   "projects": {
-    "title": "Mis proyectos",
+    "title": "Trabajo seleccionado",
     "liveDemo": "Demo en vivo",
     "opensNewTab": "se abre en una nueva pestaña",
     "techStack": "Stack tecnológico",
@@ -104,61 +97,45 @@
       "db": "Base de datos",
       "misc": "Otros"
     },
-    "experiments": {
-      "kicker": "I+D / Hackathons / Experimentos con IA",
-      "title": "Prototipos con desarrollo asistido por IA",
-      "description": "Estos proyectos nacieron como mis primeros experimentos para ver hasta dónde se puede llegar construyendo con IA. MVPs reales, en producción, construidos en una fracción del tiempo habitual — con compromisos deliberados en el pulido del código, no en lo que hacen.",
-      "badge": "Experimento"
-    },
     "items": {
-      "skola-zivota": {
-        "title": "School of Life – rediseño web",
-        "description": "Primer sitio con backend PHP para una organización benéfica sin ánimo de lucro",
-        "timeline": "Mayo 2024 (2 semanas)"
-      },
-      "milk-world": {
-        "title": "Milk World",
-        "description": "E-shop funcional en PHP, Nette explorer",
-        "timeline": "Junio 2024 (1 mes)"
-      },
-      "tint-shadow": {
-        "title": "TINT s.r.o – proyecto shadow",
-        "description": "Diseño shadow para una empresa de IT, hecho a medida",
-        "timeline": "Septiembre 2024 (2 semanas)"
-      },
-      "hexcodium": {
-        "title": "HexCodium",
-        "description": "Plataforma de cursos, migración completa a Nette, moneda custom, RBAC...",
-        "timeline": "Septiembre 2024 (3 meses)"
-      },
-      "matchmaker": {
-        "title": "Matchmaker (inacabado)",
-        "description": "App liveservice, full Nette + pgSQL, caché Redis y otras funcionalidades",
-        "timeline": "Diciembre 2024 (1 mes)"
-      },
       "v-okamihu": {
         "title": "V Okamihu",
-        "description": "Primer proyecto comercial en equipo, Vue + Tailwind FE, Nitro + Nuxt/Prisma/Zenstack BE",
-        "timeline": "Marzo 2025 (1 mes)"
+        "description": "Plataforma de reservas para un cliente, desarrollada en equipo. Construí el calendario de reservas con capacidad por franja validada en el servidor, filtros sincronizados entre Pinia y la URL, y la API para profesores, servicios y reservas.",
+        "timeline": "Marzo – abril 2025"
       },
       "topiqu": {
         "title": "Topiqu",
-        "description": "Herramienta de blogging SaaS B2B multi-tenant. Redacción automatizada de artículos, setup de autor con IA, construido sobre Nuxt 4, Nitro y Vue 3.5.",
-        "timeline": "Junio 2025 – Actualidad",
+        "role": "Lead Full-Stack Engineer",
+        "description": "SaaS de publicación multi-tenant con un editor asistido por IA. Lidero el desarrollo en un equipo de dos ingenieros: 90 modelos de datos con más de 160 reglas de acceso en ZenStack, generación de artículos que sobrevive a reinicios y despliegues, facturación con Stripe y unos 600 archivos de tests. El repositorio es público.",
+        "timeline": "Junio 2025 – actualidad",
         "status": "Beta · primeros clientes"
       },
       "fastproject": {
         "title": "FastProject",
-        "description": "Herramienta B2B con IA escalable para gestión de proyectos. SPA en React sobre Vite con API Hono en Cloudflare Workers (D1/KV/R2). Sync bidireccional (Asana), planificación inteligente de capacidad y RBAC.",
-        "timeline": "Noviembre 2025 – Marzo 2026",
+        "description": "Herramienta de gestión de proyectos para Neowara: React y Hono en Cloudflare Workers (D1, KV, R2), sincronización bidireccional con Asana, planificación de capacidad y RBAC.",
+        "timeline": "Noviembre 2025 – marzo 2026",
         "status": "MVP interno"
       },
       "nimblo": {
         "title": "Nimblo",
-        "description": "Generador de propuestas construido como SPA React sobre Vite, con API Hono en Cloudflare Workers. Variables dinámicas, análisis de plantillas con IA e integración directa con Fireflies.",
-        "timeline": "Enero 2026 – Marzo 2026",
-        "status": "Producción"
+        "description": "Generador de propuestas para Neowara: SPA en React con Vite y una API Hono en Cloudflare Workers, análisis de plantillas con IA, variables dinámicas e integración con Fireflies.",
+        "timeline": "Enero – marzo 2026",
+        "status": "En producción"
+      },
+      "posthog": {
+        "banner": "PR #58224",
+        "title": "PostHog – PR #58224 fusionado",
+        "description": "Corrección de la pérdida del estado de la interfaz por pestaña en la navegación multipestaña de PostHog (React, Kea). Saqué el estado del ciclo de vida de la escena, corregí la restauración desde la URL en Events y Sessions y añadí la limpieza al cerrar una pestaña. 15 archivos, revisado y fusionado.",
+        "timeline": "Mayo 2026",
+        "status": "Fusionado",
+        "linkLabel": "Ver pull request"
       }
+    },
+    "description": "Productos en producción, una contribución open source fusionada y proyectos para clientes. Del más reciente al más antiguo.",
+    "sourceCode": "Código fuente",
+    "earlier": {
+      "title": "Primeros proyectos · 2024",
+      "description": "Proyectos freelance con PHP y Nette: HexCodium, una plataforma de cursos con roles y generación de PDF, y una web con edición de contenidos para la ONG Škola života."
     }
   },
   "techStack": {
@@ -279,7 +256,7 @@
   },
   "contact": {
     "heading": "Contacto",
-    "description": "Preguntas, sugerencias, colaboración – ¡sin problema! Escríbeme directamente o contáctame en redes sociales.",
+    "description": "Busco un puesto en remoto como ingeniero full-stack TypeScript (Vue / Nuxt). Una oferta de empleo, una colaboración o una pregunta rápida: escríbeme directamente o por LinkedIn. Trabajo en inglés y checo.",
     "availability": "Suelo responder en menos de un día",
     "name": "Tu nombre completo",
     "hours": "Horario laboral (CET)",
@@ -323,6 +300,7 @@
     "consentLabel": "Acepto el tratamiento de mis datos personales conforme a la ",
     "privacyLink": "política de privacidad",
     "reasons": {
+      "job": "Oferta de empleo",
       "inquiry": "Consulta",
       "suggestion": "Sugerencia",
       "request": "Solicitud",
@@ -376,70 +354,36 @@
     "profileCta": "Ver perfil"
   },
   "about": {
-    "title": "Quién soy",
-    "card": {
-      "idLabel": "PERFIL · 2026",
-      "name": "Benjamin Tomanik",
-      "role": "Product Engineer y Co-fundador",
-      "location": "República Checa",
-      "tagline": "Construyo workflows SaaS e IA escalables.",
-      "shortBio": "Product engineer enamorado de la fantasía. Asume la responsabilidad completa de entregar el producto y construye cosas que tienen sentido — sin burocracia innecesaria.",
-      "photoAlt": "Retrato de Big John",
-      "signatureLabel": "Firma",
-      "flipHint": "Girar tarjeta",
-      "flipBack": "Girar de vuelta",
-      "backTitle": "Cómo trabajo"
+    "title": "Sobre mí",
+    "portrait": {
+      "alt": "Retrato de Benjamin Tomanik dibujado como un gráfico de contribuciones de GitHub"
     },
-    "story": {
-      "title": "Mi historia",
-      "description": "Soy product engineer de República Checa, fan de la fantasía y me encanta construir cosas que tienen sentido. Asumo la responsabilidad completa de la entrega — priorizo la autonomía y las iteraciones rápidas frente a la burocracia. Recientemente cofundé una startup donde construí toda la arquitectura escalable desde cero; desde tecnologías edge como Vue y Nuxt o React y Next en el frontend hasta la base de datos, la infraestructura e incluso el modelo de negocio."
-    },
-    "points": {
-      "workflow": {
-        "title": "Workflow y Arquitectura",
-        "description": "Mi workflow está fuertemente asistido por IA. Me gusta configurar worktrees con agentes de IA (Claude Code, Codex CLI) y delegarles el trabajo a nivel de sintaxis. Esto me permite entregar resultados mucho más rápido, mientras mi pipeline asegura que el resultado está listo para producción justo después del deploy. Los commits importantes, por supuesto, los sigo validando manualmente."
-      },
-      "principles": {
-        "title": "Principios fundamentales",
-        "description": "Asumo la responsabilidad completa de lo que entrego. Apuesto por la autonomía y las iteraciones rápidas, con un foco estricto en el resultado y el impacto real — en vez de en burocracia innecesaria."
-      }
-    },
-    "facts": {
-      "title": "Curiosidades sobre mí",
-      "items": {
-        "learning": {
-          "title": "Mejora continua",
-          "description": "Ya sea código, negocios o lifestyle, la mejora constante y superar mis propios límites es mi rutina diaria."
-        },
-        "lifestyle": {
-          "title": "Estilo de vida saludable",
-          "description": "Correr, ir al gimnasio o comer sano me mantienen al ritmo de mis proyectos."
-        },
-        "rpg": {
-          "title": "Fan de la fantasía",
-          "description": "Me encantan los mundos de fantasía como D&D, The Witcher o El Señor de los Anillos."
-        }
-      },
-      "criticalSuccess": "Éxito crítico",
-      "criticalFailure": "Fallo crítico"
+    "bio": {
+      "intro": "Soy ingeniero full-stack TypeScript de Chequia. Desarrollo aplicaciones web con Vue y Nuxt desde 2024, y durante el último año y medio sobre todo Topiqu, un SaaS multi-tenant cuyo desarrollo lidero en un equipo de dos ingenieros, desde el modelo de datos hasta la infraestructura de producción.",
+      "work": "Trabajo mejor cuando puedo llevar una funcionalidad desde el diseño hasta producción y seguir cuidándola después. Mantengo la autorización en la capa de datos, los contratos tipados y los cambios lo bastante pequeños como para revisarlos bien. Uso agentes de código con IA (Claude Code, Codex) a diario, y aun así cada cambio tiene que pasar los tipos, los tests, la CI y mi propia revisión.",
+      "personal": "Fuera del código corro, voy al gimnasio y leo fantasía, sobre todo The Witcher y El Señor de los Anillos."
     },
     "stats": {
-      "xp": { "label": "Experiencia", "value": "2,5 años" },
-      "quests": { "label": "Proyectos", "value": "9" },
-      "stack": { "label": "Enfoque", "value": "Full-stack" },
-      "feats": { "label": "Certificados", "value": "4" }
-    },
-    "achievements": {
-      "kicker": "Certificado por Anthropic",
-      "title": "Logros desbloqueados",
-      "unlocked": "Desbloqueado",
-      "issuer": "Anthropic",
-      "items": {
-        "api": { "name": "Building with the Claude API" },
-        "skills": { "name": "Agent Skills" },
-        "claudeCode": { "name": "Claude Code in Action" },
-        "mcp": { "name": "MCP: Advanced Topics" }
+      "xp": {
+        "label": "Experiencia",
+        "value": "2024 – actualidad"
+      },
+      "remote": {
+        "label": "Trabajo",
+        "value": "Remoto · CET"
+      },
+      "contract": {
+        "label": "Contrato",
+        "value": "B2B / plantilla"
+      },
+      "languages": {
+        "label": "Idiomas",
+        "value": "EN (C1) · CZ"
       }
+    },
+    "certifications": {
+      "label": "Certificaciones",
+      "value": "Anthropic Academy: Building with the Claude API, MCP: Advanced Topics, Agent Skills, Claude Code in Action"
     }
   },
   "consent": {
@@ -449,17 +393,17 @@
     "closeButton": "Cerrar"
   },
   "footer": {
-    "tagline": "Builder · SaaS & AI",
-    "location": "Praga",
+    "tagline": "Full-Stack TypeScript Engineer · Vue / Nuxt",
+    "location": "Remoto · CET",
     "headingSections": "Secciones",
     "headingConnect": "Conectar",
     "emailLabel": "Enviar email",
     "ariaSocial": "Abrir {platform}",
-    "constellation": "Constelación hexagonal oculta",
-    "attribution": "Iconografía",
     "buildLabel": "Build",
     "buildAria": "Build {commit} del {date}",
     "copyright": "© {year} {name}",
-    "rights": "Todos los derechos reservados"
+    "rights": "Todos los derechos reservados",
+    "localTime": "Hora local",
+    "attribution": "Iconografía"
   }
 }

@@ -23,7 +23,6 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     '@hypernym/nuxt-gsap',
-    '@tresjs/nuxt',
     'nuxt-nodemailer',
     'nuxt-security',
     '@nuxtjs/seo',
@@ -44,8 +43,8 @@ export default defineNuxtConfig({
   css: ['~/assets/scss/base.scss', 'vue-sonner/style.css'],
   site: {
     url: 'https://benjamintomanik.me',
-    name: 'Big John',
-    description: 'Portfolio of Benjamin Tomanik',
+    name: 'Benjamin Tomanik',
+    description: 'Benjamin Tomanik, Full-Stack TypeScript Engineer (Vue / Nuxt). Remote, B2B or full-time.',
     defaultLocale: 'en',
   },
   colorMode: {
@@ -185,6 +184,13 @@ export default defineNuxtConfig({
         ? false
         : {
             'img-src': ['\'self\'', 'data:', 'blob:'],
+            // @nuxt/image server-renders onerror="this.setAttribute('data-error', 1)" on every <NuxtImg>
+            // (it re-emits load errors that happened before hydration). The default 'none' blocked it and
+            // logged one CSP error per image; this allows that exact handler and nothing else.
+            'script-src-attr': [
+              '\'unsafe-hashes\'',
+              '\'sha256-bwK6T5wZVTANitXbrTsel7kl/PyCjCd/Dq5Qoz3imjM=\'',
+            ],
             'script-src': [
               '\'self\'',
               'https:',
@@ -263,6 +269,14 @@ export default defineNuxtConfig({
               '0%, 100%': { transform: 'scale(1)' },
               '50%': { transform: 'scale(1.18)' },
             },
+            'twinkle-a': {
+              '0%, 100%': { opacity: 'var(--base-opacity, 0.5)' },
+              '50%': { opacity: 'calc(var(--base-opacity, 0.5) * 0.35)' },
+            },
+            'twinkle-b': {
+              '0%, 100%': { opacity: 'var(--base-opacity, 0.5)' },
+              '60%': { opacity: 'calc(var(--base-opacity, 0.5) * 1.35)' },
+            },
             'spin-slow': {
               to: { transform: 'rotate(360deg)' },
             },
@@ -277,52 +291,6 @@ export default defineNuxtConfig({
               '0%, 100%': { opacity: '0.5', transform: 'scale(1)' },
               '50%': { opacity: '0.85', transform: 'scale(1.05)' },
             },
-            'scroll-dot': {
-              '0%': { transform: 'translateY(0)', opacity: '0' },
-              '20%': { opacity: '1' },
-              '80%': { opacity: '1' },
-              '100%': { transform: 'translateY(10px)', opacity: '0' },
-            },
-            'chevron-drift': {
-              '0%, 100%': { transform: 'translateY(-2px)', opacity: '0.45' },
-              '50%': { transform: 'translateY(3px)', opacity: '1' },
-            },
-            'cartouche-shimmer': {
-              '0%': { backgroundPosition: '-150% 0' },
-              '100%': { backgroundPosition: '250% 0' },
-            },
-            'rune-glow': {
-              '0%, 100%': { filter: 'drop-shadow(0 0 4px rgba(0,220,130,0.35))' },
-              '50%': { filter: 'drop-shadow(0 0 10px rgba(0,220,130,0.75))' },
-            },
-            'marching-dashes': {
-              '0%': { backgroundPosition: '0 0' },
-              '100%': { backgroundPosition: '14px 0' },
-            },
-            'marching-dashes-reverse': {
-              '0%': { backgroundPosition: '14px 0' },
-              '100%': { backgroundPosition: '0 0' },
-            },
-            'lab-pulse': {
-              '0%, 100%': { transform: 'scale(1)', opacity: '1', filter: 'drop-shadow(0 0 5px rgba(167,139,250,0.55))' },
-              '50%': { transform: 'scale(0.72)', opacity: '0.65', filter: 'drop-shadow(0 0 11px rgba(217,70,239,0.95))' },
-            },
-            'lab-text-shimmer': {
-              '0%, 100%': { backgroundPosition: '0% 50%' },
-              '50%': { backgroundPosition: '100% 50%' },
-            },
-            'twinkle-a': {
-              '0%, 100%': { opacity: 'var(--base-opacity, 0.5)' },
-              '50%': { opacity: 'calc(var(--base-opacity, 0.5) * 0.35)' },
-            },
-            'twinkle-b': {
-              '0%, 100%': { opacity: 'var(--base-opacity, 0.5)' },
-              '60%': { opacity: 'calc(var(--base-opacity, 0.5) * 1.35)' },
-            },
-            'hex-drift': {
-              from: { transform: 'rotate(0deg)' },
-              to: { transform: 'rotate(360deg)' },
-            },
           },
           animation: {
             'copy-pop': 'copy-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
@@ -330,17 +298,8 @@ export default defineNuxtConfig({
             'spin-slow-reverse': 'spin-slow-reverse 90s linear infinite',
             'rune-float': 'rune-float 4s ease-in-out infinite',
             'aura-pulse': 'aura-pulse 5s ease-in-out infinite',
-            'scroll-dot': 'scroll-dot 1.6s ease-in-out infinite',
-            'chevron-drift': 'chevron-drift 2.2s ease-in-out infinite',
-            'cartouche-shimmer': 'cartouche-shimmer 6s ease-in-out infinite',
-            'rune-glow': 'rune-glow 3.2s ease-in-out infinite',
-            'marching-dashes': 'marching-dashes 1.4s linear infinite',
-            'marching-dashes-reverse': 'marching-dashes-reverse 1.4s linear infinite',
-            'lab-pulse': 'lab-pulse 1.6s ease-in-out infinite',
-            'lab-text-shimmer': 'lab-text-shimmer 5s ease-in-out infinite',
             'twinkle-a': 'twinkle-a 4s ease-in-out infinite',
             'twinkle-b': 'twinkle-b 7s ease-in-out infinite',
-            'hex-drift': 'hex-drift 90s linear infinite',
           },
           colors: {
             'primary': {
